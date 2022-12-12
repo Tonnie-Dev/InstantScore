@@ -172,15 +172,15 @@ dependencies {
     implementation("androidx.paging:paging-compose:1.0.0-alpha17")
 
     // Lottie Animation
-    implementation("com.airbnb.android:lottie-compose:5.0.1")
+    implementation("com.airbnb.android:lottie-compose:5.2.0")
 
     // Compose Nav Destinations
     implementation("io.github.raamcosta.compose-destinations:core:1.6.23-beta")
     ksp("io.github.raamcosta.compose-destinations:ksp:1.6.23-beta")
 
     // Pager - Accompanist
-    implementation("com.google.accompanist:accompanist-pager:0.25.0") // Pager
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.25.0") // Pager Indicators
+    implementation("com.google.accompanist:accompanist-pager:0.28.0") // Pager
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0") // Pager Indicators
 
     // Swipe to Refresh - Accompanist
     implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
