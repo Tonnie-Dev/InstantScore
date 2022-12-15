@@ -7,6 +7,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.devtools.ksp") version "1.7.21-1.0.8"
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    id("com.diffplug.spotless")
 }
 
 android {
@@ -15,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "com.uxstate.instantscore"
-        minSdk = 26
+        minSdk = 21
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -64,66 +65,40 @@ android {
     }
     packagingOptions {
         resources {
-            exclude("/META-INF/{AL2.0,LGPL2.1}")
+            resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
-    }
-
-    ktlint {
-        disabledRules.set(setOf("final-newline", "no-wildcard-imports", "filename"))
     }
 }
 // ktlintFormat task will need to run before preBuild
-tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+tasks.getByPath("preBuild")
+    .dependsOn("ktlintFormat")
 
-subprojects {
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
-    repositories {
-        mavenCentral()
-    }
-
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        version.set("11.0.0")
-        debug.set(true)
-        verbose.set(true)
-        android.set(false)
-        outputToConsole.set(true)
-        outputColorName.set("RED")
-        ignoreFailures.set(true)
-        enableExperimentalRules.set(true)
-        additionalEditorconfigFile.set(file("/some/additional/.editorconfig"))
-        baseline.set(file("my-project-ktlint-baseline.xml"))
-        reporters {
-            reporter(ReporterType.PLAIN)
-            reporter(ReporterType.CHECKSTYLE)
-            reporter(ReporterType.SARIF)
-
-            customReporters {
-                register("csv") {
-                    fileExtension = "csv"
-                    dependency = project(":project-reporters:csv-reporter")
-                }
-                register("yaml") {
-                    fileExtension = "yml"
-                    dependency = "com.example:ktlint-yaml-reporter:1.0.0"
-                }
-            }
-        }
-        kotlinScriptAdditionalPaths {
-            include(fileTree("scripts/"))
-        }
-        filter {
-            exclude("**/generated/**")
-            include("**/kotlin/**")
-        }
-    }
-
-    dependencies {
-        ktlintRuleset("com.github.username:rulseset:master-SNAPSHOT")
-        ktlintRuleset(files("/path/to/custom/rulseset.jar"))
-        ktlintRuleset(project(":chore:project-ruleset"))
+    android.set(true)
+    ignoreFailures.set(false)
+    disabledRules.set(setOf("final-newline", "no-wildcard-imports"))
+    reporters {
+        reporter(ReporterType.PLAIN)
+        reporter(ReporterType.CHECKSTYLE)
+        reporter(ReporterType.SARIF)
     }
 }
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    kotlin {
+        // version, setUseExperimental, userData and editorConfigOverride are all optional
+        ktlint("0.45.2")
+            .setUseExperimental(true)
+            .userData(mapOf("android" to "true"))
+            .editorConfigOverride(mapOf("indent_size" to 2))
+    }
+    kotlinGradle {
+        target("*.gradle.kts") // default target for kotlinGradle
+        ktlint() // or ktfmt() or prettier()
+    }
+}
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
