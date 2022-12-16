@@ -1,4 +1,4 @@
-package com.uxstate.instantscore
+package com.uxstate.instantscore.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.uxstate.instantscore.ui.theme.InstantScoreTheme
+import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.ui.theme
+package com.uxstate.instantscore.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

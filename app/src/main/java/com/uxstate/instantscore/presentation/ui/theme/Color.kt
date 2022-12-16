@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.ui.theme
+package com.uxstate.instantscore.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
