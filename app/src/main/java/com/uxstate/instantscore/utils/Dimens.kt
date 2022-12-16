@@ -22,5 +22,4 @@ data class Dimens(
 
 )
 
-
-val LocalSpacing = compositionLocalOf{Dimens()}
+val LocalSpacing = compositionLocalOf { Dimens() }
