@@ -12,6 +12,10 @@ const val GET_MATCH_DETAILS = "soccer/matches/{id}"
 const val GET_STANDINGS = "soccer/standings"
 const val GET_ODDS = "/soccer/odds/{match_id}"
 
+const val ODDS_TYPE = "prematch"
+const val DATE_FROM ="2022-08-06"
+const val DATE_TO = "2023-05-28"
+
 
 
 
