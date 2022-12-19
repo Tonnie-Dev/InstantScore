@@ -38,4 +38,6 @@ interface ScoresAPI {
         @Query("apikey") apiKey: String = API_KEY_1,
         @Query("type") type: String = ODDS_TYPE
     ): OddsResponseDTO
+
+
 }
