@@ -13,8 +13,8 @@ interface ScoresAPI {
 
     @GET(GET_MATCHES)
     suspend fun getMatches(
-        @Query("apikey") apiKey: String,
-        @Query("season_id") seasonId: String,
+        @Query("apikey") apiKey: String = API_KEY_1,
+        @Query("season_id") seasonId: String = DEFAULT_SEASON_ID,
         @Query("date_from") dateFrom: String = DATE_FROM,
         @Query("date_to") dateTo: String = DATE_TO
     ): MatchesResponseDTO
