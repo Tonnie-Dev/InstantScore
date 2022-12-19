@@ -6,7 +6,7 @@ data class X2(
     @Json(name = "away_team")
     val awayTeam: AwayTeam,
     @Json(name = "home_team")
-    val homeTeam: HomeTeamXXXXXXXXXXX,
+    val homeTeam: HomeTeam,
     @Json(name = "league_id")
     val leagueId: Int,
     @Json(name = "match_id")
@@ -16,11 +16,11 @@ data class X2(
     @Json(name = "season_id")
     val seasonId: Int,
     @Json(name = "stats")
-    val stats: StatsXXXXXXXXXXX,
+    val stats: Stats,
     @Json(name = "status")
     val status: String,
     @Json(name = "status_code")
     val statusCode: Int,
     @Json(name = "venue")
-    val venue: VenueXXXXXXXXXXX
+    val venue: Venue
 )
