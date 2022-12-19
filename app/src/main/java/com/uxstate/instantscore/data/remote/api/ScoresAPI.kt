@@ -9,13 +9,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ScoresAPI {
-    
+
     @GET(GET_MATCHES)
     suspend fun getMatches(
         @Query("apikey") apiKey: String,
         @Query("season_id") seasonId: String,
         @Query("date_from") dateFrom: String = "2022-08-06",
-        @Query("date_to") dateTo: String
+        @Query("date_to") dateTo: String= "2023-05-28"
     ): MatchesResponseDTO
 
     @GET(GET_MATCH_DETAILS)
