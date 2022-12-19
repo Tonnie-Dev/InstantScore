@@ -31,7 +31,6 @@ interface ScoresAPI {
         @Query("season_id") seasonId: String = DEFAULT_LEAGUE_ID
     ): StandingResponseDTO
 
-
     @GET(GET_ODDS)
     suspend fun getOdds(
         @Path("match_id") matchId: String,
@@ -39,5 +38,9 @@ interface ScoresAPI {
         @Query("type") type: String = ODDS_TYPE
     ): OddsResponseDTO
 
-
+    @GET(GET_TOP_SCORERS)
+    suspend fun getTopScorers(
+        @Query("apikey") apiKey: String,
+        @Query("season_id") seasonId: String
+    )
 }

@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.data.remote.dtos.odds
 
-
 import com.squareup.moshi.Json
 
 data class Data(

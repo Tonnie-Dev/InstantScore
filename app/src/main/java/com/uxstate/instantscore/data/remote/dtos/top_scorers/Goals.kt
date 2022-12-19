@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.data.remote.dtos.top_scorers
 
-
 import com.squareup.moshi.Json
 
 data class Goals(

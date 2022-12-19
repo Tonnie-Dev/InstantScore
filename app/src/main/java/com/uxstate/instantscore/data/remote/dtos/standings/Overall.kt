@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.data.remote.dtos.standings
 
-
 import com.squareup.moshi.Json
 
 data class Overall(

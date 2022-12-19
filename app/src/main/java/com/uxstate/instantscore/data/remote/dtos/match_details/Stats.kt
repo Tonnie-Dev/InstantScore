@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.data.remote.dtos.match_details
 
-
 import com.squareup.moshi.Json
 
 data class Stats(
