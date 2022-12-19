@@ -1,10 +1,13 @@
 package com.uxstate.instantscore.data.remote.dtos.matches
 
+
 import com.squareup.moshi.Json
 
 data class HomeTeam(
+    @Json(name = "common_name")
+    val commonName: String,
     @Json(name = "country")
-    val country: Country,
+    val country: Country?,
     @Json(name = "logo")
     val logo: String,
     @Json(name = "name")
