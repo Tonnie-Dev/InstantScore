@@ -7,7 +7,6 @@ import java.io.IOException
 //class implementing Interceptor for logging, retrying n modifying headers
 
 class MyInterceptor : Interceptor {
-
     //throw an exception to cancel request
     @Throws(IOException::class)
 
