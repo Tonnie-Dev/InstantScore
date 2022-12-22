@@ -33,7 +33,7 @@ interface ScoresAPI {
         @Query("id") fixtureId:Int = DEFAULT_FIXTURE_ID
     ): FixtureDetailsResponseDTO
 
-    @GET(GET_STANDINGS)
+  /*  @GET(GET_STANDINGS)
     suspend fun getStandings(
         @Query("apikey") apiKey: String = API_KEY_1,
         @Query("season_id") seasonId: String = DEFAULT_LEAGUE_ID
@@ -50,5 +50,5 @@ interface ScoresAPI {
     suspend fun getTopScorers(
         @Query("apikey") apiKey: String,
         @Query("season_id") seasonId: String
-    )
+    )*/
 }
