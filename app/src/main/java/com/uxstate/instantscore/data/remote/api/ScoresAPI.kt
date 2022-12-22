@@ -1,5 +1,6 @@
 package com.uxstate.instantscore.data.remote.api
 
+import com.uxstate.instantscore.data.remote.dtos.leagues.LeagueResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.match_details.MatchDetailsResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.matches.MatchesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.odds.OddsResponseDTO
@@ -12,7 +13,11 @@ import retrofit2.http.Query
 interface ScoresAPI {
 
     @GET(GET_LEAGUES_BY_ID)
-    suspend fun getLeagueById(@Query("id") leagueId:Int, @Query("season") seasonYear:Int)
+    suspend fun getLeagueById(
+        @Query("id") leagueId: Int = DEFAULT_LEAGUE_ID,
+        @Query("season") seasonYear: Int = DEFAULT_SEASON
+    ): LeagueResponseDTO
+
 
     @GET(GET_MATCHES)
     suspend fun getFixtures(
