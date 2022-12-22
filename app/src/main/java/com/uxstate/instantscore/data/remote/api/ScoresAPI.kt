@@ -1,9 +1,8 @@
 package com.uxstate.instantscore.data.remote.api
 
+import com.uxstate.instantscore.data.remote.dtos.fixture_details.FixtureDetailsResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.fixtures.FixturesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.leagues.LeagueResponseDTO
-import com.uxstate.instantscore.data.remote.dtos.match_details.MatchDetailsResponseDTO
-import com.uxstate.instantscore.data.remote.dtos.matches.MatchesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.odds.OddsResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.standings.StandingResponseDTO
 import com.uxstate.instantscore.utils.*
@@ -26,19 +25,13 @@ interface ScoresAPI {
         @Query("season") seasonYear: Int
     ): FixturesResponseDTO
 
-    @GET(GET_MATCHES)
-    suspend fun getFixtures(
-        @Query("apikey") apiKey: String = API_KEY_1,
-        @Query("season_id") seasonId: String = DEFAULT_SEASON_ID,
-        @Query("date_from") dateFrom: String = DATE_FROM,
-        @Query("date_to") dateTo: String = DATE_TO
-    ): MatchesResponseDTO
 
-    @GET(GET_MATCH_DETAILS)
-    suspend fun getMatchDetails(
-        @Path("id") id: String,
-        @Query("apikey") apiKey: String = API_KEY_1
-    ): MatchDetailsResponseDTO
+
+    @GET(GET_FIXTURES)
+    suspend fun getFixtureDetails(
+
+        @Query("id") fixtureId:Int = DEFAULT_FIXTURE_ID
+    ): FixtureDetailsResponseDTO
 
     @GET(GET_STANDINGS)
     suspend fun getStandings(

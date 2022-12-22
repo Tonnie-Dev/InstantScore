@@ -12,7 +12,7 @@ const val CONNECT_TIMEOUT = 15L
 
 const val DEFAULT_LEAGUE_ID = 39
 const val DEFAULT_SEASON = 2022
-const val DEFAULT_MATCH_ID = "432792"
+const val DEFAULT_FIXTURE_ID = 867954
 
 const val GET_LEAGUES_BY_ID = "v3/leagues"
 const val GET_FIXTURES = "v3/fixtures"
