@@ -1,5 +1,6 @@
 package com.uxstate.instantscore.data.remote.api
 
+import com.uxstate.instantscore.data.remote.dtos.fixtures.FixturesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.leagues.LeagueResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.match_details.MatchDetailsResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.matches.MatchesResponseDTO
@@ -18,6 +19,12 @@ interface ScoresAPI {
         @Query("season") seasonYear: Int = DEFAULT_SEASON
     ): LeagueResponseDTO
 
+
+    @GET(GET_FIXTURES)
+    suspend fun getFixturesByLeague(
+        @Query("league") leagueId: Int,
+        @Query("season") seasonYear: Int
+    ): FixturesResponseDTO
 
     @GET(GET_MATCHES)
     suspend fun getFixtures(
