@@ -8,5 +8,7 @@ data class Fixture(
     val venue: String,
     val status: String,
     val timeElapsed: Int,
-   val teams: Pair<Team,Team>
+    val teams: Pair<Team, Team>,
+    val events: List<Event>,
+    val stats: Stats
 )
