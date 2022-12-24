@@ -1,10 +1,13 @@
 package com.uxstate.instantscore.data.local.converters
 
+import androidx.room.TypeConverter
 import com.uxstate.instantscore.domain.models.fixtures.Event
+import com.uxstate.instantscore.domain.models.fixtures.Stats
 
 class Converters {
 
-    fun writeEventToRoomString(event: Event): String {
+    @TypeConverter
+    fun writeEventToRoom(event: Event): String {
         val timeElapsed = event.timeElapsed.toString()
         val player = event.player
         val assist = event.assist
@@ -17,6 +20,7 @@ class Converters {
 
     }
 
+    @TypeConverter
     fun readEventFromRoom(roomString: String): Event {
 
         val eventPropertiesList = roomString.split("~")
@@ -34,4 +38,34 @@ class Converters {
         )
 
     }
+
+    @TypeConverter
+    fun writeStatsToRoom(stats: Stats): String {
+
+        val possession = stats.possession
+        val shotsOnGoal = stats.shotsOnGoal
+        val shotsOffGoal = stats.shotsOffGoal
+        val totalShots = stats.totalShots
+        val cornerKicks = stats.cornerKicks
+        val offSides = stats.offSides
+        val fouls = stats.fouls
+        val yellowCards = stats.yellowCards
+        val redCards = stats.redCards
+
+        val statsPropertiesList = listOf(
+                possession,
+                shotsOnGoal,
+                shotsOffGoal,
+                totalShots,
+                cornerKicks,
+                offSides,
+                fouls,
+                yellowCards,
+                redCards
+        )
+
+      return  statsPropertiesList.joinToString("~")
+    }
+
+
 }
