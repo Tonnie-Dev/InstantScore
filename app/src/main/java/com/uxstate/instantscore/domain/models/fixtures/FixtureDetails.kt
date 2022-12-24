@@ -2,7 +2,7 @@ package com.uxstate.instantscore.domain.models.fixtures
 
 import com.uxstate.instantscore.data.remote.dtos.top_scorers.Team
 
-data class MatchDetails(
+data class FixtureDetails(
     val fixtureId: Int,
     val date: Long,
     val venue: String,
