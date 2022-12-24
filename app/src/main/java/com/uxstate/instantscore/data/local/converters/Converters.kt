@@ -3,6 +3,7 @@ package com.uxstate.instantscore.data.local.converters
 import androidx.room.TypeConverter
 import com.uxstate.instantscore.domain.models.fixtures.Event
 import com.uxstate.instantscore.domain.models.fixtures.Stats
+import com.uxstate.instantscore.domain.models.fixtures.Status
 
 class Converters {
 
@@ -94,6 +95,29 @@ class Converters {
                 redCards = redCards
         )
 
+    }
+
+
+    @TypeConverter
+    fun writeStatusToRoom(status: Status): String {
+
+        val fixtureLong = status.fixtureLong
+        val fixtureShort = status.fixtureShort
+        val timeElapsed = status.timeElapsed.toString()
+        val statusPropertiesList = listOf(fixtureLong, fixtureShort, timeElapsed)
+
+        return statusPropertiesList.joinToString("~")
+    }
+
+    @TypeConverter
+    fun readStatusFromRoom (roomString:String):Status {
+
+        val statusPropertiesList = roomString.split("~").map { it }
+        val fixtureLong = statusPropertiesList[0]
+        val fixtureShort = statusPropertiesList[1]
+        val timeElapsed = statusPropertiesList[2].toInt()
+
+        return Status(fixtureLong = fixtureLong, fixtureShort = fixtureShort, timeElapsed = timeElapsed)
     }
 
 
