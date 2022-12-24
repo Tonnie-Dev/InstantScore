@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.uxstate.instantscore.domain.models.fixtures.Event
 import com.uxstate.instantscore.domain.models.fixtures.Stats
 import com.uxstate.instantscore.domain.models.fixtures.Status
+import com.uxstate.instantscore.domain.models.fixtures.Team
 
 class Converters {
 
@@ -118,6 +119,18 @@ class Converters {
         val timeElapsed = statusPropertiesList[2].toInt()
 
         return Status(fixtureLong = fixtureLong, fixtureShort = fixtureShort, timeElapsed = timeElapsed)
+    }
+
+    @TypeConverter
+    fun writeTeamToRoom(team:Team):String{
+
+        val name = team.name
+        val logo = team.logo
+        val goalScored = team.goalScored
+
+        val teamPropertiesList = listOf(name, logo, goalScored )
+
+        return teamPropertiesList.joinToString("~")
     }
 
 
