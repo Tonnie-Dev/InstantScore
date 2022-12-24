@@ -111,39 +111,60 @@ class Converters {
     }
 
     @TypeConverter
-    fun readStatusFromRoom (roomString:String):Status {
+    fun readStatusFromRoom(roomString: String): Status {
 
-        val statusPropertiesList = roomString.split("~").map { it }
+        val statusPropertiesList = roomString.split("~")
+                .map { it }
         val fixtureLong = statusPropertiesList[0]
         val fixtureShort = statusPropertiesList[1]
         val timeElapsed = statusPropertiesList[2].toInt()
 
-        return Status(fixtureLong = fixtureLong, fixtureShort = fixtureShort, timeElapsed = timeElapsed)
+        return Status(
+                fixtureLong = fixtureLong, fixtureShort = fixtureShort, timeElapsed = timeElapsed
+        )
     }
 
     @TypeConverter
-    fun writeTeamToRoom(team:Team):String{
+    fun writeTeamToRoom(team: Team): String {
 
         val name = team.name
         val logo = team.logo
         val goalScored = team.goalScored.toString()
 
-        val teamPropertiesList = listOf(name, logo, goalScored )
+        val teamPropertiesList = listOf(name, logo, goalScored)
 
         return teamPropertiesList.joinToString("~")
     }
 
-@TypeConverter
-fun readTeamFromRoom(roomString: String): Team {
+    @TypeConverter
+    fun readTeamFromRoom(roomString: String): Team {
 
-    val teamPropertiesString = roomString.split("~").map { it }
+        val teamPropertiesString = roomString.split("~")
+                .map { it }
 
-    val name = teamPropertiesString[0]
-    val logo = teamPropertiesString[1]
-    val goalScored = teamPropertiesString[2].toInt()
+        val name = teamPropertiesString[0]
+        val logo = teamPropertiesString[1]
+        val goalScored = teamPropertiesString[2].toInt()
 
-    return Team(name = name, logo = logo, goalScored = goalScored)
-}
+        return Team(name = name, logo = logo, goalScored = goalScored)
+    }
+
+    @TypeConverter
+    fun writeTeamPairToRoom(teams: Pair<Team, Team>): String {
+
+        val name1 = teams.first.name
+        val logo1 = teams.first.logo
+        val goalScored1 = teams.first.goalScored.toString()
+
+        val name2 = teams.second.name
+        val logo2 = teams.second.logo
+        val goalScored2 = teams.second.toString()
+
+        val teamPropertiesList = listOf(name1, logo1, goalScored1, name2, logo2, goalScored2)
+
+        return teamPropertiesList.joinToString("~")
+
+    }
 
 
 }
