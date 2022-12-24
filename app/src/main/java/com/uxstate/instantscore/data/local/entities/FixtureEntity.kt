@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.data.local.dao
+package com.uxstate.instantscore.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
