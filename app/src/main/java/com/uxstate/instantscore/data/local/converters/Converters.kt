@@ -166,5 +166,27 @@ class Converters {
 
     }
 
+    @TypeConverter
+    fun readTeamPairFromRoom(roomString: String): Pair<Team, Team> {
+
+        val teamPropertiesList = roomString.split("~")
+                .map { it }
+
+        val name1 = teamPropertiesList[0]
+        val logo1 = teamPropertiesList[1]
+        val goalScored1 = teamPropertiesList[2].toInt()
+
+        val name2 = teamPropertiesList[3]
+        val logo2 = teamPropertiesList[4]
+        val goalScored2 = teamPropertiesList[5].toInt()
+
+        return Pair(
+                Team(name = name1, logo = logo1, goalScored = goalScored1),
+                Team(name = name2, logo = logo2, goalScored = goalScored2)
+        )
+
+
+    }
+
 
 }
