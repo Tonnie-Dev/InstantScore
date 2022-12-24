@@ -126,12 +126,24 @@ class Converters {
 
         val name = team.name
         val logo = team.logo
-        val goalScored = team.goalScored
+        val goalScored = team.goalScored.toString()
 
         val teamPropertiesList = listOf(name, logo, goalScored )
 
         return teamPropertiesList.joinToString("~")
     }
+
+@TypeConverter
+fun readTeamFromRoom(roomString: String): Team {
+
+    val teamPropertiesString = roomString.split("~").map { it }
+
+    val name = teamPropertiesString[0]
+    val logo = teamPropertiesString[1]
+    val goalScored = teamPropertiesString[2].toInt()
+
+    return Team(name = name, logo = logo, goalScored = goalScored)
+}
 
 
 }
