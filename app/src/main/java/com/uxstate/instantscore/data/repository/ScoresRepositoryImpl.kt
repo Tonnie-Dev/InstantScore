@@ -36,12 +36,12 @@ class ScoresRepositoryImpl @Inject constructor(
         val remoteFixtures = try {
             api.getFixturesByLeague()
         } catch (e: HttpException) {
-            emit(Resource.Error(message = "Unknown Error Occurred"))
+            emit(Resource.Error(errorMessage = "Unknown Error Occurred"))
             null
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = """
+                    errorMessage = """
                 Couldn't reach the server, please check your connection
                     """.trimIndent()
                 )

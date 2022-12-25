@@ -4,6 +4,6 @@ import com.uxstate.instantscore.domain.models.fixtures.Fixture
 
 data class FixturesState(
     val isLoading: Boolean = false,
-    val error: String = "",
+    val errorMessage: String = "",
     val fixturesData: List<Fixture> = listOf()
 )
