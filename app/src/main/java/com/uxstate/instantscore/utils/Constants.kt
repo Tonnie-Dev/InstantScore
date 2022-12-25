@@ -6,7 +6,7 @@ const val X_RAPID_KEY = "X-RapidAPI-Key"
 const val X_RAPID_HOST = "X-RapidAPI-Host"
 const val HOST_VALUE = "api-football-v1.p.rapidapi.com"
 
-
+const val DATABASE_NAME = "scores_database"
 const val READ_TIMEOUT = 15L
 const val CONNECT_TIMEOUT = 15L
 
