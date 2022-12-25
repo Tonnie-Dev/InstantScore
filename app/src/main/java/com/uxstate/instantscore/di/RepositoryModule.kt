@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindScoresRepository(repositoryImpl: ScoresRepositoryImpl):ScoresRepository
+    abstract fun bindScoresRepository(repositoryImpl: ScoresRepositoryImpl): ScoresRepository
 }

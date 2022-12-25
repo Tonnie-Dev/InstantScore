@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ScoresDAO {

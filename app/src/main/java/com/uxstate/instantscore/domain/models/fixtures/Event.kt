@@ -9,4 +9,4 @@ data class Event(
     val player: String,
     val assist: String,
     val eventType: String
-):Parcelable
+) : Parcelable

@@ -7,11 +7,11 @@ import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixtures.Fixture
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
+import java.io.IOException
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import java.io.IOException
-import javax.inject.Inject
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -33,23 +33,21 @@ class ScoresRepositoryImpl @Inject constructor(
             return@flow
         }
 
-
         val remoteFixtures = try {
             api.getFixturesByLeague()
-
         } catch (e: HttpException) {
             emit(Resource.Error(message = "Unknown Error Occurred"))
             null
         } catch (e: IOException) {
             emit(
-                    Resource.Error(
-                            message = """
-                Couldn't reach the server, please check your connection""".trimIndent()
-                    )
+                Resource.Error(
+                    message = """
+                Couldn't reach the server, please check your connection
+                    """.trimIndent()
+                )
             )
             null
         }
-
 
         dao.clearFixtures()
 
@@ -58,7 +56,6 @@ class ScoresRepositoryImpl @Inject constructor(
             val fixtures = fixturesResponseDTO.response
 
             dao.insertFixtures(fixtures.map { it.toEntity() })
-
         }
 
         val updatedLocalCache = dao.getFixtures()

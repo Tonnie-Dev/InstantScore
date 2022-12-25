@@ -9,4 +9,4 @@ data class League(
     val logo: String,
     val country: String,
     val seasons: List<Season>
-): Parcelable
+) : Parcelable

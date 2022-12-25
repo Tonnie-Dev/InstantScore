@@ -15,30 +15,27 @@ class Converters {
         val assist = event.assist
         val eventType = event.eventType
 
-
         val eventPropertiesList = listOf(timeElapsed, player, eventType, assist)
 
         return eventPropertiesList.joinToString(separator = "~")
-
     }
 
     @TypeConverter
     fun readEventFromRoom(roomString: String): Event {
 
         val eventPropertiesList = roomString.split("~")
-                .map { it }
+            .map { it }
 
         val timeElapsed = eventPropertiesList[0]
         val player = eventPropertiesList[1]
         val assist = eventPropertiesList[2]
         val eventType = eventPropertiesList[3]
         return Event(
-                timeElapsed = timeElapsed.toInt(),
-                player = player,
-                assist = assist,
-                eventType = eventType
+            timeElapsed = timeElapsed.toInt(),
+            player = player,
+            assist = assist,
+            eventType = eventType
         )
-
     }
 
     @TypeConverter
@@ -55,15 +52,15 @@ class Converters {
         val redCards = stats.redCards.toString()
 
         val statsPropertiesList = listOf(
-                possession,
-                shotsOnGoal,
-                shotsOffGoal,
-                totalShots,
-                cornerKicks,
-                offSides,
-                fouls,
-                yellowCards,
-                redCards
+            possession,
+            shotsOnGoal,
+            shotsOffGoal,
+            totalShots,
+            cornerKicks,
+            offSides,
+            fouls,
+            yellowCards,
+            redCards
         )
 
         return statsPropertiesList.joinToString("~")
@@ -72,7 +69,7 @@ class Converters {
     @TypeConverter
     fun readStatsFromRoom(roomString: String): Stats {
         val statsPropertiesList = roomString.split("~")
-                .map { it }
+            .map { it }
 
         val possession = statsPropertiesList[0].toInt()
         val shotsOnGoal = statsPropertiesList[1].toInt()
@@ -85,19 +82,17 @@ class Converters {
         val redCards = statsPropertiesList[8].toInt()
 
         return Stats(
-                possession = possession,
-                shotsOnGoal = shotsOnGoal,
-                shotsOffGoal = shotsOffGoal,
-                totalShots = totalShots,
-                cornerKicks = cornerKicks,
-                offSides = offSides,
-                fouls = fouls,
-                yellowCards = yellowCards,
-                redCards = redCards
+            possession = possession,
+            shotsOnGoal = shotsOnGoal,
+            shotsOffGoal = shotsOffGoal,
+            totalShots = totalShots,
+            cornerKicks = cornerKicks,
+            offSides = offSides,
+            fouls = fouls,
+            yellowCards = yellowCards,
+            redCards = redCards
         )
-
     }
-
 
     @TypeConverter
     fun writeStatusToRoom(status: Status): String {
@@ -114,13 +109,13 @@ class Converters {
     fun readStatusFromRoom(roomString: String): Status {
 
         val statusPropertiesList = roomString.split("~")
-                .map { it }
+            .map { it }
         val fixtureLong = statusPropertiesList[0]
         val fixtureShort = statusPropertiesList[1]
         val timeElapsed = statusPropertiesList[2].toInt()
 
         return Status(
-                fixtureLong = fixtureLong, fixtureShort = fixtureShort, timeElapsed = timeElapsed
+            fixtureLong = fixtureLong, fixtureShort = fixtureShort, timeElapsed = timeElapsed
         )
     }
 
@@ -140,7 +135,7 @@ class Converters {
     fun readTeamFromRoom(roomString: String): Team {
 
         val teamPropertiesString = roomString.split("~")
-                .map { it }
+            .map { it }
 
         val name = teamPropertiesString[0]
         val logo = teamPropertiesString[1]
@@ -163,14 +158,13 @@ class Converters {
         val teamPropertiesList = listOf(name1, logo1, goalScored1, name2, logo2, goalScored2)
 
         return teamPropertiesList.joinToString("~")
-
     }
 
     @TypeConverter
     fun readTeamPairFromRoom(roomString: String): Pair<Team, Team> {
 
         val teamPropertiesList = roomString.split("~")
-                .map { it }
+            .map { it }
 
         val name1 = teamPropertiesList[0]
         val logo1 = teamPropertiesList[1]
@@ -181,12 +175,8 @@ class Converters {
         val goalScored2 = teamPropertiesList[5].toInt()
 
         return Pair(
-                Team(name = name1, logo = logo1, goalScored = goalScored1),
-                Team(name = name2, logo = logo2, goalScored = goalScored2)
+            Team(name = name1, logo = logo1, goalScored = goalScored1),
+            Team(name = name2, logo = logo2, goalScored = goalScored2)
         )
-
-
     }
-
-
 }

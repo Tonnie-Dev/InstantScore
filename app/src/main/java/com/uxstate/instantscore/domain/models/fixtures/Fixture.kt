@@ -9,4 +9,4 @@ data class Fixture(
     val date: Long,
     val status: Status,
     val teams: Pair<Team, Team>
-):Parcelable
+) : Parcelable

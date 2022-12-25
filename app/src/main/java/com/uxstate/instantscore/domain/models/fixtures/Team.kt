@@ -8,4 +8,4 @@ data class Team(
     val name: String,
     val logo: String,
     val goalScored: Int
-): Parcelable
+) : Parcelable

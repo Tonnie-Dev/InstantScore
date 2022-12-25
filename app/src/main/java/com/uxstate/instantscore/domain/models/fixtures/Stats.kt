@@ -14,4 +14,4 @@ data class Stats(
     val fouls: Int,
     val yellowCards: Int,
     val redCards: Int
-): Parcelable
+) : Parcelable

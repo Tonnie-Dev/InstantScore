@@ -9,4 +9,4 @@ data class Season(
     val startDate: String,
     val endDate: String,
     val isCurrent: Boolean
-): Parcelable
+) : Parcelable

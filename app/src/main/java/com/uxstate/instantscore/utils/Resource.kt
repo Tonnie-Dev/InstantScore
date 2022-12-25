@@ -13,6 +13,6 @@ sealed class Resource<T>(
     /*The data is null since at loading point we don't have the data*/
     class Success<T>(data: T?) : Resource<T>(data = data)
 
-    //it has a property which will be called from ViewModel
+    // it has a property which will be called from ViewModel
     class Loading<T>(val isLoading: Boolean = true) : Resource<T>()
 }

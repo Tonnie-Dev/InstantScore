@@ -8,4 +8,4 @@ data class Status(
     val fixtureLong: String,
     val fixtureShort: String,
     val timeElapsed: Int
-): Parcelable
+) : Parcelable

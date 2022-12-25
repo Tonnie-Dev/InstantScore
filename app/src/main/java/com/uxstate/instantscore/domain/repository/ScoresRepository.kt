@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ScoresRepository {
 
-    fun getFixtures(isRefresh:Boolean):Flow<Resource<List<Fixture>>>
+    fun getFixtures(isRefresh: Boolean): Flow<Resource<List<Fixture>>>
 }

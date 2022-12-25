@@ -3,11 +3,8 @@ package com.uxstate.instantscore.data.remote.api
 import com.uxstate.instantscore.data.remote.dtos.fixture_details.FixtureDetailsResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.fixtures.FixturesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.leagues.LeagueResponseDTO
-import com.uxstate.instantscore.data.remote.dtos.odds.OddsResponseDTO
-import com.uxstate.instantscore.data.remote.dtos.standings.StandingResponseDTO
 import com.uxstate.instantscore.utils.*
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ScoresAPI {
@@ -18,19 +15,16 @@ interface ScoresAPI {
         @Query("season") seasonYear: Int = DEFAULT_SEASON
     ): LeagueResponseDTO
 
-
     @GET(GET_FIXTURES)
     suspend fun getFixturesByLeague(
         @Query("league") leagueId: Int = DEFAULT_LEAGUE_ID,
         @Query("season") seasonYear: Int = DEFAULT_SEASON
     ): FixturesResponseDTO
 
-
-
     @GET(GET_FIXTURES)
     suspend fun getFixtureDetails(
 
-        @Query("id") fixtureId:Int = DEFAULT_FIXTURE_ID
+        @Query("id") fixtureId: Int = DEFAULT_FIXTURE_ID
     ): FixtureDetailsResponseDTO
 
   /*  @GET(GET_STANDINGS)
