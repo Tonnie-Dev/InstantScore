@@ -15,13 +15,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -34,45 +34,45 @@ object AppModule {
 
         // build client
         return OkHttpClient.Builder()
-                // create anonymous interceptor in the lambda and override intercept
-                // passing in Interceptor.Chain parameter
-                .addInterceptor { chain ->
+            // create anonymous interceptor in the lambda and override intercept
+            // passing in Interceptor.Chain parameter
+            .addInterceptor { chain ->
 
-                    // return response
-                    chain.proceed( // create request
-                            chain.request()
-                                    .newBuilder()
-                                    // add headers to the request builder
-                                    .also {
-                                        it.addHeader(
-                                                name = X_RAPID_KEY,
-                                                value = API_KEY
-                                        )
-                                        it.addHeader(
-                                                name = X_RAPID_HOST,
-                                                value = HOST_VALUE
-                                        )
-                                    }
-                                    .build()
-
-                    )
-                } // add timeouts, logging
-                .also { okHttpClient ->
-
-                    okHttpClient.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                    okHttpClient.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-
-                    // log if in debugging phase
-                    if (BuildConfig.DEBUG) {
-                        val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
-
-                            level = HttpLoggingInterceptor.Level.BODY
+                // return response
+                chain.proceed( // create request
+                    chain.request()
+                        .newBuilder()
+                        // add headers to the request builder
+                        .also {
+                            it.addHeader(
+                                name = X_RAPID_KEY,
+                                value = API_KEY
+                            )
+                            it.addHeader(
+                                name = X_RAPID_HOST,
+                                value = HOST_VALUE
+                            )
                         }
+                        .build()
 
-                        okHttpClient.addInterceptor(httpLoggingInterceptor)
+                )
+            } // add timeouts, logging
+            .also { okHttpClient ->
+
+                okHttpClient.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                okHttpClient.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+
+                // log if in debugging phase
+                if (BuildConfig.DEBUG) {
+                    val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+
+                        level = HttpLoggingInterceptor.Level.BODY
                     }
+
+                    okHttpClient.addInterceptor(httpLoggingInterceptor)
                 }
-                .build()
+            }
+            .build()
     }
 
     @Provides
@@ -80,15 +80,15 @@ object AppModule {
     fun provideScoresAPI(okHttpClient: OkHttpClient): ScoresAPI {
 
         val moshi = Moshi.Builder()
-                .addLast(KotlinJsonAdapterFactory())
-                .build()
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
 
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .client(okHttpClient)
-                .build()
-                .create()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
+            .create()
     }
 
     @Provides
@@ -96,7 +96,7 @@ object AppModule {
     fun provideScoresDatabase(app: Application): ScoresDatabase {
 
         return Room.databaseBuilder(app, ScoresDatabase::class.java, DATABASE_NAME)
-                .build()
+            .build()
     }
 
     @Provides

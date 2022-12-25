@@ -5,18 +5,18 @@ import androidx.lifecycle.viewModelScope
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val container: UseCaseContainer
 ) : ViewModel() {
 
-    private var _fixturesState = MutableStateFlow(FixturesState())
+    private val _fixturesState = MutableStateFlow(FixturesState())
     val fixturesState = _fixturesState.asStateFlow()
 
     init {
@@ -27,35 +27,32 @@ class HomeViewModel @Inject constructor(
     private fun getFixtures() {
 
         container.getFixturesUseCase(true)
-                .onEach {
+            .onEach {
 
-                    result ->
+                result ->
 
-                    when (result) {
+                when (result) {
 
-                        is Resource.Success -> {
+                    is Resource.Success -> {
 
-                            result.data?.let {
+                        result.data?.let {
 
-                                _fixturesState.value = _fixturesState.value.copy(fixturesData = it)
-                            }
-
-                        }
-                        is Resource.Error -> {
-
-                            result.errorMessage?.let {
-                                _fixturesState.value = _fixturesState.value.copy(errorMessage = it)
-
-                            }
-                        }
-                        is Resource.Loading -> {
-
-                            _fixturesState.value =
-                                _fixturesState.value.copy(isLoading = result.isLoading)
+                            _fixturesState.value = _fixturesState.value.copy(fixturesData = it)
                         }
                     }
+                    is Resource.Error -> {
 
+                        result.errorMessage?.let {
+                            _fixturesState.value = _fixturesState.value.copy(errorMessage = it)
+                        }
+                    }
+                    is Resource.Loading -> {
+
+                        _fixturesState.value =
+                            _fixturesState.value.copy(isLoading = result.isLoading)
+                    }
                 }
-                .launchIn(viewModelScope)
+            }
+            .launchIn(viewModelScope)
     }
 }

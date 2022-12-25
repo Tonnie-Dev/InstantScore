@@ -9,8 +9,8 @@ sealed class Resource<T>(
      still return some data e.g. database cache*/
 
     class Error<T>(errorMessage: String, data: T? = null) : Resource<T>(
-            errorMessage = errorMessage,
-            data = data
+        errorMessage = errorMessage,
+        data = data
     )
 
     /*The data is null since at loading point we don't have the data*/
