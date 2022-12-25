@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 
 data class Response(
     @Json(name = "fixture")
-    val fixture: Fixture,
+    val fixture: FixtureDTO,
     @Json(name = "goals")
     val goals: Goals,
     @Json(name = "league")

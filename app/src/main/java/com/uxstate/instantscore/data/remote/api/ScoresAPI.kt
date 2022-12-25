@@ -21,8 +21,8 @@ interface ScoresAPI {
 
     @GET(GET_FIXTURES)
     suspend fun getFixturesByLeague(
-        @Query("league") leagueId: Int,
-        @Query("season") seasonYear: Int
+        @Query("league") leagueId: Int = DEFAULT_LEAGUE_ID,
+        @Query("season") seasonYear: Int = DEFAULT_SEASON
     ): FixturesResponseDTO
 
 

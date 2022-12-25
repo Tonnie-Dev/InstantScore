@@ -14,7 +14,7 @@ interface ScoresDAO {
     suspend fun insertFixtures(list: List<FixtureEntity>)
 
     @Query("SELECT * FROM fixture_table ORDER BY date ASC")
-    fun getFixtures(): Flow<List<FixtureEntity>>
+    fun getFixtures(): List<FixtureEntity>
 
     @Query("DELETE FROM fixture_table")
     suspend fun clearFixtures()
