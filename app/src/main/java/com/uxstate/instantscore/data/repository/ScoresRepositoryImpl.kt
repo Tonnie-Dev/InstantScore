@@ -63,5 +63,9 @@ class ScoresRepositoryImpl @Inject constructor(
             }
         }
 
+        val updatedLocalCache = dao.getFixtures()
+
+                emit(Resource.Success(data = updatedLocalCache.map { it.toModel() }))
+        emit(Resource.Loading(isLoading = false))
     }
 }

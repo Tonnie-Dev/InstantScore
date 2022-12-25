@@ -27,7 +27,7 @@ fun ResponseDTO.toEntity(): FixtureEntity {
             date = this.fixture.timestamp.toLong(), status = Status(
             fixtureLong = this.fixture.status.long,
             fixtureShort = this.fixture.status.short,
-            timeElapsed = this.fixture.status.elapsed ?: 0
+            timeElapsed = this.fixture.status.elapsed ?: -1
     ), teams = Pair(
             first = (Team(
                     name = this.teams.home.name,
