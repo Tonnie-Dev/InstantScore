@@ -3,7 +3,7 @@ package com.uxstate.instantscore.data.remote.dtos.fixtures
 
 import com.squareup.moshi.Json
 
-data class Response(
+data class ResponseDTO(
     @Json(name = "fixture")
     val fixture: FixtureDTO,
     @Json(name = "goals")

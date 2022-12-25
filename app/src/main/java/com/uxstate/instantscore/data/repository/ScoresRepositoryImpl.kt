@@ -3,6 +3,7 @@ package com.uxstate.instantscore.data.repository
 import androidx.room.withTransaction
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixtures.Fixture
 import com.uxstate.instantscore.domain.repository.ScoresRepository
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
-   private val db: ScoresDatabase
+    private val db: ScoresDatabase
 ) :
     ScoresRepository {
     private val dao = db.dao
@@ -41,20 +42,23 @@ class ScoresRepositoryImpl @Inject constructor(
             emit(Resource.Error(message = "Unknown Error Occurred"))
             null
         } catch (e: IOException) {
-            emit(Resource.Error(message = """
-                Couldn't reach the server, please check your connection""".trimIndent()))
+            emit(
+                    Resource.Error(
+                            message = """
+                Couldn't reach the server, please check your connection""".trimIndent()
+                    )
+            )
             null
         }
 
         db.withTransaction {
             dao.clearFixtures()
 
-            remoteFixtures?.let {
-                fixturesResponseDTO ->
+            remoteFixtures?.let { fixturesResponseDTO ->
 
                 val fixtures = fixturesResponseDTO.response
 
-                dao.insertFixtures(fixtures)
+                dao.insertFixtures(fixtures.map { it.toEntity() })
 
             }
         }
