@@ -1,6 +1,6 @@
 package com.uxstate.instantscore.utils
 
-const val BASE_URI = "https://api-football-v1.p.rapidapi.com/"
+const val BASE_URL = "https://api-football-v1.p.rapidapi.com/"
 const val API_KEY = "ac94f94bb2msh209b8322dafe16ep19e183jsnabc6710bd5a9"
 const val X_RAPID_KEY = "X-RapidAPI-Key"
 const val X_RAPID_HOST = "X-RapidAPI-Host"

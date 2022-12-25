@@ -1,17 +1,39 @@
 package com.uxstate.instantscore.di
 
-
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.uxstate.instantscore.BuildConfig
+import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.utils.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
+
+i
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.uxstate.instantscore.BuildConfig
+import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.utils.*
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -19,10 +41,10 @@ import javax.inject.Singleton
 object AppModule {
 
 
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
+
 
         //build client
         return OkHttpClient.Builder()
@@ -54,10 +76,9 @@ object AppModule {
                 .also { okHttpClient ->
 
                     okHttpClient.connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                    okHttpClient.readTimeout(
-                            READ_TIMEOUT,
-                            TimeUnit.SECONDS
-                    ) //log if in debugging phase
+                    okHttpClient.readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+
+                    //log if in debugging phase
                     if (BuildConfig.DEBUG) {
                         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
 
@@ -70,6 +91,22 @@ object AppModule {
                 .build()
 
 
+    }
+
+    @Provides
+    @Singleton
+    fun provideScoresAPI(okHttpClient: OkHttpClient): ScoresAPI {
+
+        val moshi = Moshi.Builder()
+                .addLast(KotlinJsonAdapterFactory())
+                .build()
+
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .client(okHttpClient)
+                .build()
+                .create()
     }
 
 

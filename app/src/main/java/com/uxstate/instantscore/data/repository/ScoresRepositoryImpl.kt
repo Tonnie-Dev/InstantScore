@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.data.repository
 
-import androidx.room.withTransaction
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.mappers.toEntity
@@ -51,21 +50,20 @@ class ScoresRepositoryImpl @Inject constructor(
             null
         }
 
-        db.withTransaction {
-            dao.clearFixtures()
 
-            remoteFixtures?.let { fixturesResponseDTO ->
+        dao.clearFixtures()
 
-                val fixtures = fixturesResponseDTO.response
+        remoteFixtures?.let { fixturesResponseDTO ->
 
-                dao.insertFixtures(fixtures.map { it.toEntity() })
+            val fixtures = fixturesResponseDTO.response
 
-            }
+            dao.insertFixtures(fixtures.map { it.toEntity() })
+
         }
 
         val updatedLocalCache = dao.getFixtures()
 
-                emit(Resource.Success(data = updatedLocalCache.map { it.toModel() }))
+        emit(Resource.Success(data = updatedLocalCache.map { it.toModel() }))
         emit(Resource.Loading(isLoading = false))
     }
 }
