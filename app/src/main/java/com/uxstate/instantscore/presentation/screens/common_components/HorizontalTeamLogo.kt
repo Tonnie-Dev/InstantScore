@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
@@ -39,12 +40,13 @@ fun HorizontalTeamLogo(team: Team, modifier: Modifier = Modifier) {
         Image(
             painter = painter,
             contentDescription = team.name,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(spacing.spaceLarge)
+                .size(spacing.spaceExtraLarge)
                 .padding(spacing.spaceExtraSmall)
         )
 
-        Text(text = team.name, style = MaterialTheme.typography.labelSmall)
+        Text(text = team.name, style = MaterialTheme.typography.labelLarge)
     }
 }
 
