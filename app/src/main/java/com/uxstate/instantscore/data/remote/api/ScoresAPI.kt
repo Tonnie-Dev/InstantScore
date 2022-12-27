@@ -3,11 +3,14 @@ package com.uxstate.instantscore.data.remote.api
 import com.uxstate.instantscore.data.remote.dtos.fixture_details.FixtureDetailsResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.fixtures.FixturesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.leagues.LeagueResponseDTO
+import com.uxstate.instantscore.data.remote.dtos.stackoverflow.NetworkIncome
 import com.uxstate.instantscore.utils.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ScoresAPI {
+    @GET("get-income")
+    suspend fun getAllIncome(): List<NetworkIncome>
 
     @GET(GET_LEAGUES_BY_ID)
     suspend fun getLeagueById(

@@ -9,6 +9,7 @@ import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.domain.usecases.GetFixturesUseCase
+import com.uxstate.instantscore.domain.usecases.GetIncomeUseCase
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.utils.*
 import dagger.Module
@@ -84,8 +85,11 @@ object AppModule {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .baseUrl(BASE_URL_TWO)
+            .addConverterFactory(
+                MoshiConverterFactory.create(moshi)
+                    .asLenient()
+            )
             .client(okHttpClient)
             .build()
             .create()
@@ -103,6 +107,9 @@ object AppModule {
     @Singleton
     fun provideUseCaseContainer(repository: ScoresRepository): UseCaseContainer {
 
-        return UseCaseContainer(getFixturesUseCase = GetFixturesUseCase(repository = repository))
+        return UseCaseContainer(
+            getFixturesUseCase = GetFixturesUseCase(repository = repository),
+            getIncomeUseCase = GetIncomeUseCase(repository = repository)
+        )
     }
 }

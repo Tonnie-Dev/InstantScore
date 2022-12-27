@@ -38,9 +38,9 @@ fun ResponseDTO.toEntity(): FixtureEntity {
                 )
                 ),
             second = Team(
-                name = this.teams.home.name,
-                logo = this.teams.home.logo,
-                goalScored = this.goals.home ?: -1
+                name = this.teams.away.name,
+                logo = this.teams.away.logo,
+                goalScored = this.goals.away ?: -1
             )
         )
     )

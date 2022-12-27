@@ -153,7 +153,7 @@ class Converters {
 
         val name2 = teams.second.name
         val logo2 = teams.second.logo
-        val goalScored2 = teams.second.toString()
+        val goalScored2 = teams.second.goalScored.toString()
 
         val teamPropertiesList = listOf(name1, logo1, goalScored1, name2, logo2, goalScored2)
 

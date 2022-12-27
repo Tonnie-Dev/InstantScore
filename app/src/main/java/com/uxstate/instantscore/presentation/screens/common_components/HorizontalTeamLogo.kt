@@ -54,7 +54,7 @@ fun HorizontalTeamLogo(team: Team, modifier: Modifier = Modifier) {
 @Composable
 fun HorizontalTeamLogoPreview() {
 
-    HorizontalTeamLogo(team = Team(name = "Liverpool", logo = "", goalScored = 7))
+    HorizontalTeamLogo(team = Team(name = "Liverpool", logo = "", goalScored = 9))
 }
 
 @Preview(uiMode = UI_MODE_NIGHT_YES)

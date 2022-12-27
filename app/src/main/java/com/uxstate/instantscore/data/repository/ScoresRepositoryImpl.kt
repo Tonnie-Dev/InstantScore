@@ -2,6 +2,7 @@ package com.uxstate.instantscore.data.repository
 
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.data.remote.dtos.stackoverflow.NetworkIncome
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixtures.Fixture
@@ -12,6 +13,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import timber.log.Timber
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -34,7 +36,7 @@ class ScoresRepositoryImpl @Inject constructor(
         }
 
         val remoteFixtures = try {
-            api.getFixturesByLeague()
+            api.getFixturesByLeague(leagueId = 140)
         } catch (e: HttpException) {
             emit(Resource.Error(errorMessage = "Unknown Error Occurred"))
             null
@@ -62,5 +64,23 @@ class ScoresRepositoryImpl @Inject constructor(
 
         emit(Resource.Success(data = updatedLocalCache.map { it.toModel() }))
         emit(Resource.Loading(isLoading = false))
+    }
+
+    override fun getIncome(): Flow<Resource<List<NetworkIncome>>> = flow {
+
+        val response = try {
+            api.getAllIncome()
+        } catch (e: Exception) {
+
+            e.printStackTrace()
+            Timber.i("Funny Error ${e.message}")
+            emit(Resource.Error(errorMessage = "Unknown error,  ${e.message}"))
+            null
+        }
+
+        response?.let {
+            Timber.i("Entering null Check")
+            emit(Resource.Success(data = response))
+        }
     }
 }
