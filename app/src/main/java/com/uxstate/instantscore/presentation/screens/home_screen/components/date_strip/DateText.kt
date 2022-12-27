@@ -34,26 +34,27 @@ fun DateText(
     val month = date.month.name.substring(0..2)
     val dayOfMonth = date.dayOfMonth.toString()
 
-    Column(modifier = modifier
+    Column(
+        modifier = modifier
             .clickable { onDateTextClick(date) }
             .padding(spacing.spaceExtraSmall),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center) {
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(
-                text = dayOfWeek,
-                style = MaterialTheme.typography.titleMedium,
-                color = if (isSelected) highlightColor else textColor,
-                textAlign = TextAlign.Center
+            text = dayOfWeek,
+            style = MaterialTheme.typography.titleMedium,
+            color = if (isSelected) highlightColor else textColor,
+            textAlign = TextAlign.Center
         )
         Text(
-                text = "$dayOfMonth $month",
-                style = MaterialTheme.typography.labelSmall,
-                color = if (isSelected) highlightColor else textColor,
-                textAlign = TextAlign.Center
+            text = "$dayOfMonth $month",
+            style = MaterialTheme.typography.labelSmall,
+            color = if (isSelected) highlightColor else textColor,
+            textAlign = TextAlign.Center
         )
     }
 }
-
 
 @Preview
 @Composable
@@ -70,8 +71,9 @@ fun DateTextPreviewDark() {
     InstantScoreTheme {
 
         DateText(
-                date = LocalDate.now()
-                        .minusDays(2), onDateTextClick = {})
+            date = LocalDate.now()
+                .minusDays(2),
+            onDateTextClick = {}
+        )
     }
-
 }
