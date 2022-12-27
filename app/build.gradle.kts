@@ -51,6 +51,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -106,7 +107,6 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.6.1")
     implementation("androidx.compose.ui:ui:1.3.1")
     implementation("androidx.compose.ui:ui-tooling-preview:1.3.1")
- 
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
@@ -165,4 +165,7 @@ dependencies {
 
     // Timber Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // DesugaringLib
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
 }
