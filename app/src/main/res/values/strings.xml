@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">InstantScore</string>
+    <string name="live_text">LIVE</string>
 </resources>

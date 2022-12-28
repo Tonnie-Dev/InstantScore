@@ -1,4 +1,5 @@
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -165,6 +166,9 @@ dependencies {
 
     // Timber Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // Date Picker Library
+    implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
 
     // DesugaringLib
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
