@@ -4,7 +4,7 @@ import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
-import com.uxstate.instantscore.domain.models.fixtures.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_details.Fixture
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import java.io.IOException

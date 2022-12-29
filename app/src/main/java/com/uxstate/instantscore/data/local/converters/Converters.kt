@@ -1,8 +1,9 @@
 package com.uxstate.instantscore.data.local.converters
 
 import androidx.room.TypeConverter
-import com.uxstate.instantscore.domain.models.fixtures.Event
-import com.uxstate.instantscore.domain.models.fixtures.Stats
+import com.uxstate.instantscore.domain.models.fixtures_details.Event
+import com.uxstate.instantscore.domain.models.fixtures_details.Stats
+import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
@@ -178,4 +179,19 @@ class Converters {
             Team(name = name2, logo = logo2)
         )
     }
+}
+
+
+@TypeConverter
+fun writeLeagueToRoom(league:League):String{
+
+    val leagueId = league.id
+    val leagueCountry = league.country
+    val leagueLogo = league.leagueLogo
+    val countryFlag = league.countryFlag
+
+    val leaguePropertiesList = listOf(leagueId, leagueCountry, leagueLogo, countryFlag)
+
+    return leaguePropertiesList.joinToString("~")
+
 }

@@ -1,6 +1,6 @@
 package com.uxstate.instantscore.presentation.screens.home_screen.state
 
-import com.uxstate.instantscore.domain.models.fixtures.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_details.Fixture
 
 data class FixturesState(
     val isLoading: Boolean = false,

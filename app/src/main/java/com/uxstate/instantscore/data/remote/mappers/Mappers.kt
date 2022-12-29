@@ -2,7 +2,7 @@ package com.uxstate.instantscore.data.remote.mappers
 
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.remote.dtos.fixtures.ResponseDTO
-import com.uxstate.instantscore.domain.models.fixtures.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_details.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 

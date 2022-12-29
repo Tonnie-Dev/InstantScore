@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.domain.models.fixtures
+package com.uxstate.instantscore.domain.models.fixtures_details
 
 import android.os.Parcelable
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
