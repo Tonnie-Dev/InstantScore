@@ -3,6 +3,7 @@ package com.uxstate.instantscore.presentation.screens.home_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
+import com.uxstate.instantscore.presentation.screens.home_screen.state.FixturesState
 import com.uxstate.instantscore.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
