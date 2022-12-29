@@ -3,8 +3,8 @@ package com.uxstate.instantscore.data.remote.mappers
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.remote.dtos.fixtures.ResponseDTO
 import com.uxstate.instantscore.domain.models.fixtures.Fixture
-import com.uxstate.instantscore.domain.models.fixtures.Status
-import com.uxstate.instantscore.domain.models.fixtures.Team
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
 // FixtureEntity to Model - Setting a declaration as internal means that it’ll
 // be available in the same module only.

@@ -1,6 +1,8 @@
 package com.uxstate.instantscore.domain.models.fixtures
 
 import android.os.Parcelable
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

@@ -3,8 +3,8 @@ package com.uxstate.instantscore.data.local.converters
 import androidx.room.TypeConverter
 import com.uxstate.instantscore.domain.models.fixtures.Event
 import com.uxstate.instantscore.domain.models.fixtures.Stats
-import com.uxstate.instantscore.domain.models.fixtures.Status
-import com.uxstate.instantscore.domain.models.fixtures.Team
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
 class Converters {
 
@@ -124,9 +124,9 @@ class Converters {
 
         val name = team.name
         val logo = team.logo
-        val goalScored = team.goalScored.toString()
 
-        val teamPropertiesList = listOf(name, logo, goalScored)
+
+        val teamPropertiesList = listOf(name, logo)
 
         return teamPropertiesList.joinToString("~")
     }
@@ -139,9 +139,9 @@ class Converters {
 
         val name = teamPropertiesString[0]
         val logo = teamPropertiesString[1]
-        val goalScored = teamPropertiesString[2].toInt()
 
-        return Team(name = name, logo = logo, goalScored = goalScored)
+
+        return Team(name = name, logo = logo)
     }
 
     @TypeConverter
@@ -149,13 +149,13 @@ class Converters {
 
         val name1 = teams.first.name
         val logo1 = teams.first.logo
-        val goalScored1 = teams.first.goalScored.toString()
+
 
         val name2 = teams.second.name
         val logo2 = teams.second.logo
-        val goalScored2 = teams.second.goalScored.toString()
 
-        val teamPropertiesList = listOf(name1, logo1, goalScored1, name2, logo2, goalScored2)
+
+        val teamPropertiesList = listOf(name1, logo1,name2,logo2)
 
         return teamPropertiesList.joinToString("~")
     }
@@ -168,15 +168,14 @@ class Converters {
 
         val name1 = teamPropertiesList[0]
         val logo1 = teamPropertiesList[1]
-        val goalScored1 = teamPropertiesList[2].toInt()
 
-        val name2 = teamPropertiesList[3]
-        val logo2 = teamPropertiesList[4]
-        val goalScored2 = teamPropertiesList[5].toInt()
+        val name2 = teamPropertiesList[2]
+        val logo2 = teamPropertiesList[3]
+
 
         return Pair(
-            Team(name = name1, logo = logo1, goalScored = goalScored1),
-            Team(name = name2, logo = logo2, goalScored = goalScored2)
+            Team(name = name1, logo = logo1),
+            Team(name = name2, logo = logo2)
         )
     }
 }

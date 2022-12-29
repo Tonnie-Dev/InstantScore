@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.fixtures.Team
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 

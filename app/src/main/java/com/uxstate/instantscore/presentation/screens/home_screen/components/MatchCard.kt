@@ -15,8 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.domain.models.fixtures.Fixture
-import com.uxstate.instantscore.domain.models.fixtures.Status
-import com.uxstate.instantscore.domain.models.fixtures.Team
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import com.uxstate.instantscore.presentation.screens.common_components.HorizontalTeamLogo
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
