@@ -2,6 +2,7 @@ package com.uxstate.instantscore.data.repository
 
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toFakeEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
@@ -121,12 +122,28 @@ class ScoresRepositoryImpl @Inject constructor(
 
 
         //vet and insert remote date into database
-
         remoteFixtures?.let { response ->
             val fixtures = response.response
 
-            dao.insertFixtures(fixtures)
+            dao.insertFixtures(fixtures.map { it.toEntity() })
 
         }
+
+        //read from single source of truth and emit
+        val updatedLocalFixtures = dao.getFixturesByDate(
+                dayOfMonth = date.dayOfMonth,
+                month = date.monthValue,
+                year = date.year
+        )
+
+        //emit updatedLocalFixtures
+
+        emit(Resource.Success(data = updatedLocalFixtures.map { it.toModel() }))
+
+        //discontinue loading
+        emit(Resource.Loading(isLoading = false))
+
     }
+
 }
+
