@@ -24,5 +24,5 @@ interface ScoresDAO {
 
     @Query("""SELECT * FROM fixtures_table 
         WHERE dayOfMonth=:dayOfMonth & month =:month & year=:year""")
-    suspend fun getFixturesByDate(dayOfMonth: Int, month: Int, year: Year)
+    suspend fun getFixturesByDate(dayOfMonth: Int, month: Int, year: Int):List<FixtureEntity>
 }
