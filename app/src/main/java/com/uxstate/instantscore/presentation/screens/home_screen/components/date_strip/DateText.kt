@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +20,7 @@ import java.time.LocalDate
 
 @Composable
 fun DateText(
-    date: LocalDate,
+    dateTextIndex: Int,
     onDateTextClick: (localDate: LocalDate) -> Unit,
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
@@ -28,16 +29,29 @@ fun DateText(
 ) {
 
     val spacing = LocalSpacing.current
+    val today = LocalDate.now()
+    val textDisplayDate = remember {
+        when (dateTextIndex) {
 
-    val isToday = (date.dayOfMonth == LocalDate.now().dayOfMonth)
-    val dayOfWeek = if (isToday) "TODAY" else date.dayOfWeek.name.substring(0..2)
-    val month = date.month.name.substring(0..2)
-    val dayOfMonth = date.dayOfMonth.toString()
+            0 -> today.minusDays(2)
+            1 -> today.minusDays(1)
+            2 -> today
+            3 -> today.plusDays(1)
+            4 -> today.plusDays(2)
+            else -> today
+        }
+    }
+
+    val isToday = (textDisplayDate.dayOfMonth == today.dayOfMonth)
+    val dayOfWeek = if (isToday) "TODAY"
+    else textDisplayDate.dayOfWeek.name.substring(0..2)
+    val month = textDisplayDate.month.name.substring(0..2)
+    val dayOfMonth = textDisplayDate.dayOfMonth.toString()
 
     Column(
         modifier = modifier
-            .clickable { onDateTextClick(date) }
-            .padding(spacing.spaceExtraSmall),
+            .clickable { onDateTextClick(textDisplayDate) }
+            .padding(spacing.spaceSmall),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -60,7 +74,7 @@ fun DateText(
 @Composable
 fun DateTextPreview() {
     InstantScoreTheme {
-        DateText(date = LocalDate.now(), onDateTextClick = {})
+        DateText(dateTextIndex = 1, onDateTextClick = {})
     }
 }
 
@@ -71,8 +85,8 @@ fun DateTextPreviewDark() {
     InstantScoreTheme {
 
         DateText(
-            date = LocalDate.now()
-                .minusDays(2),
+            dateTextIndex = 3,
+
             onDateTextClick = {}
         )
     }

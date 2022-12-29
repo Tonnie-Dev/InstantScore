@@ -17,16 +17,15 @@ import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @Composable
-fun DatePickerItem(onDateChange:(formattedStringDate:String)-> Unit) {
+fun DatePickerItem(onDateChange: (formattedStringDate: String) -> Unit) {
     val spacing = LocalSpacing.current
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
     val formattedDate by remember {
         derivedStateOf {
 
-            //uses date util functions extension function
+            // uses date util functions extension function
             pickedDate.toStringDate()
         }
     }
@@ -44,7 +43,7 @@ fun DatePickerItem(onDateChange:(formattedStringDate:String)-> Unit) {
     MaterialDialog(
         dialogState = dialogState,
         buttons = {
-            positiveButton("OK") { onDateChange(formattedDate)}
+            positiveButton("OK") { onDateChange(formattedDate) }
             negativeButton("Cancel") {}
         }
     ) {
