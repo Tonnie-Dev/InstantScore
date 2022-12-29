@@ -4,9 +4,9 @@ import com.uxstate.instantscore.data.remote.dtos.fixture_details.FixtureDetailsR
 import com.uxstate.instantscore.data.remote.dtos.fixtures.FixturesResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.leagues.LeagueResponseDTO
 import com.uxstate.instantscore.utils.*
+import java.time.LocalDate
 import retrofit2.http.GET
 import retrofit2.http.Query
-import java.time.LocalDate
 
 interface ScoresAPI {
     @GET(GET_LEAGUES_BY_ID)
@@ -21,13 +21,12 @@ interface ScoresAPI {
         @Query("season") seasonYear: Int = DEFAULT_SEASON
     ): FixturesResponseDTO
 
-
     @GET(GET_FIXTURES)
     suspend fun getFixturesByDate(
         @Query("date")
         date: String = LocalDate.now()
-                .toStringDate()
-    )
+            .toStringDate()
+    ): com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesResponseDTO
 
     @GET(GET_FIXTURES)
     suspend fun getFixtureDetails(

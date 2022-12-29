@@ -58,13 +58,12 @@ class HomeViewModel @Inject constructor(
             }
             .launchIn(viewModelScope)
     }
-    fun onEvent(event: HomeEvent){
+    fun onEvent(event: HomeEvent) {
 
-        when(event){
+        when (event) {
 
-            is OnRefresh->{}
-            is OnFixtureDateSelection->{}
+            is OnRefresh -> {}
+            is OnFixtureDateSelection -> {}
         }
-
     }
 }

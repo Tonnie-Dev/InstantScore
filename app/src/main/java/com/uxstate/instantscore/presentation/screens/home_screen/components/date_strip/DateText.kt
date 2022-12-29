@@ -50,7 +50,10 @@ fun DateText(
 
     Column(
         modifier = modifier
-            .clickable { onDateTextClick(textDisplayDate) }
+            .clickable {
+
+                onDateTextClick(textDisplayDate)
+            }
             .padding(spacing.spaceSmall),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center

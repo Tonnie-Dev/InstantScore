@@ -14,54 +14,25 @@ fun DateTextsRow(
     modifier: Modifier = Modifier,
     onDateChange: (formattedStringDate: String) -> Unit
 ) {
-
     var selectedIndex by remember { mutableStateOf(2) }
 
     // 5 DateTexts row
-
     Row(horizontalArrangement = Arrangement.SpaceEvenly) {
 
-        DateText(
-            dateTextIndex = 0,
-            onDateTextClick = {
-                selectedIndex = 0
-                onDateChange(it.toStringDate())
-            },
-            isSelected = selectedIndex == 0
-        )
-        DateText(
-            dateTextIndex = 1,
-            onDateTextClick = {
-                selectedIndex = 1
-                onDateChange(it.toStringDate())
-            },
-            isSelected = selectedIndex == 1
+        (0..4).forEach { i ->
 
-        )
-        DateText(
-            dateTextIndex = 2,
-            onDateTextClick = {
-                selectedIndex = 2
-                onDateChange(it.toStringDate())
-            },
-            isSelected = selectedIndex == 2
-        )
-        DateText(
-            dateTextIndex = 3,
-            onDateTextClick = {
-                selectedIndex = 3
-                onDateChange(it.toStringDate())
-            },
-            isSelected = selectedIndex == 3
-        )
-        DateText(
-            dateTextIndex = 4,
-            onDateTextClick = {
-                selectedIndex = 4
-                onDateChange(it.toStringDate())
-            },
-            isSelected = selectedIndex == 4
-        )
+            val isSelected = (i == selectedIndex)
+            DateText(dateTextIndex = i, onDateTextClick = {
+                selectedIndex = i
+
+                if (isSelected) {
+
+                    onDateChange(it.toStringDate())
+                }
+            }, isSelected = isSelected)
+        }
+
+
     }
 }
 
