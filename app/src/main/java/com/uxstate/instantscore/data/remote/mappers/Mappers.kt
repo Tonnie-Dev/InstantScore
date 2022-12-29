@@ -1,16 +1,16 @@
 package com.uxstate.instantscore.data.remote.mappers
 
-import com.uxstate.instantscore.data.local.entities.FixtureEntity
+import com.uxstate.instantscore.data.local.entities.FixtureFakeEntity
 import com.uxstate.instantscore.data.remote.dtos.fixtures.ResponseDTO
-import com.uxstate.instantscore.domain.models.fixtures_details.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
 // FixtureEntity to Model - Setting a declaration as internal means that it’ll
 // be available in the same module only.
-internal fun FixtureEntity.toModel(): Fixture {
+internal fun FixtureFakeEntity.toModel(): FixtureBonoko {
 
-    return Fixture(
+    return FixtureBonoko(
         fixtureId = this.fixtureId,
         date = this.date,
         status = this.status,
@@ -19,9 +19,9 @@ internal fun FixtureEntity.toModel(): Fixture {
 }
 
 // FixturesResponseDTO to Entity
-fun ResponseDTO.toEntity(): FixtureEntity {
+fun ResponseDTO.toEntity(): FixtureFakeEntity {
 
-    return FixtureEntity(
+    return FixtureFakeEntity(
         fixtureId = this.fixture.id,
         date = this.fixture.timestamp.toLong(),
         status = Status(

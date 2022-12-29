@@ -216,5 +216,5 @@ fun readLeagueFromRoom(roomString: String): League {
             leagueLogo = leagueLogo,
             countryFlag = countryFlag
     )
-    
+
 }

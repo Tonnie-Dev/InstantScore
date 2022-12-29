@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.uxstate.instantscore.domain.models.fixtures_details.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import com.uxstate.instantscore.presentation.screens.common_components.HorizontalTeamLogo
@@ -22,7 +22,7 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
+fun MatchCard(fixture: FixtureBonoko, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Card(modifier = modifier) {
@@ -55,7 +55,7 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
 fun MatchCardPreview() {
 
     MatchCard(
-        fixture = Fixture(
+        fixture = FixtureBonoko(
             fixtureId = 0,
             date = 1000,
             status = Status(
@@ -77,7 +77,7 @@ fun MatchCardPreviewDark() {
 
     InstantScoreTheme() {
         MatchCard(
-            fixture = Fixture(
+            fixture = FixtureBonoko(
                 fixtureId = 0,
                 date = 1000,
                 status = Status(

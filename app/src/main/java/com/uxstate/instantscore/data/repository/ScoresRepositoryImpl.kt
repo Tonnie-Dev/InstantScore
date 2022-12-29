@@ -4,7 +4,7 @@ import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
-import com.uxstate.instantscore.domain.models.fixtures_details.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import java.io.IOException
@@ -12,6 +12,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import java.time.LocalDate
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -19,7 +20,7 @@ class ScoresRepositoryImpl @Inject constructor(
 ) :
     ScoresRepository {
     private val dao = db.dao
-    override fun getFixtures(isRefresh: Boolean): Flow<Resource<List<Fixture>>> = flow {
+    override fun getFixtures(isRefresh: Boolean): Flow<Resource<List<FixtureBonoko>>> = flow {
 
         emit(Resource.Loading(isLoading = true))
 
@@ -62,5 +63,12 @@ class ScoresRepositoryImpl @Inject constructor(
 
         emit(Resource.Success(data = updatedLocalCache.map { it.toModel() }))
         emit(Resource.Loading(isLoading = false))
+    }
+
+    override fun getFixturesForDate(
+        isRefresh: Boolean,
+        date: LocalDate
+    ): Flow<Resource<List<FixtureBonoko>>> {
+        TODO("Not yet implemented")
     }
 }

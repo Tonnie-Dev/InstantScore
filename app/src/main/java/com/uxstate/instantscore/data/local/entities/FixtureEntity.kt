@@ -2,15 +2,20 @@ package com.uxstate.instantscore.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Goal
+import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
 @Entity(tableName = "fixture_table")
 data class FixtureEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    @PrimaryKey(autoGenerate = false)
     val fixtureId: Int,
-    val date: Long,
     val status: Status,
-    val teams: Pair<Team, Team>
+    val league: League,
+    val teams: Pair<Team, Team>,
+    val goals: Goal,
+    val dayOfMonth: Int,
+    val month: Int,
+    val year: Int
 )

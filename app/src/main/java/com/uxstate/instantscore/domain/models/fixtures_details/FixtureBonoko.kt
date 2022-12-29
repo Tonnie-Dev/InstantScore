@@ -6,7 +6,7 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Fixture(
+data class FixtureBonoko(
     val fixtureId: Int,
     val date: Long,
     val status: Status,

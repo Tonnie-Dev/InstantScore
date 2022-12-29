@@ -6,7 +6,7 @@ data class FixturesResponseDTO(
     @Json(name = "errors")
     val errors: List<Any>,
     @Json(name = "get")
-    val `get`: String,
+    val get: String,
     @Json(name = "paging")
     val paging: Paging,
     @Json(name = "parameters")
