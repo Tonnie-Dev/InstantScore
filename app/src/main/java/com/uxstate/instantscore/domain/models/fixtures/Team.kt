@@ -6,6 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Team(
     val name: String,
-    val logo: String,
-    val goalScored: Int
+    val logo: String
 ) : Parcelable
