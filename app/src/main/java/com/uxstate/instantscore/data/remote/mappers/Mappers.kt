@@ -4,6 +4,8 @@ import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.local.entities.FixtureFakeEntity
 import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
+import com.uxstate.instantscore.utils.toCustomLocalDate
+import com.uxstate.instantscore.utils.toZonedDateTime
 import java.time.LocalDate
 
 // FixtureEntity to Model - Setting a declaration as internal means that it’ll
@@ -86,9 +88,12 @@ fun com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO.toEnt
                     homeTeamScore = this.goals.home ?: -1,
                     awayTeamScore = this.goals.away ?: -1
             ),
-            dayOfMonth = 0,
-            month = 0,
-            year = 0
+            dayOfMonth = this.fixture.timestamp.toZonedDateTime()
+                    .toCustomLocalDate().dayOfMonth,
+            month = this.fixture.timestamp.toZonedDateTime()
+                    .toCustomLocalDate().monthValue,
+            year = this.fixture.timestamp.toZonedDateTime()
+                    .toCustomLocalDate().year
     )
 }
 

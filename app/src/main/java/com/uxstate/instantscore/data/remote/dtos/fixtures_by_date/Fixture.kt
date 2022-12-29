@@ -14,7 +14,7 @@ data class Fixture(
     @Json(name = "status")
     val status: Status,
     @Json(name = "timestamp")
-    val timestamp: Int,
+    val timestamp: Long,
     @Json(name = "timezone")
     val timezone: String,
     @Json(name = "venue")
