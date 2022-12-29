@@ -2,12 +2,13 @@ package com.uxstate.instantscore.data.repository
 
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
-import com.uxstate.instantscore.data.remote.mappers.toEntity
+import com.uxstate.instantscore.data.remote.mappers.toFakeEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
+import com.uxstate.instantscore.utils.toStringDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -16,10 +17,8 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 class ScoresRepositoryImpl @Inject constructor(
-    private val api: ScoresAPI,
-    private val db: ScoresDatabase
-) :
-    ScoresRepository {
+    private val api: ScoresAPI, private val db: ScoresDatabase
+) : ScoresRepository {
     private val dao = db.dao
     override fun getFixtures(isRefresh: Boolean): Flow<Resource<List<FixtureBonoko>>> = flow {
 
@@ -57,7 +56,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
             val fixtures = fixturesResponseDTO.response
 
-            dao.insertFakeFixtures(fixtures.map { it.toEntity() })
+            dao.insertFakeFixtures(fixtures.map { it.toFakeEntity() })
         }
 
         val updatedLocalCache = dao.getFixtures()
@@ -67,8 +66,7 @@ class ScoresRepositoryImpl @Inject constructor(
     }
 
     override fun getFixturesForDate(
-        isRefresh: Boolean,
-        date: LocalDate
+        isRefresh: Boolean, date: LocalDate
     ): Flow<Resource<List<Fixture>>> = flow {
 
         //emit loading at the onset
@@ -76,13 +74,59 @@ class ScoresRepositoryImpl @Inject constructor(
 
         //fetch locally
         val localFixtures = dao.getFixturesByDate(
-                dayOfMonth = date.dayOfMonth,
-                month = date.monthValue,
-                year = date.year
+                dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
         )
 
         //emit local fixtures
-        emit(Resource.Success(data = localFixtures))
-        TODO("Not yet implemented")
+        emit(Resource.Success(data = localFixtures.map { it.toModel() }))
+
+        //decide if local cache will suffice
+
+        val useLocalCache = localFixtures.isNotEmpty() && !isRefresh
+
+        if (useLocalCache) {
+
+            //stop loading
+            emit(Resource.Loading(isLoading = false))
+
+            //return control
+            return@flow
+        }
+
+
+        // past this point proceed with the API Call
+
+        val remoteFixtures = try {
+
+            api.getFixturesByDate(date.toStringDate())
+
+        } catch (httpException: HttpException) {
+            httpException.printStackTrace() //emit error
+            emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))
+
+            //return null
+            null
+        } catch (ioException: IOException) {
+
+            ioException.printStackTrace()
+            emit(
+                    Resource.Error(
+                            errorMessage = """
+                Could not reach the Server, please check your connection
+                """.trimIndent()
+                    )
+            ) //return null
+            null
+        }
+
+
+        //vet and insert remote date into database
+
+        remoteFixtures?.let { response ->
+            val fixtures = response.response
+
+            dao.insertFixtures(fixtures)
+
+        }
     }
 }

@@ -12,7 +12,7 @@ data class FixturesResponseDTO(
     @Json(name = "parameters")
     val parameters: Parameters,
     @Json(name = "response")
-    val response: List<Response>,
+    val response: List<ResponseDTO>,
     @Json(name = "results")
     val results: Int
 )
