@@ -7,10 +7,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DatePickerItem
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateTextsRow
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.LiveButton
 
@@ -23,9 +25,14 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     val state by viewModel.fixturesState.collectAsState()
 
     Scaffold { paddingValues ->
-        LiveButton(onClickLiveButton = {})
-        Row(modifier = Modifier.padding(paddingValues = paddingValues)) {
+
+        Row(
+            modifier = Modifier.padding(paddingValues = paddingValues),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            LiveButton(onClickLiveButton = {})
             DateTextsRow()
+            DatePickerItem()
         }
     }
 }
