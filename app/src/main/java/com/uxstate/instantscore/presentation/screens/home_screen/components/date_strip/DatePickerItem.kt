@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
+import com.uxstate.instantscore.utils.toStringDate
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
@@ -24,9 +25,9 @@ fun DatePickerItem(onDateChange:(formattedStringDate:String)-> Unit) {
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
     val formattedDate by remember {
         derivedStateOf {
-            val pattern = "yyyy-MM-dd"
-            val dateTimeFormatter = DateTimeFormatter.ofPattern(pattern)
-            dateTimeFormatter.format(pickedDate)
+
+            //uses date util functions extension function
+            pickedDate.toStringDate()
         }
     }
     val dialogState = rememberMaterialDialogState()

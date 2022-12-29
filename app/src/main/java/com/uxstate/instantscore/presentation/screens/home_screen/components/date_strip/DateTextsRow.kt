@@ -10,37 +10,43 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import java.time.LocalDate
 
 @Composable
-fun DateTextsRow(modifier: Modifier = Modifier, date: LocalDate = LocalDate.now()) {
+fun DateTextsRow(
+    modifier: Modifier = Modifier,
+    onDateChange: (formattedStringDate: String) -> Unit
+) {
 
     var selectedIndex by remember { mutableStateOf(2) }
+    val date = remember { LocalDate.now() }
     // 5 DateTexts row
 
     Row(horizontalArrangement = Arrangement.SpaceEvenly) {
 
         DateText(
-            date = date.minusDays(2),
-            onDateTextClick = { selectedIndex = 0 },
-            isSelected = selectedIndex == 0
+                date = date.minusDays(2),
+                onDateTextClick = { selectedIndex = 0
+                                  onDateChange()
+                                  },
+                isSelected = selectedIndex == 0
         )
         DateText(
-            date = date.minusDays(1),
-            onDateTextClick = { selectedIndex = 1 },
-            isSelected = selectedIndex == 1
+                date = date.minusDays(1),
+                onDateTextClick = { selectedIndex = 1 },
+                isSelected = selectedIndex == 1
         )
         DateText(
-            date = date.minusDays(0),
-            onDateTextClick = { selectedIndex = 2 },
-            isSelected = selectedIndex == 2
+                date = date.minusDays(0),
+                onDateTextClick = { selectedIndex = 2 },
+                isSelected = selectedIndex == 2
         )
         DateText(
-            date = date.plusDays(1),
-            onDateTextClick = { selectedIndex = 3 },
-            isSelected = selectedIndex == 3
+                date = date.plusDays(1),
+                onDateTextClick = { selectedIndex = 3 },
+                isSelected = selectedIndex == 3
         )
         DateText(
-            date = date.plusDays(2),
-            onDateTextClick = { selectedIndex = 4 },
-            isSelected = selectedIndex == 4
+                date = date.plusDays(2),
+                onDateTextClick = { selectedIndex = 4 },
+                isSelected = selectedIndex == 4
         )
     }
 }
