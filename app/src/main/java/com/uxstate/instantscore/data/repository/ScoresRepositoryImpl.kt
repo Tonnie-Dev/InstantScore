@@ -56,7 +56,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
             val fixtures = fixturesResponseDTO.response
 
-            dao.insertFixtures(fixtures.map { it.toEntity() })
+            dao.insertFakeFixtures(fixtures.map { it.toEntity() })
         }
 
         val updatedLocalCache = dao.getFixtures()

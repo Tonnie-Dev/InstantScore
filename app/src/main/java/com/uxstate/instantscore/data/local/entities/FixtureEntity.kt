@@ -7,7 +7,7 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
-@Entity(tableName = "fixture_table")
+@Entity(tableName = "fixtures_table")
 data class FixtureEntity(
     @PrimaryKey(autoGenerate = false)
     val fixtureId: Int,
