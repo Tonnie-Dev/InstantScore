@@ -11,6 +11,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateStrip
+import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
@@ -22,6 +23,10 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
     Scaffold { paddingValues ->
 
-        DateStrip(modifier = Modifier.padding(paddingValues = paddingValues), onDateChange = {})
+        DateStrip(
+                modifier = Modifier.padding(paddingValues = paddingValues),
+                onDateChange = {
+                    viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
+                })
     }
 }
