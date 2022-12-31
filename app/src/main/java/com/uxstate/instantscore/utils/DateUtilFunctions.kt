@@ -25,7 +25,7 @@ fun Long.toZonedDateTime(): ZonedDateTime {
     val zoneId = ZoneId.systemDefault()
 
     // millis
-    val instant = Instant.ofEpochMilli(this)
+    val instant = Instant.ofEpochSecond(this)
 
     return ZonedDateTime.ofInstant(instant, zoneId)
 }
