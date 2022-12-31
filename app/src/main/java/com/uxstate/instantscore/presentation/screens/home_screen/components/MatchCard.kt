@@ -64,8 +64,8 @@ fun MatchCardPreview() {
                 timeElapsed = 0
             ),
             teams = Pair(
-                Team(name = "Brentford", logo = "", goalScored = 0),
-                Team(name = "Arsenal", logo = "", goalScored = 5)
+                Team(name = "Brentford", logo = ""),
+                Team(name = "Arsenal", logo = "")
             )
         )
     )
@@ -86,8 +86,8 @@ fun MatchCardPreviewDark() {
                     timeElapsed = 0
                 ),
                 teams = Pair(
-                    Team(name = "Brentford", logo = "", goalScored = 0),
-                    Team(name = "Arsenal", logo = "", goalScored = 5)
+                    Team(name = "Brentford", logo = ""),
+                    Team(name = "Arsenal", logo = "")
                 )
             )
         )

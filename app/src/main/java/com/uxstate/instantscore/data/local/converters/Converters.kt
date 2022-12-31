@@ -175,60 +175,65 @@ class Converters {
             Team(name = name2, logo = logo2)
         )
     }
-}
+    @TypeConverter
+    fun writeLeagueToRoom(league: League): String {
 
-@TypeConverter
-fun writeLeagueToRoom(league: League): String {
+        val leagueId = league.id.toString()
+        val leagueName = league.name
+        val leagueCountry = league.country
+        val leagueLogo = league.leagueLogo
+        val countryFlag = league.countryFlag
 
-    val leagueId = league.id.toString()
-    val leagueName = league.name
-    val leagueCountry = league.country
-    val leagueLogo = league.leagueLogo
-    val countryFlag = league.countryFlag
+        val leaguePropertiesList = listOf(
+            leagueId,
+            leagueName,
+            leagueCountry,
+            leagueLogo,
+            countryFlag
+        )
 
-    val leaguePropertiesList = listOf(leagueId, leagueName, leagueCountry, leagueLogo, countryFlag)
+        return leaguePropertiesList.joinToString("~")
+    }
 
-    return leaguePropertiesList.joinToString("~")
-}
+    @TypeConverter
+    fun readLeagueFromRoom(roomString: String): League {
 
-@TypeConverter
-fun readLeagueFromRoom(roomString: String): League {
+        val leaguePropertiesList = roomString.split("~")
+            .map { it }
+        val leagueId = leaguePropertiesList[0]
+        val leagueName = leaguePropertiesList[1]
+        val leagueCountry = leaguePropertiesList[2]
+        val leagueLogo = leaguePropertiesList[3]
+        val countryFlag = leaguePropertiesList[4]
 
-    val leaguePropertiesList = roomString.split("~")
-        .map { it }
-    val leagueId = leaguePropertiesList[0]
-    val leagueName = leaguePropertiesList[1]
-    val leagueCountry = leaguePropertiesList[2]
-    val leagueLogo = leaguePropertiesList[3]
-    val countryFlag = leaguePropertiesList[4]
+        return League(
+            id = leagueId.toInt(),
+            name = leagueName,
+            country = leagueCountry,
+            leagueLogo = leagueLogo,
+            countryFlag = countryFlag
+        )
+    }
 
-    return League(
-        id = leagueId.toInt(),
-        name = leagueName,
-        country = leagueCountry,
-        leagueLogo = leagueLogo,
-        countryFlag = countryFlag
-    )
-}
+    @TypeConverter
+    fun writeGoalToRoom(goal: Goal): String {
 
-@TypeConverter
-fun writeGoalToRoom(goal: Goal): String {
+        val homeTeamScore = goal.homeTeamScore.toString()
+        val awayTeamScore = goal.awayTeamScore.toString()
 
-    val homeTeamScore = goal.homeTeamScore.toString()
-    val awayTeamScore = goal.awayTeamScore.toString()
+        val goalPropertiesList = listOf(homeTeamScore, awayTeamScore)
 
-    val goalPropertiesList = listOf(homeTeamScore, awayTeamScore)
+        return goalPropertiesList.joinToString("~")
+    }
 
-    return goalPropertiesList.joinToString("~")
-}
+    @TypeConverter
+    fun readGoalFromRoom(roomString: String): Goal {
 
-@TypeConverter
-fun readGoalFromRoom(roomString: String): Goal {
+        val goalPropertiesList = roomString.split("~").map { it }
 
-    val goalPropertiesList = roomString.split("~").map { it }
+        val homeTeamScore = goalPropertiesList[0].toInt()
+        val awayTeamScore = goalPropertiesList[1].toInt()
 
-    val homeTeamScore = goalPropertiesList[0].toInt()
-    val awayTeamScore = goalPropertiesList[1].toInt()
-
-    return Goal(homeTeamScore = homeTeamScore, awayTeamScore = awayTeamScore)
+        return Goal(homeTeamScore = homeTeamScore, awayTeamScore = awayTeamScore)
+    }
 }
