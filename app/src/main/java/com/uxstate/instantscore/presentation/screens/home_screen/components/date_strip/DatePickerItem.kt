@@ -19,7 +19,8 @@ import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 
 @Composable
-fun DatePickerItem(onDateChange: (formattedStringDate: String) -> Unit) {
+fun DatePickerItem(onDateChange: (date: LocalDate) -> Unit) {
+
     val spacing = LocalSpacing.current
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
     val formattedDate by remember {
@@ -43,7 +44,7 @@ fun DatePickerItem(onDateChange: (formattedStringDate: String) -> Unit) {
     MaterialDialog(
         dialogState = dialogState,
         buttons = {
-            positiveButton("OK") { onDateChange(formattedDate) }
+            positiveButton("OK") { onDateChange(pickedDate) }
             negativeButton("Cancel") {}
         }
     ) {

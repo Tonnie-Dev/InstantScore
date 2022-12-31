@@ -19,14 +19,12 @@ fun String.toLocalDate(): LocalDateTime {
     return LocalDateTime.parse(this, dateFormatter)
 }
 
-
-
-//Extension to convert Long Timestamp to ZDT
+// Extension to convert Long Timestamp to ZDT
 fun Long.toZonedDateTime(): ZonedDateTime {
 
     val zoneId = ZoneId.systemDefault()
 
-    //millis
+    // millis
     val instant = Instant.ofEpochMilli(this)
 
     return ZonedDateTime.ofInstant(instant, zoneId)

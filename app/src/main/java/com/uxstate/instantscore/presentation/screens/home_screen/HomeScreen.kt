@@ -24,9 +24,10 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     Scaffold { paddingValues ->
 
         DateStrip(
-                modifier = Modifier.padding(paddingValues = paddingValues),
-                onDateChange = {
-                    viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
-                })
+            modifier = Modifier.padding(paddingValues = paddingValues),
+            onDateChange = {
+                viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
+            }
+        )
     }
 }

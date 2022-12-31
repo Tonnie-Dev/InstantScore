@@ -8,13 +8,13 @@ import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEven
 import com.uxstate.instantscore.presentation.screens.home_screen.state.FixturesState
 import com.uxstate.instantscore.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
+import java.time.LocalDate
 import javax.inject.Inject
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.time.LocalDate
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -24,9 +24,7 @@ class HomeViewModel @Inject constructor(
     private val _fixturesState = MutableStateFlow(FixturesState())
     val fixturesState = _fixturesState.asStateFlow()
 
-
-
-    var job:Job? = null
+    var job: Job? = null
 
     init {
 
@@ -34,11 +32,11 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getFixtures() {
-        //cancel the running job before with start a new one
+        // cancel the running job before with start a new one
 
         job?.cancel()
 
-     job =   container.getFixturesByDateUseCase(isRefresh = false, date = LocalDate.now())
+        job = container.getFixturesByDateUseCase(isRefresh = false, date = LocalDate.now())
             .onEach {
 
                 result ->
@@ -74,8 +72,7 @@ class HomeViewModel @Inject constructor(
             is OnRefresh -> {}
             is OnFixtureDateSelection -> {
 
-                _fixturesState.value = event.date
-
+                _fixturesState.value = _fixturesState.value.copy(date = event.date)
             }
         }
     }

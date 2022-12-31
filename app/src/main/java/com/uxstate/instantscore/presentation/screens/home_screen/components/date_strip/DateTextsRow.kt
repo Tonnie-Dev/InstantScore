@@ -7,12 +7,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
-import com.uxstate.instantscore.utils.toStringDate
+import java.time.LocalDate
 
 @Composable
 fun DateTextsRow(
     modifier: Modifier = Modifier,
-    onDateChange: (formattedStringDate: String) -> Unit
+    onDateChange: (date: LocalDate) -> Unit
 ) {
     var selectedIndex by remember { mutableStateOf(2) }
 
@@ -27,12 +27,10 @@ fun DateTextsRow(
 
                 if (isSelected) {
 
-                    onDateChange(it.toStringDate())
+                    onDateChange(it)
                 }
             }, isSelected = isSelected)
         }
-
-
     }
 }
 

@@ -3,10 +3,10 @@ package com.uxstate.instantscore.data.local.converters
 import androidx.room.TypeConverter
 import com.uxstate.instantscore.domain.models.fixtures_details.Event
 import com.uxstate.instantscore.domain.models.fixtures_details.Stats
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Goal
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
-import java.time.LocalDate
 
 class Converters {
 
@@ -127,7 +127,6 @@ class Converters {
         val name = team.name
         val logo = team.logo
 
-
         val teamPropertiesList = listOf(name, logo)
 
         return teamPropertiesList.joinToString("~")
@@ -142,7 +141,6 @@ class Converters {
         val name = teamPropertiesString[0]
         val logo = teamPropertiesString[1]
 
-
         return Team(name = name, logo = logo)
     }
 
@@ -152,10 +150,8 @@ class Converters {
         val name1 = teams.first.name
         val logo1 = teams.first.logo
 
-
         val name2 = teams.second.name
         val logo2 = teams.second.logo
-
 
         val teamPropertiesList = listOf(name1, logo1, name2, logo2)
 
@@ -174,14 +170,12 @@ class Converters {
         val name2 = teamPropertiesList[2]
         val logo2 = teamPropertiesList[3]
 
-
         return Pair(
                 Team(name = name1, logo = logo1),
                 Team(name = name2, logo = logo2)
         )
     }
 }
-
 
 @TypeConverter
 fun writeLeagueToRoom(league: League): String {
@@ -195,9 +189,7 @@ fun writeLeagueToRoom(league: League): String {
     val leaguePropertiesList = listOf(leagueId, leagueName, leagueCountry, leagueLogo, countryFlag)
 
     return leaguePropertiesList.joinToString("~")
-
 }
-
 
 @TypeConverter
 fun readLeagueFromRoom(roomString: String): League {
@@ -217,7 +209,23 @@ fun readLeagueFromRoom(roomString: String): League {
             leagueLogo = leagueLogo,
             countryFlag = countryFlag
     )
-
 }
 
 
+@TypeConverter
+fun writeGoalToRoom(goal: Goal): String {
+
+    val homeTeamScore = goal.homeTeamScore.toString()
+    val awayTeamScore = goal.awayTeamScore.toString()
+
+    val goalPropertiesList = listOf(homeTeamScore, awayTeamScore)
+
+    return goalPropertiesList.joinToString("~")
+}
+
+@TypeConverter
+fun readGoalFromRoom(roomString: String): Goal {
+
+    
+
+}

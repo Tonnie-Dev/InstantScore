@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.local.entities.FixtureFakeEntity
-import java.time.Year
 
 @Dao
 interface ScoresDAO {
@@ -22,7 +21,9 @@ interface ScoresDAO {
     @Query("DELETE FROM fixture_table")
     suspend fun clearFixtures()
 
-    @Query("""SELECT * FROM fixtures_table 
-        WHERE dayOfMonth=:dayOfMonth & month =:month & year=:year""")
-    suspend fun getFixturesByDate(dayOfMonth: Int, month: Int, year: Int):List<FixtureEntity>
+    @Query(
+        """SELECT * FROM fixtures_table 
+        WHERE dayOfMonth=:dayOfMonth & month =:month & year=:year"""
+    )
+    suspend fun getFixturesByDate(dayOfMonth: Int, month: Int, year: Int): List<FixtureEntity>
 }
