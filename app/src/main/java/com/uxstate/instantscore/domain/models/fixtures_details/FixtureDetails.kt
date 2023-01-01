@@ -1,7 +1,7 @@
 package com.uxstate.instantscore.domain.models.fixtures_details
 
 import android.os.Parcelable
-import com.uxstate.instantscore.data.remote.dtos.top_scorers.Team
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

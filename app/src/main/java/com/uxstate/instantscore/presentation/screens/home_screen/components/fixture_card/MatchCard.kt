@@ -42,17 +42,26 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
             .build()
     )
 
-    Card(modifier = modifier, shape = RectangleShape) {
+    Card(
+        modifier = modifier.padding(
+            vertical = spacing.spaceExtraSmall,
+            horizontal = spacing.spaceSmall
+        ),
+        shape = RectangleShape
+    ) {
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(spacing.spaceExtraSmall)
+        ) {
             Text(
                 text = fixture.status.fixtureShort,
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
 
-            Column() {
+            Column(modifier = Modifier.padding(spacing.spaceSmall)) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(.75f),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -72,10 +81,10 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                Spacer(modifier = Modifier.height(spacing.spaceDefault))
 
                 Row(
-                    modifier = Modifier.fillMaxWidth(.75f),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -119,7 +128,10 @@ fun MatchCardPreview() {
                     leagueLogo = "",
                     countryFlag = ""
                 ),
-                teams = Pair(Team(name = "Auxere", logo = ""), Team(name = "Monaco", logo = "")),
+                teams = Pair(
+                    Team(name = "Auxere", logo = ""),
+                    Team(name = "Monaco", logo = "")
+                ),
                 goals = Goal(
                     homeTeamScore = 5,
                     awayTeamScore = 3
@@ -150,7 +162,10 @@ fun MatchCardPreviewDark() {
                         leagueLogo = "",
                         countryFlag = ""
                     ),
-                    teams = Pair(Team(name = "Brest", logo = ""), Team(name = "Lyon", logo = "")),
+                    teams = Pair(
+                        Team(name = "Brest", logo = ""),
+                        Team(name = "Lyon", logo = "")
+                    ),
                     goals = Goal(
                         homeTeamScore = 5,
                         awayTeamScore = 3

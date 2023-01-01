@@ -8,13 +8,13 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.toStringDate
+import java.io.IOException
+import java.time.LocalDate
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import timber.log.Timber
-import java.io.IOException
-import java.time.LocalDate
-import javax.inject.Inject
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -78,11 +78,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // vet and insert remote date into database
         remoteFixtures?.let { response ->
-            //clear old data
+            // clear old data
             dao.clearFixtures()
             val fixtures = response.response
 
-            //insert new data
+            // insert new data
             dao.insertFixtures(fixtures.map { it.toEntity() })
         }
 

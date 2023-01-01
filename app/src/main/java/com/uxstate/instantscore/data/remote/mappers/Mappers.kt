@@ -6,8 +6,6 @@ import com.uxstate.instantscore.utils.toCustomLocalDate
 import com.uxstate.instantscore.utils.toZonedDateTime
 import java.time.LocalDate
 
-
-
 // FixtureEntity to Model- Setting a declaration as internal means that it’ll
 // be available in the same module only.
 internal fun FixtureEntity.toModel(): Fixture {
@@ -31,8 +29,6 @@ internal fun FixtureEntity.toModel(): Fixture {
         goals = this.goals
     )
 }
-
-
 
 // FixturesResponseDTO to Entity
 fun com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO.toEntity():
