@@ -7,6 +7,6 @@ import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 
 interface ScoresRepository {
-    
+
     fun getFixturesByDate(isRefresh: Boolean, date: LocalDate): Flow<Resource<List<Fixture>>>
 }
