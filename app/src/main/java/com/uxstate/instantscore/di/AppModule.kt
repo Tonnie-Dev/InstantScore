@@ -9,7 +9,6 @@ import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.domain.usecases.GetFixturesByDateUseCase
-import com.uxstate.instantscore.domain.usecases.GetFixturesUseCase
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.utils.*
 import dagger.Module
@@ -108,7 +107,6 @@ object AppModule {
     fun provideUseCaseContainer(repository: ScoresRepository): UseCaseContainer {
 
         return UseCaseContainer(
-            getFixturesUseCase = GetFixturesUseCase(repository = repository),
             getFixturesByDateUseCase = GetFixturesByDateUseCase(repository = repository)
         )
     }
