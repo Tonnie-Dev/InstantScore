@@ -12,6 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateStrip
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueMatchesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
@@ -43,11 +45,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
                 }
             )
-            mappedFixtures.forEach { (k, v) -> LeagueMatchesCard(k, v) }
+            SimpleMatchContainer(mappedFixtures)
 
             Text(text = "Test 2")
         }
     }
 }
 
+@Composable
+fun SimpleMatchContainer(map: Map<League, List<Fixture>>) {
 
+    map.forEach { (k, v) -> LeagueMatchesCard(k, v) }
+}

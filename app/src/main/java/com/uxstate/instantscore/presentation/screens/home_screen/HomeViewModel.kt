@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -46,7 +47,7 @@ class HomeViewModel @Inject constructor(
                     is Resource.Success -> {
 
                         result.data?.let {
-
+                            Timber.i("CachedData is $it")
                             _fixturesState.value = _fixturesState.value.copy(fixtures = it)
                         }
                     }

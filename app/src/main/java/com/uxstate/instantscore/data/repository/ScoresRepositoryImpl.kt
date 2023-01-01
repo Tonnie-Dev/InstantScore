@@ -16,6 +16,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import timber.log.Timber
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -27,8 +28,8 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Loading(isLoading = true))
 
         val localFixtures = dao.getFixtures()
-        emit(Resource.Success(data = localFixtures.map { it.toModel() }))
 
+        Timber.i("Emitted Local Fixtures are: $localFixtures")
         val isUseLocalCache = localFixtures.isNotEmpty() || !isRefresh
 
         if (isUseLocalCache) {
@@ -67,11 +68,12 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Loading(isLoading = false))
     }
 
-    override fun getFixturesForDate(
+    override fun getFixturesByDate(
         isRefresh: Boolean,
         date: LocalDate
     ): Flow<Resource<List<Fixture>>> = flow {
 
+        Timber.i("getFixtures")
         // emit loading at the onset
         emit(Resource.Loading(isLoading = true))
 
@@ -86,7 +88,7 @@ class ScoresRepositoryImpl @Inject constructor(
         // decide if local cache will suffice
 
         val useLocalCache = localFixtures.isNotEmpty() && !isRefresh
-
+        emit(Resource.Success(data = localFixtures.map { it.toModel() }))
         if (useLocalCache) {
 
             // stop loading
