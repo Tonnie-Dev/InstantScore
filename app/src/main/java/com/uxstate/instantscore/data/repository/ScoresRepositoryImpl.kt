@@ -29,7 +29,6 @@ class ScoresRepositoryImpl @Inject constructor(
 
         val localFixtures = dao.getFixtures()
 
-        Timber.i("Emitted Local Fixtures are: $localFixtures")
         val isUseLocalCache = localFixtures.isNotEmpty() || !isRefresh
 
         if (isUseLocalCache) {
@@ -73,7 +72,7 @@ class ScoresRepositoryImpl @Inject constructor(
         date: LocalDate
     ): Flow<Resource<List<Fixture>>> = flow {
 
-        Timber.i("getFixtures")
+        Timber.i("Entering getFixtures")
         // emit loading at the onset
         emit(Resource.Loading(isLoading = true))
 
@@ -84,7 +83,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // emit local fixtures
         emit(Resource.Success(data = localFixtures.map { it.toModel() }))
-
+        Timber.i("Emitted Local Fixtures are: $localFixtures")
         // decide if local cache will suffice
 
         val useLocalCache = localFixtures.isNotEmpty() && !isRefresh
