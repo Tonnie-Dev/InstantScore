@@ -1,7 +1,6 @@
 package com.uxstate.instantscore.data.remote.mappers
 
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
-import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
 import com.uxstate.instantscore.utils.toCustomLocalDate
 import com.uxstate.instantscore.utils.toZonedDateTime

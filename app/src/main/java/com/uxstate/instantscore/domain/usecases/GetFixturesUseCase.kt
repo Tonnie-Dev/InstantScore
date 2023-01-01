@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.domain.usecases
 
-import com.uxstate.instantscore.domain.models.fixtures_details.FixtureBonoko
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import kotlinx.coroutines.flow.Flow
