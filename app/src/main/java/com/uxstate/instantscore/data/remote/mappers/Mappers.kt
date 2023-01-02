@@ -1,13 +1,14 @@
 package com.uxstate.instantscore.data.remote.mappers
 
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
+import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
 import com.uxstate.instantscore.utils.toCustomLocalDate
 import com.uxstate.instantscore.utils.toZonedDateTime
 import java.time.LocalDate
 
 // FixturesResponseDTO to Entity
-fun com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO.toEntity():
+fun ResponseDTO.toEntity():
     FixtureEntity {
 
     return FixtureEntity(
@@ -39,7 +40,8 @@ fun com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO.toEnt
         month = this.fixture.timestamp.toZonedDateTime()
             .toCustomLocalDate().monthValue,
         year = this.fixture.timestamp.toZonedDateTime()
-            .toCustomLocalDate().year
+            .toCustomLocalDate().year,
+        startTime = this.fixture.timestamp
     )
 }
 
@@ -63,6 +65,7 @@ internal fun FixtureEntity.toModel(): Fixture {
             countryFlag = this.league.countryFlag
         ),
         teams = Pair(this.teams.first, this.teams.second),
-        goals = this.goals
+        goals = this.goals,
+        startTime = this.startTime
     )
 }

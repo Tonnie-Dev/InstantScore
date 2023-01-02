@@ -8,6 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class Fixture(
     val fixtureId: Int,
     val date: LocalDate,
+    val startTime: Long,
     val status: Status,
     val league: League,
     val teams: Pair<Team, Team>,

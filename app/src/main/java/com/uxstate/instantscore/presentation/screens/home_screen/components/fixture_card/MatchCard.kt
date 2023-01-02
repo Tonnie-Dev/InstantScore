@@ -139,7 +139,8 @@ fun MatchCardPreview() {
                 goals = Goal(
                     homeTeamScore = 5,
                     awayTeamScore = 3
-                )
+                ),
+                startTime = 1672774200
             )
         )
     }
@@ -173,7 +174,8 @@ fun MatchCardPreviewDark() {
                     goals = Goal(
                         homeTeamScore = 5,
                         awayTeamScore = 3
-                    )
+                    ),
+                    startTime = 1672774200
                 )
             )
         }

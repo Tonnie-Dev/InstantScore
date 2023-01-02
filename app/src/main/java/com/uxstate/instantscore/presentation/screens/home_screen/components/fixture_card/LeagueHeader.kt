@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
@@ -30,7 +29,7 @@ fun LeagueHeader(league: League, modifier: Modifier = Modifier) {
     Timber.i("The flag url is ${league.countryFlag}")
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-    val url = league.countryFlag.toUri().buildUpon().scheme("https").build()
+    // val url = league.countryFlag.toUri().buildUpon().scheme("https").build()
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -42,7 +41,7 @@ fun LeagueHeader(league: League, modifier: Modifier = Modifier) {
         ) {
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context = context)
-                    .data(url)
+                    .data(league.leagueLogo)
                     .decoderFactory(SvgDecoder.Factory())
                     .error(R.drawable.empty_flag)
                     .placeholder(R.drawable.empty_logo)

@@ -15,6 +15,7 @@ data class FixtureEntity(
     val league: League,
     val teams: Pair<Team, Team>,
     val goals: Goal,
+    val startTime: Long,
     val dayOfMonth: Int,
     val month: Int,
     val year: Int
