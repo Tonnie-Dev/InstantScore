@@ -29,15 +29,15 @@ class HomeViewModel @Inject constructor(
 
     init {
 
-        getFixtures()
+        getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
     }
 
-    private fun getFixtures() {
+    private fun getFixtures(isRefresh: Boolean, date: LocalDate) {
         // cancel the running job before with start a new one
 
         job?.cancel()
 
-        job = container.getFixturesByDateUseCase(isRefresh = false, date = LocalDate.now())
+        job = container.getFixturesByDateUseCase(isRefresh, date)
             .onEach {
 
                 result ->
@@ -70,10 +70,14 @@ class HomeViewModel @Inject constructor(
 
         when (event) {
 
-            is OnRefresh -> {}
+            is OnRefresh -> {
+                _fixturesState.value = _fixturesState.value.copy(isRefresh = event.isRefresh)
+                getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
+            }
             is OnFixtureDateSelection -> {
 
                 _fixturesState.value = _fixturesState.value.copy(date = event.date)
+                getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
         }
     }

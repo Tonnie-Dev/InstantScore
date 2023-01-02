@@ -5,6 +5,7 @@ import java.time.LocalDate
 
 data class FixturesState(
     val isLoading: Boolean = false,
+    val isRefresh: Boolean = false,
     val errorMessage: String = "",
     val fixtures: List<Fixture> = listOf(),
     val date: LocalDate = LocalDate.now()
