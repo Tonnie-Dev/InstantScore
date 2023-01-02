@@ -21,12 +21,10 @@ import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
-import timber.log.Timber
 
 @Composable
 fun LeagueHeader(league: League, modifier: Modifier = Modifier) {
 
-    Timber.i("The flag url is ${league.countryFlag}")
     val spacing = LocalSpacing.current
     val context = LocalContext.current
     // val url = league.countryFlag.toUri().buildUpon().scheme("https").build()
@@ -41,7 +39,7 @@ fun LeagueHeader(league: League, modifier: Modifier = Modifier) {
         ) {
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context = context)
-                    .data(league.leagueLogo)
+                    .data(league.countryFlag)
                     .decoderFactory(SvgDecoder.Factory())
                     .error(R.drawable.empty_flag)
                     .placeholder(R.drawable.empty_logo)

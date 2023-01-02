@@ -31,5 +31,22 @@ fun Long.toZonedDateTime(): ZonedDateTime {
 }
 
 fun ZonedDateTime.toCustomLocalDate(): LocalDate {
-    return this.toLocalDateTime().toLocalDate()
+    return this.toLocalDateTime()
+        .toLocalDate()
+}
+
+fun Long.toHourMinuteFormat(): String {
+    val zoneId = ZoneId.systemDefault()
+    val instant = Instant.ofEpochSecond(this)
+    val zonedDateTime = ZonedDateTime.ofInstant(instant, zoneId)
+    val localDateTime = zonedDateTime.toLocalDateTime()
+    val hour = formatTimeDisplay(localDateTime.hour)
+    val minute = formatTimeDisplay(localDateTime.minute)
+
+    return "$hour:$minute"
+}
+
+fun formatTimeDisplay(timeUnit: Int): String {
+
+    return if (timeUnit in (0..9)) "0$timeUnit" else "$timeUnit"
 }

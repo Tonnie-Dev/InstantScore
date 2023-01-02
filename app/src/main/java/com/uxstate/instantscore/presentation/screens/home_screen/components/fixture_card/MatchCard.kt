@@ -4,6 +4,7 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,12 +19,21 @@ import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
+import com.uxstate.instantscore.utils.toHourMinuteFormat
 import java.time.LocalDate
 
 @Composable
 fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
+
+    val fixtureSideText = when (fixture.status.fixtureShort) {
+
+        "NS" -> fixture.startTime.toHourMinuteFormat()
+        "FT" -> "FT"
+        else -> ""
+    }
+
     val homeTeamPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context = context)
             .data(fixture.teams.first.logo)
@@ -54,9 +64,11 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(spacing.spaceExtraSmall)
         ) {
+
             Text(
-                text = fixture.status.fixtureShort,
-                modifier = Modifier.align(Alignment.CenterVertically)
+                text = fixtureSideText,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = MaterialTheme.typography.titleSmall
             )
 
             Column(modifier = Modifier.padding(spacing.spaceSmall)) {
@@ -66,6 +78,7 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
+
                         Image(
                             painter = homeTeamPainter,
                             contentDescription = fixture.teams.first.name,
