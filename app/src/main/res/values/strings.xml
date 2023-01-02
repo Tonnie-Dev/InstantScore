@@ -3,4 +3,5 @@
     <string name="live_text">LIVE</string>
     <string name="calendar_text">Calendar</string>
     <string name="match_date_label">Pick Match Date</string>
+    <string name="stadium_background">Background</string>
 </resources>
