@@ -16,5 +16,4 @@ fun LeagueMatchesCard(league: League, fixtures: List<Fixture>) {
             MatchCard(fixture = fixture)
         }
     }
-
 }
