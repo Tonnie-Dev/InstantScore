@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -34,90 +33,94 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
         else -> ""
     }
 
+    val homeGoals = if (fixture.goals.homeTeamScore == -1) "" else "${fixture.goals.homeTeamScore}"
+    val awayGoals = if (fixture.goals.awayTeamScore == -1) "" else "${fixture.goals.awayTeamScore}"
     val homeTeamPainter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(context = context)
-            .data(fixture.teams.first.logo)
-            .error(R.drawable.empty_flag)
-            .placeholder(R.drawable.empty_flag)
-            .crossfade(true)
-            .build()
+            model = ImageRequest.Builder(context = context)
+                    .data(fixture.teams.first.logo)
+                    .error(R.drawable.empty_flag)
+                    .placeholder(R.drawable.empty_flag)
+                    .crossfade(true)
+                    .build()
     )
 
     val awayTeamPainter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(context = context)
-            .data(fixture.teams.second.logo)
-            .error(R.drawable.empty_flag)
-            .placeholder(R.drawable.empty_flag)
-            .crossfade(true)
-            .build()
+            model = ImageRequest.Builder(context = context)
+                    .data(fixture.teams.second.logo)
+                    .error(R.drawable.empty_flag)
+                    .placeholder(R.drawable.empty_flag)
+                    .crossfade(true)
+                    .build()
     )
 
     Card(
-        modifier = modifier.padding(
-            vertical = spacing.spaceExtraSmall,
-            horizontal = spacing.spaceSmall
-        ),
-        shape = RectangleShape
+            modifier = modifier.padding(
+                    vertical = spacing.spaceExtraSmall,
+                    horizontal = spacing.spaceSmall
+            ),
+            shape = RectangleShape
     ) {
 
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(spacing.spaceExtraSmall)
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(spacing.spaceExtraSmall)
         ) {
 
             Text(
-                text = fixtureSideText,
-                modifier = Modifier.align(Alignment.CenterVertically),
-                style = MaterialTheme.typography.titleSmall
+                    text = fixtureSideText,
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    style = MaterialTheme.typography.titleSmall
             )
 
             Column(modifier = Modifier.padding(spacing.spaceSmall)) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
 
                         Image(
-                            painter = homeTeamPainter,
-                            contentDescription = fixture.teams.first.name,
-                            Modifier
-                                .size(spacing.spaceLarge)
-                                .padding(spacing.spaceExtraSmall)
+                                painter = homeTeamPainter,
+                                contentDescription = fixture.teams.first.name,
+                                Modifier
+                                        .size(spacing.spaceLarge)
+                                        .padding(spacing.spaceExtraSmall)
                         )
                         Spacer(modifier = Modifier.width(spacing.spaceSmall))
                         Text(text = fixture.teams.first.name)
                     }
 
                     Text(
-                        text = fixture.goals.homeTeamScore.toString(),
-                        fontWeight = FontWeight.Bold
+                            text = homeGoals,
+                            style = MaterialTheme.typography.titleSmall
                     )
+
                 }
+
 
                 Spacer(modifier = Modifier.height(spacing.spaceDefault))
 
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Image(
-                            painter = awayTeamPainter,
-                            contentDescription = fixture.teams.first.name,
-                            Modifier
-                                .size(spacing.spaceLarge)
-                                .padding(spacing.spaceExtraSmall)
+                                painter = awayTeamPainter,
+                                contentDescription = fixture.teams.first.name,
+                                Modifier
+                                        .size(spacing.spaceLarge)
+                                        .padding(spacing.spaceExtraSmall)
                         )
                         Spacer(modifier = Modifier.width(spacing.spaceSmall))
                         Text(text = fixture.teams.second.name)
                     }
 
                     Text(
-                        text = fixture.goals.awayTeamScore.toString(),
-                        fontWeight = FontWeight.Bold
+                            text = awayGoals,
+                            style = MaterialTheme.typography.titleSmall
                     )
                 }
             }
@@ -131,30 +134,30 @@ fun MatchCardPreview() {
 
     InstantScoreTheme() {
         MatchCard(
-            fixture = Fixture(
-                fixtureId = 0, date = LocalDate.now(),
-                status = Status(
-                    fixtureLong = "",
-                    fixtureShort = "FT",
-                    timeElapsed = 63
-                ),
-                league = League(
-                    id = 0,
-                    name = "China League",
-                    country = "",
-                    leagueLogo = "",
-                    countryFlag = ""
-                ),
-                teams = Pair(
-                    Team(name = "Auxere", logo = ""),
-                    Team(name = "Monaco", logo = "")
-                ),
-                goals = Goal(
-                    homeTeamScore = 5,
-                    awayTeamScore = 3
-                ),
-                startTime = 1672774200
-            )
+                fixture = Fixture(
+                        fixtureId = 0, date = LocalDate.now(),
+                        status = Status(
+                                fixtureLong = "",
+                                fixtureShort = "FT",
+                                timeElapsed = 63
+                        ),
+                        league = League(
+                                id = 0,
+                                name = "China League",
+                                country = "",
+                                leagueLogo = "",
+                                countryFlag = ""
+                        ),
+                        teams = Pair(
+                                Team(name = "Auxere", logo = ""),
+                                Team(name = "Monaco", logo = "")
+                        ),
+                        goals = Goal(
+                                homeTeamScore = 5,
+                                awayTeamScore = 3
+                        ),
+                        startTime = 1672774200
+                )
         )
     }
 }
@@ -166,30 +169,30 @@ fun MatchCardPreviewDark() {
     InstantScoreTheme() {
         InstantScoreTheme() {
             MatchCard(
-                fixture = Fixture(
-                    fixtureId = 0, date = LocalDate.now(),
-                    status = Status(
-                        fixtureLong = "",
-                        fixtureShort = "FT",
-                        timeElapsed = 63
-                    ),
-                    league = League(
-                        id = 0,
-                        name = "China League",
-                        country = "",
-                        leagueLogo = "",
-                        countryFlag = ""
-                    ),
-                    teams = Pair(
-                        Team(name = "Brest", logo = ""),
-                        Team(name = "Lyon", logo = "")
-                    ),
-                    goals = Goal(
-                        homeTeamScore = 5,
-                        awayTeamScore = 3
-                    ),
-                    startTime = 1672774200
-                )
+                    fixture = Fixture(
+                            fixtureId = 0, date = LocalDate.now(),
+                            status = Status(
+                                    fixtureLong = "",
+                                    fixtureShort = "FT",
+                                    timeElapsed = 63
+                            ),
+                            league = League(
+                                    id = 0,
+                                    name = "China League",
+                                    country = "",
+                                    leagueLogo = "",
+                                    countryFlag = ""
+                            ),
+                            teams = Pair(
+                                    Team(name = "Brest", logo = ""),
+                                    Team(name = "Lyon", logo = "")
+                            ),
+                            goals = Goal(
+                                    homeTeamScore = 5,
+                                    awayTeamScore = 3
+                            ),
+                            startTime = 1672774200
+                    )
             )
         }
     }
