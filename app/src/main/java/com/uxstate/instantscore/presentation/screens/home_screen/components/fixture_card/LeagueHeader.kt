@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.net.toUri
 import coil.compose.rememberAsyncImagePainter
+import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
@@ -42,17 +43,19 @@ fun LeagueHeader(league: League, modifier: Modifier = Modifier) {
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(context = context)
                     .data(url)
+                    .decoderFactory(SvgDecoder.Factory())
                     .error(R.drawable.empty_flag)
                     .placeholder(R.drawable.empty_logo)
                     .build()
             )
+
             Image(
                 painter = painter,
                 contentDescription = league.name,
-                modifier = Modifier.size(spacing.spaceSmall * 3),
+                modifier = Modifier.size(spacing.spaceSmall * 4).padding(spacing.spaceExtraSmall),
                 contentScale = ContentScale.Crop
             )
-            Spacer(modifier = Modifier.height(spacing.spaceSmall))
+            Spacer(modifier = Modifier.width(spacing.spaceSmall * 2))
             Column() {
 
                 Text(text = league.name, style = MaterialTheme.typography.titleSmall)

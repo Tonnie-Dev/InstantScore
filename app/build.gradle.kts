@@ -118,8 +118,10 @@ dependencies {
 
     // Material 3 Lib
     implementation("androidx.compose.material3:material3:1.1.0-alpha03")
+
     // Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("io.coil-kt:coil-svg:2.2.2")
 
     // Dagger - Hilt
     implementation("com.google.dagger:hilt-android:2.44")

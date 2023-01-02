@@ -69,7 +69,9 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
                         Image(
                             painter = homeTeamPainter,
                             contentDescription = fixture.teams.first.name,
-                            Modifier.size(spacing.spaceExtraSmall * 4)
+                            Modifier
+                                .size(spacing.spaceLarge)
+                                .padding(spacing.spaceExtraSmall)
                         )
                         Spacer(modifier = Modifier.width(spacing.spaceSmall))
                         Text(text = fixture.teams.first.name)
@@ -92,7 +94,9 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
                         Image(
                             painter = awayTeamPainter,
                             contentDescription = fixture.teams.first.name,
-                            Modifier.size(spacing.spaceExtraSmall * 4)
+                            Modifier
+                                .size(spacing.spaceLarge)
+                                .padding(spacing.spaceExtraSmall)
                         )
                         Spacer(modifier = Modifier.width(spacing.spaceSmall))
                         Text(text = fixture.teams.second.name)

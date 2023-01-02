@@ -6,30 +6,6 @@ import com.uxstate.instantscore.utils.toCustomLocalDate
 import com.uxstate.instantscore.utils.toZonedDateTime
 import java.time.LocalDate
 
-// FixtureEntity to Model- Setting a declaration as internal means that it’ll
-// be available in the same module only.
-internal fun FixtureEntity.toModel(): Fixture {
-
-    return Fixture(
-        fixtureId = this.fixtureId,
-        date = LocalDate.of(this.year, this.month, this.dayOfMonth),
-        status = Status(
-            fixtureLong = this.status.fixtureLong,
-            fixtureShort = this.status.fixtureShort,
-            timeElapsed = this.status.timeElapsed
-        ),
-        league = League(
-            id = this.league.id,
-            name = this.league.name,
-            country = this.league.country,
-            leagueLogo = this.league.leagueLogo,
-            countryFlag = this.league.leagueLogo
-        ),
-        teams = Pair(this.teams.first, this.teams.second),
-        goals = this.goals
-    )
-}
-
 // FixturesResponseDTO to Entity
 fun com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO.toEntity():
     FixtureEntity {
@@ -64,5 +40,29 @@ fun com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO.toEnt
             .toCustomLocalDate().monthValue,
         year = this.fixture.timestamp.toZonedDateTime()
             .toCustomLocalDate().year
+    )
+}
+
+// FixtureEntity to Model- Setting a declaration as internal means that it’ll
+// be available in the same module only.
+internal fun FixtureEntity.toModel(): Fixture {
+
+    return Fixture(
+        fixtureId = this.fixtureId,
+        date = LocalDate.of(this.year, this.month, this.dayOfMonth),
+        status = Status(
+            fixtureLong = this.status.fixtureLong,
+            fixtureShort = this.status.fixtureShort,
+            timeElapsed = this.status.timeElapsed
+        ),
+        league = League(
+            id = this.league.id,
+            name = this.league.name,
+            country = this.league.country,
+            leagueLogo = this.league.leagueLogo,
+            countryFlag = this.league.countryFlag
+        ),
+        teams = Pair(this.teams.first, this.teams.second),
+        goals = this.goals
     )
 }
