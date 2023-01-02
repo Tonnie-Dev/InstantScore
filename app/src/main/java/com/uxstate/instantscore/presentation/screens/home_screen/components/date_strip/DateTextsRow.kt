@@ -7,9 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
-import com.uxstate.instantscore.utils.toStringDate
 import java.time.LocalDate
-import timber.log.Timber
 
 @Composable
 fun DateTextsRow(
@@ -27,12 +25,6 @@ fun DateTextsRow(
             DateText(dateTextIndex = i, isSelected = isSelected, onDateTextClick = {
                 selectedIndex = i
                 onDateChange(it)
-
-                Timber.i("The Submitted Date is ${it.toStringDate()}")
-                /*if (isSelected) {
-
-
-                }*/
             })
         }
     }

@@ -1,7 +1,6 @@
 package com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
@@ -9,16 +8,13 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 @Composable
 fun LeagueMatchesCard(league: League, fixtures: List<Fixture>) {
 
-    LazyColumn(content = {
+    Column() {
+        LeagueHeader(league = league)
 
-        item {
-
-            LeagueHeader(league = league)
-        }
-
-        items(fixtures) { fixture ->
+        fixtures.forEach { fixture ->
 
             MatchCard(fixture = fixture)
         }
-    })
+    }
+
 }
