@@ -26,7 +26,7 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val homeTeamPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context = context)
-            .data(fixture.teams.first)
+            .data(fixture.teams.first.logo)
             .error(R.drawable.empty_flag)
             .placeholder(R.drawable.empty_flag)
             .crossfade(true)
@@ -35,7 +35,7 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
 
     val awayTeamPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context = context)
-            .data(fixture.teams.second)
+            .data(fixture.teams.second.logo)
             .error(R.drawable.empty_flag)
             .placeholder(R.drawable.empty_flag)
             .crossfade(true)
@@ -90,7 +90,7 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Image(
-                            painter = homeTeamPainter,
+                            painter = awayTeamPainter,
                             contentDescription = fixture.teams.first.name,
                             Modifier.size(spacing.spaceExtraSmall * 4)
                         )

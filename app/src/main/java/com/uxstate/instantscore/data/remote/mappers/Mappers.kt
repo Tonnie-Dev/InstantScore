@@ -23,7 +23,7 @@ internal fun FixtureEntity.toModel(): Fixture {
             name = this.league.name,
             country = this.league.country,
             leagueLogo = this.league.leagueLogo,
-            countryFlag = this.league.countryFlag
+            countryFlag = this.league.leagueLogo
         ),
         teams = Pair(this.teams.first, this.teams.second),
         goals = this.goals
