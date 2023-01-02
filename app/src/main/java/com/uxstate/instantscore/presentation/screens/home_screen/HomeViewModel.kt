@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(
     private val _fixturesState = MutableStateFlow(FixturesState())
     val fixturesState = _fixturesState.asStateFlow()
 
-    var job: Job? = null
+    private var job: Job? = null
 
     init {
 
