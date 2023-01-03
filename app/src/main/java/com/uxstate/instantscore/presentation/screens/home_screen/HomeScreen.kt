@@ -1,17 +1,16 @@
 package com.uxstate.instantscore.presentation.screens.home_screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -47,12 +46,22 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     }
                 )
             }
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                Text(text = "Test 1")
 
-                mappedFixtures.forEach { (k, v) -> LeagueMatchesCard(k, v) }
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter ) {
 
-                Text(text = "Test 2")
+                if (state.isLoading)
+
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+
+                else
+
+                    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                        Text(text = "Test 1")
+
+                        mappedFixtures.forEach { (k, v) -> LeagueMatchesCard(k, v) }
+
+                        Text(text = "Test 2")
+                    }
             }
         }
     }
