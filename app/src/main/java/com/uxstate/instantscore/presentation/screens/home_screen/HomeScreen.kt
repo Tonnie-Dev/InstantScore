@@ -47,7 +47,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                 )
             }
 
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter ) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
 
                 if (state.isLoading)
 

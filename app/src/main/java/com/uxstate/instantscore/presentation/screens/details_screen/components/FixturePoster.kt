@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,16 +33,23 @@ fun FixturePoster(fixture: Fixture) {
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(2f / 1f)
+                .aspectRatio(3f / 2f),
+
+            contentScale = ContentScale.Crop
         )
 
         Text(
             text = fixture.league.name,
-            style = MaterialTheme.typography.displaySmall,
+            style = MaterialTheme.typography.titleMedium,
             color = Color.White,
-            modifier = Modifier.align(Alignment.TopCenter)
+            modifier = Modifier.align(Alignment.Center)
         )
-        DetailsScoreCard(fixture = fixture, modifier = Modifier.align(Alignment.Center))
+        DetailsScoreCard(
+            fixture = fixture,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth(.6f)
+        )
     }
 }
 
