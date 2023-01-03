@@ -2,10 +2,7 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -49,65 +47,84 @@ fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
             .error(R.drawable.empty_logo)
             .build()
     )
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = modifier
+
+    Column(
+        modifier = modifier.padding(spacing.spaceSmall),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = fixture.league.name,
+            style = MaterialTheme.typography.titleLarge,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
+        Spacer(modifier = Modifier.height(spacing.spaceLarge))
 
-        // Home Team
-        Column(
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth(.7f)
         ) {
 
-            Image(
-                painter = homeTeamPainter,
-                contentDescription = fixture.teams.first.name,
-                Modifier
-                    .size(spacing.spaceExtraLarge)
+            // Home Team
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-            )
+                Image(
+                    painter = homeTeamPainter,
+                    contentDescription = fixture.teams.first.name,
+                    Modifier
+                        .size(spacing.spaceExtraLarge)
 
-            Text(
-                text = fixture.teams.first.name, style = MaterialTheme.typography.titleLarge,
-                color = Color.White
-            )
-        }
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+                Text(
+                    text = fixture.teams.first.name,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White
+                )
+            }
 
-        // Scores Row
-        Row(modifier = Modifier.align(Alignment.Top)) {
-            Text(
-                text = homeGoals,
-                style = MaterialTheme.typography.displaySmall,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-            Text(text = "-", style = MaterialTheme.typography.displaySmall, color = Color.White)
-            Text(
-                text = awayGoals,
-                style = MaterialTheme.typography.displaySmall,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-        }
+            // Scores Row
+            Row(verticalAlignment = Alignment.Top) {
+                Text(
+                    text = homeGoals,
+                    style = MaterialTheme.typography.displaySmall,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+                Text(
+                    text = " - ",
+                    style = MaterialTheme.typography.displaySmall,
+                    color = Color.White
+                )
+                Text(
+                    text = awayGoals,
+                    style = MaterialTheme.typography.displaySmall,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
 
-        // Away Team
-        Column(
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+            // Away Team
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-            Image(
-                painter = awayTeamPainter,
-                contentDescription = fixture.teams.first.name,
-                Modifier.size(spacing.spaceExtraLarge)
-            )
-
-            Text(
-                text = fixture.teams.first.name,
-                style = MaterialTheme.typography.titleLarge, color = Color.White
-            )
+                Image(
+                    painter = awayTeamPainter,
+                    contentDescription = fixture.teams.first.name,
+                    Modifier.size(spacing.spaceExtraLarge)
+                )
+                Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
+                Text(
+                    text = fixture.teams.first.name,
+                    style = MaterialTheme.typography.titleMedium, color = Color.White
+                )
+            }
         }
     }
 }

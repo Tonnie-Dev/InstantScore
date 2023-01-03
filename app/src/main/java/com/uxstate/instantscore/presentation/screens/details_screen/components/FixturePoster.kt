@@ -1,29 +1,25 @@
-package com.uxstate.instantscore.presentation.screens.details_screen
+package com.uxstate.instantscore.presentation.screens.details_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
-import com.uxstate.instantscore.presentation.screens.details_screen.components.DetailsScoreCard
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
+import com.uxstate.instantscore.utils.LocalSpacing
 import java.time.LocalDate
 
 @Composable
 fun FixturePoster(fixture: Fixture) {
 
+    val spacing = LocalSpacing.current
     Box(contentAlignment = Alignment.TopCenter) {
 
         Image(
@@ -38,17 +34,11 @@ fun FixturePoster(fixture: Fixture) {
             contentScale = ContentScale.Crop
         )
 
-        Text(
-            text = fixture.league.name,
-            style = MaterialTheme.typography.titleMedium,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.Center)
-        )
         DetailsScoreCard(
             fixture = fixture,
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth(.6f)
+                .align(Alignment.Center)
+                .fillMaxWidth()
         )
     }
 }
