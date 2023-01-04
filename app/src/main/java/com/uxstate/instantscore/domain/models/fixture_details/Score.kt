@@ -4,8 +4,9 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PenaltyShootOut(
-    val penaltiesScoredAway: Int,
-    val penaltiesScoredHome: Int,
+data class Score(
 
-    ) : Parcelable
+val extraTimeScore: ExtraTime,
+val fullTimeScore: FullTime,
+val penaltyShootOutScore: PenaltyShootOut
+):Parcelable
