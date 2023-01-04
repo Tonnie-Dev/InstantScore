@@ -1,7 +1,6 @@
 package com.uxstate.instantscore.domain.models.fixture_details
 
 import android.os.Parcelable
-import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -18,5 +17,6 @@ data class FixtureDetails(
     val teams: Pair<Team, Team>,
     val events: List<Event>,
     val stats: Stats,
+    val lineUps:List<LineUp>
 
 ) : Parcelable
