@@ -2,8 +2,8 @@ package com.uxstate.instantscore.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.uxstate.instantscore.domain.models.fixtures_details.Event
-import com.uxstate.instantscore.domain.models.fixtures_details.Stats
+import com.uxstate.instantscore.domain.models.fixture_details.Event
+import com.uxstate.instantscore.domain.models.fixture_details.Stats
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 
 @Entity(tableName = "fixture_details_table")

@@ -1,8 +1,8 @@
 package com.uxstate.instantscore.data.local.converters
 
 import androidx.room.TypeConverter
-import com.uxstate.instantscore.domain.models.fixtures_details.Event
-import com.uxstate.instantscore.domain.models.fixtures_details.Stats
+import com.uxstate.instantscore.domain.models.fixture_details.Event
+import com.uxstate.instantscore.domain.models.fixture_details.Stats
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Goal
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Status
