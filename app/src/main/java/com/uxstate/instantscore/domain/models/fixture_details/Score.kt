@@ -5,8 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Score(
-
-val extraTimeScore: ExtraTime,
-val fullTimeScore: FullTime,
-val penaltyShootOutScore: PenaltyShootOut
-):Parcelable
+    val extraTimeScore: ExtraTime,
+    val fullTimeScore: FullTime,
+    val penaltyShootOutScore: PenaltyShootOut
+) : Parcelable
