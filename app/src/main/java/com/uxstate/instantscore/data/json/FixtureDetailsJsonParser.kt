@@ -86,17 +86,42 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         )
 
         val eventsJsonArray = responseJsonArray.getJSONArray(5)
-        val events = listOf<Event>()
+        val events = mutableListOf<Event>()
         (0..eventsJsonArray.length()).forEach { i ->
 
             val currentSubObj = eventsJsonArray.getJSONObject(i)
 
             currentSubObj.keys()
-                    .forEach {
+                    .forEach { key ->
 
-                        val event = Event(timeElapsed = 0, player = "", assist = "", eventType = "")
+                        val timeJsonObj = currentSubObj.getJSONObject("time")
+                        val teamJsonObj = currentSubObj.getJSONObject("team")
+                        val playerJsonObj = currentSubObj.getJSONObject("player")
+                        val assistJsonObj = currentSubObj.getJSONObject("assist")
+                        val typeJsonObj = currentSubObj.getJSONObject("type")
+                        val detailJsonObj = currentSubObj.getJSONObject("detail")
+
+
+                        val event = Event(
+                                timeElapsed = timeJsonObj.optInt("elapsed", -1),
+                                inExtra = teamJsonObj.optInt("extra", -1),
+                                player = playerJsonObj.optString("name",""),
+                                side = teamJsonObj.optString("name",""),
+                                assist = assistJsonObj.optString("name", ""),
+                                eventType = typeJsonObj.optString("type",""),
+                                eventDetail = detailJsonObj.optString("detail","")
+                        )
+
+                        events.add(event)
 
                     }
+
+        }
+
+        val statsJsonArray = responseJsonArray.getJSONArray(7)
+
+        for (i in 0..statsJsonArray.length()){
+            val innerStatObj = statsJsonArray.getJSONObject(i)
 
         }
 
