@@ -146,8 +146,11 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         val lineUpsJsonArray = responseJsonArray.getJSONArray(6)
         //variable
+        val teamLineUps = mutableListOf<LineUp>()
         val startingElevenLineUp = mutableListOf<Player>()
         val substitutesLineUp = mutableListOf<Player>()
+
+
 
         for (i in 0 until lineUpsJsonArray.length()) {
 
@@ -188,10 +191,10 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 startingElevenLineUp.add(startingPlayer)
             }
 
-            val subsArray = innerLineUpsObj.getJSONArray("substitutes")
-            for (j in 0 until subsArray.length()) {
+            val subsJsonArray = innerLineUpsObj.getJSONArray("substitutes")
+            for (j in 0 until subsJsonArray.length()) {
 
-                val subsInnerJsonObj = subsArray.getJSONObject(j)
+                val subsInnerJsonObj = subsJsonArray.getJSONObject(j)
                 val subPlayerJsonObj = subsInnerJsonObj.getJSONObject("player")
                 //variables
                 val playerId = subPlayerJsonObj.optInt("id", -1)
@@ -209,6 +212,21 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                 substitutesLineUp.add(subPlayer)
             }
+
+            val lineup = LineUp(
+                    coach = Coach(
+                            name = coachName,
+                            photo = coachPhoto
+                    ),
+                    startingXI = startingElevenLineUp, substitutes = substitutesLineUp,
+
+                    team = Team(
+                    name = teamName,
+                    logo = teamLogo,
+                    isWinner = false
+            )
+            )
+            teamLineUps.add(lineup)
         }
 
         val scoreJsonObject = responseJsonArray.getJSONObject(3)
@@ -241,29 +259,18 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 leagueName = leagueName,
                 teams =teamPair,
                 events = events,
-                stats = Stats(
-                        side = "",
-                        possession = 0,
-                        shotsOnGoal = 0,
-                        shotsOffGoal = 0,
-                        totalShots = 0,
-                        cornerKicks = 0,
-                        offSides = 0,
-                        fouls = 0,
-                        yellowCards = 0,
-                        redCards = 0
-                ),
-                lineUps = listOf(),
+                stats = stats,
+                lineUps = teamLineUps,
                 score = Score(
                         extraTimeScore = ExtraTime(
-                                extraTimeAwayScore = 0,
-                                extraTimeHomeScore = 0
+                                extraTimeAwayScore = extraTimeAwayScore,
+                                extraTimeHomeScore = extraTimeHomeScore
                         ), fullTimeScore = FullTime(
-                        fullTimeAwayScore = 0,
-                        fullTimeHomeScore = 0
+                        fullTimeAwayScore = fullTimeAwayScore,
+                        fullTimeHomeScore = fullTimeHomeScore
                 ), penaltyShootOutScore = PenaltyShootOut(
-                        penaltiesScoredAway = 0,
-                        penaltiesScoredHome = 0
+                        penaltiesScoredAway = penaltiesAwayScore,
+                        penaltiesScoredHome = penaltiesHomeScore
                 )
                 )
         )
