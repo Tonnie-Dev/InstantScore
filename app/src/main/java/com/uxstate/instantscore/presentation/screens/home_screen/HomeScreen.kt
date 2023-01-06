@@ -15,8 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
+import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateStrip
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
@@ -26,7 +28,7 @@ import com.uxstate.instantscore.utils.LocalSpacing
 @Destination
 @RootNavGraph(start = true)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
     val state by viewModel.fixturesState.collectAsState()
 
     val spacing = LocalSpacing.current
@@ -52,13 +54,19 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                 if (state.isLoading)
 
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-
                 else
 
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Text(text = "Test 1")
 
-                        mappedFixtures.forEach { (k, v) -> LeagueFixturesCard(k, v) }
+                        mappedFixtures.forEach { (k, v) ->
+                            LeagueFixturesCard(
+                                k,
+                                v
+                            ) {
+                                navigator.navigate(DetailsScreenDestination(it))
+                            }
+                        }
 
                         Text(text = "Test 2")
                     }

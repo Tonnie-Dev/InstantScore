@@ -2,6 +2,7 @@ package com.uxstate.instantscore.presentation.screens.home_screen.components.fix
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -22,7 +23,11 @@ import com.uxstate.instantscore.utils.toHourMinuteFormat
 import java.time.LocalDate
 
 @Composable
-fun FixtureCard(fixture: Fixture, modifier: Modifier = Modifier) {
+fun FixtureCard(
+    fixture: Fixture,
+    onClickFixtureCard: (fixtureId: Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
@@ -54,10 +59,15 @@ fun FixtureCard(fixture: Fixture, modifier: Modifier = Modifier) {
     )
 
     Card(
-        modifier = modifier.padding(
-            vertical = spacing.spaceExtraSmall,
-            horizontal = spacing.spaceSmall
-        ),
+        modifier = modifier
+            .clickable {
+
+                onClickFixtureCard(fixture.fixtureId)
+            }
+            .padding(
+                vertical = spacing.spaceExtraSmall,
+                horizontal = spacing.spaceSmall
+            ),
         shape = RectangleShape
     ) {
 
@@ -155,7 +165,8 @@ fun MatchCardPreview() {
                     awayTeamScore = 3
                 ),
                 startTime = 1672774200
-            )
+            ),
+            onClickFixtureCard = {}
         )
     }
 }
@@ -190,7 +201,8 @@ fun MatchCardPreviewDark() {
                         awayTeamScore = 3
                     ),
                     startTime = 1672774200
-                )
+                ),
+                onClickFixtureCard = {}
             )
         }
     }
