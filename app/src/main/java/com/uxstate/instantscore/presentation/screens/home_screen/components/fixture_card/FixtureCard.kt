@@ -22,7 +22,7 @@ import com.uxstate.instantscore.utils.toHourMinuteFormat
 import java.time.LocalDate
 
 @Composable
-fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
+fun FixtureCard(fixture: Fixture, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
@@ -131,7 +131,7 @@ fun MatchCard(fixture: Fixture, modifier: Modifier = Modifier) {
 fun MatchCardPreview() {
 
     InstantScoreTheme() {
-        MatchCard(
+        FixtureCard(
             fixture = Fixture(
                 fixtureId = 0, date = LocalDate.now(),
                 status = Status(
@@ -166,7 +166,7 @@ fun MatchCardPreviewDark() {
 
     InstantScoreTheme() {
         InstantScoreTheme() {
-            MatchCard(
+            FixtureCard(
                 fixture = Fixture(
                     fixtureId = 0, date = LocalDate.now(),
                     status = Status(

@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.uxstate.instantscore.presentation.screens.home_screen.NavGraphs
+import com.uxstate.instantscore.presentation.screens.NavGraphs
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import dagger.hilt.android.AndroidEntryPoint
 

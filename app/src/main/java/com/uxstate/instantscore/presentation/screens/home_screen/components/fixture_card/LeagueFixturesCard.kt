@@ -6,14 +6,14 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 
 @Composable
-fun LeagueMatchesCard(league: League, fixtures: List<Fixture>) {
+fun LeagueFixturesCard(league: League, fixtures: List<Fixture>) {
 
     Column() {
         LeagueHeader(league = league)
 
         fixtures.forEach { fixture ->
 
-            MatchCard(fixture = fixture)
+            FixtureCard(fixture = fixture)
         }
     }
 }

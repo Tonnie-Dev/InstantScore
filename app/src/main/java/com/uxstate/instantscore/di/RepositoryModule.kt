@@ -1,7 +1,5 @@
 package com.uxstate.instantscore.di
 
-import com.uxstate.instantscore.data.json.FixtureDetailsJsonParser
-import com.uxstate.instantscore.data.json.JsonStringParser
 import com.uxstate.instantscore.data.repository.ScoresRepositoryImpl
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import dagger.Binds
@@ -16,10 +14,4 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindScoresRepository(repositoryImpl: ScoresRepositoryImpl): ScoresRepository
-
-    @Binds
-    @Singleton
-    abstract fun bindJsonStringParser(
-        fixtureDetailsJsonParser: FixtureDetailsJsonParser
-    ): JsonStringParser<String>
 }

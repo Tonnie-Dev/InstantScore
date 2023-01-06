@@ -18,7 +18,7 @@ import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateStrip
-import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueMatchesCard
+import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.utils.LocalSpacing
 
@@ -58,7 +58,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Text(text = "Test 1")
 
-                        mappedFixtures.forEach { (k, v) -> LeagueMatchesCard(k, v) }
+                        mappedFixtures.forEach { (k, v) -> LeagueFixturesCard(k, v) }
 
                         Text(text = "Test 2")
                     }

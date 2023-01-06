@@ -1,10 +1,9 @@
 package com.uxstate.instantscore.data.json
 
-
 import com.uxstate.instantscore.domain.models.fixture_details.*
-import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
+import org.json.JSONObject
 
 // force single instance of FixtureDetailsJsonParser for the entire app process
 @Singleton
@@ -64,17 +63,17 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         // variables
         val homeTeam: Team = Team(
-                name = homeTeamJSONObject.optString("name", ""),
-                logo = homeTeamJSONObject.optString("logo", ""),
-                isWinner = homeTeamJSONObject.optBoolean("winner")
+            name = homeTeamJSONObject.optString("name", ""),
+            logo = homeTeamJSONObject.optString("logo", ""),
+            isWinner = homeTeamJSONObject.optBoolean("winner")
         )
         val awayTeam: Team = Team(
-                name = awayTeamJSONObject.optString("name", ""),
-                logo = awayTeamJSONObject.optString("logo", ""),
-                isWinner = awayTeamJSONObject.optBoolean("winner")
+            name = awayTeamJSONObject.optString("name", ""),
+            logo = awayTeamJSONObject.optString("logo", ""),
+            isWinner = awayTeamJSONObject.optBoolean("winner")
         )
         val teamPair = Pair(
-                first = homeTeam, second = awayTeam
+            first = homeTeam, second = awayTeam
         )
 
         val eventsJsonArray = responseJsonArray.getJSONArray(5)
@@ -84,28 +83,28 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             val innerEventObj = eventsJsonArray.getJSONObject(i)
 
             innerEventObj.keys()
-                    .forEach { key ->
+                .forEach { key ->
 
-                        // variables
-                        val timeJsonObj = innerEventObj.getJSONObject("time")
-                        val teamJsonObj = innerEventObj.getJSONObject("team")
-                        val playerJsonObj = innerEventObj.getJSONObject("player")
-                        val assistJsonObj = innerEventObj.getJSONObject("assist")
-                        val typeJsonObj = innerEventObj.getJSONObject("type")
-                        val detailJsonObj = innerEventObj.getJSONObject("detail")
+                    // variables
+                    val timeJsonObj = innerEventObj.getJSONObject("time")
+                    val teamJsonObj = innerEventObj.getJSONObject("team")
+                    val playerJsonObj = innerEventObj.getJSONObject("player")
+                    val assistJsonObj = innerEventObj.getJSONObject("assist")
+                    val typeJsonObj = innerEventObj.getJSONObject("type")
+                    val detailJsonObj = innerEventObj.getJSONObject("detail")
 
-                        val event = Event(
-                                timeElapsed = timeJsonObj.optInt("elapsed", -1),
-                                inExtra = teamJsonObj.optInt("extra", -1),
-                                player = playerJsonObj.optString("name", ""),
-                                side = teamJsonObj.optString("name", ""),
-                                assist = assistJsonObj.optString("name", ""),
-                                eventType = typeJsonObj.optString("type", ""),
-                                eventDetail = detailJsonObj.optString("detail", "")
-                        )
+                    val event = Event(
+                        timeElapsed = timeJsonObj.optInt("elapsed", -1),
+                        inExtra = teamJsonObj.optInt("extra", -1),
+                        player = playerJsonObj.optString("name", ""),
+                        side = teamJsonObj.optString("name", ""),
+                        assist = assistJsonObj.optString("name", ""),
+                        eventType = typeJsonObj.optString("type", ""),
+                        eventDetail = detailJsonObj.optString("detail", "")
+                    )
 
-                        events.add(event)
-                    }
+                    events.add(event)
+                }
         }
 
         val statsJsonArray = responseJsonArray.getJSONArray(7)
@@ -124,16 +123,16 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 val stat = statsArray.getJSONObject(it)
 
                 Stats(
-                        side = side,
-                        possession = stat.optInt("value", -1),
-                        shotsOnGoal = stat.optInt("value", -1),
-                        shotsOffGoal = stat.optInt("value", -1),
-                        totalShots = stat.optInt("value", -1),
-                        cornerKicks = stat.optInt("value", -1),
-                        offSides = stat.optInt("value", -1),
-                        fouls = stat.optInt("value", -1),
-                        yellowCards = stat.optInt("value", -1),
-                        redCards = stat.optInt("value", -1),
+                    side = side,
+                    possession = stat.optInt("value", -1),
+                    shotsOnGoal = stat.optInt("value", -1),
+                    shotsOffGoal = stat.optInt("value", -1),
+                    totalShots = stat.optInt("value", -1),
+                    cornerKicks = stat.optInt("value", -1),
+                    offSides = stat.optInt("value", -1),
+                    fouls = stat.optInt("value", -1),
+                    yellowCards = stat.optInt("value", -1),
+                    redCards = stat.optInt("value", -1),
                 )
             }
             /* (0 until statsArray.length()).forEach {
@@ -145,12 +144,10 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         }
 
         val lineUpsJsonArray = responseJsonArray.getJSONArray(6)
-        //variable
+        // variable
         val teamLineUps = mutableListOf<LineUp>()
         val startingElevenLineUp = mutableListOf<Player>()
         val substitutesLineUp = mutableListOf<Player>()
-
-
 
         for (i in 0 until lineUpsJsonArray.length()) {
 
@@ -162,10 +159,9 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             val teamName = teamJsonObj.optString("name", "")
             val teamLogo = teamJsonObj.optString("logo", "")
 
-
             val coachJsonObj = innerLineUpsObj.getJSONObject("coach")
 
-            //variable
+            // variable
             val coachName = coachJsonObj.optString("name", "")
             val coachPhoto = coachJsonObj.optString("photo", "")
 
@@ -176,17 +172,17 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 val innerStartingElevenObj = startingElevenArray.getJSONObject(j)
                 val startingPlayerJsonObj = innerLineUpsObj.getJSONObject("player")
 
-                //variables
+                // variables
                 val playerId = startingPlayerJsonObj.optInt("id", -1)
                 val playerName = startingPlayerJsonObj.optString("name", "")
                 val playerNumber = startingPlayerJsonObj.optInt("number", -1)
                 val playerPosition = startingPlayerJsonObj.optString("pos", "")
 
                 val startingPlayer = Player(
-                        playerId = playerId,
-                        playerName = playerName,
-                        playerNumber = playerNumber,
-                        playerPosition = playerPosition
+                    playerId = playerId,
+                    playerName = playerName,
+                    playerNumber = playerNumber,
+                    playerPosition = playerPosition
                 )
                 startingElevenLineUp.add(startingPlayer)
             }
@@ -196,35 +192,34 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                 val subsInnerJsonObj = subsJsonArray.getJSONObject(j)
                 val subPlayerJsonObj = subsInnerJsonObj.getJSONObject("player")
-                //variables
+                // variables
                 val playerId = subPlayerJsonObj.optInt("id", -1)
                 val playerName = subPlayerJsonObj.optString("name", "")
                 val playerNumber = subPlayerJsonObj.optInt("number", -1)
                 val playerPosition = subPlayerJsonObj.optString("pos", "")
 
                 val subPlayer = Player(
-                        playerId = playerId,
-                        playerName = playerName,
-                        playerNumber = playerNumber,
-                        playerPosition = playerPosition
+                    playerId = playerId,
+                    playerName = playerName,
+                    playerNumber = playerNumber,
+                    playerPosition = playerPosition
                 )
-
 
                 substitutesLineUp.add(subPlayer)
             }
 
             val lineup = LineUp(
-                    coach = Coach(
-                            name = coachName,
-                            photo = coachPhoto
-                    ),
-                    startingXI = startingElevenLineUp, substitutes = substitutesLineUp,
+                coach = Coach(
+                    name = coachName,
+                    photo = coachPhoto
+                ),
+                startingXI = startingElevenLineUp, substitutes = substitutesLineUp,
 
-                    team = Team(
+                team = Team(
                     name = teamName,
                     logo = teamLogo,
                     isWinner = false
-            )
+                )
             )
             teamLineUps.add(lineup)
         }
@@ -235,48 +230,46 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val extraTimeJsonObj = scoreJsonObject.getJSONObject("extratime")
         val penaltiesJsonObj = scoreJsonObject.getJSONObject("penalty")
 
-        //variables
+        // variables
         val fullTimeHomeScore = fullTimeJsonObj.optInt("home", -1)
         val fullTimeAwayScore = fullTimeJsonObj.optInt("away", -1)
 
         val extraTimeHomeScore = extraTimeJsonObj.optInt("home", -1)
         val extraTimeAwayScore = extraTimeJsonObj.optInt("away", -1)
 
-
         val penaltiesHomeScore = penaltiesJsonObj.optInt("home", -1)
         val penaltiesAwayScore = penaltiesJsonObj.optInt("awa", -1)
 
-
         return FixtureDetails(
-                fixtureId = fixtureId,
-                timeStamp = timeStamp,
-                referee = referee,
-                venue = venue,
-                status = status,
-                timeElapsed = timeElapsed,
-                homeGoals = homeGoals,
-                awayGoals = awayGoals,
-                leagueName = leagueName,
-                teams =teamPair,
-                events = events,
-                stats = stats,
-                lineUps = teamLineUps,
-                score = Score(
-                        extraTimeScore = ExtraTime(
-                                extraTimeAwayScore = extraTimeAwayScore,
-                                extraTimeHomeScore = extraTimeHomeScore
-                        ), fullTimeScore = FullTime(
-                        fullTimeAwayScore = fullTimeAwayScore,
-                        fullTimeHomeScore = fullTimeHomeScore
-                ), penaltyShootOutScore = PenaltyShootOut(
-                        penaltiesScoredAway = penaltiesAwayScore,
-                        penaltiesScoredHome = penaltiesHomeScore
+            fixtureId = fixtureId,
+            timeStamp = timeStamp,
+            referee = referee,
+            venue = venue,
+            status = status,
+            timeElapsed = timeElapsed,
+            homeGoals = homeGoals,
+            awayGoals = awayGoals,
+            leagueName = leagueName,
+            teams = teamPair,
+            events = events,
+            stats = stats,
+            lineUps = teamLineUps,
+            score = Score(
+                extraTimeScore = ExtraTime(
+                    extraTimeAwayScore = extraTimeAwayScore,
+                    extraTimeHomeScore = extraTimeHomeScore
+                ),
+                fullTimeScore = FullTime(
+                    fullTimeAwayScore = fullTimeAwayScore,
+                    fullTimeHomeScore = fullTimeHomeScore
+                ),
+                penaltyShootOutScore = PenaltyShootOut(
+                    penaltiesScoredAway = penaltiesAwayScore,
+                    penaltiesScoredHome = penaltiesHomeScore
                 )
-                )
+            )
         )
-
-
     }
 }
 
-//data class SomeItem(val type: String, val value: Int)
+// data class SomeItem(val type: String, val value: Int)
