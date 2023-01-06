@@ -279,4 +279,4 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
     }
 }
 
-data class SomeItem(val type: String, val value: Int)
+//data class SomeItem(val type: String, val value: Int)
