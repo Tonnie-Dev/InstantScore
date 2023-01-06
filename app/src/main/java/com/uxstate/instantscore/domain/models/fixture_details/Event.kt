@@ -6,10 +6,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Event(
     val timeElapsed: Int,
-    val inExtra:Int,
+    val inExtra: Int,
     val player: String,
-    val side:String,
+    val side: String,
     val assist: String,
     val eventType: String,
-    val eventDetail:String
+    val eventDetail: String
 ) : Parcelable

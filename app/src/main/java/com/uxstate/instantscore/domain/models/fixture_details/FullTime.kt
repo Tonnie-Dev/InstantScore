@@ -8,4 +8,4 @@ data class FullTime(
     val fullTimeAwayScore: Int,
     val fullTimeHomeScore: Int,
 
-    ) : Parcelable
+) : Parcelable

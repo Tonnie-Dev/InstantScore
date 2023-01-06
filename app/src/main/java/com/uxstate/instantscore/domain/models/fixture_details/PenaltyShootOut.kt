@@ -8,4 +8,4 @@ data class PenaltyShootOut(
     val penaltiesScoredAway: Int,
     val penaltiesScoredHome: Int,
 
-    ) : Parcelable
+) : Parcelable

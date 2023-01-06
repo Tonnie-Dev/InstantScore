@@ -1,7 +1,6 @@
 package com.uxstate.instantscore.domain.models.fixture_details
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -11,4 +10,4 @@ data class Player(
     val playerName: String,
     val playerNumber: Int,
     val playerPosition: String
-):Parcelable
+) : Parcelable

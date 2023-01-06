@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ExtraTime (val extraTimeAwayScore: Int,
-val extraTimeHomeScore: Int,
+data class ExtraTime(
+    val extraTimeAwayScore: Int,
+    val extraTimeHomeScore: Int,
 
 ) : Parcelable

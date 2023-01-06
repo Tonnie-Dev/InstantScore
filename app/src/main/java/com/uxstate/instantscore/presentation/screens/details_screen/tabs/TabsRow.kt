@@ -19,49 +19,48 @@ fun TabsRow(tabs: List<TabItemSealedClass>, pagerState: PagerState) {
 
     val coroutineScope = rememberCoroutineScope()
 
-    //TabRow from Material3
-    TabRow(selectedTabIndex = pagerState.currentPage,
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-            indicator = { tabPositions ->
-                TabRowDefaults.Indicator(
-                        color = MaterialTheme.colorScheme.secondary,
-                        modifier = Modifier.pagerTabIndicatorOffset(
-                                pagerState = pagerState,
-                                tabPositions = tabPositions
-                        )
+    // TabRow from Material3
+    TabRow(
+        selectedTabIndex = pagerState.currentPage,
+        backgroundColor = MaterialTheme.colorScheme.primary,
+        contentColor = MaterialTheme.colorScheme.onSurface,
+        indicator = { tabPositions ->
+            TabRowDefaults.Indicator(
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.pagerTabIndicatorOffset(
+                    pagerState = pagerState,
+                    tabPositions = tabPositions
                 )
-            },
-            divider = {
-                TabRowDefaults.Divider(
-                        thickness = spacing.spaceDoubleDp,
-                        color = MaterialTheme.colorScheme.onSurface
-                )
-            })
-
-
-    {
+            )
+        },
+        divider = {
+            TabRowDefaults.Divider(
+                thickness = spacing.spaceDoubleDp,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
+    ) {
         tabs.forEachIndexed {
 
             i, tabItem ->
 
             // Use LeadingIconTab in case you need to suffix the header with an icon
             Tab(
-                    selected = pagerState.currentPage == i,
-                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(i) } },
-                    text = {
+                selected = pagerState.currentPage == i,
+                onClick = { coroutineScope.launch { pagerState.animateScrollToPage(i) } },
+                text = {
 
-                        Text(
-                                text = tabItem.tabTitle,
-                                color = if (pagerState.currentPage == i)
-                                    MaterialTheme.colorScheme.onSurface
-                                else
-                                    MaterialTheme.colorScheme.onSurface.copy(
-                                            alpha = ContentAlpha.disabled
-                                    )
-                        )
-                    })
+                    Text(
+                        text = tabItem.tabTitle,
+                        color = if (pagerState.currentPage == i)
+                            MaterialTheme.colorScheme.onSurface
+                        else
+                            MaterialTheme.colorScheme.onSurface.copy(
+                                alpha = ContentAlpha.disabled
+                            )
+                    )
+                }
+            )
         }
-
     }
 }

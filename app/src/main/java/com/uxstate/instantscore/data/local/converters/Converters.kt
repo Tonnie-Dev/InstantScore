@@ -36,7 +36,10 @@ class Converters {
             timeElapsed = timeElapsed.toInt(),
             player = player,
             assist = assist,
-            eventType = eventType
+            eventType = eventType,
+            inExtra = 0,
+            eventDetail = "",
+            side = ""
         )
     }
 
@@ -92,7 +95,8 @@ class Converters {
             offSides = offSides,
             fouls = fouls,
             yellowCards = yellowCards,
-            redCards = redCards
+            redCards = redCards,
+            side = ""
         )
     }
 

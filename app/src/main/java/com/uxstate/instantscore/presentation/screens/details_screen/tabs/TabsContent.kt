@@ -7,12 +7,11 @@ import com.google.accompanist.pager.PagerState
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TabsContent(tabs:List<TabItemSealedClass>, pagerState: PagerState) {
+fun TabsContent(tabs: List<TabItemSealedClass>, pagerState: PagerState) {
 
     HorizontalPager(count = tabs.size, state = pagerState) {
         page: Int ->
 
         tabs[page].composeFunction
     }
-
 }
