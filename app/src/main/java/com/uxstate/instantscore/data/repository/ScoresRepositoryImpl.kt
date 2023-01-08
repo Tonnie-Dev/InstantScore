@@ -41,7 +41,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // emit local fixtures
         emit(Resource.Success(data = localFixtures.map { it.toModel() }))
-        Timber.i("Emitted Local Fixtures are: $localFixtures")
+
         // decide if local cache will suffice
 
         val useLocalCache = localFixtures.isNotEmpty() && !isRefresh
@@ -104,8 +104,34 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Loading(isLoading = false))
     }
 
-    override fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>> {
+    override fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>> = flow {
 
-        TODO()
+        val remoteFixtureResponse = try {
+            api.getFixtureDetails(fixtureId = fixtureId)
+        } catch (httpException: HttpException) {
+            httpException.printStackTrace() // emit error
+            emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))
+
+            // return null
+            null
+        } catch (ioException: IOException) {
+
+            ioException.printStackTrace()
+            emit(
+                Resource.Error(
+                    errorMessage = """
+                Could not reach the Server, please check your connection
+                    """.trimIndent()
+                )
+            ) // return null
+            null
+        }
+        val fixtureDetails = remoteFixtureResponse?.let {
+
+            jsonStringParser.parseJsonToFixtureDetails(it)
+        }
+
+        Timber.i("Returned FixtureDetails Class is $fixtureDetails")
+        emit(Resource.Success(data = fixtureDetails))
     }
 }

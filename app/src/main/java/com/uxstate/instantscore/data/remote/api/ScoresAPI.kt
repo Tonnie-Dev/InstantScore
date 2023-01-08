@@ -1,5 +1,6 @@
 package com.uxstate.instantscore.data.remote.api
 
+import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesResponseDTO
 import com.uxstate.instantscore.utils.*
 import java.time.LocalDate
 import retrofit2.http.GET
@@ -12,8 +13,8 @@ interface ScoresAPI {
         @Query("date")
         date: String = LocalDate.now()
             .toStringDate()
-    ): com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesResponseDTO
+    ): FixturesResponseDTO
 
     @GET(GET_FIXTURES)
-    suspend fun getFixtureDetails(@Query("id") id: Int): String
+    suspend fun getFixtureDetails(@Query("id") fixtureId: Int): String
 }
