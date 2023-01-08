@@ -95,8 +95,8 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                     val teamJsonObj = innerEventObj.getJSONObject("team")
                     val playerJsonObj = innerEventObj.getJSONObject("player")
                     val assistJsonObj = innerEventObj.getJSONObject("assist")
-                    val typeJsonObj = innerEventObj.getJSONObject("type")
-                    val detailJsonObj = innerEventObj.getJSONObject("detail")
+                    // val typeJsonObj = innerEventObj.getJSONObject("type")
+                    // val detailJsonObj = innerEventObj.getJSONObject("detail")
 
                     val event = Event(
                         timeElapsed = timeJsonObj.optInt("elapsed", -1),
@@ -104,8 +104,8 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                         player = playerJsonObj.optString("name", ""),
                         side = teamJsonObj.optString("name", ""),
                         assist = assistJsonObj.optString("name", ""),
-                        eventType = typeJsonObj.optString("type", ""),
-                        eventDetail = detailJsonObj.optString("detail", "")
+                        eventType = innerEventObj.optString("type"),
+                        eventDetail = innerEventObj.optString("detail")
                     )
 
                     events.add(event)
@@ -175,7 +175,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             for (j in 0 until startingElevenArray.length()) {
 
                 val innerStartingElevenObj = startingElevenArray.getJSONObject(j)
-                val startingPlayerJsonObj = innerLineUpsObj.getJSONObject("player")
+                val startingPlayerJsonObj = innerStartingElevenObj.getJSONObject("player")
 
                 // variables
                 val playerId = startingPlayerJsonObj.optInt("id", -1)
