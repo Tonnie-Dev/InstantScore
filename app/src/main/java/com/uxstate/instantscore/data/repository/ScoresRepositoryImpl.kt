@@ -1,9 +1,11 @@
 package com.uxstate.instantscore.data.repository
 
+import com.uxstate.instantscore.data.json.JsonStringParser
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
+import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
@@ -18,7 +20,8 @@ import timber.log.Timber
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
-    private val db: ScoresDatabase
+    db: ScoresDatabase,
+    private val jsonStringParser: JsonStringParser<FixtureDetails>
 ) : ScoresRepository {
     private val dao = db.dao
 
@@ -99,5 +102,10 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // discontinue loading
         emit(Resource.Loading(isLoading = false))
+    }
+
+    override fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>> {
+
+        TODO()
     }
 }

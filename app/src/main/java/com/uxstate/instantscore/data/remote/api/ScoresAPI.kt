@@ -13,4 +13,7 @@ interface ScoresAPI {
         date: String = LocalDate.now()
             .toStringDate()
     ): com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesResponseDTO
+
+    @GET(GET_FIXTURES)
+    suspend fun getFixtureDetails(@Query("id") id: Int): String
 }

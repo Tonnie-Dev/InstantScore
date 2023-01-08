@@ -9,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
 interface ScoresRepository {
 
     fun getFixturesByDate(isRefresh: Boolean, date: LocalDate): Flow<Resource<List<Fixture>>>
-    fun getFixtureDetails(fixtureId:Int):Flow<Resource<FixtureDetails>>
+    fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>>
 }
