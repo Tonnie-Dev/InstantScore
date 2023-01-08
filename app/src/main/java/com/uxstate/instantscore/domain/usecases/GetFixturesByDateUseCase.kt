@@ -5,8 +5,6 @@ import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import timber.log.Timber
 
 class GetFixturesByDateUseCase(private val repository: ScoresRepository) {
 

@@ -131,9 +131,11 @@ dependencies {
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.7")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7")
+    // Retrofit Converters
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
 
     // Moshi Library Dependencies - Core Moshi JSON Library and Moshi"s Kotlin support and converter factory
     implementation("com.squareup.moshi:moshi:1.12.0")
