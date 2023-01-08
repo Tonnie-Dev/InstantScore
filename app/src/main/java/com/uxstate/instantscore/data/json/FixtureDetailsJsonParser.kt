@@ -4,6 +4,7 @@ import com.uxstate.instantscore.domain.models.fixture_details.*
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.json.JSONObject
+import timber.log.Timber
 
 // force single instance of FixtureDetailsJsonParser for the entire app process
 @Singleton
@@ -19,44 +20,46 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         val jsonMainFixturesObject = JSONObject(jsonString)
         val responseJsonArray = jsonMainFixturesObject.getJSONArray("response")
-        val fixtureJsonObject = responseJsonArray.getJSONObject(0)
+        val responseJsonObject = responseJsonArray.getJSONObject(0)
 
-        // variable
-        val fixtureId = fixtureJsonObject.getInt("id")
+        val fixtureJsonObject = responseJsonObject.getJSONObject("fixture")
 
-        // variable
-        val timeStamp = fixtureJsonObject.getLong("timestamp")
+        // variable - id
+        val fixtureId = fixtureJsonObject.optInt("id", -1)
+        Timber.i("The passed fixtureId is $fixtureId")
+        // variable - timestamp
+        val timeStamp = fixtureJsonObject.optLong("timestamp", 0L)
 
-        // variable
-        val referee = fixtureJsonObject.getString("fixture")
+        // variable - referee
+        val referee = fixtureJsonObject.optString("fixture", "")
 
         val venueJsonObject = fixtureJsonObject.getJSONObject("venue")
 
-        // variable
+        // variable - venue
         val venue = venueJsonObject.optString("name", "")
 
         val statusJsonObject = fixtureJsonObject.getJSONObject("status")
 
-        // variable
+        // variable -  short
         val status = statusJsonObject.optString("short", "")
 
-        // variable
+        // variable - time elapsed
         val timeElapsed = statusJsonObject.optInt("elapsed", -1)
 
-        val goalJsonObject = responseJsonArray.getJSONObject(3)
+        val goalJsonObject = responseJsonObject.getJSONObject("goals")
 
-        // variable
+        // variable - home goal
         val homeGoals = goalJsonObject.optInt("home", -1)
 
-        // variable
+        // variable - away goal
         val awayGoals = goalJsonObject.optInt("away", -1)
 
-        val leagueJsonObject = responseJsonArray.getJSONObject(1)
+        val leagueJsonObject = responseJsonObject.getJSONObject("league")
 
-        // variable
+        // variable - league name
         val leagueName = leagueJsonObject.optString("name", "")
 
-        val teamJsonObject = responseJsonArray.getJSONObject(2)
+        val teamJsonObject = responseJsonObject.getJSONObject("teams")
 
         val homeTeamJSONObject = teamJsonObject.getJSONObject("home")
         val awayTeamJSONObject = teamJsonObject.getJSONObject("away")
@@ -65,18 +68,20 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val homeTeam: Team = Team(
             name = homeTeamJSONObject.optString("name", ""),
             logo = homeTeamJSONObject.optString("logo", ""),
-            isWinner = homeTeamJSONObject.optBoolean("winner")
+            isWinner = homeTeamJSONObject.optBoolean("winner", false)
         )
         val awayTeam: Team = Team(
             name = awayTeamJSONObject.optString("name", ""),
             logo = awayTeamJSONObject.optString("logo", ""),
-            isWinner = awayTeamJSONObject.optBoolean("winner")
+            isWinner = awayTeamJSONObject.optBoolean("winner", false)
         )
+
+        // variable teams Pair
         val teamPair = Pair(
             first = homeTeam, second = awayTeam
         )
 
-        val eventsJsonArray = responseJsonArray.getJSONArray(5)
+        val eventsJsonArray = responseJsonObject.getJSONArray("events")
         val events = mutableListOf<Event>()
         (0 until eventsJsonArray.length()).forEach { i ->
 
@@ -107,7 +112,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 }
         }
 
-        val statsJsonArray = responseJsonArray.getJSONArray(7)
+        val statsJsonArray = responseJsonObject.getJSONArray("statistics")
         val stats = mutableListOf<Stats>()
         for (i in 0 until statsJsonArray.length()) {
             val innerStatsObj = statsJsonArray.getJSONObject(i)
@@ -143,7 +148,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
              }*/
         }
 
-        val lineUpsJsonArray = responseJsonArray.getJSONArray(6)
+        val lineUpsJsonArray = responseJsonObject.getJSONArray("lineups")
         // variable
         val teamLineUps = mutableListOf<LineUp>()
         val startingElevenLineUp = mutableListOf<Player>()
@@ -224,7 +229,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             teamLineUps.add(lineup)
         }
 
-        val scoreJsonObject = responseJsonArray.getJSONObject(3)
+        val scoreJsonObject = responseJsonObject.getJSONObject("score")
 
         val fullTimeJsonObj = scoreJsonObject.getJSONObject("fulltime")
         val extraTimeJsonObj = scoreJsonObject.getJSONObject("extratime")

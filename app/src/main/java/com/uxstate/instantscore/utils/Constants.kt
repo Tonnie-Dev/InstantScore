@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.utils
 
-const val BASE_URL = "https://api-football-v1.p.rapidapi.comooopp/"
+const val BASE_URL = "https://api-football-v1.p.rapidapi.com/"
+const val FAKE_BASE_URL = "https://47038c84-3822-4df0-9583-2c8d89c9a7b9.mock.pstmn.io/"
 
 const val API_KEY = "ac94f94bb2msh209b8322dafe16ep19e183jsnabc6710bd5a9"
 const val X_RAPID_KEY = "X-RapidAPI-Key"
@@ -11,7 +12,7 @@ const val DATABASE_NAME = "scores_database"
 const val READ_TIMEOUT = 15L
 const val CONNECT_TIMEOUT = 15L
 
-const val GET_FIXTURES = "v3/fixturesjkjjk"
+const val GET_FIXTURES = "v3/fixtures"
 const val DEFAULT_LEAGUE_ID = 39
 const val DEFAULT_SEASON = 2022
 const val DEFAULT_FIXTURE_ID = 867954

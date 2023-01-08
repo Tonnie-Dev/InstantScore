@@ -106,7 +106,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
     override fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>> = flow {
         Timber.i("entering getFixturesDetails")
-        val remoteFixtureResponse = try {
+        val remoteFixtureJsonString = try {
             api.getFixtureDetails(fixtureId = fixtureId)
         } catch (httpException: HttpException) {
             httpException.printStackTrace() // emit error
@@ -126,12 +126,16 @@ class ScoresRepositoryImpl @Inject constructor(
             ) // return null
             null
         }
-        val fixtureDetails = remoteFixtureResponse?.let {
+
+        Timber.i("The String is $remoteFixtureJsonString")
+        val fixtureDetails = remoteFixtureJsonString?.let {
             Timber.i("entering json parsing block")
             jsonStringParser.parseJsonToFixtureDetails(it)
         }
 
         Timber.i("Returned FixtureDetails Class is $fixtureDetails")
         emit(Resource.Success(data = fixtureDetails))
+
+        Timber.i("Leaving getFixtureDetails")
     }
 }

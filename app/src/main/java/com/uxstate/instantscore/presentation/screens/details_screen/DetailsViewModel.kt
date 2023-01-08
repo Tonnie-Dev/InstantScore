@@ -19,7 +19,7 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
 
     init {
 
-        getFixtureDetails(fixtureId = 868134)
+        getFixtureDetails(fixtureId = 777)
     }
 
     private fun getFixtureDetails(fixtureId: Int) {
@@ -39,7 +39,7 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
                     }
                     is Resource.Error -> {
                         result.errorMessage?.let {
-                            _fakeState.value = it
+                            _fakeState.value = "XError"
                         }
                     }
                 }
