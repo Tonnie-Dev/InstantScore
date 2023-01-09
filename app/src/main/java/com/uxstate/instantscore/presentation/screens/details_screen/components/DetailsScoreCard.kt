@@ -20,12 +20,10 @@ import com.uxstate.instantscore.domain.models.fixture_details.*
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
-
 @Composable
 fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
-
 
     val homeGoals = if (details.homeGoals == -1) "" else "${details.homeGoals}"
     val awayGoals = if (details.awayGoals == -1) "" else "${details.awayGoals}"
@@ -63,8 +61,8 @@ fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth(.7f)
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            // modifier = Modifier.fillMaxWidth(.7f)
         ) {
 
             // Home Team
@@ -122,7 +120,7 @@ fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
                 )
                 Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
                 Text(
-                    text = details.teams.first.name,
+                    text = details.teams.second.name,
                     style = MaterialTheme.typography.titleMedium, color = Color.White
                 )
             }
@@ -135,42 +133,43 @@ fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
 fun DetailsScoreCardPreview() {
     InstantScoreTheme() {
         DetailsScoreCard(
-           details = FixtureDetails(
-                   fixtureId = -1,
-                   timeStamp = 0L,
-                   referee = "",
-                   venue = "",
-                   status = "",
-                   timeElapsed = -1,
-                   homeGoals = 5,
-                   awayGoals =0,
-                   leagueName = "",
-                   teams = Pair(
-                           first = Team(
-                                   name = "Arsenal",
-                                   logo = "",
-                                   isWinner = false
-                           ), second = Team(
-                           name = "Brighton",
-                           logo = "",
-                           isWinner = false
-                   )
-                   ),
-                   events = listOf(),
-                   stats = listOf(),
-                   lineUps = listOf(),
-                   score = Score(
-                           extraTimeScore = ExtraTime(
-                                   extraTimeAwayScore = 0,
-                                   extraTimeHomeScore = 0
-                           ),
-                           fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
-                           penaltyShootOutScore = PenaltyShootOut(
-                                   penaltiesScoredAway = 0,
-                                   penaltiesScoredHome = 0
-                           )
-                   )
-           )
+            details = FixtureDetails(
+                fixtureId = -1,
+                timeStamp = 0L,
+                referee = "",
+                venue = "",
+                status = "",
+                timeElapsed = -1,
+                homeGoals = 5,
+                awayGoals = 0,
+                leagueName = "",
+                teams = Pair(
+                    first = Team(
+                        name = "Arsenal",
+                        logo = "",
+                        isWinner = false
+                    ),
+                    second = Team(
+                        name = "Brighton",
+                        logo = "",
+                        isWinner = false
+                    )
+                ),
+                events = listOf(),
+                stats = listOf(),
+                lineUps = listOf(),
+                score = Score(
+                    extraTimeScore = ExtraTime(
+                        extraTimeAwayScore = 0,
+                        extraTimeHomeScore = 0
+                    ),
+                    fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
+                    penaltyShootOutScore = PenaltyShootOut(
+                        penaltiesScoredAway = 0,
+                        penaltiesScoredHome = 0
+                    )
+                )
+            )
         )
     }
 }
@@ -181,42 +180,42 @@ fun DetailsScoreCardPreviewDark() {
     InstantScoreTheme() {
         DetailsScoreCard(
             details = FixtureDetails(
-                    fixtureId = -1,
-                    timeStamp = 0L,
-                    referee = "",
-                    venue = "",
-                    status = "",
-                    timeElapsed = -1,
-                    homeGoals = 8,
-                    awayGoals = 2,
-                    leagueName = "",
-                    teams = Pair(
-                            first = Team(
-                                    name = "Liverpool",
-                                    logo = "",
-                                    isWinner = false
-                            ), second = Team(
-                            name = "",
-                            logo = "",
-                            isWinner = false
-                    )
+                fixtureId = -1,
+                timeStamp = 0L,
+                referee = "",
+                venue = "",
+                status = "",
+                timeElapsed = -1,
+                homeGoals = 8,
+                awayGoals = 2,
+                leagueName = "",
+                teams = Pair(
+                    first = Team(
+                        name = "Liverpool",
+                        logo = "",
+                        isWinner = false
                     ),
-                    events = listOf(),
-                    stats = listOf(),
-                    lineUps = listOf(),
-                    score = Score(
-                            extraTimeScore = ExtraTime(
-                                    extraTimeAwayScore = 0,
-                                    extraTimeHomeScore = 0
-                            ),
-                            fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
-                            penaltyShootOutScore = PenaltyShootOut(
-                                    penaltiesScoredAway = 0,
-                                    penaltiesScoredHome = 0
-                            )
+                    second = Team(
+                        name = "",
+                        logo = "",
+                        isWinner = false
                     )
+                ),
+                events = listOf(),
+                stats = listOf(),
+                lineUps = listOf(),
+                score = Score(
+                    extraTimeScore = ExtraTime(
+                        extraTimeAwayScore = 0,
+                        extraTimeHomeScore = 0
+                    ),
+                    fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
+                    penaltyShootOutScore = PenaltyShootOut(
+                        penaltiesScoredAway = 0,
+                        penaltiesScoredHome = 0
+                    )
+                )
             )
-            )
-
+        )
     }
 }

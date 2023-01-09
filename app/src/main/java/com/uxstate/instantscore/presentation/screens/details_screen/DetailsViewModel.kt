@@ -34,10 +34,8 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
 
                         result.data?.let {
 
-
                             _fakeState.value = _fakeState.value.copy(fixtureDetails = it)
                         }
-
                     }
                     is Resource.Loading -> {
 

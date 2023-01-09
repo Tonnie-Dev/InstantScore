@@ -1,18 +1,43 @@
 package com.uxstate.instantscore.presentation.screens.details_screen
 
-import android.widget.Toast
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
 import com.ramcosta.composedestinations.annotation.Destination
+import com.uxstate.instantscore.presentation.screens.details_screen.components.FixturePoster
+import com.uxstate.instantscore.presentation.screens.details_screen.tabs.TabItemSealedClass
+import com.uxstate.instantscore.presentation.screens.details_screen.tabs.TabsContent
+import com.uxstate.instantscore.presentation.screens.details_screen.tabs.TabsRow
 
+@OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Destination
 @Composable
 fun DetailsScreen(fixtureId: Int, viewModel: DetailsViewModel = hiltViewModel()) {
-    val context = LocalContext.current
-    val state by viewModel.fakeState.collectAsState()
 
-    Toast.makeText(context, "The id is: $state", Toast.LENGTH_SHORT).show()
+    val state by viewModel.fakeState.collectAsState()
+    val pageState = rememberPagerState()
+
+    val tabs = listOf(
+        TabItemSealedClass.EventsTab,
+        TabItemSealedClass.LineUpsTab,g
+        TabItemSealedClass.StatsTab
+    )
+
+    Scaffold() { paddingValues ->
+
+        Column(modifier = Modifier.padding(paddingValues)) {
+
+            FixturePoster(details = state.fixtureDetails)
+            TabsRow(tabs = tabs, pagerState = pageState)
+            TabsContent(tabs = tabs, pagerState = pageState)
+        }
+    }
 }
