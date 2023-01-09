@@ -16,22 +16,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.fixtures_schedule.*
+import com.uxstate.instantscore.domain.models.fixture_details.*
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
-import java.time.LocalDate
+
 
 @Composable
-fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
+fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
-    val homeGoals = if (fixture.goals.homeTeamScore == -1) "" else "${fixture.goals.homeTeamScore}"
-    val awayGoals = if (fixture.goals.awayTeamScore == -1) "" else "${fixture.goals.awayTeamScore}"
+
+    val homeGoals = if (details.homeGoals == -1) "" else "${details.homeGoals}"
+    val awayGoals = if (details.awayGoals == -1) "" else "${details.awayGoals}"
 
     val homeTeamPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context)
-            .data(fixture.teams.first.logo)
+            .data(details.teams.first.logo)
             .crossfade(enable = true)
             .placeholder(R.drawable.empty_logo)
             .error(R.drawable.empty_logo)
@@ -41,7 +42,7 @@ fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
 
     val awayTeamPainter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context)
-            .data(fixture.teams.second.logo)
+            .data(details.teams.second.logo)
             .crossfade(enable = true)
             .placeholder(R.drawable.empty_logo)
             .error(R.drawable.empty_logo)
@@ -53,7 +54,7 @@ fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = fixture.league.name,
+            text = details.leagueName,
             style = MaterialTheme.typography.titleLarge,
             color = Color.White,
             textAlign = TextAlign.Center
@@ -74,14 +75,14 @@ fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
 
                 Image(
                     painter = homeTeamPainter,
-                    contentDescription = fixture.teams.first.name,
+                    contentDescription = details.teams.first.name,
                     Modifier
                         .size(spacing.spaceExtraLarge)
 
                 )
                 Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
                 Text(
-                    text = fixture.teams.first.name,
+                    text = details.teams.first.name,
                     style = MaterialTheme.typography.titleMedium,
                     color = Color.White
                 )
@@ -116,12 +117,12 @@ fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
 
                 Image(
                     painter = awayTeamPainter,
-                    contentDescription = fixture.teams.first.name,
+                    contentDescription = details.teams.first.name,
                     Modifier.size(spacing.spaceExtraLarge)
                 )
                 Spacer(modifier = Modifier.height(spacing.spaceExtraSmall))
                 Text(
-                    text = fixture.teams.first.name,
+                    text = details.teams.first.name,
                     style = MaterialTheme.typography.titleMedium, color = Color.White
                 )
             }
@@ -134,30 +135,42 @@ fun DetailsScoreCard(fixture: Fixture, modifier: Modifier = Modifier) {
 fun DetailsScoreCardPreview() {
     InstantScoreTheme() {
         DetailsScoreCard(
-            fixture = Fixture(
-                fixtureId = 0, date = LocalDate.now(),
-                status = Status(
-                    fixtureLong = "",
-                    fixtureShort = "FT",
-                    timeElapsed = 63
-                ),
-                league = League(
-                    id = 0,
-                    name = "China League",
-                    country = "",
-                    leagueLogo = "",
-                    countryFlag = ""
-                ),
-                teams = Pair(
-                    Team(name = "Auxere", logo = ""),
-                    Team(name = "Monaco", logo = "")
-                ),
-                goals = Goal(
-                    homeTeamScore = 5,
-                    awayTeamScore = 3
-                ),
-                startTime = 1672774200
-            )
+           details = FixtureDetails(
+                   fixtureId = -1,
+                   timeStamp = 0L,
+                   referee = "",
+                   venue = "",
+                   status = "",
+                   timeElapsed = -1,
+                   homeGoals = 5,
+                   awayGoals =0,
+                   leagueName = "",
+                   teams = Pair(
+                           first = Team(
+                                   name = "Arsenal",
+                                   logo = "",
+                                   isWinner = false
+                           ), second = Team(
+                           name = "Brighton",
+                           logo = "",
+                           isWinner = false
+                   )
+                   ),
+                   events = listOf(),
+                   stats = listOf(),
+                   lineUps = listOf(),
+                   score = Score(
+                           extraTimeScore = ExtraTime(
+                                   extraTimeAwayScore = 0,
+                                   extraTimeHomeScore = 0
+                           ),
+                           fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
+                           penaltyShootOutScore = PenaltyShootOut(
+                                   penaltiesScoredAway = 0,
+                                   penaltiesScoredHome = 0
+                           )
+                   )
+           )
         )
     }
 }
@@ -167,30 +180,43 @@ fun DetailsScoreCardPreview() {
 fun DetailsScoreCardPreviewDark() {
     InstantScoreTheme() {
         DetailsScoreCard(
-            fixture = Fixture(
-                fixtureId = 0, date = LocalDate.now(),
-                status = Status(
-                    fixtureLong = "",
-                    fixtureShort = "FT",
-                    timeElapsed = 63
-                ),
-                league = League(
-                    id = 0,
-                    name = "China League",
-                    country = "",
-                    leagueLogo = "",
-                    countryFlag = ""
-                ),
-                teams = Pair(
-                    Team(name = "Auxere", logo = ""),
-                    Team(name = "Monaco", logo = "")
-                ),
-                goals = Goal(
-                    homeTeamScore = 5,
-                    awayTeamScore = 3
-                ),
-                startTime = 1672774200
+            details = FixtureDetails(
+                    fixtureId = -1,
+                    timeStamp = 0L,
+                    referee = "",
+                    venue = "",
+                    status = "",
+                    timeElapsed = -1,
+                    homeGoals = 8,
+                    awayGoals = 2,
+                    leagueName = "",
+                    teams = Pair(
+                            first = Team(
+                                    name = "Liverpool",
+                                    logo = "",
+                                    isWinner = false
+                            ), second = Team(
+                            name = "",
+                            logo = "",
+                            isWinner = false
+                    )
+                    ),
+                    events = listOf(),
+                    stats = listOf(),
+                    lineUps = listOf(),
+                    score = Score(
+                            extraTimeScore = ExtraTime(
+                                    extraTimeAwayScore = 0,
+                                    extraTimeHomeScore = 0
+                            ),
+                            fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
+                            penaltyShootOutScore = PenaltyShootOut(
+                                    penaltiesScoredAway = 0,
+                                    penaltiesScoredHome = 0
+                            )
+                    )
             )
-        )
+            )
+
     }
 }

@@ -32,15 +32,20 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
 
                     is Resource.Success -> {
 
-                        val id = result.data?.fixtureId
+                        result.data?.let {
 
-                        _fakeState.value = id.toString()
+
+                            _fakeState.value = _fakeState.value.copy(fixtureDetails = it)
+                        }
+
                     }
                     is Resource.Loading -> {
+
+                        _fakeState.value = _fakeState.value.copy(isLoading = result.isLoading)
                     }
                     is Resource.Error -> {
                         result.errorMessage?.let {
-                            _fakeState.value = "XError"
+                            _fakeState.value = _fakeState.value.copy(errorMessage = it)
                         }
                     }
                 }
