@@ -31,7 +31,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val timeStamp = fixtureJsonObject.optLong("timestamp", 0L)
 
         // variable - referee
-        val referee = fixtureJsonObject.optString("fixture", "")
+        val referee = fixtureJsonObject.optString("referee", "")
 
         val venueJsonObject = fixtureJsonObject.getJSONObject("venue")
 
