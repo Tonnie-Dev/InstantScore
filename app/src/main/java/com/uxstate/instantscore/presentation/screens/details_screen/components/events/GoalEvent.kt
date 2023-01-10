@@ -17,8 +17,8 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun GoalEvent(event: Event, isHomeGoal: Boolean, modifier: Modifier = Modifier) {
-    if (isHomeGoal) {
+fun GoalEvent(event: Event, isHomeTeamEvent: Boolean, modifier: Modifier = Modifier) {
+    if (isHomeTeamEvent) {
 
         HomeGoalEvent(event = event)
     } else {
@@ -32,29 +32,29 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Row(
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceMedium)
+        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceMedium)
     ) {
         Text(
-                text = "${event.timeElapsed}'",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
 
         Image(
-                painter = painterResource(id = R.drawable.ic_ball),
-                contentDescription = "",
-                modifier = Modifier.size(spacing.spaceSmall * 3)
+            painter = painterResource(id = R.drawable.ic_ball),
+            contentDescription = "",
+            modifier = Modifier.size(spacing.spaceSmall * 3)
         )
 
         Column() {
             Text(
-                    text = event.player,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold
+                text = event.player,
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold
             )
             Text(text = event.assist, style = MaterialTheme.typography.bodySmall)
         }
@@ -65,32 +65,32 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
 fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     Row(
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceSmall)
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall)
     ) {
 
         Column() {
             Text(
-                    text = event.player,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold
+                text = event.player,
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold
             )
             Text(text = event.assist, style = MaterialTheme.typography.bodySmall)
         }
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Image(
-                painter = painterResource(id = R.drawable.ic_ball),
-                contentDescription = "",
-                modifier = Modifier.size(spacing.spaceSmall * 3)
+            painter = painterResource(id = R.drawable.ic_ball),
+            contentDescription = "",
+            modifier = Modifier.size(spacing.spaceSmall * 3)
         )
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Text(
-                text = "${event.timeElapsed}'",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
@@ -102,13 +102,13 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
 fun HomeGoalEventPreview() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "Baba Ngida",
-            side = "",
-            assist = "Baba Yoyo",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
     )
 
     InstantScoreTheme() {
@@ -121,13 +121,13 @@ fun HomeGoalEventPreview() {
 fun HomeGoalEventPreviewDark() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "Baba Ngida",
-            side = "",
-            assist = "Baba Yoyo",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
     )
 
     InstantScoreTheme() {
@@ -140,13 +140,13 @@ fun HomeGoalEventPreviewDark() {
 fun AwayGoalEventPreview() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "De Bruyne",
-            side = "",
-            assist = "Leloy Sane",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "De Bruyne",
+        side = "",
+        assist = "Leloy Sane",
+        eventType = "",
+        eventDetail = ""
     )
 
     InstantScoreTheme() {
@@ -159,13 +159,13 @@ fun AwayGoalEventPreview() {
 fun AwayGoalEventPrevDarkiew() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "De Bruyne",
-            side = "",
-            assist = "Leloy Sane",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "De Bruyne",
+        side = "",
+        assist = "Leloy Sane",
+        eventType = "",
+        eventDetail = ""
     )
 
     InstantScoreTheme() {
