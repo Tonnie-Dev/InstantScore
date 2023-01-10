@@ -13,9 +13,9 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.instantscore.presentation.screens.details_screen.components.FixturePoster
-import com.uxstate.instantscore.presentation.screens.details_screen.tabs.TabItemSealedClass
-import com.uxstate.instantscore.presentation.screens.details_screen.tabs.TabsContent
-import com.uxstate.instantscore.presentation.screens.details_screen.tabs.TabsRow
+import com.uxstate.instantscore.presentation.screens.details_screen.components.tabs.TabItemSealedClass
+import com.uxstate.instantscore.presentation.screens.details_screen.components.tabs.TabsContent
+import com.uxstate.instantscore.presentation.screens.details_screen.components.tabs.TabsRow
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Destination
@@ -27,7 +27,7 @@ fun DetailsScreen(fixtureId: Int, viewModel: DetailsViewModel = hiltViewModel())
 
     val tabs = listOf(
         TabItemSealedClass.EventsTab,
-        TabItemSealedClass.LineUpsTab,g
+        TabItemSealedClass.LineUpsTab,
         TabItemSealedClass.StatsTab
     )
 

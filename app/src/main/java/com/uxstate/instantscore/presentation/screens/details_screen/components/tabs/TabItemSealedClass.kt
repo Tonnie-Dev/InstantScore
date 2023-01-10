@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.presentation.screens.details_screen.tabs
+package com.uxstate.instantscore.presentation.screens.details_screen.components.tabs
 
 import androidx.compose.runtime.Composable
 
