@@ -1,9 +1,9 @@
 package com.uxstate.instantscore.presentation.screens.details_screen.components.events
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -42,7 +42,7 @@ fun HomeCard(
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold
         )
-       
+
         Surface(
             color = cardColor,
             tonalElevation = spacing.spaceMedium,
@@ -64,6 +64,51 @@ fun HomeCard(
     }
 }
 
+@Composable
+fun AwayCard(
+    event: Event,
+    modifier: Modifier = Modifier,
+    cardColor: Color = Color.Companion.Yellow
+) {
+
+    val spacing = LocalSpacing.current
+
+    Row(
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall)
+    ) {
+        Text(
+            text = event.player,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
+
+        Surface(
+            color = cardColor,
+            tonalElevation = spacing.spaceMedium,
+            shadowElevation = spacing.spaceSmall,
+            modifier = Modifier
+                .clip(RoundedCornerShape(spacing.spaceExtraSmall))
+                .background(Color.Yellow)
+                .size(
+                    width = spacing.spaceExtraSmall * 4,
+                    height = spacing.spaceExtraSmall * 5
+                ),
+            content = {}
+        )
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
+        Text(
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
+    }
+}
 @Preview
 @Composable
 fun HomeCardPreview() {
@@ -79,5 +124,59 @@ fun HomeCardPreview() {
     )
     InstantScoreTheme() {
         HomeCard(event = event)
+    }
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun HomeCardPreviewDark() {
+
+    val event = Event(
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
+    )
+    InstantScoreTheme() {
+        HomeCard(event = event, cardColor = Color.Red)
+    }
+}
+
+@Preview
+@Composable
+fun AwayCardPreview() {
+
+    val event = Event(
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
+    )
+    InstantScoreTheme() {
+        AwayCard(event = event)
+    }
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun AwayCardPreviewDark() {
+
+    val event = Event(
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
+    )
+    InstantScoreTheme() {
+        AwayCard(event = event)
     }
 }
