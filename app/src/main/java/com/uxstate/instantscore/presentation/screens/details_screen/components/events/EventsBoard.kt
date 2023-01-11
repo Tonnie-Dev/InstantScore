@@ -25,18 +25,18 @@ fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
             when (event.eventType) {
 
                 "Goal" -> {
-                    Timber.i("Goal Event!")
+
                     GoalEvent(event = event, isHomeEvent)
                 }
 
                 "Card" -> {
 
-                    Timber.i("Card Event!")
+
                     CardEvent(event = event, isHomeTeamEvent = isHomeEvent)
                 }
 
                 "subst" -> {
-                    Timber.i("Sub Event!")
+                   
                     SubstitutionEvent(event = event, isHomeTeamEvent = isHomeEvent)
                 }
             }
