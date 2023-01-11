@@ -20,10 +20,10 @@ import com.uxstate.instantscore.utils.LocalSpacing
 fun GoalEvent(event: Event, isHomeTeamEvent: Boolean, modifier: Modifier = Modifier) {
     if (isHomeTeamEvent) {
 
-        HomeGoalEvent(event = event)
+        HomeGoalEvent(event = event, modifier = modifier)
     } else {
 
-        AwayGoalEvent(event = event)
+        AwayGoalEvent(event = event, modifier = modifier)
     }
 }
 

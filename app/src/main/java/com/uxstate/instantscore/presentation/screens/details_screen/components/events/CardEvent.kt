@@ -22,9 +22,9 @@ import com.uxstate.instantscore.utils.LocalSpacing
 fun CardEvent(event: Event, isHomeTeamEvent: Boolean, modifier: Modifier = Modifier) {
 
     if (isHomeTeamEvent) {
-        HomeCard(event = event)
+        HomeCard(event = event, modifier = modifier)
     } else {
-        AwayCard(event = event)
+        AwayCard(event = event, modifier = modifier)
     }
 }
 
