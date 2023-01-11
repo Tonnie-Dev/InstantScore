@@ -37,35 +37,35 @@ fun HomeCard(
 ) {
     val spacing = LocalSpacing.current
     Row(
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceMedium)
+        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceMedium)
     ) {
         Text(
-                text = "${event.timeElapsed}'",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
 
         Surface(
-                color = cardColor,
-                tonalElevation = spacing.spaceMedium,
-                shadowElevation = spacing.spaceSmall,
-                modifier = Modifier
-                        .clip(RoundedCornerShape(spacing.spaceExtraSmall))
-                        .background(Color.Yellow)
-                        .size(
-                                width = spacing.spaceExtraSmall * 4,
-                                height = spacing.spaceExtraSmall * 5
-                        ),
-                content = {}
+            color = cardColor,
+            tonalElevation = spacing.spaceMedium,
+            shadowElevation = spacing.spaceSmall,
+            modifier = Modifier
+                .clip(RoundedCornerShape(spacing.spaceExtraSmall))
+                .background(Color.Yellow)
+                .size(
+                    width = spacing.spaceExtraSmall * 4,
+                    height = spacing.spaceExtraSmall * 5
+                ),
+            content = {}
         )
         Text(
-                text = event.player,
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = event.player,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
     }
 }
@@ -80,37 +80,37 @@ fun AwayCard(
     val spacing = LocalSpacing.current
 
     Row(
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceSmall)
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall)
     ) {
         Text(
-                text = event.player,
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = event.player,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
 
         Surface(
-                color = cardColor,
-                tonalElevation = spacing.spaceMedium,
-                shadowElevation = spacing.spaceSmall,
-                modifier = Modifier
-                        .clip(RoundedCornerShape(spacing.spaceExtraSmall))
-                        .background(Color.Yellow)
-                        .size(
-                                width = spacing.spaceExtraSmall * 4,
-                                height = spacing.spaceExtraSmall * 5
-                        ),
-                content = {}
+            color = cardColor,
+            tonalElevation = spacing.spaceMedium,
+            shadowElevation = spacing.spaceSmall,
+            modifier = Modifier
+                .clip(RoundedCornerShape(spacing.spaceExtraSmall))
+                .background(Color.Yellow)
+                .size(
+                    width = spacing.spaceExtraSmall * 4,
+                    height = spacing.spaceExtraSmall * 5
+                ),
+            content = {}
         )
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Text(
-                text = "${event.timeElapsed}'",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
     }
@@ -121,13 +121,13 @@ fun AwayCard(
 fun HomeCardPreview() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "Baba Ngida",
-            side = "",
-            assist = "Baba Yoyo",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
         HomeCard(event = event)
@@ -139,13 +139,13 @@ fun HomeCardPreview() {
 fun HomeCardPreviewDark() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "Baba Ngida",
-            side = "",
-            assist = "Baba Yoyo",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
         HomeCard(event = event, cardColor = Color.Red)
@@ -157,13 +157,13 @@ fun HomeCardPreviewDark() {
 fun AwayCardPreview() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "Baba Ngida",
-            side = "",
-            assist = "Baba Yoyo",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
         AwayCard(event = event)
@@ -175,13 +175,13 @@ fun AwayCardPreview() {
 fun AwayCardPreviewDark() {
 
     val event = Event(
-            timeElapsed = 87,
-            inExtra = 0,
-            player = "Baba Ngida",
-            side = "",
-            assist = "Baba Yoyo",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 87,
+        inExtra = 0,
+        player = "Baba Ngida",
+        side = "",
+        assist = "Baba Yoyo",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
         AwayCard(event = event)
