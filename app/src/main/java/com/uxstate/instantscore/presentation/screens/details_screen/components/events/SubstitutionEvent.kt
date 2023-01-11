@@ -29,7 +29,7 @@ fun SubstitutionEvent(
         HomeSubstitution(event = event, modifier = modifier)
     } else {
 
-        HomeSubstitution(event = event, modifier = modifier)
+        AwaySubstitution(event = event, modifier = modifier)
     }
 }
 
@@ -58,7 +58,7 @@ fun HomeSubstitution(event: Event, modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    text = event.player,
+                    text = event.assist,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Green
                 )
@@ -67,12 +67,12 @@ fun HomeSubstitution(event: Event, modifier: Modifier = Modifier) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowLeft,
-                    contentDescription = "Sub In",
+                    contentDescription = "Sub Out",
                     tint = Color.Red
                 )
 
                 Text(
-                    text = event.assist,
+                    text = event.player,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Red
                 )
@@ -101,7 +101,7 @@ fun AwaySubstitution(event: Event, modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    text = event.player,
+                    text = event.assist,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Green
                 )
@@ -115,7 +115,7 @@ fun AwaySubstitution(event: Event, modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    text = event.assist,
+                    text = event.player,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Red
                 )
@@ -128,6 +128,8 @@ fun AwaySubstitution(event: Event, modifier: Modifier = Modifier) {
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold
         )
+
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
     }
 }
 
