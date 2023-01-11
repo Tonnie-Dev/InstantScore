@@ -1,6 +1,8 @@
 package com.uxstate.instantscore.presentation.screens.details_screen.components.tabs
 
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -12,6 +14,7 @@ fun TabsContent(tabs: List<TabItemSealedClass>, pagerState: PagerState) {
     HorizontalPager(count = tabs.size, state = pagerState) {
         page: Int ->
 
-        tabs[page].composeFunction
+        tabs[page].composeFunction()
     }
 }
+

@@ -75,6 +75,3 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     }
 }
 
-@Composable
-fun SimpleMatchContainer(map: Map<League, List<Fixture>>) {
-}

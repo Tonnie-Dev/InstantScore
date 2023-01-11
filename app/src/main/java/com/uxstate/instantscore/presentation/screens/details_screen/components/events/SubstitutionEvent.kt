@@ -24,12 +24,12 @@ fun SubstitutionEvent(
     modifier: Modifier = Modifier,
     isHomeTeamEvent: Boolean
 ) {
-    if (isHomeTeamEvent){
+    if (isHomeTeamEvent) {
 
         HomeSubstitution(event = event, modifier = modifier)
-    }else {
+    } else {
 
-        HomeSubstitution(event = event, modifier  = modifier)
+        HomeSubstitution(event = event, modifier = modifier)
     }
 }
 
@@ -37,44 +37,44 @@ fun SubstitutionEvent(
 fun HomeSubstitution(event: Event, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     Row(
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceMedium)
+        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceMedium)
     ) {
         Text(
-                text = "${event.timeElapsed}'",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
 
         Column() {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                        imageVector = Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Sub In",
-                        tint = Color.Green
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "Sub In",
+                    tint = Color.Green
                 )
 
                 Text(
-                        text = event.player,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Green
+                    text = event.player,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Green
                 )
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                        imageVector = Icons.Default.KeyboardArrowLeft,
-                        contentDescription = "Sub In",
-                        tint = Color.Red
+                    imageVector = Icons.Default.KeyboardArrowLeft,
+                    contentDescription = "Sub In",
+                    tint = Color.Red
                 )
 
                 Text(
-                        text = event.assist,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Red
+                    text = event.assist,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Red
                 )
             }
         }
@@ -85,48 +85,48 @@ fun HomeSubstitution(event: Event, modifier: Modifier = Modifier) {
 fun AwaySubstitution(event: Event, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     Row(
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceSmall)
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall)
     ) {
 
         Column() {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                        imageVector = Icons.Default.KeyboardArrowLeft,
-                        contentDescription = "Sub In",
-                        tint = Color.Green
+                    imageVector = Icons.Default.KeyboardArrowLeft,
+                    contentDescription = "Sub In",
+                    tint = Color.Green
                 )
 
                 Text(
-                        text = event.player,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Green
+                    text = event.player,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Green
                 )
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                        imageVector = Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Sub In",
-                        tint = Color.Red
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "Sub In",
+                    tint = Color.Red
                 )
 
                 Text(
-                        text = event.assist,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Red
+                    text = event.assist,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Red
                 )
             }
         }
 
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Text(
-                text = "${event.timeElapsed}'",
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Bold
+            text = "${event.timeElapsed}'",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold
         )
     }
 }
@@ -136,13 +136,13 @@ fun AwaySubstitution(event: Event, modifier: Modifier = Modifier) {
 fun HomeSubstitutionPreview() {
 
     val event = Event(
-            timeElapsed = 13,
-            inExtra = 0,
-            player = "Trippier",
-            side = "",
-            assist = "Rashford",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 13,
+        inExtra = 0,
+        player = "Trippier",
+        side = "",
+        assist = "Rashford",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
         HomeSubstitution(event = event)
@@ -154,13 +154,13 @@ fun HomeSubstitutionPreview() {
 fun HomeSubstitutionPreviewDark() {
 
     val event = Event(
-            timeElapsed = 13,
-            inExtra = 0,
-            player = "Trippier",
-            side = "",
-            assist = "Rashford",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 13,
+        inExtra = 0,
+        player = "Trippier",
+        side = "",
+        assist = "Rashford",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
         HomeSubstitution(event = event)
@@ -172,13 +172,13 @@ fun HomeSubstitutionPreviewDark() {
 fun AwaySubstitutionPreview() {
 
     val event = Event(
-            timeElapsed = 13,
-            inExtra = 0,
-            player = "Trippier",
-            side = "",
-            assist = "Rashford",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 13,
+        inExtra = 0,
+        player = "Trippier",
+        side = "",
+        assist = "Rashford",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
 
@@ -191,13 +191,13 @@ fun AwaySubstitutionPreview() {
 fun AwaySubstitutionPreviewDark() {
 
     val event = Event(
-            timeElapsed = 13,
-            inExtra = 0,
-            player = "Trippier",
-            side = "",
-            assist = "Rashford",
-            eventType = "",
-            eventDetail = ""
+        timeElapsed = 13,
+        inExtra = 0,
+        player = "Trippier",
+        side = "",
+        assist = "Rashford",
+        eventType = "",
+        eventDetail = ""
     )
     InstantScoreTheme() {
 

@@ -19,12 +19,18 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun CardEvent(event: Event, isHomeTeamEvent: Boolean, modifier: Modifier = Modifier) {
+fun CardEvent(
+    event: Event,
+    isHomeTeamEvent: Boolean,
+    modifier: Modifier = Modifier
+) {
+
+    val cardColor = if (event.eventType == "Yellow Card") Color.Yellow else Color.Red
 
     if (isHomeTeamEvent) {
-        HomeCard(event = event, modifier = modifier)
+        HomeCard(event = event, modifier = modifier, cardColor = cardColor)
     } else {
-        AwayCard(event = event, modifier = modifier)
+        AwayCard(event = event, modifier = modifier, cardColor = cardColor)
     }
 }
 

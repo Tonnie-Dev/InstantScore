@@ -26,7 +26,7 @@ fun DetailsScreen(fixtureId: Int, viewModel: DetailsViewModel = hiltViewModel())
     val pageState = rememberPagerState()
 
     val tabs = listOf(
-        TabItemSealedClass.EventsTab,
+        TabItemSealedClass.EventsTab(fixtureDetails = state.fixtureDetails),
         TabItemSealedClass.LineUpsTab,
         TabItemSealedClass.StatsTab
     )
