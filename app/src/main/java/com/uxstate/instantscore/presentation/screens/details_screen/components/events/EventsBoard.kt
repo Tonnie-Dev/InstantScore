@@ -18,7 +18,6 @@ fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
     Timber.i("The events are: $events")
 
-
     LazyColumn(modifier = modifier.fillMaxWidth()) {
 
         Timber.i("Entering lazy column")

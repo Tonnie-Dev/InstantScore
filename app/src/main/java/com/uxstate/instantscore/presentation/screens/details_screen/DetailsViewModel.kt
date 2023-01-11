@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCaseContainer) :
@@ -36,7 +35,6 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
                         result.data?.let {
 
                             _fakeState.value = _fakeState.value.copy(fixtureDetails = it)
-
                         }
                     }
                     is Resource.Loading -> {

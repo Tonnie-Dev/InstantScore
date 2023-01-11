@@ -16,8 +16,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
-import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateStrip
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
@@ -74,4 +72,3 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
         }
     }
 }
-

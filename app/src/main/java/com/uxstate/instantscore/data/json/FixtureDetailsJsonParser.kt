@@ -87,18 +87,16 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
             val innerEventObj = eventsJsonArray.getJSONObject(i)
 
+            var event: Event? = null
             innerEventObj.keys()
-                .forEach { key ->
+                .forEach { _ ->
 
-                    // variables
                     val timeJsonObj = innerEventObj.getJSONObject("time")
                     val teamJsonObj = innerEventObj.getJSONObject("team")
                     val playerJsonObj = innerEventObj.getJSONObject("player")
                     val assistJsonObj = innerEventObj.getJSONObject("assist")
-                    // val typeJsonObj = innerEventObj.getJSONObject("type")
-                    // val detailJsonObj = innerEventObj.getJSONObject("detail")
 
-                    val event = Event(
+                    event = Event(
                         timeElapsed = timeJsonObj.optInt("elapsed", -1),
                         inExtra = teamJsonObj.optInt("extra", -1),
                         player = playerJsonObj.optString("name", ""),
@@ -107,9 +105,12 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                         eventType = innerEventObj.optString("type"),
                         eventDetail = innerEventObj.optString("detail")
                     )
-
-                    events.add(event)
                 }
+
+            event?.let {
+
+                events.add(it)
+            }
         }
 
         val statsJsonArray = responseJsonObject.getJSONArray("statistics")

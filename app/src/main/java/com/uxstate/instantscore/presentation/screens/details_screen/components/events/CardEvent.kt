@@ -25,7 +25,7 @@ fun CardEvent(
     modifier: Modifier = Modifier
 ) {
 
-    val cardColor = if (event.eventType == "Yellow Card") Color.Yellow else Color.Red
+    val cardColor = if (event.eventDetail == "Yellow Card") Color.Yellow else Color.Red
 
     if (isHomeTeamEvent) {
         HomeCard(event = event, modifier = modifier, cardColor = cardColor)
