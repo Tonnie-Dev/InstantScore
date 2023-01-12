@@ -24,12 +24,15 @@ import com.uxstate.instantscore.domain.models.fixture_details.Coach
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
+import com.uxstate.instantscore.utils.fromHex
 
 @Composable
 fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
     val homeLineUp = fixtureDetails.lineUps[0]
+    val homeColor = Color.fromHex(homeLineUp.teamColor)
     val awayLineUp = fixtureDetails.lineUps[1]
+    val awayColor = Color.fromHex(awayLineUp.teamColor)
     val spacing = LocalSpacing.current
     Column(
         modifier = modifier
@@ -41,7 +44,12 @@ fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
             // Home Column
             Column(verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium)) {
-                homeLineUp.startingXI.forEach { player -> PlayerCard(player = player) }
+                homeLineUp.startingXI.forEach { player ->
+                    PlayerCard(
+                        player = player,
+                        teamColor = homeColor
+                    )
+                }
 
                 Text(
                     text = "Substitutes",
@@ -49,7 +57,12 @@ fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
                     fontWeight = FontWeight.Black
                 )
 
-                homeLineUp.substitutes.forEach { player -> PlayerCard(player = player) }
+                homeLineUp.substitutes.forEach { player ->
+                    PlayerCard(
+                        player = player,
+                        teamColor = homeColor
+                    )
+                }
 
                 Text(
                     text = "Coach",
@@ -60,9 +73,14 @@ fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
                 CoachPortrait(coach = homeLineUp.coach)
             }
 
-            // away column
-            Column() {
-                awayLineUp.startingXI.forEach { player -> PlayerCard(player = player) }
+            // Away column
+            Column(verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium)) {
+                awayLineUp.startingXI.forEach { player ->
+                    PlayerCard(
+                        player = player,
+                        teamColor = awayColor
+                    )
+                }
 
                 Text(
                     text = "Substitutes",
@@ -70,7 +88,12 @@ fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
                     fontWeight = FontWeight.Black
                 )
 
-                awayLineUp.substitutes.forEach { player -> PlayerCard(player = player) }
+                awayLineUp.substitutes.forEach { player ->
+                    PlayerCard(
+                        player = player,
+                        teamColor = awayColor
+                    )
+                }
 
                 Text(
                     text = "Coach",

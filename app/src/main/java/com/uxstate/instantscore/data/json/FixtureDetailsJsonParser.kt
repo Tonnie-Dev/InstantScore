@@ -150,12 +150,15 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         }
 
         val lineUpsJsonArray = responseJsonObject.getJSONArray("lineups")
+        
         // variable
         val teamLineUps = mutableListOf<LineUp>()
-        val startingElevenLineUp = mutableListOf<Player>()
-        val substitutesLineUp = mutableListOf<Player>()
 
         for (i in 0 until lineUpsJsonArray.length()) {
+
+            // cleanup list with each iteration to construct a fresh line-up object
+            val startingElevenLineUp = mutableListOf<Player>()
+            val substitutesLineUp = mutableListOf<Player>()
 
             val innerLineUpsObj = lineUpsJsonArray.getJSONObject(i)
 
@@ -197,9 +200,10 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             }
 
             val subsJsonArray = innerLineUpsObj.getJSONArray("substitutes")
-            for (j in 0 until subsJsonArray.length()) {
 
-                val subsInnerJsonObj = subsJsonArray.getJSONObject(j)
+            for (k in 0 until subsJsonArray.length()) {
+
+                val subsInnerJsonObj = subsJsonArray.getJSONObject(k)
                 val subPlayerJsonObj = subsInnerJsonObj.getJSONObject("player")
                 // variables
                 val playerId = subPlayerJsonObj.optInt("id", -1)
@@ -231,6 +235,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 ),
                 teamColor = primaryPlayerColor
             )
+
             teamLineUps.add(lineup)
         }
 

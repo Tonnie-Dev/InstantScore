@@ -27,7 +27,7 @@ fun PlayerCard(player: Player, modifier: Modifier = Modifier, teamColor: Color =
         modifier = Modifier.padding(spacing.spaceExtraSmall)
     ) {
 
-        Spacer(modifier = Modifier.width(spacing.spaceMedium))
+        Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Box() {
             Icon(
                 painter = painterResource(id = R.drawable.shirt_black),
