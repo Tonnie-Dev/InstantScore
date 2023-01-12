@@ -31,12 +31,11 @@ fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
                 "Card" -> {
 
-
                     CardEvent(event = event, isHomeTeamEvent = isHomeEvent)
                 }
 
                 "subst" -> {
-                   
+
                     SubstitutionEvent(event = event, isHomeTeamEvent = isHomeEvent)
                 }
             }
