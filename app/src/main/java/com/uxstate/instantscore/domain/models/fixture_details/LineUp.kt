@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class LineUp(
     val coach: Coach,
+    val teamColor: String,
     val startingXI: List<Player>,
     val substitutes: List<Player>,
     val team: Team

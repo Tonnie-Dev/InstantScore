@@ -160,10 +160,13 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             val innerLineUpsObj = lineUpsJsonArray.getJSONObject(i)
 
             val teamJsonObj = innerLineUpsObj.getJSONObject("team")
+            val colorsJsonObj = teamJsonObj.getJSONObject("colors")
+            val playerColorJsonObj = colorsJsonObj.getJSONObject("player")
 
             // variables
             val teamName = teamJsonObj.optString("name", "")
             val teamLogo = teamJsonObj.optString("logo", "")
+            val primaryPlayerColor = playerColorJsonObj.optString("primary", "D3D3D3")
 
             val coachJsonObj = innerLineUpsObj.getJSONObject("coach")
 
@@ -225,7 +228,8 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                     name = teamName,
                     logo = teamLogo,
                     isWinner = false
-                )
+                ),
+                teamColor = primaryPlayerColor
             )
             teamLineUps.add(lineup)
         }
