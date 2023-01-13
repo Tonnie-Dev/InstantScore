@@ -3,10 +3,10 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components.
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
-import timber.log.Timber
 
 @Composable
 fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
@@ -15,28 +15,29 @@ fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
     val events = fixtureDetails.events
 
-    Timber.i("The events are: $events")
+    Card(modifier = modifier.fillMaxWidth()) {
 
-    LazyColumn(modifier = modifier.fillMaxWidth()) {
+        LazyColumn {
 
-        items(events) { event ->
+            items(events) { event ->
 
-            val isHomeEvent = event.side == homeTeam
-            when (event.eventType) {
+                val isHomeEvent = event.side == homeTeam
+                when (event.eventType) {
 
-                "Goal" -> {
+                    "Goal" -> {
 
-                    GoalEvent(event = event, isHomeEvent)
-                }
+                        GoalEvent(event = event, isHomeEvent)
+                    }
 
-                "Card" -> {
+                    "Card" -> {
 
-                    CardEvent(event = event, isHomeTeamEvent = isHomeEvent)
-                }
+                        CardEvent(event = event, isHomeTeamEvent = isHomeEvent)
+                    }
 
-                "subst" -> {
+                    "subst" -> {
 
-                    SubstitutionEvent(event = event, isHomeTeamEvent = isHomeEvent)
+                        SubstitutionEvent(event = event, isHomeTeamEvent = isHomeEvent)
+                    }
                 }
             }
         }

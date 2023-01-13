@@ -110,7 +110,7 @@ fun CoachesCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
         Row {
 
-     // Home Column
+            // Home Column
             Column(
                 verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
                 modifier = Modifier.weight(1f)
