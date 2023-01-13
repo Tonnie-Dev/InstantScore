@@ -19,7 +19,11 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun PlayerCard(player: Player, modifier: Modifier = Modifier, teamColor: Color = Color.LightGray) {
+fun PlayerShirtCard(
+    player: Player,
+    modifier: Modifier = Modifier,
+    teamColor: Color = Color.LightGray
+) {
     val spacing = LocalSpacing.current
 
     Row(
@@ -64,7 +68,7 @@ fun PlayerCardPreview() {
         Player(playerId = 0, playerName = "Tonnie Von", playerNumber = 13, playerPosition = "M")
 
     InstantScoreTheme() {
-        PlayerCard(player = player, teamColor = Color.Blue)
+        PlayerShirtCard(player = player, teamColor = Color.Blue)
     }
 }
 
@@ -76,6 +80,6 @@ fun PlayerCardPreviewDark() {
         Player(playerId = 0, playerName = "Tonnie Von", playerNumber = 13, playerPosition = "M")
 
     InstantScoreTheme() {
-        PlayerCard(player = player, teamColor = Color.White)
+        PlayerShirtCard(player = player, teamColor = Color.White)
     }
 }

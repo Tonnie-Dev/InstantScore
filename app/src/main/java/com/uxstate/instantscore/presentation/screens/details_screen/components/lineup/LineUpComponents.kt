@@ -1,29 +1,11 @@
 package com.uxstate.instantscore.presentation.screens.details_screen.components.lineup
 
-import android.content.res.Configuration
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.fixture_details.Coach
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
-import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.fromHex
 
@@ -37,44 +19,38 @@ fun StartingElevenCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modi
 
     val spacing = LocalSpacing.current
 
-    Card(modifier = modifier) {
+    Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
         Row {
 
             // Home Column
             Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
             ) {
                 homeLineUp.startingXI.forEach { player ->
-                    PlayerCard(
-                            player = player,
-                            teamColor = homeColor
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = homeColor
                     )
                 }
-
-
             }
 
             // Away column
             Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
             ) {
                 awayLineUp.startingXI.forEach { player ->
-                    PlayerCard(
-                            player = player,
-                            teamColor = awayColor
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = awayColor
                     )
                 }
             }
         }
-
-
     }
-
 }
-
 
 @Composable
 fun SubstitutesCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
@@ -87,40 +63,36 @@ fun SubstitutesCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifie
 
     val spacing = LocalSpacing.current
 
-    Card(modifier = modifier) {
+    Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
         Row {
 
             // Home Column
             Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
             ) {
                 homeLineUp.substitutes.forEach { player ->
-                    PlayerCard(
-                            player = player,
-                            teamColor = homeColor
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = homeColor
                     )
                 }
-
-
             }
 
             // Away column
             Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
             ) {
                 awayLineUp.substitutes.forEach { player ->
-                    PlayerCard(
-                            player = player,
-                            teamColor = awayColor
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = awayColor
                     )
                 }
             }
         }
-
-
     }
 }
 
@@ -134,91 +106,25 @@ fun CoachesCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
 
-    Card(modifier = modifier) {
+    Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
         Row {
 
-            // Home Column
+     // Home Column
             Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
             ) {
-                CoachPortrait(coach = homeLineUp.coach, teamColor = homeColor)
-
-
+                CoachPortraitCard(coach = homeLineUp.coach, teamColor = homeColor)
             }
 
             // Away column
             Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
             ) {
-                CoachPortrait(coach = homeLineUp.coach, teamColor = awayColor)
+                CoachPortraitCard(coach = awayLineUp.coach, teamColor = awayColor)
             }
         }
-
-
-    }
-}
-
-
-@Composable
-fun CoachPortrait(coach: Coach, modifier: Modifier = Modifier, teamColor: Color = Color.LightGray) {
-
-    val context = LocalContext.current
-    val spacing = LocalSpacing.current
-    val painter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(context = context)
-                    .data(coach.photo)
-                    .error(R.drawable.empty_face)
-                    .placeholder(R.drawable.empty_face)
-                    .crossfade(true)
-                    .build()
-    )
-
-    Row(
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-            verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Image(
-                painter = painter,
-                contentDescription = coach.name,
-                modifier = Modifier
-                        .size(spacing.spaceLarge)
-                        .clip(
-                                CircleShape
-                        )
-                        .border(
-                                width = spacing.spaceSingleDp,
-                                color = teamColor,
-                                shape = CircleShape
-                        )
-        )
-        Text(
-                text = coach.name,
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Black
-        )
-    }
-}
-
-@Preview
-@Composable
-fun CoachPortraitPreview() {
-    val coach = Coach(name = "Mourinho", photo = "")
-
-    InstantScoreTheme() {
-        CoachPortrait(coach = coach)
-    }
-}
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun CoachPortraitPreviewDark() {
-    val coach = Coach(name = "Mourinho", photo = "")
-
-    InstantScoreTheme() {
-        CoachPortrait(coach = coach)
     }
 }

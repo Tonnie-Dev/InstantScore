@@ -4,4 +4,6 @@
     <string name="calendar_text">Calendar</string>
     <string name="match_date_label">Pick Match Date</string>
     <string name="stadium_background">Background</string>
+    <string name="coaches_label">Coaches</string>
+    <string name="substitutes_label">Substitutes</string>
 </resources>
