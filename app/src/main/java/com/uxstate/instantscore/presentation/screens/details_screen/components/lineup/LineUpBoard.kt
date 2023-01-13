@@ -36,133 +36,28 @@ fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     Column(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
     ) {
 
-        Row() {
 
-            // Home Column
-            Column(verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium)) {
-                homeLineUp.startingXI.forEach { player ->
-                    PlayerCard(
-                        player = player,
-                        teamColor = homeColor
-                    )
-                }
-
-                Text(
-                    text = "Substitutes",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Black
-                )
-
-                homeLineUp.substitutes.forEach { player ->
-                    PlayerCard(
-                        player = player,
-                        teamColor = homeColor
-                    )
-                }
-
-                Text(
-                    text = "Coach",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Black
-                )
-
-                CoachPortrait(coach = homeLineUp.coach)
-            }
-
-            // Away column
-            Column(verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium)) {
-                awayLineUp.startingXI.forEach { player ->
-                    PlayerCard(
-                        player = player,
-                        teamColor = awayColor
-                    )
-                }
-
-                Text(
-                    text = "Substitutes",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Black
-                )
-
-                awayLineUp.substitutes.forEach { player ->
-                    PlayerCard(
-                        player = player,
-                        teamColor = awayColor
-                    )
-                }
-
-                Text(
-                    text = "Coach",
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Black
-                )
-                CoachPortrait(coach = awayLineUp.coach)
-            }
-        }
-    }
-}
-
-@Composable
-fun CoachPortrait(coach: Coach, modifier: Modifier = Modifier) {
-
-    val context = LocalContext.current
-    val spacing = LocalSpacing.current
-    val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(context = context)
-            .data(coach.photo)
-            .error(R.drawable.empty_face)
-            .placeholder(R.drawable.empty_face)
-            .crossfade(true)
-            .build()
-    )
-
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Image(
-            painter = painter,
-            contentDescription = coach.name,
-            modifier = Modifier
-                .size(spacing.spaceLarge)
-                .clip(
-                    CircleShape
-                )
-                .border(
-                    width = spacing.spaceSingleDp,
-                    color = Color.Gray,
-                    shape = CircleShape
-                )
-        )
+        StartingElevenCard(fixtureDetails = fixtureDetails)
         Text(
-            text = coach.name,
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = FontWeight.Black
+                text = "Substitutes",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Black,
+                modifier = Modifier.padding(
+                        horizontal = spacing.spaceMedium + spacing.spaceSmall
+                )
         )
-    }
-}
+        SubstitutesCard(fixtureDetails = fixtureDetails)
 
-@Preview
-@Composable
-fun CoachPortraitPreview() {
-    val coach = Coach(name = "Mourinho", photo = "")
+        Text(
+                text = "Coach",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Black
+        )
+        CoachesCard(fixtureDetails = fixtureDetails)
 
-    InstantScoreTheme() {
-        CoachPortrait(coach = coach)
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun CoachPortraitPreviewDark() {
-    val coach = Coach(name = "Mourinho", photo = "")
-
-    InstantScoreTheme() {
-        CoachPortrait(coach = coach)
     }
 }

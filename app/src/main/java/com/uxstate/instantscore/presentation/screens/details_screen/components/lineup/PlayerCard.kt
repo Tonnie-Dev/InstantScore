@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixture_details.Player
@@ -40,6 +41,7 @@ fun PlayerCard(player: Player, modifier: Modifier = Modifier, teamColor: Color =
                 text = player.playerNumber.toString(),
                 fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.bodySmall,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .align(Alignment.Center)
                     .padding(spacing.spaceExtraSmall)

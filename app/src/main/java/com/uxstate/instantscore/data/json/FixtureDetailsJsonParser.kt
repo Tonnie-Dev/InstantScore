@@ -150,7 +150,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         }
 
         val lineUpsJsonArray = responseJsonObject.getJSONArray("lineups")
-        
+
         // variable
         val teamLineUps = mutableListOf<LineUp>()
 
