@@ -1,6 +1,9 @@
 package com.uxstate.instantscore.presentation.screens.details_screen.components.stats
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,17 +23,26 @@ import com.uxstate.instantscore.utils.LocalSpacing
 fun StatsBar(
     statValue: Int,
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Color.LightGray,
-    highlightColor: Color = Color.Magenta
+    inactiveColor: Color = Color.LightGray,
+    activeColor: Color = Color.Magenta
 ) {
 
     val spacing = LocalSpacing.current
-    var statFraction by remember { mutableStateOf(statValue / 100f) }
+    val animatedFilledRatio = remember { Animatable(initialValue = 0f) }
+
+
+    LaunchedEffect(key1 = statValue, block = {
+
+        animatedFilledRatio.animateTo(
+            targetValue = if (statValue > 0) statValue / 100f else 0f,
+            animationSpec = tween(durationMillis = 1_000, easing = FastOutLinearInEasing)
+        )
+    })
 
     Box(
         modifier = modifier
             .background(
-                color = backgroundColor,
+                color = inactiveColor,
                 shape = RoundedCornerShape(spacing.spaceSmall)
             )
             .clip(RoundedCornerShape(spacing.spaceSmall))
@@ -42,11 +54,12 @@ fun StatsBar(
         Row(
             modifier = Modifier
                 .background(
-                    color = highlightColor,
+                    color = activeColor,
                     shape = RoundedCornerShape(spacing.spaceSmall)
                 )
                 .clip(RoundedCornerShape(spacing.spaceSmall))
-                .fillMaxWidth(statFraction)
+                .fillMaxWidth(animatedFilledRatio.value)
+                .height(spacing.spaceMedium + spacing.spaceExtraSmall)
                 .padding(horizontal = spacing.spaceSmall),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
