@@ -18,6 +18,7 @@ data class FixtureDetails(
     val events: List<Event>,
     val stats: List<Stats>,
     val lineUps: List<LineUp>,
+    val realStats: List<RealStats>,
     val score: Score,
 
 ) : Parcelable

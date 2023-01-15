@@ -40,6 +40,7 @@ data class FixtureDetailsState(
                 penaltiesScoredAway = 0,
                 penaltiesScoredHome = 0
             )
-        )
+        ),
+        realStats = listOf()
     )
 )

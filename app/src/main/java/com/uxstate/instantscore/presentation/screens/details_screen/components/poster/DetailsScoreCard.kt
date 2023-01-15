@@ -168,7 +168,8 @@ fun DetailsScoreCardPreview() {
                         penaltiesScoredAway = 0,
                         penaltiesScoredHome = 0
                     )
-                )
+                ),
+                realStats = listOf()
             )
         )
     }
@@ -214,7 +215,8 @@ fun DetailsScoreCardPreviewDark() {
                         penaltiesScoredAway = 0,
                         penaltiesScoredHome = 0
                     )
-                )
+                ),
+                realStats = listOf()
             )
         )
     }

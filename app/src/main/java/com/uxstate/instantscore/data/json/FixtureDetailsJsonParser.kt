@@ -115,13 +115,16 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         val statsJsonArray = responseJsonObject.getJSONArray("statistics")
         val stats = mutableListOf<Stats>()
+
+        val realStats = mutableListOf<RealStats>()
         for (i in 0 until statsJsonArray.length()) {
+
             val innerStatsObj = statsJsonArray.getJSONObject(i)
 
             val teamJsonObj = innerStatsObj.getJSONObject("team")
 
             // variable
-            val side = teamJsonObj.optString("name")
+            val side = teamJsonObj.optInt("id", -1)
 
             val statsArray = innerStatsObj.getJSONArray("statistics")
 
@@ -130,7 +133,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                 Stats(
                     side = side,
-                    possession = stat.optInt("value", -1),
+                    possession = stat.optInt("value", 30),
                     shotsOnGoal = stat.optInt("value", -1),
                     shotsOffGoal = stat.optInt("value", -1),
                     totalShots = stat.optInt("value", -1),
@@ -141,12 +144,19 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                     redCards = stat.optInt("value", -1),
                 )
             }
-            /* (0 until statsArray.length()).forEach {
 
-                 val stat = statsArray.getJSONObject(it)
+            for (j in 0 until statsArray.length()) {
 
-                 val shotsOnGoal = stat.
-             }*/
+                val innerStatObj = statsArray.getJSONObject(j)
+
+                // variable
+                val type = innerStatObj.optString("type", "")
+                val statValue = innerStatObj.optInt("value", -1)
+
+                val someItem = RealStats(type, statValue)
+
+                realStats.add(someItem)
+            }
         }
 
         val lineUpsJsonArray = responseJsonObject.getJSONArray("lineups")
@@ -282,9 +292,8 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                     penaltiesScoredAway = penaltiesAwayScore,
                     penaltiesScoredHome = penaltiesHomeScore
                 )
-            )
+            ),
+            realStats = realStats
         )
     }
 }
-
-// data class SomeItem(val type: String, val value: Int)

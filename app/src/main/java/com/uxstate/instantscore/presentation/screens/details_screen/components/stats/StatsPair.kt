@@ -28,24 +28,23 @@ fun StatsPair(
     Surface(modifier = modifier.padding(vertical = spacing.spaceSmall)) {
 
         Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(vertical = spacing.spaceSmall)
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(vertical = spacing.spaceSmall)
         ) {
 
             Text(
-                    text = statType,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Medium
+                text = statType,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Medium
             )
             Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.padding(
-                            horizontal = spacing.spaceMedium,
-                            vertical = spacing.spaceSmall
-                    )
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.padding(
+                    horizontal = spacing.spaceMedium,
+                    vertical = spacing.spaceSmall
+                )
             ) {
-
 
                 Row(modifier = Modifier.weight(.5f)) {
                     // Home Stat Bar
@@ -57,8 +56,6 @@ fun StatsPair(
 
                     StatsBar(statValue = awayStatValue)
                 }
-
-
             }
         }
     }

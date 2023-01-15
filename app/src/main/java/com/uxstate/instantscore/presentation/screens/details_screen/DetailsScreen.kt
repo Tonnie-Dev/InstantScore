@@ -28,7 +28,7 @@ fun DetailsScreen(fixtureId: Int, viewModel: DetailsViewModel = hiltViewModel())
     val tabs = listOf(
         TabItemSealedClass.EventsTab(fixtureDetails = state.fixtureDetails),
         TabItemSealedClass.LineUpsTab(fixtureDetails = state.fixtureDetails),
-        TabItemSealedClass.StatsTab
+        TabItemSealedClass.StatsTab(fixtureDetails = state.fixtureDetails)
     )
 
     Scaffold() { paddingValues ->

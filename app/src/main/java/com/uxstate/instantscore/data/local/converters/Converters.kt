@@ -96,7 +96,7 @@ class Converters {
             fouls = fouls,
             yellowCards = yellowCards,
             redCards = redCards,
-            side = ""
+            side = 0
         )
     }
 

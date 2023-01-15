@@ -84,7 +84,8 @@ fun FixturePosterPreview() {
                         penaltiesScoredAway = 0,
                         penaltiesScoredHome = 0
                     )
-                )
+                ),
+                realStats = listOf()
             )
         )
     }
@@ -130,7 +131,8 @@ fun FixturePosterPreviewDark() {
                         penaltiesScoredAway = 0,
                         penaltiesScoredHome = 0
                     )
-                )
+                ),
+                realStats = listOf()
             )
         )
     }

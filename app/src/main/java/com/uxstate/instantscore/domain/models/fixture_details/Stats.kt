@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Stats(
-    val side: String,
+    val side: Int,
     val possession: Int,
     val shotsOnGoal: Int,
     val shotsOffGoal: Int,
