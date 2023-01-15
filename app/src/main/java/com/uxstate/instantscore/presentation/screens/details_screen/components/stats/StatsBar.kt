@@ -30,7 +30,6 @@ fun StatsBar(
     val spacing = LocalSpacing.current
     val animatedFilledRatio = remember { Animatable(initialValue = 0f) }
 
-
     LaunchedEffect(key1 = statValue, block = {
 
         animatedFilledRatio.animateTo(
