@@ -42,6 +42,7 @@ class Converters {
         )
     }
 
+    /*
     @TypeConverter
     fun writeStatsToRoom(stats: Stats): String {
 
@@ -97,7 +98,7 @@ class Converters {
             redCards = redCards,
             side = 0
         )
-    }
+    }*/
 
     @TypeConverter
     fun writeStatusToRoom(status: Status): String {
