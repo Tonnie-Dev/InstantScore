@@ -134,14 +134,14 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 Stats(
                     side = side,
                     possession = stat.optInt("value", 30),
-                    shotsOnGoal = stat.optInt("value", -1),
-                    shotsOffGoal = stat.optInt("value", -1),
-                    totalShots = stat.optInt("value", -1),
-                    cornerKicks = stat.optInt("value", -1),
-                    offSides = stat.optInt("value", -1),
-                    fouls = stat.optInt("value", -1),
-                    yellowCards = stat.optInt("value", -1),
-                    redCards = stat.optInt("value", -1),
+                    shotsOnGoal = stat.optInt("value", 0),
+                    shotsOffGoal = stat.optInt("value", 0),
+                    totalShots = stat.optInt("value", 0),
+                    cornerKicks = stat.optInt("value", 0),
+                    offSides = stat.optInt("value", 0),
+                    fouls = stat.optInt("value", 0),
+                    yellowCards = stat.optInt("value", 0),
+                    redCards = stat.optInt("value", 0),
                 )
             }
 
@@ -151,7 +151,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                 // variable
                 val type = innerStatObj.optString("type", "")
-                val statValue = innerStatObj.optInt("value", -1)
+                val statValue = innerStatObj.optInt("value", 0)
 
                 val someItem = RealStats(type, statValue)
 

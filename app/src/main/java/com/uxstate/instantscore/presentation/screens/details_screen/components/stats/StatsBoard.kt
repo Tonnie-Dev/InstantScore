@@ -6,6 +6,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
+import timber.log.Timber
 
 @Composable
 fun StatsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
@@ -16,6 +17,7 @@ fun StatsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
         stats.forEach { (stat, statPair) ->
 
+            Timber.i("Printed Stats: $ $stat ${statPair.first}: ${statPair.second}")
             StatsPair(
                 statType = stat,
                 homeStatValue = statPair.first,
@@ -37,14 +39,16 @@ fun generateStatsPairs(fixtureDetails: FixtureDetails): Map<String, Pair<Int, In
     val homeShotsOnGoal = stats.first { it.type == "Shots on Goal" }.value
     val awayShotsOnGoal = stats.findLast { it.type == "Shots on Goal" }?.value!!
 
+    Timber.i("Home shots: $homeShotsOnGoal away Shots: $awayShotsOnGoal")
+
     // shots off goal
     val homeShotsOffGoal = stats.first { it.type == "Shots off Goal" }.value
     val awayShotsOffGoal = stats.findLast { it.type == "Shots off Goal" }?.value!!
-
+    Timber.i("Home off shots: $homeShotsOffGoal away off Shots: $awayShotsOffGoal")
     // total shots
     val homeTotalShots = stats.first { it.type == "Total Shots" }.value
     val awayTotalShots = stats.findLast { it.type == "Total Shots" }?.value!!
-
+    Timber.i("Home total shots: $homeTotalShots away total Shots: $awayTotalShots")
     // corners
     val homeCorners = stats.first { it.type == "Corner Kicks" }.value
     val awayCorners = stats.findLast { it.type == "Corner Kicks" }?.value!!
@@ -65,8 +69,8 @@ fun generateStatsPairs(fixtureDetails: FixtureDetails): Map<String, Pair<Int, In
     val homeRedCards = stats.first { it.type == "Red Cards" }.value
     val awayRedCards = stats.findLast { it.type == "Red Cards" }?.value!!
 
-    return mapOf(
-        "Ball Possession" to Pair(homeShotsOnGoal, awayShotsOnGoal),
+    val mappedStats = mapOf(
+        "Ball Possession" to Pair(homePossession, awayPossession),
         "Shots on Target" to Pair(homeShotsOnGoal, awayShotsOnGoal),
         "Shots Off Target" to Pair(homeShotsOffGoal, awayShotsOffGoal),
         "Total Shots" to Pair(homeTotalShots, awayTotalShots),
@@ -76,4 +80,7 @@ fun generateStatsPairs(fixtureDetails: FixtureDetails): Map<String, Pair<Int, In
         "Yellow Cards" to Pair(homeYellowCard, awayYellowCard),
         "Red Cards" to Pair(homeRedCards, awayRedCards)
     )
+
+    Timber.i("The Mapped Stats are $mappedStats")
+    return mappedStats
 }
