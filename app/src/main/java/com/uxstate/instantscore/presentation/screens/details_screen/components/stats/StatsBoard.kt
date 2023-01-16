@@ -29,7 +29,7 @@ fun StatsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
 fun generateStatsPairs(fixtureDetails: FixtureDetails): Map<String, Pair<Int, Int>> {
 
-    val stats = fixtureDetails.realStats
+    val stats = fixtureDetails.stats
 
     // possession
     val homePossession = stats.first { it.type == "Ball Possession" }.value

@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
-
 @Composable
 fun StatsBar(
     statValueA: Int,

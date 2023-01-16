@@ -4,15 +4,4 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Stats(
-    val side: Int,
-    val possession: Int,
-    val shotsOnGoal: Int,
-    val shotsOffGoal: Int,
-    val totalShots: Int,
-    val cornerKicks: Int,
-    val offSides: Int,
-    val fouls: Int,
-    val yellowCards: Int,
-    val redCards: Int
-) : Parcelable
+data class Stats(val type: String, val value: Int) : Parcelable

@@ -4,7 +4,6 @@ import com.uxstate.instantscore.domain.models.fixture_details.*
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.json.JSONObject
-import timber.log.Timber
 
 // force single instance of FixtureDetailsJsonParser for the entire app process
 @Singleton
@@ -26,7 +25,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         // variable - id
         val fixtureId = fixtureJsonObject.optInt("id", -1)
-        Timber.i("The passed fixtureId is $fixtureId")
+
         // variable - timestamp
         val timeStamp = fixtureJsonObject.optLong("timestamp", 0L)
 
@@ -116,34 +115,11 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val statsJsonArray = responseJsonObject.getJSONArray("statistics")
         val stats = mutableListOf<Stats>()
 
-        val realStats = mutableListOf<RealStats>()
         for (i in 0 until statsJsonArray.length()) {
 
             val innerStatsObj = statsJsonArray.getJSONObject(i)
 
-            val teamJsonObj = innerStatsObj.getJSONObject("team")
-
-            // variable
-            val side = teamJsonObj.optInt("id", -1)
-
             val statsArray = innerStatsObj.getJSONArray("statistics")
-
-            (0 until statsArray.length()).mapTo(stats) {
-                val stat = statsArray.getJSONObject(it)
-
-                Stats(
-                    side = side,
-                    possession = stat.optInt("value", 30),
-                    shotsOnGoal = stat.optInt("value", 0),
-                    shotsOffGoal = stat.optInt("value", 0),
-                    totalShots = stat.optInt("value", 0),
-                    cornerKicks = stat.optInt("value", 0),
-                    offSides = stat.optInt("value", 0),
-                    fouls = stat.optInt("value", 0),
-                    yellowCards = stat.optInt("value", 0),
-                    redCards = stat.optInt("value", 0),
-                )
-            }
 
             for (j in 0 until statsArray.length()) {
 
@@ -153,9 +129,9 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 val type = innerStatObj.optString("type", "")
                 val statValue = innerStatObj.optInt("value", 0)
 
-                val someItem = RealStats(type, statValue)
+                val stat = Stats(type, statValue)
 
-                realStats.add(someItem)
+                stats.add(stat)
             }
         }
 
@@ -277,7 +253,6 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             leagueName = leagueName,
             teams = teamPair,
             events = events,
-            stats = stats,
             lineUps = teamLineUps,
             score = Score(
                 extraTimeScore = ExtraTime(
@@ -293,7 +268,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                     penaltiesScoredHome = penaltiesHomeScore
                 )
             ),
-            realStats = realStats
+            stats = stats
         )
     }
 }

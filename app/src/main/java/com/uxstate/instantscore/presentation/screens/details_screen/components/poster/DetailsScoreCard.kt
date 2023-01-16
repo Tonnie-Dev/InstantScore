@@ -169,7 +169,7 @@ fun DetailsScoreCardPreview() {
                         penaltiesScoredHome = 0
                     )
                 ),
-                realStats = listOf()
+                stats = listOf()
             )
         )
     }
@@ -216,7 +216,7 @@ fun DetailsScoreCardPreviewDark() {
                         penaltiesScoredHome = 0
                     )
                 ),
-                realStats = listOf()
+                stats = listOf()
             )
         )
     }

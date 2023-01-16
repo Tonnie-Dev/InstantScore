@@ -12,8 +12,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixture_details.*
-import com.uxstate.instantscore.domain.models.fixtures_schedule.*
-import com.uxstate.instantscore.domain.models.fixtures_schedule.Team
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
@@ -85,7 +83,7 @@ fun FixturePosterPreview() {
                         penaltiesScoredHome = 0
                     )
                 ),
-                realStats = listOf()
+                stats = listOf()
             )
         )
     }
@@ -132,7 +130,7 @@ fun FixturePosterPreviewDark() {
                         penaltiesScoredHome = 0
                     )
                 ),
-                realStats = listOf()
+                stats = listOf()
             )
         )
     }

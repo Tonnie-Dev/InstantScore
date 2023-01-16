@@ -16,9 +16,8 @@ data class FixtureDetails(
     val leagueName: String,
     val teams: Pair<Team, Team>,
     val events: List<Event>,
-    val stats: List<Stats>,
     val lineUps: List<LineUp>,
-    val realStats: List<RealStats>,
+    val stats: List<Stats>,
     val score: Score,
 
 ) : Parcelable
