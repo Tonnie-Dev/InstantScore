@@ -70,7 +70,6 @@ fun FixturePosterPreview() {
                     )
                 ),
                 events = listOf(),
-                stats = listOf(),
                 lineUps = listOf(),
                 score = Score(
                     extraTimeScore = ExtraTime(
@@ -117,7 +116,6 @@ fun FixturePosterPreviewDark() {
                     )
                 ),
                 events = listOf(),
-                stats = listOf(),
                 lineUps = listOf(),
                 score = Score(
                     extraTimeScore = ExtraTime(

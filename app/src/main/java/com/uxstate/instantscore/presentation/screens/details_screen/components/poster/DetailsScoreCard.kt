@@ -156,7 +156,6 @@ fun DetailsScoreCardPreview() {
                     )
                 ),
                 events = listOf(),
-                stats = listOf(),
                 lineUps = listOf(),
                 score = Score(
                     extraTimeScore = ExtraTime(
@@ -216,7 +215,7 @@ fun DetailsScoreCardPreviewDark() {
                         penaltiesScoredHome = 0
                     )
                 ),
-                stats = listOf()
+
             )
         )
     }

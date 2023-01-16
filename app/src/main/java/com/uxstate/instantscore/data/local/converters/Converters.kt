@@ -42,64 +42,6 @@ class Converters {
         )
     }
 
-    /*
-    @TypeConverter
-    fun writeStatsToRoom(stats: Stats): String {
-
-        val possession = stats.possession.toString()
-        val shotsOnGoal = stats.shotsOnGoal.toString()
-        val shotsOffGoal = stats.shotsOffGoal.toString()
-        val totalShots = stats.totalShots.toString()
-        val cornerKicks = stats.cornerKicks.toString()
-        val offSides = stats.offSides.toString()
-        val fouls = stats.fouls.toString()
-        val yellowCards = stats.yellowCards.toString()
-        val redCards = stats.redCards.toString()
-
-        val statsPropertiesList = listOf(
-            possession,
-            shotsOnGoal,
-            shotsOffGoal,
-            totalShots,
-            cornerKicks,
-            offSides,
-            fouls,
-            yellowCards,
-            redCards
-        )
-
-        return statsPropertiesList.joinToString("~")
-    }
-
-    @TypeConverter
-    fun readStatsFromRoom(roomString: String): Stats {
-        val statsPropertiesList = roomString.split("~")
-            .map { it }
-
-        val possession = statsPropertiesList[0].toInt()
-        val shotsOnGoal = statsPropertiesList[1].toInt()
-        val shotsOffGoal = statsPropertiesList[2].toInt()
-        val totalShots = statsPropertiesList[3].toInt()
-        val cornerKicks = statsPropertiesList[4].toInt()
-        val offSides = statsPropertiesList[5].toInt()
-        val fouls = statsPropertiesList[6].toInt()
-        val yellowCards = statsPropertiesList[7].toInt()
-        val redCards = statsPropertiesList[8].toInt()
-
-        return Stats(
-            possession = possession,
-            shotsOnGoal = shotsOnGoal,
-            shotsOffGoal = shotsOffGoal,
-            totalShots = totalShots,
-            cornerKicks = cornerKicks,
-            offSides = offSides,
-            fouls = fouls,
-            yellowCards = yellowCards,
-            redCards = redCards,
-            side = 0
-        )
-    }*/
-
     @TypeConverter
     fun writeStatusToRoom(status: Status): String {
 
@@ -179,6 +121,7 @@ class Converters {
             Team(name = name2, logo = logo2)
         )
     }
+
     @TypeConverter
     fun writeLeagueToRoom(league: League): String {
 
@@ -233,7 +176,8 @@ class Converters {
     @TypeConverter
     fun readGoalFromRoom(roomString: String): Goal {
 
-        val goalPropertiesList = roomString.split("~").map { it }
+        val goalPropertiesList = roomString.split("~")
+            .map { it }
 
         val homeTeamScore = goalPropertiesList[0].toInt()
         val awayTeamScore = goalPropertiesList[1].toInt()

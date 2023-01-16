@@ -15,6 +15,5 @@ data class FixtureDetailsEntity(
     val status: String,
     val timeElapsed: Int,
     val teams: Pair<Team, Team>,
-    val events: List<Event>,
-    val stats: Stats
+    val events: List<Event>
 )

@@ -28,7 +28,6 @@ data class FixtureDetailsState(
             )
         ),
         events = listOf(),
-        stats = listOf(),
         lineUps = listOf(),
         score = Score(
             extraTimeScore = ExtraTime(
