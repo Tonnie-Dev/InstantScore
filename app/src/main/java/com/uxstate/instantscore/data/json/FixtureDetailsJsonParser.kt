@@ -64,12 +64,12 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val awayTeamJSONObject = teamJsonObject.getJSONObject("away")
 
         // variables
-        val homeTeam: Team = Team(
+        val homeTeam = Team(
             name = homeTeamJSONObject.optString("name", ""),
             logo = homeTeamJSONObject.optString("logo", ""),
             isWinner = homeTeamJSONObject.optBoolean("winner", false)
         )
-        val awayTeam: Team = Team(
+        val awayTeam = Team(
             name = awayTeamJSONObject.optString("name", ""),
             logo = awayTeamJSONObject.optString("logo", ""),
             isWinner = awayTeamJSONObject.optBoolean("winner", false)
@@ -113,6 +113,8 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         }
 
         val statsJsonArray = responseJsonObject.getJSONArray("statistics")
+
+        // variable - Stats List
         val stats = mutableListOf<Stats>()
 
         for (i in 0 until statsJsonArray.length()) {
@@ -127,7 +129,15 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                 // variable
                 val type = innerStatObj.optString("type", "")
-                val statValue = innerStatObj.optInt("value", 0)
+
+                val statValue = if (type == "Ball Possession") {
+
+                    innerStatObj.getString("value")
+                        .substringBefore("%").toInt()
+                } else {
+                    innerStatObj.optInt("value", 0)
+                }
+                // val statValue = innerStatObj.optInt("value", 0)
 
                 val stat = Stats(type, statValue)
 
