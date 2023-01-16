@@ -48,13 +48,13 @@ fun StatsPair(
 
                 Row(modifier = Modifier.weight(.5f)) {
                     // Home Stat Bar
-                    StatsBar(statValue = homeStatValue)
+                    StatsBar(statValueA = homeStatValue, statValueB = awayStatValue)
                 }
 
                 Row(modifier = Modifier.weight(.5f)) {
                     // Away Stat Bar
 
-                    StatsBar(statValue = awayStatValue)
+                    StatsBar(statValueA = awayStatValue, statValueB = homeStatValue)
                 }
             }
         }

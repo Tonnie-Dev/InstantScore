@@ -21,7 +21,8 @@ import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
 fun StatsBar(
-    statValue: Int,
+    statValueA: Int,
+    statValueB: Int,
     modifier: Modifier = Modifier,
     inactiveColor: Color = Color.LightGray,
     activeColor: Color = Color.Magenta
@@ -30,10 +31,11 @@ fun StatsBar(
     val spacing = LocalSpacing.current
     val animatedFilledRatio = remember { Animatable(initialValue = 0f) }
 
-    LaunchedEffect(key1 = statValue, block = {
+    LaunchedEffect(key1 = statValueA, block = {
 
+        val totalStat = if (statValueA + statValueB > 0) statValueA + statValueB else 0
         animatedFilledRatio.animateTo(
-            targetValue = if (statValue > 0) statValue / 100f else 0f,
+            targetValue = if (statValueA > 0) (statValueA / totalStat) * 100f else 0f,
             animationSpec = tween(durationMillis = 1_000, easing = FastOutLinearInEasing)
         )
     })
@@ -65,7 +67,7 @@ fun StatsBar(
         ) {
 
             Text(
-                text = statValue.toString(),
+                text = statValueA.toString(),
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.ExtraBold,
                 color = Color.White
@@ -79,7 +81,7 @@ fun StatsBar(
 fun StatsBarPreview() {
 
     InstantScoreTheme() {
-        StatsBar(statValue = 41)
+        StatsBar(statValueA = 41, statValueB = 59)
     }
 }
 
@@ -88,6 +90,6 @@ fun StatsBarPreview() {
 fun StatsBarPreviewDark() {
 
     InstantScoreTheme() {
-        StatsBar(statValue = 58)
+        StatsBar(statValueA = 58, statValueB = 42)
     }
 }
