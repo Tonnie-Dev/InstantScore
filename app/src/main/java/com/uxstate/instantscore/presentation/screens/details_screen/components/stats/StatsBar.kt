@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
-import timber.log.Timber
+
 
 @Composable
 fun StatsBar(
@@ -36,8 +36,7 @@ fun StatsBar(
 
         val totalStat = if (statValueA + statValueB > 0) statValueA + statValueB else 0
         val target = if (statValueA > 0) (statValueA.toFloat() / totalStat.toFloat()) else 0f
-        Timber.i("Total Shots equation: A = $statValueA, B = $statValueB C = $totalStat")
-        Timber.i("Target is: $target")
+
         animatedFilledRatio.animateTo(
             targetValue = target,
             animationSpec = tween(durationMillis = 1_000, easing = FastOutLinearInEasing)
