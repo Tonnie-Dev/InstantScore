@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,37 +24,36 @@ fun StatsPair(
 ) {
 
     val spacing = LocalSpacing.current
-    Surface(modifier = modifier.padding(vertical = spacing.spaceSmall)) {
+    /* Surface(modifier = modifier.padding(vertical = spacing.spaceSmall)) {*/
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(vertical = spacing.spaceSmall)
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier.padding(vertical = spacing.spaceSmall)
+    ) {
+
+        Text(
+            text = statType,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Medium
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+            modifier = Modifier.padding(
+                horizontal = spacing.spaceMedium,
+                vertical = spacing.spaceSmall
+            )
         ) {
 
-            Text(
-                text = statType,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Medium
-            )
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                modifier = Modifier.padding(
-                    horizontal = spacing.spaceMedium,
-                    vertical = spacing.spaceSmall
-                )
-            ) {
+            Row(modifier = Modifier.weight(.5f)) {
+                // Home Stat Bar
+                StatsBar(statValueA = homeStatValue, statValueB = awayStatValue)
+            }
 
-                Row(modifier = Modifier.weight(.5f)) {
-                    // Home Stat Bar
-                    StatsBar(statValueA = homeStatValue, statValueB = awayStatValue)
-                }
+            Row(modifier = Modifier.weight(.5f)) {
+                // Away Stat Bar
 
-                Row(modifier = Modifier.weight(.5f)) {
-                    // Away Stat Bar
-
-                    StatsBar(statValueA = awayStatValue, statValueB = homeStatValue)
-                }
+                StatsBar(statValueA = awayStatValue, statValueB = homeStatValue)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components.
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
@@ -13,16 +14,18 @@ fun StatsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
     val stats = generateStatsPairs(fixtureDetails)
 
-    Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+    Card(modifier = modifier) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
-        stats.forEach { (stat, statPair) ->
+            stats.forEach { (stat, statPair) ->
 
-            Timber.i("Printed Stats: $ $stat ${statPair.first}: ${statPair.second}")
-            StatsPair(
-                statType = stat,
-                homeStatValue = statPair.first,
-                awayStatValue = statPair.second
-            )
+                Timber.i("Printed Stats: $ $stat ${statPair.first}: ${statPair.second}")
+                StatsPair(
+                    statType = stat,
+                    homeStatValue = statPair.first,
+                    awayStatValue = statPair.second
+                )
+            }
         }
     }
 }
