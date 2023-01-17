@@ -6,4 +6,5 @@
     <string name="stadium_background">Background</string>
     <string name="coaches_label">Coaches</string>
     <string name="substitutes_label">Substitutes</string>
+    <string name="back_label">Back</string>
 </resources>

@@ -2,21 +2,27 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixture_details.*
+import com.uxstate.instantscore.presentation.screens.details_screen.components.poster.DetailsScoreCard
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun FixturePoster(details: FixtureDetails) {
+fun FixturePoster(details: FixtureDetails, onClickBackButton: () -> Unit) {
 
     val spacing = LocalSpacing.current
     Box(contentAlignment = Alignment.TopCenter) {
@@ -31,6 +37,17 @@ fun FixturePoster(details: FixtureDetails) {
                 .aspectRatio(3f / 2f),
 
             contentScale = ContentScale.Crop
+        )
+
+        Icon(
+            imageVector = Icons.Default.ArrowBack,
+            contentDescription = stringResource(R.string.back_label),
+            tint = Color.White,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .size(spacing.spaceLarge + spacing.spaceMedium)
+                .clickable { onClickBackButton() }
+                .padding(spacing.spaceSmall)
         )
 
         DetailsScoreCard(
@@ -76,7 +93,10 @@ fun FixturePosterPreview() {
                         extraTimeAwayScore = 0,
                         extraTimeHomeScore = 0
                     ),
-                    fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
+                    fullTimeScore = FullTime(
+                        fullTimeAwayScore = 0,
+                        fullTimeHomeScore = 0
+                    ),
                     penaltyShootOutScore = PenaltyShootOut(
                         penaltiesScoredAway = 0,
                         penaltiesScoredHome = 0
@@ -84,7 +104,7 @@ fun FixturePosterPreview() {
                 ),
                 stats = listOf()
             )
-        )
+        ) {}
     }
 }
 
@@ -122,7 +142,10 @@ fun FixturePosterPreviewDark() {
                         extraTimeAwayScore = 0,
                         extraTimeHomeScore = 0
                     ),
-                    fullTimeScore = FullTime(fullTimeAwayScore = 0, fullTimeHomeScore = 0),
+                    fullTimeScore = FullTime(
+                        fullTimeAwayScore = 0,
+                        fullTimeHomeScore = 0
+                    ),
                     penaltyShootOutScore = PenaltyShootOut(
                         penaltiesScoredAway = 0,
                         penaltiesScoredHome = 0
@@ -130,6 +153,6 @@ fun FixturePosterPreviewDark() {
                 ),
                 stats = listOf()
             )
-        )
+        ) {}
     }
 }

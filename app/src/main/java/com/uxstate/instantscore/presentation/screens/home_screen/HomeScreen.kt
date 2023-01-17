@@ -25,7 +25,10 @@ import com.uxstate.instantscore.utils.LocalSpacing
 @Destination
 @RootNavGraph(start = true)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
+fun HomeScreen(
+    viewModel: HomeViewModel = hiltViewModel(),
+    navigator: DestinationsNavigator
+) {
     val state by viewModel.fixturesState.collectAsState()
 
     val spacing = LocalSpacing.current
@@ -54,19 +57,19 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 else
 
-                    LazyColumn(content = {
+                    LazyColumn {
 
                         items(mappedFixtures) {
 
                             LeagueFixturesCard(
                                 league = it.first,
                                 fixtures = it.second,
-                                onClickFixtureCard = {
-                                    navigator.navigate(DetailsScreenDestination(it))
+                                onClickFixtureCard = { fixtureId ->
+                                    navigator.navigate(DetailsScreenDestination(fixtureId))
                                 }
                             )
                         }
-                    })
+                    }
             }
         }
     }

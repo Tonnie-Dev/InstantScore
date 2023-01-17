@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.presentation.screens.details_screen.components
+package com.uxstate.instantscore.presentation.screens.details_screen.components.poster
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image

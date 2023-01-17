@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.presentation.screens.details_screen.components.FixturePoster
 import com.uxstate.instantscore.presentation.screens.details_screen.components.tabs.TabItemSealedClass
 import com.uxstate.instantscore.presentation.screens.details_screen.components.tabs.TabsContent
@@ -20,7 +21,11 @@ import com.uxstate.instantscore.presentation.screens.details_screen.components.t
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Destination
 @Composable
-fun DetailsScreen(fixtureId: Int, viewModel: DetailsViewModel = hiltViewModel()) {
+fun DetailsScreen(
+    fixtureId: Int,
+    viewModel: DetailsViewModel = hiltViewModel(),
+    navigator: DestinationsNavigator
+) {
 
     val state by viewModel.fakeState.collectAsState()
     val pageState = rememberPagerState()
@@ -35,7 +40,7 @@ fun DetailsScreen(fixtureId: Int, viewModel: DetailsViewModel = hiltViewModel())
 
         Column(modifier = Modifier.padding(paddingValues)) {
 
-            FixturePoster(details = state.fixtureDetails)
+            FixturePoster(details = state.fixtureDetails) { navigator.navigateUp() }
             TabsRow(tabs = tabs, pagerState = pageState)
             TabsContent(tabs = tabs, pagerState = pageState)
         }
