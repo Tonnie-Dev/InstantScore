@@ -6,7 +6,12 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 
 @Composable
-fun LeagueFixturesCard(league: League, fixtures: List<Fixture>, onClickFixtureCard: (Int) -> Unit) {
+fun LeagueFixturesCard(
+
+    league: League,
+    fixtures: List<Fixture>,
+    onClickFixtureCard: (Int) -> Unit
+) {
 
     Column() {
         LeagueHeader(league = league)

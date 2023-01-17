@@ -7,6 +7,7 @@ import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
+import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.toStringDate
@@ -28,24 +29,29 @@ class ScoresRepositoryImpl @Inject constructor(
     override fun getFixturesByDate(
         isRefresh: Boolean,
         date: LocalDate
-    ): Flow<Resource<List<Fixture>>> = flow {
+    ): Flow<Resource<Map<League, List<Fixture>>>> = flow {
 
-        Timber.i("Entering getFixtures")
+
         // emit loading at the onset
         emit(Resource.Loading(isLoading = true))
 
         // fetch locally
         val localFixtures = dao.getFixturesByDate(
-            dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
+                dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
         )
 
+        val mappedLocalFixtures = localFixtures.map { it.toModel() }
+                .groupBy {
+                    it.league
+                }
+
         // emit local fixtures
-        emit(Resource.Success(data = localFixtures.map { it.toModel() }))
+        emit(Resource.Success(data = mappedLocalFixtures))
 
         // decide if local cache will suffice
 
         val useLocalCache = localFixtures.isNotEmpty() && !isRefresh
-        emit(Resource.Success(data = localFixtures.map { it.toModel() }))
+        // emit(Resource.Success(data = localFixtures.map { it.toModel() }))
         if (useLocalCache) {
 
             // stop loading
@@ -70,11 +76,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                Resource.Error(
-                    errorMessage = """
+                    Resource.Error(
+                            errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                )
+                    )
             ) // return null
             null
         }
@@ -91,14 +97,16 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // read from single source of truth and emit
         val updatedLocalFixtures = dao.getFixturesByDate(
-            dayOfMonth = date.dayOfMonth,
-            month = date.monthValue,
-            year = date.year
+                dayOfMonth = date.dayOfMonth,
+                month = date.monthValue,
+                year = date.year
         )
 
+        val mappedUpdatedLocalFixtures = updatedLocalFixtures.map { it.toModel() }
+                .groupBy { it.league }
         // emit updatedLocalFixtures
 
-        emit(Resource.Success(data = updatedLocalFixtures.map { it.toModel() }))
+        emit(Resource.Success(data = mappedUpdatedLocalFixtures))
 
         // discontinue loading
         emit(Resource.Loading(isLoading = false))
@@ -118,11 +126,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                Resource.Error(
-                    errorMessage = """
+                    Resource.Error(
+                            errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                )
+                    )
             ) // return null
             null
         }

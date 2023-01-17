@@ -30,7 +30,9 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     val state by viewModel.fixturesState.collectAsState()
 
     val spacing = LocalSpacing.current
-    val mappedFixtures = state.fixtures.groupBy { it.league }
+
+    val mappedFixtures = state.fixtures
+    // val mappedFixtures = state.fixtures.groupBy { it.league }
 
     Scaffold { paddingValues ->
         Column() {
@@ -58,6 +60,15 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                         Text(text = "Test 1")
 
                         mappedFixtures.forEach { (k, v) ->
+
+                          /*  val leaugue1 = v.find {
+
+                                fixture ->
+                                fixture.league.id == k
+                            }
+                            val league = v.filter {
+                                it.league.id == k
+                            }*/
                             LeagueFixturesCard(
                                 k,
                                 v
