@@ -31,19 +31,18 @@ class ScoresRepositoryImpl @Inject constructor(
         date: LocalDate
     ): Flow<Resource<Map<League, List<Fixture>>>> = flow {
 
-
         // emit loading at the onset
         emit(Resource.Loading(isLoading = true))
 
         // fetch locally
         val localFixtures = dao.getFixturesByDate(
-                dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
+            dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
         )
 
         val mappedLocalFixtures = localFixtures.map { it.toModel() }
-                .groupBy {
-                    it.league
-                }
+            .groupBy {
+                it.league
+            }
 
         // emit local fixtures
         emit(Resource.Success(data = mappedLocalFixtures))
@@ -76,11 +75,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                    Resource.Error(
-                            errorMessage = """
+                Resource.Error(
+                    errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                    )
+                )
             ) // return null
             null
         }
@@ -97,13 +96,13 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // read from single source of truth and emit
         val updatedLocalFixtures = dao.getFixturesByDate(
-                dayOfMonth = date.dayOfMonth,
-                month = date.monthValue,
-                year = date.year
+            dayOfMonth = date.dayOfMonth,
+            month = date.monthValue,
+            year = date.year
         )
 
         val mappedUpdatedLocalFixtures = updatedLocalFixtures.map { it.toModel() }
-                .groupBy { it.league }
+            .groupBy { it.league }
         // emit updatedLocalFixtures
 
         emit(Resource.Success(data = mappedUpdatedLocalFixtures))
@@ -126,11 +125,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                    Resource.Error(
-                            errorMessage = """
+                Resource.Error(
+                    errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                    )
+                )
             ) // return null
             null
         }

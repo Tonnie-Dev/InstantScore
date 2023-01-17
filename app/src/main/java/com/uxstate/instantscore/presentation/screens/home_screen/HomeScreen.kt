@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.presentation.screens.home_screen
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -32,7 +33,6 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
     val spacing = LocalSpacing.current
 
     val mappedFixtures = state.fixtures
-    // val mappedFixtures = state.fixtures.groupBy { it.league }
 
     Scaffold { paddingValues ->
         Column() {
@@ -41,8 +41,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
                 DateStrip(
                     modifier = Modifier
-                        .padding(paddingValues = paddingValues)
-                        .padding(spacing.spaceSmall),
+                            .padding(paddingValues = paddingValues)
+                            .padding(spacing.spaceSmall),
                     onDateChange = {
                         viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
                     }
@@ -56,19 +56,18 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 else
 
+
+
+                    LazyColumn(content = {
+
+                     
+                    })
+
                     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                         Text(text = "Test 1")
 
-                        mappedFixtures.forEach { (k, v) ->
+                        mappedFixtures.asSequence().forEach { (k, v) ->
 
-                          /*  val leaugue1 = v.find {
-
-                                fixture ->
-                                fixture.league.id == k
-                            }
-                            val league = v.filter {
-                                it.league.id == k
-                            }*/
                             LeagueFixturesCard(
                                 k,
                                 v
