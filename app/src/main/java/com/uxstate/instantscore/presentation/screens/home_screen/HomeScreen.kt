@@ -2,12 +2,10 @@ package com.uxstate.instantscore.presentation.screens.home_screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -32,7 +30,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
 
     val spacing = LocalSpacing.current
 
-    val mappedFixtures = state.fixtures
+    val mappedFixtures = state.fixtures.toList()
 
     Scaffold { paddingValues ->
         Column() {
@@ -41,8 +39,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
                 DateStrip(
                     modifier = Modifier
-                            .padding(paddingValues = paddingValues)
-                            .padding(spacing.spaceSmall),
+                        .padding(paddingValues = paddingValues)
+                        .padding(spacing.spaceSmall),
                     onDateChange = {
                         viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
                     }
@@ -56,28 +54,19 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), navigator: Destinatio
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 else
 
-
-
                     LazyColumn(content = {
 
-                     
-                    })
-
-                    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                        Text(text = "Test 1")
-
-                        mappedFixtures.asSequence().forEach { (k, v) ->
+                        items(mappedFixtures) {
 
                             LeagueFixturesCard(
-                                k,
-                                v
-                            ) {
-                                navigator.navigate(DetailsScreenDestination(it))
-                            }
+                                league = it.first,
+                                fixtures = it.second,
+                                onClickFixtureCard = {
+                                    navigator.navigate(DetailsScreenDestination(it))
+                                }
+                            )
                         }
-
-                        Text(text = "Test 2")
-                    }
+                    })
             }
         }
     }
