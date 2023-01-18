@@ -3,6 +3,7 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components.
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.Top
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,8 +62,8 @@ fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            // modifier = Modifier.fillMaxWidth(.7f)
+            horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+            modifier = Modifier.padding(spacing.spaceSmall)
         ) {
 
             // Home Team
@@ -87,7 +88,9 @@ fun DetailsScoreCard(details: FixtureDetails, modifier: Modifier = Modifier) {
             }
 
             // Scores Row
-            Row(verticalAlignment = Alignment.Top) {
+            Row(
+                modifier = Modifier.align(Alignment.Top).padding(spacing.spaceSmall)
+            ) {
                 Text(
                     text = homeGoals,
                     style = MaterialTheme.typography.displaySmall,
