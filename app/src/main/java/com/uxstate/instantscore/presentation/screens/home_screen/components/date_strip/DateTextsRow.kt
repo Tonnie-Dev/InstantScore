@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
+import com.uxstate.instantscore.utils.LocalSpacing
 import java.time.LocalDate
 
 @Composable
@@ -15,9 +16,12 @@ fun DateTextsRow(
     onDateChange: (date: LocalDate) -> Unit
 ) {
     var selectedIndex by remember { mutableStateOf(2) }
-
+    val spacing = LocalSpacing.current
     // 5 DateTexts row
-    Row(horizontalArrangement = Arrangement.SpaceEvenly) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = modifier
+    ) {
 
         (0..4).forEach { i ->
 

@@ -2,13 +2,16 @@ package com.uxstate.instantscore.presentation.screens.home_screen.components.dat
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.background
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,19 +37,18 @@ fun LiveButton(onClickLiveButton: () -> Unit, modifier: Modifier = Modifier) {
 
     )
 
-    Button(
-        onClick = { onClickLiveButton() },
-
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color.Red.copy(alpha = alpha),
-
-        )
+    Surface(
+        modifier = modifier
+            .clickable { onClickLiveButton() }
+            .padding(spacing.spaceExtraSmall),
+        shape = RoundedCornerShape(spacing.spaceExtraSmall),
+        color = Color.Red.copy(alpha = alpha),
+        shadowElevation = spacing.spaceSmall
     ) {
         Text(
             text = stringResource(id = R.string.live_text),
-            modifier = Modifier
-                .background(Color.Red.copy(alpha = alpha))
-
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.padding(spacing.spaceExtraSmall)
         )
     }
 }
