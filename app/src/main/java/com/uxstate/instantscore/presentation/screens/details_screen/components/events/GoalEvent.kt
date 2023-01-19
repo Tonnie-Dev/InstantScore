@@ -31,6 +31,17 @@ fun GoalEvent(event: Event, isHomeTeamEvent: Boolean, modifier: Modifier = Modif
 fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
+
+    val extraMinutes = if (event.inExtra != -1)
+        "+${event.inExtra}"
+    else
+        ""
+    val goalDetails = when (event.eventDetail) {
+
+        "Normal Goal" -> event.player
+        "Penalty" -> "${event.player} [Penalty]"
+        else -> event.player
+    }
     Row(
         horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
         verticalAlignment = Alignment.CenterVertically,
@@ -39,7 +50,7 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
             .padding(spacing.spaceMedium)
     ) {
         Text(
-            text = "${event.timeElapsed}'",
+            text = "${event.timeElapsed}$extraMinutes'",
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold
         )
@@ -52,12 +63,6 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
 
         Column() {
 
-            val goalDetails = when (event.eventDetail) {
-
-                "Normal Goal" -> event.player
-                "Penalty" -> "${event.player} [Penalty]"
-                else -> event.player
-            }
             Text(
                 text = goalDetails,
                 style = MaterialTheme.typography.titleSmall,
@@ -71,6 +76,18 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
 @Composable
 fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
+
+    val extraMinutes = if (event.inExtra != -1)
+        "+${event.inExtra}"
+    else
+        ""
+    val goalDetails = when (event.eventDetail) {
+
+        "Normal Goal" -> event.player
+        "Penalty" -> "${event.player} [Penalty]"
+        else -> event.player
+    }
+
     Row(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
@@ -80,12 +97,7 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
     ) {
 
         Column() {
-            val goalDetails = when (event.eventDetail) {
 
-                "Normal Goal" -> event.player
-                "Penalty" -> "${event.player} [Penalty]"
-                else -> event.player
-            }
             Text(
                 text = goalDetails,
                 style = MaterialTheme.typography.titleSmall,
@@ -101,7 +113,7 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Text(
-            text = "${event.timeElapsed}'",
+            text = "${event.timeElapsed}$extraMinutes'",
             style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.Bold
         )

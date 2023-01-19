@@ -97,7 +97,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                     event = Event(
                         timeElapsed = timeJsonObj.optInt("elapsed", -1),
-                        inExtra = teamJsonObj.optInt("extra", -1),
+                        inExtra = timeJsonObj.optInt("extra", -1),
                         player = playerJsonObj.optString("name", ""),
                         side = teamJsonObj.optString("name", ""),
                         assist = assistJsonObj.optString("name", "G"),
