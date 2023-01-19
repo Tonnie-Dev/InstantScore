@@ -42,6 +42,8 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
         "Penalty" -> "${event.player} [Penalty]"
         else -> event.player
     }
+
+    val assist = if (event.assist == "null")"" else event.assist
     Row(
         horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
         verticalAlignment = Alignment.CenterVertically,
@@ -68,7 +70,7 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = event.assist ?: "", style = MaterialTheme.typography.bodySmall)
+            Text(text = assist, style = MaterialTheme.typography.bodySmall)
         }
     }
 }
@@ -88,6 +90,8 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
         else -> event.player
     }
 
+    val assist = if (event.assist == "null")"" else event.assist
+
     Row(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
@@ -103,7 +107,7 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = event.assist ?: "", style = MaterialTheme.typography.bodySmall)
+            Text(text = assist, style = MaterialTheme.typography.bodySmall)
         }
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Image(

@@ -9,7 +9,7 @@ data class Event(
     val inExtra: Int,
     val player: String,
     val side: String,
-    val assist: String?,
+    val assist: String,
     val eventType: String,
     val eventDetail: String
 ) : Parcelable
