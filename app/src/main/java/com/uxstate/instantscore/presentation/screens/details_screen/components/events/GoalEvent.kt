@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -43,7 +44,15 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
         else -> event.player
     }
 
-    val assist = if (event.assist == "null")"" else event.assist
+    val goalIcon =
+        remember {
+            if (event.eventDetail == "Missed Penalty")
+                R.drawable.out_goal
+            else
+                R.drawable.in_goal
+        }
+
+    val assist = if (event.assist == "null") "" else event.assist
     Row(
         horizontalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
         verticalAlignment = Alignment.CenterVertically,
@@ -58,7 +67,7 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.ic_ball),
+            painter = painterResource(id = goalIcon),
             contentDescription = "",
             modifier = Modifier.size(spacing.spaceSmall * 3)
         )
@@ -90,8 +99,15 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
         else -> event.player
     }
 
-    val assist = if (event.assist == "null")"" else event.assist
+    val assist = if (event.assist == "null") "" else event.assist
 
+    val goalIcon =
+        remember {
+            if (event.eventDetail == "Missed Penalty")
+                R.drawable.out_goal
+            else
+                R.drawable.in_goal
+        }
     Row(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
@@ -111,7 +127,7 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
         }
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Image(
-            painter = painterResource(id = R.drawable.ic_ball),
+            painter = painterResource(goalIcon),
             contentDescription = "",
             modifier = Modifier.size(spacing.spaceSmall * 3)
         )
