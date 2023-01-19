@@ -58,7 +58,7 @@ fun HomeSubstitution(event: Event, modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    text = event.assist,
+                    text = event.assist ?: "",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Green
                 )
@@ -101,7 +101,7 @@ fun AwaySubstitution(event: Event, modifier: Modifier = Modifier) {
                 )
 
                 Text(
-                    text = event.assist,
+                    text = event.assist ?: "",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Green
                 )

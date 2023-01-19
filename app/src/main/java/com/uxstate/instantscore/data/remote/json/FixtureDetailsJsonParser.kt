@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.data.json
+package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.domain.models.fixture_details.*
 import javax.inject.Inject
@@ -100,7 +100,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                         inExtra = teamJsonObj.optInt("extra", -1),
                         player = playerJsonObj.optString("name", ""),
                         side = teamJsonObj.optString("name", ""),
-                        assist = assistJsonObj.optString("name", ""),
+                        assist = assistJsonObj.optString("name", "G"),
                         eventType = innerEventObj.optString("type"),
                         eventDetail = innerEventObj.optString("detail")
                     )

@@ -1,8 +1,8 @@
 package com.uxstate.instantscore.data.repository
 
-import com.uxstate.instantscore.data.json.JsonStringParser
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.data.remote.json.JsonStringParser
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails

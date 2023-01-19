@@ -51,12 +51,19 @@ fun HomeGoalEvent(event: Event, modifier: Modifier = Modifier) {
         )
 
         Column() {
+
+            val goalDetails = when (event.eventDetail) {
+
+                "Normal Goal" -> event.player
+                "Penalty" -> "${event.player} [Penalty]"
+                else -> event.player
+            }
             Text(
-                text = event.player,
+                text = goalDetails,
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = event.assist, style = MaterialTheme.typography.bodySmall)
+            Text(text = event.assist ?: "", style = MaterialTheme.typography.bodySmall)
         }
     }
 }
@@ -73,12 +80,18 @@ fun AwayGoalEvent(event: Event, modifier: Modifier = Modifier) {
     ) {
 
         Column() {
+            val goalDetails = when (event.eventDetail) {
+
+                "Normal Goal" -> event.player
+                "Penalty" -> "${event.player} [Penalty]"
+                else -> event.player
+            }
             Text(
-                text = event.player,
+                text = goalDetails,
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = event.assist, style = MaterialTheme.typography.bodySmall)
+            Text(text = event.assist ?: "", style = MaterialTheme.typography.bodySmall)
         }
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Image(

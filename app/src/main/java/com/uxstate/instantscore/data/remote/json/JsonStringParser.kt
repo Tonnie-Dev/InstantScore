@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.data.json
+package com.uxstate.instantscore.data.remote.json
 
 interface JsonStringParser<T> {
 

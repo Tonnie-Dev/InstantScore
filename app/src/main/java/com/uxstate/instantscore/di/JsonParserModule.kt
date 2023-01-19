@@ -1,7 +1,7 @@
 package com.uxstate.instantscore.di
 
-import com.uxstate.instantscore.data.json.FixtureDetailsJsonParser
-import com.uxstate.instantscore.data.json.JsonStringParser
+import com.uxstate.instantscore.data.remote.json.FixtureDetailsJsonParser
+import com.uxstate.instantscore.data.remote.json.JsonStringParser
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import dagger.Binds
 import dagger.Module
