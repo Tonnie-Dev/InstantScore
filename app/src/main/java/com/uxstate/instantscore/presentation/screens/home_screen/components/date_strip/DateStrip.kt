@@ -15,7 +15,8 @@ import java.time.LocalDate
 @Composable
 fun DateStrip(
     onDateChange: (date: LocalDate) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isCalendarClicked:Boolean
 ) {
 
     val spacing = LocalSpacing.current
@@ -23,6 +24,13 @@ fun DateStrip(
         modifier = modifier,
         shape = RectangleShape
     ) {
+
+
+        if (isCalendarClicked){
+
+
+            SecondaryDateStrip(date = LocalDate.now())
+        }else{
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically,
@@ -31,7 +39,7 @@ fun DateStrip(
             LiveButton(onClickLiveButton = {})
             DateTextsRow(onDateChange = onDateChange)
             DatePickerItem(onDateChange = onDateChange)
-        }
+        }}
     }
 }
 
@@ -41,5 +49,5 @@ fun DateStrip(
 @Composable
 fun DateStripPreview() {
 
-    DateStrip(onDateChange = {})
+    DateStrip(onDateChange = {}, isCalendarClicked = false)
 }

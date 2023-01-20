@@ -1,10 +1,7 @@
 package com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,12 +13,21 @@ import com.uxstate.instantscore.utils.LocalSpacing
 import java.time.LocalDate
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.utils.toReverseStringDate
+import java.util.Date
 
 @Composable
-fun SecondaryDateStrip() {
+fun SecondaryDateStrip(date: LocalDate, modifier: Modifier = Modifier) {
 
-    Row() {
-
+    val spacing = LocalSpacing.current
+    Row(
+            modifier = modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceSmall),
+            horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        TodayDate(onDateTextClick = {})
+        SelectedDate(date = date)
+        DatePickerItem(onDateChange = {})
     }
 
 
@@ -60,7 +66,7 @@ fun TodayDate(onDateTextClick: (date: LocalDate) -> Unit, modifier: Modifier = M
 
 
 @Composable
-fun SelectedDate(date:LocalDate, modifier: Modifier = Modifier) {
+fun SelectedDate(date: LocalDate, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Column(
@@ -74,7 +80,7 @@ fun SelectedDate(date:LocalDate, modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center
     ) {
         Text(
-                text =  "${date.dayOfMonth}",
+                text = "${date.dayOfMonth}",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center

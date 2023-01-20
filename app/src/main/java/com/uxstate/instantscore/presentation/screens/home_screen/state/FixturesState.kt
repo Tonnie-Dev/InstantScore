@@ -9,5 +9,6 @@ data class FixturesState(
     val isRefresh: Boolean = false,
     val errorMessage: String = "",
     val fixtures: Map<League, List<Fixture>> = mapOf(),
-    val date: LocalDate = LocalDate.now()
+    val date: LocalDate = LocalDate.now(),
+    val isCalendarClicked:Boolean = false
 )

@@ -23,13 +23,7 @@ fun DatePickerItem(onDateChange: (date: LocalDate) -> Unit) {
 
     val spacing = LocalSpacing.current
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
-    val formattedDate by remember {
-        derivedStateOf {
 
-            // uses date util functions extension function
-            pickedDate.toReverseStringDate()
-        }
-    }
     val dialogState = rememberMaterialDialogState()
 
     Icon(
