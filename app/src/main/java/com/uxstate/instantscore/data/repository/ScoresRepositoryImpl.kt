@@ -10,7 +10,7 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
-import com.uxstate.instantscore.utils.toStringDate
+import com.uxstate.instantscore.utils.toReverseStringDate
 import java.io.IOException
 import java.time.LocalDate
 import javax.inject.Inject
@@ -64,7 +64,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
         val remoteFixtures = try {
 
-            api.getFixturesByDate(date.toStringDate())
+            api.getFixturesByDate(date.toReverseStringDate())
         } catch (httpException: HttpException) {
             httpException.printStackTrace() // emit error
             emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))

@@ -4,13 +4,20 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 
 // Extension function on LocalDateTime class to human readable date
-fun LocalDate.toStringDate(): String {
+fun LocalDate.toReverseStringDate(): String {
 
     val pattern = "yyyy-MM-dd"
     val dateFormatter = DateTimeFormatter.ofPattern(pattern)
     return this.format(dateFormatter)
 }
 
+
+fun LocalDate.toRegularStringDate(): String {
+
+    val pattern = "yyyy-MM-dd"
+    val dateFormatter = DateTimeFormatter.ofPattern(pattern)
+    return this.format(dateFormatter)
+}
 // Extension function on String class to LocalDateTime
 fun String.toLocalDate(): LocalDateTime {
 

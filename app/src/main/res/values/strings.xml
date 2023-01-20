@@ -7,4 +7,5 @@
     <string name="coaches_label">Coaches</string>
     <string name="substitutes_label">Substitutes</string>
     <string name="back_label">Back</string>
+    <string name="today_label_upper">TODAY</string>
 </resources>

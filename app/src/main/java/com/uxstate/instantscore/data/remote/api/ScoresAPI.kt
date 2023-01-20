@@ -12,7 +12,7 @@ interface ScoresAPI {
     suspend fun getFixturesByDate(
         @Query("date")
         date: String = LocalDate.now()
-            .toStringDate()
+            .toReverseStringDate()
     ): FixturesResponseDTO
 
     @GET(GET_FIXTURES)
