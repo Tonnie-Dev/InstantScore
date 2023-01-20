@@ -46,7 +46,9 @@ fun HomeScreen(
                         .padding(spacing.spaceSmall),
                     onDateChange = {
                         viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
-                    }
+                    },
+
+                        isCalendarClicked = state.isCalendarClicked
                 )
             }
 
