@@ -11,10 +11,9 @@ fun LocalDate.toReverseStringDate(): String {
     return this.format(dateFormatter)
 }
 
-
 fun LocalDate.toRegularStringDate(): String {
 
-    val pattern = "yyyy-MM-dd"
+    val pattern = "dd-MM-yyyy"
     val dateFormatter = DateTimeFormatter.ofPattern(pattern)
     return this.format(dateFormatter)
 }

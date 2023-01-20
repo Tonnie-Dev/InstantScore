@@ -9,87 +9,88 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import com.uxstate.instantscore.utils.LocalSpacing
-import java.time.LocalDate
 import com.uxstate.instantscore.R
-import com.uxstate.instantscore.utils.toReverseStringDate
-import java.util.Date
+import com.uxstate.instantscore.utils.LocalSpacing
+import com.uxstate.instantscore.utils.toRegularStringDate
+import java.time.LocalDate
 
 @Composable
-fun SecondaryDateStrip(date: LocalDate, modifier: Modifier = Modifier) {
+fun SecondaryDateStrip(
+    date: LocalDate,
+    modifier: Modifier = Modifier,
+    todayOnClick: (date: LocalDate) -> Unit,
+    onCalendarDateChange: (date: LocalDate) -> Unit
+) {
 
     val spacing = LocalSpacing.current
     Row(
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceSmall),
-            horizontalArrangement = Arrangement.SpaceBetween
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        TodayDate(onDateTextClick = {})
+
+        TodayDate(onTodaySecTextClick = todayOnClick)
         SelectedDate(date = date)
-        DatePickerItem(onDateChange = {})
+        DatePickerItem(onCalendarDateChange = onCalendarDateChange)
     }
-
-
 }
 
-
 @Composable
-fun TodayDate(onDateTextClick: (date: LocalDate) -> Unit, modifier: Modifier = Modifier) {
+fun TodayDate(onTodaySecTextClick: (date: LocalDate) -> Unit, modifier: Modifier = Modifier) {
 
     val today = LocalDate.now()
     val spacing = LocalSpacing.current
     Column(
-            modifier = modifier
-                    .clickable {
+        modifier = modifier
+            .clickable {
 
-                        onDateTextClick(today)
-                    }
-                    .padding(spacing.spaceSmall),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                onTodaySecTextClick(today)
+            }
+            .padding(spacing.spaceSmall),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
-                text = stringResource(R.string.today_label_upper),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+            text = stringResource(R.string.today_label_upper),
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center
         )
         Text(
-                text = "${today.dayOfMonth} ${today.dayOfMonth}",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+            text = "${today.dayOfMonth}-${today.month.name.substring(0..2)}",
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Center
         )
     }
 }
-
 
 @Composable
 fun SelectedDate(date: LocalDate, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Column(
-            modifier = modifier
-                    .clickable {
+        modifier = modifier
+            .clickable {
 
-                        //onDateTextClick(today)
-                    }
-                    .padding(spacing.spaceSmall),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                // onDateTextClick(today)
+            }
+            .padding(spacing.spaceSmall),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
-                text = "${date.dayOfMonth}",
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+            text = date.dayOfWeek.name,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
         )
         Text(
-                text = date.toReverseStringDate(),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+            text = date.toRegularStringDate(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
         )
     }
 }

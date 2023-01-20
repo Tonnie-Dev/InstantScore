@@ -12,14 +12,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
-import com.uxstate.instantscore.utils.toReverseStringDate
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 
 @Composable
-fun DatePickerItem(onDateChange: (date: LocalDate) -> Unit) {
+fun DatePickerItem(onCalendarDateChange: (date: LocalDate) -> Unit) {
 
     val spacing = LocalSpacing.current
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
@@ -38,7 +37,7 @@ fun DatePickerItem(onDateChange: (date: LocalDate) -> Unit) {
     MaterialDialog(
         dialogState = dialogState,
         buttons = {
-            positiveButton("OK") { onDateChange(pickedDate) }
+            positiveButton("OK") { onCalendarDateChange(pickedDate) }
             negativeButton("Cancel") {}
         }
     ) {
@@ -59,7 +58,7 @@ fun DatePickerItemPreview() {
 
     InstantScoreTheme {
 
-        DatePickerItem(onDateChange = {})
+        DatePickerItem(onCalendarDateChange = {})
     }
 }
 
@@ -69,6 +68,6 @@ fun DatePickerItemPreviewDark() {
 
     InstantScoreTheme {
 
-        DatePickerItem(onDateChange = {})
+        DatePickerItem(onCalendarDateChange = {})
     }
 }

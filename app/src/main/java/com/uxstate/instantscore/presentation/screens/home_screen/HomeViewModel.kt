@@ -74,10 +74,16 @@ class HomeViewModel @Inject constructor(
                 _fixturesState.value = _fixturesState.value.copy(isRefresh = event.isRefresh)
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
-            is OnFixtureDateSelection -> {
+            is OnCalendarDateSelection -> {
 
                 _fixturesState.value = _fixturesState.value.copy(date = event.date)
+                _fixturesState.value = _fixturesState.value.copy(isCalendarClicked = true)
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
+            }
+
+            is TodaySecDateSelection -> {
+
+                _fixturesState.value = _fixturesState.value.copy(isCalendarClicked = false)
             }
         }
     }

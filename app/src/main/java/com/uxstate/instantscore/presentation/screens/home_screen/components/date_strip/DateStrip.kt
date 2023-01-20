@@ -14,40 +14,49 @@ import java.time.LocalDate
 
 @Composable
 fun DateStrip(
+    date: LocalDate,
+    onTodayClick: (date: LocalDate) -> Unit,
     onDateChange: (date: LocalDate) -> Unit,
-    modifier: Modifier = Modifier,
-    isCalendarClicked:Boolean
+    isCalendarClicked: Boolean,
+    modifier: Modifier = Modifier
 ) {
 
     val spacing = LocalSpacing.current
+
     Card(
         modifier = modifier,
         shape = RectangleShape
     ) {
 
+        if (isCalendarClicked) {
 
-        if (isCalendarClicked){
-
-
-            SecondaryDateStrip(date = LocalDate.now())
-        }else{
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            LiveButton(onClickLiveButton = {})
-            DateTextsRow(onDateChange = onDateChange)
-            DatePickerItem(onDateChange = onDateChange)
-        }}
+            SecondaryDateStrip(
+                date = date,
+                todayOnClick = onTodayClick,
+                onCalendarDateChange = onDateChange
+            )
+        } else {
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                LiveButton(onClickLiveButton = {})
+                DateTextsRow(onDateChange = onDateChange)
+                DatePickerItem(onCalendarDateChange = onDateChange)
+            }
+        }
     }
 }
-
-
 
 @Preview
 @Composable
 fun DateStripPreview() {
 
-    DateStrip(onDateChange = {}, isCalendarClicked = false)
+    DateStrip(
+        date = LocalDate.now(),
+        onDateChange = {},
+        isCalendarClicked = false,
+        onTodayClick = {}
+    )
 }

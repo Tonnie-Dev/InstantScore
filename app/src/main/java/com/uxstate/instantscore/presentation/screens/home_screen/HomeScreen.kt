@@ -20,6 +20,7 @@ import com.uxstate.instantscore.presentation.screens.home_screen.components.date
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.utils.LocalSpacing
+import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
@@ -45,10 +46,16 @@ fun HomeScreen(
                         .padding(paddingValues = paddingValues)
                         .padding(spacing.spaceSmall),
                     onDateChange = {
-                        viewModel.onEvent(event = HomeEvent.OnFixtureDateSelection(date = it))
+                        viewModel.onEvent(event = HomeEvent.OnCalendarDateSelection(date = it))
                     },
 
-                        isCalendarClicked = state.isCalendarClicked
+                    isCalendarClicked = state.isCalendarClicked,
+                    onTodayClick = {
+                        viewModel.onEvent(
+                            event =
+                            HomeEvent.TodaySecDateSelection(date = LocalDate.now())
+                        )
+                    }, date = state.date
                 )
             }
 
