@@ -41,19 +41,13 @@ fun SecondaryDateStrip(
     ) {
 
         SecondaryHomeIcon(onSecondaryHomeIconClick = onSecondaryHomeIconClick)
+
         TogglePreviousDate(onTogglePrevDate = onTogglePrevDate, selectedDate = selectedDate)
-        SelectedDate(date = selectedDate)
+        SelectedDate(date = selectedDate, modifier = Modifier.fillMaxWidth(.4f))
         ToggleNextDate(onToggleNextDate = onToggleNextDate, selectedDate = selectedDate)
 
         DatePickerItem(onCalendarDateChange = onCalendarDateChange)
-        /* Box(
-             modifier = modifier
-                 .fillMaxWidth()
-                 .padding(spacing.spaceDefault)
-         ) {
 
-
-         }*/
     }
 }
 
@@ -75,29 +69,7 @@ fun SecondaryHomeIcon(
                 onSecondaryHomeIconClick(today)
             }
     )
-    /* Column(
-         modifier = modifier
-             .clickable {
 
-                 onTodaySecTextClick(today)
-             }
-             .padding(spacing.spaceSmall),
-         horizontalAlignment = Alignment.CenterHorizontally,
-         verticalArrangement = Arrangement.Center
-     ) {
-         Text(
-             text = stringResource(R.string.today_label_upper),
-             style = MaterialTheme.typography.titleMedium,
-             color = MaterialTheme.colorScheme.onSurface,
-             textAlign = TextAlign.Center
-         )
-         Text(
-             text = "${today.dayOfMonth}-${today.month.name.substring(0..2)}",
-             style = MaterialTheme.typography.labelSmall,
-             color = MaterialTheme.colorScheme.onSurface,
-             textAlign = TextAlign.Center
-         )
-     }*/
 }
 
 @Composable
