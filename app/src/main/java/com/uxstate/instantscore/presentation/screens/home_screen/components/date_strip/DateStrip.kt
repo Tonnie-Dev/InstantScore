@@ -17,6 +17,8 @@ fun DateStrip(
     date: LocalDate,
     onTodayClick: (date: LocalDate) -> Unit,
     onDateChange: (date: LocalDate) -> Unit,
+    onTogglePrevDate: (date: LocalDate) -> Unit,
+    onToggleNextDate: (date: LocalDate) -> Unit,
     isCalendarClicked: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -24,22 +26,24 @@ fun DateStrip(
     val spacing = LocalSpacing.current
 
     Card(
-        modifier = modifier,
-        shape = RectangleShape
+            modifier = modifier,
+            shape = RectangleShape
     ) {
 
         if (isCalendarClicked) {
 
             SecondaryDateStrip(
-                date = date,
-                todayOnClick = onTodayClick,
-                onCalendarDateChange = onDateChange
+                    selectedDate = date,
+                    onSecondaryHomeIconClick = onTodayClick,
+                    onCalendarDateChange = onDateChange,
+                    onTogglePrevDate = onTogglePrevDate,
+                    onToggleNextDate = onToggleNextDate
             )
         } else {
             Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
             ) {
                 LiveButton(onClickLiveButton = {})
                 DateTextsRow(onDateChange = onDateChange)
@@ -54,9 +58,11 @@ fun DateStrip(
 fun DateStripPreview() {
 
     DateStrip(
-        date = LocalDate.now(),
-        onDateChange = {},
-        isCalendarClicked = false,
-        onTodayClick = {}
+            date = LocalDate.now(),
+            onDateChange = {},
+            isCalendarClicked = false,
+            onTodayClick = {},
+            onTogglePrevDate = {},
+            onToggleNextDate = {}
     )
 }

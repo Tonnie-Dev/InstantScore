@@ -81,7 +81,7 @@ class HomeViewModel @Inject constructor(
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
 
-            is TodaySecDateSelection -> {
+            is OnHomeIconClick -> {
 
                 _fixturesState.value = _fixturesState.value.copy(isCalendarClicked = false)
             }

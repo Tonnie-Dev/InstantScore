@@ -54,7 +54,7 @@ fun HomeScreen(
                     onTodayClick = {
                         viewModel.onEvent(
                             event =
-                            HomeEvent.TodaySecDateSelection(date = LocalDate.now())
+                            HomeEvent.OnHomeIconClick(date = LocalDate.now())
                         )
                     }, date = state.date
                 )
