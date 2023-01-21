@@ -7,7 +7,7 @@ sealed class HomeEvent {
     data class OnCalendarDateSelection(val date: LocalDate) : HomeEvent()
     data class OnHomeIconClick(val date: LocalDate) : HomeEvent()
 
-    data class OnTogglePrevDate(val date: LocalDate):HomeEvent()
+    data class OnTogglePrevDate(val date: LocalDate) : HomeEvent()
 
-    data class OnToggleNextDate(val date: LocalDate):HomeEvent()
+    data class OnToggleNextDate(val date: LocalDate) : HomeEvent()
 }

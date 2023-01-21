@@ -29,15 +29,15 @@ fun SecondaryDateStrip(
     onCalendarDateChange: (date: LocalDate) -> Unit,
     modifier: Modifier = Modifier,
 
-    ) {
+) {
 
     val spacing = LocalSpacing.current
     Row(
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceExtraSmall),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceExtraSmall),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
         SecondaryHomeIcon(onSecondaryHomeIconClick = onSecondaryHomeIconClick)
@@ -67,13 +67,13 @@ fun SecondaryHomeIcon(
     val spacing = LocalSpacing.current
 
     Icon(
-            imageVector = Icons.Default.Home,
-            contentDescription = stringResource(R.string.home_label),
-            modifier = modifier
-                    .size(spacing.spaceLarge + spacing.spaceSmall)
-                    .clickable {
-                        onSecondaryHomeIconClick(today)
-                    }
+        imageVector = Icons.Default.Home,
+        contentDescription = stringResource(R.string.home_label),
+        modifier = modifier
+            .size(spacing.spaceLarge + spacing.spaceSmall)
+            .clickable {
+                onSecondaryHomeIconClick(today)
+            }
     )
     /* Column(
          modifier = modifier
@@ -105,26 +105,26 @@ fun SelectedDate(date: LocalDate, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Column(
-            modifier = modifier
-                    .clickable {
+        modifier = modifier
+            .clickable {
 
-                        // onDateTextClick(today)
-                    }
-                    .padding(spacing.spaceSmall),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                // onDateTextClick(today)
+            }
+            .padding(spacing.spaceSmall),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
-                text = date.dayOfWeek.name,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
+            text = date.dayOfWeek.name,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
         )
         Text(
-                text = date.toRegularStringDate(),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
+            text = date.toRegularStringDate(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
         )
     }
 }
@@ -138,12 +138,12 @@ fun TogglePreviousDate(
 
     val spacing = LocalSpacing.current
     Icon(
-            painter = painterResource(id = R.drawable.arrow_left),
-            contentDescription = stringResource(R.string.before_text),
-            modifier = modifier
-                    .size(spacing.spaceLarge + spacing.spaceMedium)
-                    .clickable { onTogglePrevDate(selectedDate.minusDays(1)) },
-            tint = MaterialTheme.colorScheme.primary
+        painter = painterResource(id = R.drawable.arrow_left),
+        contentDescription = stringResource(R.string.before_text),
+        modifier = modifier
+            .size(spacing.spaceLarge + spacing.spaceMedium)
+            .clickable { onTogglePrevDate(selectedDate.minusDays(1)) },
+        tint = MaterialTheme.colorScheme.primary
     )
 }
 
@@ -156,12 +156,12 @@ fun ToggleNextDate(
 
     val spacing = LocalSpacing.current
     Icon(
-            painter = painterResource(id = R.drawable.arrow_right),
-            contentDescription = stringResource(R.string.before_text),
-            modifier = modifier
-                    .size(spacing.spaceLarge + spacing.spaceMedium)
-                    .clickable { onToggleNextDate(selectedDate.plusDays(1)) },
-            tint = MaterialTheme.colorScheme.primary
+        painter = painterResource(id = R.drawable.arrow_right),
+        contentDescription = stringResource(R.string.before_text),
+        modifier = modifier
+            .size(spacing.spaceLarge + spacing.spaceMedium)
+            .clickable { onToggleNextDate(selectedDate.plusDays(1)) },
+        tint = MaterialTheme.colorScheme.primary
     )
 }
 
@@ -189,11 +189,11 @@ fun SecondaryDateStripPreview() {
 
     InstantScoreTheme {
         SecondaryDateStrip(
-                selectedDate = LocalDate.now(),
-                onSecondaryHomeIconClick = {},
-                onCalendarDateChange = {},
-                onToggleNextDate = {},
-                onTogglePrevDate = {}
+            selectedDate = LocalDate.now(),
+            onSecondaryHomeIconClick = {},
+            onCalendarDateChange = {},
+            onToggleNextDate = {},
+            onTogglePrevDate = {}
         )
     }
 }

@@ -84,6 +84,16 @@ class HomeViewModel @Inject constructor(
             is OnHomeIconClick -> {
 
                 _fixturesState.value = _fixturesState.value.copy(isCalendarClicked = false)
+                getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
+            }
+            is OnTogglePrevDate -> {
+                _fixturesState.value = _fixturesState.value.copy(date = event.date)
+                getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
+            }
+            is OnToggleNextDate -> {
+
+                _fixturesState.value = _fixturesState.value.copy(date = event.date)
+                getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
         }
     }

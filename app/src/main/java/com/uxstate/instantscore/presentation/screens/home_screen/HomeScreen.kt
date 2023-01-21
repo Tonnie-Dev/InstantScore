@@ -49,14 +49,19 @@ fun HomeScreen(
                     onDateChange = {
                         viewModel.onEvent(event = HomeEvent.OnCalendarDateSelection(date = it))
                     },
-
+                    date = state.date,
                     isCalendarClicked = state.isCalendarClicked,
                     onTodayClick = {
                         viewModel.onEvent(
                             event =
                             HomeEvent.OnHomeIconClick(date = LocalDate.now())
                         )
-                    }, date = state.date
+                    },
+
+                    onTogglePrevDate = {
+
+                        viewModel.onEvent(HomeEvent.OnTogglePrevDate(it))
+                    }, onToggleNextDate = { viewModel.onEvent(HomeEvent.OnToggleNextDate(it)) }
                 )
             }
 
