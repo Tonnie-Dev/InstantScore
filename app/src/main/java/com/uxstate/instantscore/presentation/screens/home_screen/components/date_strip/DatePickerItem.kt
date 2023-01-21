@@ -18,7 +18,10 @@ import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 
 @Composable
-fun DatePickerItem(onCalendarDateChange: (date: LocalDate) -> Unit) {
+fun DatePickerItem(
+    onCalendarDateChange: (date: LocalDate) -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     val spacing = LocalSpacing.current
     var pickedDate by remember { mutableStateOf(LocalDate.now()) }
@@ -30,7 +33,8 @@ fun DatePickerItem(onCalendarDateChange: (date: LocalDate) -> Unit) {
         contentDescription = stringResource(
             R.string.calendar_text
         ),
-        modifier = Modifier.clickable { dialogState.show() }
+        modifier = modifier
+            .clickable { dialogState.show() }
             .size(spacing.spaceLarge + spacing.spaceSmall)
     )
 

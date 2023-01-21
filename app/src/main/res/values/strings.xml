@@ -8,4 +8,6 @@
     <string name="substitutes_label">Substitutes</string>
     <string name="back_label">Back</string>
     <string name="today_label_upper">TODAY</string>
+    <string name="home_label">Home</string>
+    <string name="before_text">Before</string>
 </resources>

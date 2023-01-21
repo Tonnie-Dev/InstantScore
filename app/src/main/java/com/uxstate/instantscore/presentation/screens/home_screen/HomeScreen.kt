@@ -25,6 +25,7 @@ import java.time.LocalDate
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
 @RootNavGraph(start = true)
+
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
