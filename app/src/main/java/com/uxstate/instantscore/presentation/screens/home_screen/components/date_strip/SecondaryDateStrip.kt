@@ -27,23 +27,27 @@ fun SecondaryDateStrip(
     onCalendarDateChange: (date: LocalDate) -> Unit,
     modifier: Modifier = Modifier,
 
-    ) {
+) {
 
     val spacing = LocalSpacing.current
     Row(
-
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceExtraSmall),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
-
         TodayDate(
-                onTodaySecTextClick = todayOnClick,
+            onTodaySecTextClick = todayOnClick,
 
-                )
+        )
+        TogglePreviousDate(onTogglePrevDate = {})
         SelectedDate(date = date)
+        ToggleNextDate(onToggleNextDate = {})
+
         DatePickerItem(
-                onCalendarDateChange = onCalendarDateChange
+            onCalendarDateChange = onCalendarDateChange
         )
         /* Box(
              modifier = modifier
@@ -63,13 +67,13 @@ fun TodayDate(onTodaySecTextClick: (date: LocalDate) -> Unit, modifier: Modifier
     val spacing = LocalSpacing.current
 
     Icon(
-            imageVector = Icons.Default.Home,
-            contentDescription = stringResource(R.string.home_label),
-            modifier = modifier
-                    .size(spacing.spaceLarge + spacing.spaceSmall)
-                    .clickable {
-                        onTodaySecTextClick(today)
-                    }
+        imageVector = Icons.Default.Home,
+        contentDescription = stringResource(R.string.home_label),
+        modifier = modifier
+            .size(spacing.spaceLarge + spacing.spaceSmall)
+            .clickable {
+                onTodaySecTextClick(today)
+            }
     )
     /* Column(
          modifier = modifier
@@ -101,37 +105,70 @@ fun SelectedDate(date: LocalDate, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Column(
-            modifier = modifier
-                    .clickable {
+        modifier = modifier
+            .clickable {
 
-                        // onDateTextClick(today)
-                    }
-                    .padding(spacing.spaceSmall),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                // onDateTextClick(today)
+            }
+            .padding(spacing.spaceSmall),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
-                text = date.dayOfWeek.name,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
+            text = date.dayOfWeek.name,
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
         )
         Text(
-                text = date.toRegularStringDate(),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.primary,
-                textAlign = TextAlign.Center
+            text = date.toRegularStringDate(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary,
+            textAlign = TextAlign.Center
         )
     }
 }
 
 @Composable
-fun ToggleBefore(onToggleDateBefore: (date: LocalDate) -> Unit, modifier: Modifier = Modifier) {
+fun TogglePreviousDate(onTogglePrevDate: (date: LocalDate) -> Unit, modifier: Modifier = Modifier) {
+
+    val spacing = LocalSpacing.current
     Icon(
-            painter = painterResource(id = R.drawable.arrow_left),
-            contentDescription = stringResource(R.string.before_text),
-            modifier = modifier.size()
+        painter = painterResource(id = R.drawable.arrow_left),
+        contentDescription = stringResource(R.string.before_text),
+        modifier = modifier.size(spacing.spaceLarge + spacing.spaceMedium),
+        tint = MaterialTheme.colorScheme.primary
     )
+}
+
+@Composable
+fun ToggleNextDate(onToggleNextDate: (date: LocalDate) -> Unit, modifier: Modifier = Modifier) {
+
+    val spacing = LocalSpacing.current
+    Icon(
+        painter = painterResource(id = R.drawable.arrow_right),
+        contentDescription = stringResource(R.string.before_text),
+        modifier = modifier.size(spacing.spaceLarge + spacing.spaceMedium),
+        tint = MaterialTheme.colorScheme.primary
+    )
+}
+
+@Preview
+@Composable
+fun ToggleBeforePrev() {
+
+    InstantScoreTheme {
+        TogglePreviousDate(onTogglePrevDate = {})
+    }
+}
+
+@Preview
+@Composable
+fun ToggleNextPrev() {
+
+    InstantScoreTheme {
+        ToggleNextDate(onToggleNextDate = {})
+    }
 }
 
 @Preview
@@ -140,9 +177,9 @@ fun SecondaryDateStripPreview() {
 
     InstantScoreTheme {
         SecondaryDateStrip(
-                date = LocalDate.now(),
-                todayOnClick = {},
-                onCalendarDateChange = {}
+            date = LocalDate.now(),
+            todayOnClick = {},
+            onCalendarDateChange = {}
         )
     }
 }
