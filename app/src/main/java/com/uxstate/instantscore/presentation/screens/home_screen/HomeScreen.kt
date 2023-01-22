@@ -41,17 +41,20 @@ fun HomeScreen(
         Column() {
 
             Column() {
+
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
+
                 DateStrip(
-                    modifier = Modifier
-                        .padding(paddingValues = paddingValues)
-                        .padding(spacing.spaceSmall),
-                    onDateChange = {
-                        viewModel.onEvent(event = HomeEvent.OnCalendarDateSelection(date = it))
-                    },
                     date = state.date,
                     isCalendarClicked = state.isCalendarClicked,
-                    onTodayClick = {
+                    onDateTabClick = {
+                        viewModel.onEvent(HomeEvent.OnDateTabClick(it))
+                    },
+                    onCalendarDateChange = {
+                        viewModel.onEvent(event = HomeEvent.OnCalendarDateSelection(date = it))
+                    },
+
+                    onHomeDateTabClick = {
                         viewModel.onEvent(
                             event =
                             HomeEvent.OnHomeIconClick(date = LocalDate.now())
@@ -61,7 +64,14 @@ fun HomeScreen(
                     onTogglePrevDate = {
 
                         viewModel.onEvent(HomeEvent.OnTogglePrevDate(it))
-                    }, onToggleNextDate = { viewModel.onEvent(HomeEvent.OnToggleNextDate(it)) }
+                    },
+                    onToggleNextDate = {
+                        viewModel.onEvent(HomeEvent.OnToggleNextDate(it))
+                    },
+
+                    modifier = Modifier
+                        .padding(paddingValues = paddingValues)
+                        .padding(spacing.spaceSmall)
                 )
             }
 

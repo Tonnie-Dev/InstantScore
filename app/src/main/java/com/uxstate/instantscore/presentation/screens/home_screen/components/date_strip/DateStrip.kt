@@ -15,8 +15,9 @@ import java.time.LocalDate
 @Composable
 fun DateStrip(
     date: LocalDate,
-    onTodayClick: (date: LocalDate) -> Unit,
-    onDateChange: (date: LocalDate) -> Unit,
+    onHomeDateTabClick: (date: LocalDate) -> Unit,
+    onDateTabClick: (date: LocalDate) -> Unit,
+    onCalendarDateChange: (date: LocalDate) -> Unit,
     onTogglePrevDate: (date: LocalDate) -> Unit,
     onToggleNextDate: (date: LocalDate) -> Unit,
     isCalendarClicked: Boolean,
@@ -34,8 +35,8 @@ fun DateStrip(
 
             SecondaryDateStrip(
                 selectedDate = date,
-                onSecondaryHomeIconClick = onTodayClick,
-                onCalendarDateChange = onDateChange,
+                onSecondaryHomeIconClick = onHomeDateTabClick,
+                onCalendarDateChange = onCalendarDateChange,
                 onTogglePrevDate = onTogglePrevDate,
                 onToggleNextDate = onToggleNextDate
             )
@@ -46,8 +47,8 @@ fun DateStrip(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 LiveButton(onClickLiveButton = {})
-                DateTextsRow(onDateChange = onDateChange)
-                DatePickerItem(onCalendarDateChange = onDateChange)
+                DateTextsRow(onDateChange = onDateTabClick)
+                DatePickerItem(onCalendarDateChange = onCalendarDateChange)
             }
         }
     }
@@ -59,9 +60,10 @@ fun DateStripPreview() {
 
     DateStrip(
         date = LocalDate.now(),
-        onDateChange = {},
+        onDateTabClick = {},
+        onCalendarDateChange = {},
         isCalendarClicked = false,
-        onTodayClick = {},
+        onHomeDateTabClick = {},
         onTogglePrevDate = {},
         onToggleNextDate = {}
     )

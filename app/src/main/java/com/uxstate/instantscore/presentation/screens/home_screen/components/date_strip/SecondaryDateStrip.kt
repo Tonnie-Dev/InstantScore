@@ -47,7 +47,6 @@ fun SecondaryDateStrip(
         ToggleNextDate(onToggleNextDate = onToggleNextDate, selectedDate = selectedDate)
 
         DatePickerItem(onCalendarDateChange = onCalendarDateChange)
-
     }
 }
 
@@ -69,7 +68,6 @@ fun SecondaryHomeIcon(
                 onSecondaryHomeIconClick(today)
             }
     )
-
 }
 
 @Composable
