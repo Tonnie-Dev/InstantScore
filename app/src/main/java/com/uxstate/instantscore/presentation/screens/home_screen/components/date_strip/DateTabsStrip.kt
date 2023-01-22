@@ -13,7 +13,7 @@ import com.uxstate.instantscore.utils.LocalSpacing
 import java.time.LocalDate
 
 @Composable
-fun DateStrip(
+fun DateTabsStrip(
     date: LocalDate,
     onHomeDateTabClick: (date: LocalDate) -> Unit,
     onDateTabClick: (date: LocalDate) -> Unit,
@@ -47,7 +47,7 @@ fun DateStrip(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 LiveButton(onClickLiveButton = {})
-                DateTextsRow(onDateChange = onDateTabClick)
+                DateTabsRow(onDateChange = onDateTabClick)
                 DatePickerItem(onCalendarDateChange = onCalendarDateChange)
             }
         }
@@ -58,7 +58,7 @@ fun DateStrip(
 @Composable
 fun DateStripPreview() {
 
-    DateStrip(
+    DateTabsStrip(
         date = LocalDate.now(),
         onDateTabClick = {},
         onCalendarDateChange = {},

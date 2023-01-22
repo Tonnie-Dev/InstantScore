@@ -19,7 +19,7 @@ import com.uxstate.instantscore.utils.LocalSpacing
 import java.time.LocalDate
 
 @Composable
-fun DateText(
+fun DateTab(
     dateTextIndex: Int,
     onDateTextClick: (localDate: LocalDate) -> Unit,
     modifier: Modifier = Modifier,
@@ -77,7 +77,7 @@ fun DateText(
 @Composable
 fun DateTextPreview() {
     InstantScoreTheme {
-        DateText(dateTextIndex = 1, onDateTextClick = {})
+        DateTab(dateTextIndex = 1, onDateTextClick = {})
     }
 }
 
@@ -87,7 +87,7 @@ fun DateTextPreviewDark() {
 
     InstantScoreTheme {
 
-        DateText(
+        DateTab(
             dateTextIndex = 3,
 
             onDateTextClick = {}

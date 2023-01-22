@@ -7,16 +7,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
-import com.uxstate.instantscore.utils.LocalSpacing
 import java.time.LocalDate
 
 @Composable
-fun DateTextsRow(
+fun DateTabsRow(
     modifier: Modifier = Modifier,
     onDateChange: (date: LocalDate) -> Unit
 ) {
     var selectedIndex by remember { mutableStateOf(2) }
-    val spacing = LocalSpacing.current
+
     // 5 DateTexts row
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -26,7 +25,7 @@ fun DateTextsRow(
         (0..4).forEach { i ->
 
             val isSelected = (i == selectedIndex)
-            DateText(dateTextIndex = i, isSelected = isSelected, onDateTextClick = {
+            DateTab(dateTextIndex = i, isSelected = isSelected, onDateTextClick = {
                 selectedIndex = i
                 onDateChange(it)
             })
@@ -39,7 +38,7 @@ fun DateTextsRow(
 fun DateTextsRowPreview() {
 
     InstantScoreTheme() {
-        DateTextsRow(onDateChange = {})
+        DateTabsRow(onDateChange = {})
     }
 }
 
@@ -48,6 +47,6 @@ fun DateTextsRowPreview() {
 fun DateTextsRowPreviewDark() {
 
     InstantScoreTheme() {
-        DateTextsRow(onDateChange = {})
+        DateTabsRow(onDateChange = {})
     }
 }

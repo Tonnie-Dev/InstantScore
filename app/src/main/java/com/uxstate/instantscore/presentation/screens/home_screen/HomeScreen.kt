@@ -16,7 +16,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
-import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateStrip
+import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateTabsStrip
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.utils.LocalSpacing
@@ -44,7 +44,7 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.height(spacing.spaceSmall))
 
-                DateStrip(
+                DateTabsStrip(
                     date = state.date,
                     isCalendarClicked = state.isCalendarClicked,
                     onDateTabClick = {
