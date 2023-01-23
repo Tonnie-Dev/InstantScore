@@ -19,7 +19,6 @@ import com.uxstate.instantscore.presentation.screens.details_screen.components.t
 import com.uxstate.instantscore.presentation.screens.details_screen.components.tabs.TabsRow
 import com.uxstate.instantscore.utils.UIEvent
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
 @Destination
@@ -36,22 +35,19 @@ fun DetailsScreen(
     val coroutineScope = rememberCoroutineScope()
 
     val tabs = listOf(
-        TabItemSealedClass.EventsTab(fixtureDetails = state.fixtureDetails),
-        TabItemSealedClass.LineUpsTab(fixtureDetails = state.fixtureDetails),
-        TabItemSealedClass.StatsTab(fixtureDetails = state.fixtureDetails)
+            TabItemSealedClass.EventsTab(fixtureDetails = state.fixtureDetails),
+            TabItemSealedClass.LineUpsTab(fixtureDetails = state.fixtureDetails),
+            TabItemSealedClass.StatsTab(fixtureDetails = state.fixtureDetails)
     )
 
     // listen to UIEvent
 
     LaunchedEffect(key1 = true, block = {
 
-
-        viewModel.uiEvent.collect {
-            event ->
+        viewModel.uiEvent.collect { event ->
             when (event) {
 
                 is UIEvent.ShowSnackBarUiEvent -> {
-
 
                     coroutineScope.launch {
                         snackbarHostState.showSnackbar(event.message)
@@ -64,7 +60,6 @@ fun DetailsScreen(
     Scaffold(snackbarHost = { SnackbarHost(hostState = (snackbarHostState)) }) { paddingValues ->
 
         Column(modifier = Modifier.padding(paddingValues)) {
-
             FixturePoster(details = state.fixtureDetails) { navigator.navigateUp() }
             TabsRow(tabs = tabs, pagerState = pageState)
             TabsContent(tabs = tabs, pagerState = pageState)
