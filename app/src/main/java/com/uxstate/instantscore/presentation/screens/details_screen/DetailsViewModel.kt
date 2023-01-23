@@ -25,6 +25,8 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
     init {
 
         getFixtureDetails(fixtureId = 777)
+
+
     }
 
     private fun getFixtureDetails(fixtureId: Int) {
