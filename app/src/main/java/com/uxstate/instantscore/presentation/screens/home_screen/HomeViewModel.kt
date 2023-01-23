@@ -7,10 +7,12 @@ import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEven
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent.*
 import com.uxstate.instantscore.presentation.screens.home_screen.state.FixturesState
 import com.uxstate.instantscore.utils.Resource
+import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.time.LocalDate
 import javax.inject.Inject
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -27,6 +29,8 @@ class HomeViewModel @Inject constructor(
 
     private var job: Job? = null
 
+
+    private val _uiEvent = Channel<UIEvent>()
     init {
 
         getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
