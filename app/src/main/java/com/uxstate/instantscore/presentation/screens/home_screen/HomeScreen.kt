@@ -18,6 +18,7 @@ import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEven
 import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination
@@ -35,6 +36,7 @@ fun HomeScreen(
     val mappedFixtures = state.fixtures.toList()
 
     val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     // listen to UIEvent sent from the ViewModel, true to run once
     LaunchedEffect(key1 = true, block = {
@@ -46,19 +48,21 @@ fun HomeScreen(
 
                 is UIEvent.ShowSnackBarUiEvent -> {
 
-                    // show snackbar
+                    //  show snackbar as a suspend function
 
-                    snackbarHostState.showSnackbar(
-                        message = event.message,
-                        actionLabel = event.action,
-                        duration = SnackbarDuration.Short
-                    )
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(
+                            message = event.message,
+                            actionLabel = event.action,
+                            duration = SnackbarDuration.Short
+                        )
+                    }
                 }
             }
         }
     })
 
-    Scaffold { paddingValues ->
+    Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { paddingValues ->
         Column() {
 
             Column() {
