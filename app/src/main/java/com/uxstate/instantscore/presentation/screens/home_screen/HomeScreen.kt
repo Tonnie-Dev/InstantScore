@@ -3,12 +3,8 @@ package com.uxstate.instantscore.presentation.screens.home_screen
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -20,6 +16,7 @@ import com.uxstate.instantscore.presentation.screens.home_screen.components.date
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.utils.LocalSpacing
+import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,6 +33,30 @@ fun HomeScreen(
     val spacing = LocalSpacing.current
 
     val mappedFixtures = state.fixtures.toList()
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // listen to UIEvent sent from the ViewModel, true to run once
+    LaunchedEffect(key1 = true, block = {
+
+        viewModel.uiEvent.collect {
+
+            event ->
+            when (event) {
+
+                is UIEvent.ShowSnackBarUiEvent -> {
+
+                    // show snackbar
+
+                    snackbarHostState.showSnackbar(
+                        message = event.message,
+                        actionLabel = event.action,
+                        duration = SnackbarDuration.Short
+                    )
+                }
+            }
+        }
+    })
 
     Scaffold { paddingValues ->
         Column() {

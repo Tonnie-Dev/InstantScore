@@ -1,3 +1,6 @@
 package com.uxstate.instantscore.utils
 
-data class UIEvent(val message:String, val action:String)
+sealed class UIEvent() {
+
+    data class ShowSnackBarUiEvent(val message: String, val action: String) : UIEvent()
+}

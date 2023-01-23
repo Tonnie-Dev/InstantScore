@@ -13,10 +13,8 @@ import java.time.LocalDate
 import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @HiltViewModel
@@ -29,8 +27,9 @@ class HomeViewModel @Inject constructor(
 
     private var job: Job? = null
 
-
     private val _uiEvent = Channel<UIEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
+
     init {
 
         getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
@@ -57,9 +56,18 @@ class HomeViewModel @Inject constructor(
                     }
                     is Resource.Error -> {
 
-                        result.errorMessage?.let {
-                            _fixturesState.value = _fixturesState.value.copy(errorMessage = it)
-                        }
+                        // stop loading, set whatever data is available
+                        _fixturesState.value = _fixturesState.value.copy(
+                            isLoading = false,
+                            fixtures = result.data ?: emptyMap()
+                        )
+
+                        sendUIEvent(
+                            UIEvent.ShowSnackBarUiEvent(
+                                message = result.errorMessage ?: "Unknown Error",
+                                action = "OK"
+                            )
+                        )
                     }
                     is Resource.Loading -> {
 
@@ -70,6 +78,7 @@ class HomeViewModel @Inject constructor(
             }
             .launchIn(viewModelScope)
     }
+
     fun onEvent(event: HomeEvent) {
 
         when (event) {
@@ -104,6 +113,13 @@ class HomeViewModel @Inject constructor(
                 _fixturesState.value = _fixturesState.value.copy(date = event.date)
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
+        }
+    }
+
+    fun sendUIEvent(event: UIEvent) {
+        viewModelScope.launch {
+
+            _uiEvent.send(event)
         }
     }
 }
