@@ -45,14 +45,14 @@ fun DetailsScreen(
 
     LaunchedEffect(key1 = true, block = {
 
-        Timber.i("Inside DetailsScreen LaunchedBloc,")
+
         viewModel.uiEvent.collect {
             event ->
             when (event) {
 
                 is UIEvent.ShowSnackBarUiEvent -> {
 
-                    Timber.i("Show Snackbar now")
+
                     coroutineScope.launch {
                         snackbarHostState.showSnackbar(event.message)
                     }

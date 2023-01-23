@@ -36,13 +36,13 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // fetch locally
         val localFixtures = dao.getFixturesByDate(
-            dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
+                dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
         )
 
         val mappedLocalFixtures = localFixtures.map { it.toModel() }
-            .groupBy {
-                it.league
-            }
+                .groupBy {
+                    it.league
+                }
 
         // emit local fixtures
         emit(Resource.Success(data = mappedLocalFixtures))
@@ -75,12 +75,18 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                Resource.Error(
-                    errorMessage = """
+                    Resource.Error(
+                            errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                )
+                    )
             ) // return null
+            null
+        } catch (e: Exception) {
+
+
+            e.printStackTrace() // emit error
+            emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))
             null
         }
 
@@ -96,13 +102,13 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // read from single source of truth and emit
         val updatedLocalFixtures = dao.getFixturesByDate(
-            dayOfMonth = date.dayOfMonth,
-            month = date.monthValue,
-            year = date.year
+                dayOfMonth = date.dayOfMonth,
+                month = date.monthValue,
+                year = date.year
         )
 
         val mappedUpdatedLocalFixtures = updatedLocalFixtures.map { it.toModel() }
-            .groupBy { it.league }
+                .groupBy { it.league }
         // emit updatedLocalFixtures
 
         emit(Resource.Success(data = mappedUpdatedLocalFixtures))
@@ -112,7 +118,7 @@ class ScoresRepositoryImpl @Inject constructor(
     }
 
     override fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>> = flow {
-        Timber.i("entering getFixturesDetails")
+
         val remoteFixtureJsonString = try {
             api.getFixtureDetails(fixtureId = fixtureId)
         } catch (httpException: HttpException) {
@@ -125,24 +131,32 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                Resource.Error(
-                    errorMessage = """
+                    Resource.Error(
+                            errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                )
+                    )
             ) // return null
             null
         }
+        //catch generalized errors
+        catch (e: Exception) {
 
-        Timber.i("The String is $remoteFixtureJsonString")
+
+            e.printStackTrace() // emit error
+            emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))
+            null
+        }
+
+
         val fixtureDetails = remoteFixtureJsonString?.let {
-            Timber.i("entering json parsing block")
+
             jsonStringParser.parseJsonToFixtureDetails(it)
         }
 
-        Timber.i("Returned FixtureDetails Class is $fixtureDetails")
+
         emit(Resource.Success(data = fixtureDetails))
 
-        Timber.i("Leaving getFixtureDetails")
+
     }
 }

@@ -28,7 +28,7 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
     }
 
     private fun getFixtureDetails(fixtureId: Int) {
-        Timber.i("getFixtureDetails invoked")
+
         useCaseContainer.getFixtureDetailsUseCase(fixtureId)
             .onEach { result ->
 
@@ -43,13 +43,13 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
                         Timber.i("Success")
                     }
                     is Resource.Loading -> {
-                        Timber.i("Loading status is ${result.isLoading}")
+
                         _fakeState.value = _fakeState.value.copy(isLoading = result.isLoading)
                     }
                     is Resource.Error -> {
                         // stop loading, set the ?data available in this case leave the default
                         // FixtureDetails ()item
-                        Timber.i("Error Found ${result.errorMessage ?: "Unknown Error"}")
+
                         _fakeState.value = _fakeState.value.copy(isLoading = false)
 
                         // send ui event
@@ -66,7 +66,7 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
     }
 
     private fun sendUiEvent(event: UIEvent) {
-        Timber.i("sendUiEvent() invoked")
+
         viewModelScope.launch {
 
             _uiEvent.send(event)
