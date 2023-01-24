@@ -32,6 +32,7 @@ class DetailsViewModel @Inject constructor(
     init {
 
         getFixtureDetails(fixtureId = navArgs.id)
+        Timber.i("The id is: ${navArgs.id}")
     }
 
     private fun getFixtureDetails(fixtureId: Int) {
