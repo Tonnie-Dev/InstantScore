@@ -21,10 +21,11 @@ import com.uxstate.instantscore.utils.UIEvent
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class, ExperimentalMaterial3Api::class)
-@Destination
+@Destination(navArgsDelegate = DetailsScreenNavArgs::class)
 @Composable
+
+// receiving composable screen
 fun DetailsScreen(
-    fixtureId: Int,
     viewModel: DetailsViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
@@ -35,9 +36,9 @@ fun DetailsScreen(
     val coroutineScope = rememberCoroutineScope()
 
     val tabs = listOf(
-            TabItemSealedClass.EventsTab(fixtureDetails = state.fixtureDetails),
-            TabItemSealedClass.LineUpsTab(fixtureDetails = state.fixtureDetails),
-            TabItemSealedClass.StatsTab(fixtureDetails = state.fixtureDetails)
+        TabItemSealedClass.EventsTab(fixtureDetails = state.fixtureDetails),
+        TabItemSealedClass.LineUpsTab(fixtureDetails = state.fixtureDetails),
+        TabItemSealedClass.StatsTab(fixtureDetails = state.fixtureDetails)
     )
 
     // listen to UIEvent
@@ -66,3 +67,5 @@ fun DetailsScreen(
         }
     }
 }
+
+data class DetailsScreenNavArgs(val id: Int)

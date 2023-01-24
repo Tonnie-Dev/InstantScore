@@ -1,9 +1,11 @@
 package com.uxstate.instantscore.presentation.screens.details_screen
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.presentation.screens.details_screen.state.FixtureDetailsState
+import com.uxstate.instantscore.presentation.screens.navArgs
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +16,13 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCaseContainer) :
-    ViewModel() {
+class DetailsViewModel @Inject constructor(
+    private val useCaseContainer: UseCaseContainer,
+    handle: SavedStateHandle
+) : ViewModel() {
+
+    private val navArgs = handle.navArgs<DetailsScreenNavArgs>()
+
     private val _fakeState = MutableStateFlow(FixtureDetailsState())
     val fakeState = _fakeState.asStateFlow()
 
@@ -24,9 +31,7 @@ class DetailsViewModel @Inject constructor(private val useCaseContainer: UseCase
 
     init {
 
-        getFixtureDetails(fixtureId = 777)
-
-
+        getFixtureDetails(fixtureId = navArgs.id)
     }
 
     private fun getFixtureDetails(fixtureId: Int) {
