@@ -1,5 +1,6 @@
 package com.uxstate.instantscore.presentation.screens.details_screen.components.events
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -52,7 +53,7 @@ fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
         LottieDefinition(
             lottieRes = R.raw.empty_info,
-            // modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxSize()
         )
     }
 }

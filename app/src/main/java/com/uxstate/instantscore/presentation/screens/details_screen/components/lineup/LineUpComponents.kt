@@ -3,161 +3,128 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components.
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
-import com.uxstate.instantscore.presentation.screens.common_components.LottieDefinition
+import com.uxstate.instantscore.domain.models.fixture_details.LineUp
 import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.fromHex
 
 @Composable
-fun StartingElevenCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
+fun StartingElevenCard(lineUps: List<LineUp>, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
-    if (fixtureDetails.lineUps.isNotEmpty()) {
 
-        val homeLineUp = fixtureDetails.lineUps[0]
-        val awayLineUp = fixtureDetails.lineUps[1]
+    val homeLineUp = lineUps[0]
+    val awayLineUp = lineUps[1]
 
-        val homeColor = Color.fromHex(homeLineUp.teamColor)
-        val awayColor = Color.fromHex(awayLineUp.teamColor)
+    val homeColor = Color.fromHex(homeLineUp.teamColor)
+    val awayColor = Color.fromHex(awayLineUp.teamColor)
 
-        Card(modifier = modifier.padding(spacing.spaceSmall)) {
+    Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
-            Row {
+        Row {
 
-                // Home Column
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    homeLineUp.startingXI.forEach { player ->
-                        PlayerShirtCard(
-                            player = player,
-                            teamColor = homeColor
-                        )
-                    }
-                }
-
-                // Away column
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    awayLineUp.startingXI.forEach { player ->
-                        PlayerShirtCard(
-                            player = player,
-                            teamColor = awayColor
-                        )
-                    }
+            // Home Column
+            Column(
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
+            ) {
+                homeLineUp.startingXI.forEach { player ->
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = homeColor
+                    )
                 }
             }
-        }
-    } else {
-        Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-
-                LottieDefinition(lottieRes = R.raw.empty_info)
+            // Away column
+            Column(
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
+            ) {
+                awayLineUp.startingXI.forEach { player ->
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = awayColor
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun SubstitutesCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
+fun SubstitutesCard(lineUps: List<LineUp>, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
-    if (fixtureDetails.lineUps.isNotEmpty()) {
-        val homeLineUp = fixtureDetails.lineUps[0]
-        val awayLineUp = fixtureDetails.lineUps[1]
 
-        val homeColor = Color.fromHex(homeLineUp.teamColor)
-        val awayColor = Color.fromHex(awayLineUp.teamColor)
-        Card(modifier = modifier.padding(spacing.spaceSmall)) {
+    val homeLineUp = lineUps[0]
+    val awayLineUp = lineUps[1]
 
-            Row {
+    val homeColor = Color.fromHex(homeLineUp.teamColor)
+    val awayColor = Color.fromHex(awayLineUp.teamColor)
+    Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
-                // Home Column
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    homeLineUp.substitutes.forEach { player ->
-                        PlayerShirtCard(
-                            player = player,
-                            teamColor = homeColor
-                        )
-                    }
-                }
+        Row {
 
-                // Away column
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    awayLineUp.substitutes.forEach { player ->
-                        PlayerShirtCard(
-                            player = player,
-                            teamColor = awayColor
-                        )
-                    }
+            // Home Column
+            Column(
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
+            ) {
+                homeLineUp.substitutes.forEach { player ->
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = homeColor
+                    )
                 }
             }
-        }
-    } else {
 
-        Card(modifier = modifier.padding(spacing.spaceSmall)) {
-            LottieDefinition(
-                lottieRes = R.raw.empty_info,
-                modifier = Modifier.size(spacing.spaceExtraLarge)
-            )
+            // Away column
+            Column(
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
+            ) {
+                awayLineUp.substitutes.forEach { player ->
+                    PlayerShirtCard(
+                        player = player,
+                        teamColor = awayColor
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
-fun CoachesCard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
+fun CoachesCard(lineUps: List<LineUp>, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
 
-    if (fixtureDetails.lineUps.isNotEmpty()) {
-        val homeLineUp = fixtureDetails.lineUps[0]
-        val awayLineUp = fixtureDetails.lineUps[1]
+    val homeLineUp = lineUps[0]
+    val awayLineUp = lineUps[1]
 
-        val homeColor = Color.fromHex(homeLineUp.teamColor)
-        val awayColor = Color.fromHex(awayLineUp.teamColor)
+    val homeColor = Color.fromHex(homeLineUp.teamColor)
+    val awayColor = Color.fromHex(awayLineUp.teamColor)
 
-        Card(modifier = modifier.padding(spacing.spaceSmall)) {
+    Card(modifier = modifier.padding(spacing.spaceSmall)) {
 
-            Row {
+        Row {
 
-                // Home Column
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    CoachPortraitCard(coach = homeLineUp.coach, teamColor = homeColor)
-                }
-
-                // Away column
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    CoachPortraitCard(coach = awayLineUp.coach, teamColor = awayColor)
-                }
+            // Home Column
+            Column(
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
+            ) {
+                CoachPortraitCard(coach = homeLineUp.coach, teamColor = homeColor)
             }
-        }
-    } else {
 
-        Card(modifier = modifier.padding(spacing.spaceSmall)) {
-
-            LottieDefinition(
-                lottieRes = R.raw.empty_info,
-                modifier = Modifier.size(spacing.spaceExtraLarge)
-            )
+            // Away column
+            Column(
+                verticalArrangement = Arrangement.spacedBy(spacing.spaceMedium),
+                modifier = Modifier.weight(1f)
+            ) {
+                CoachPortraitCard(coach = awayLineUp.coach, teamColor = awayColor)
+            }
         }
     }
 }

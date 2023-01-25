@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixture_details.*
+import com.uxstate.instantscore.presentation.screens.common_components.LottieDefinition
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
@@ -19,32 +20,39 @@ import com.uxstate.instantscore.utils.LocalSpacing
 fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
-    Column(
-        modifier = modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
-    ) {
+    val lineUps = fixtureDetails.lineUps
 
-        StartingElevenCard(fixtureDetails = fixtureDetails)
-        Text(
-            text = stringResource(R.string.substitutes_label),
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = FontWeight.Black,
-            modifier = Modifier.padding(
-                horizontal = spacing.spaceMedium + spacing.spaceSmall
-            )
-        )
-        SubstitutesCard(fixtureDetails = fixtureDetails)
+    if (lineUps.isNotEmpty()) {
 
-        Text(
-            text = stringResource(R.string.coaches_label),
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = FontWeight.Black,
-            modifier = Modifier.padding(
-                horizontal = spacing.spaceMedium + spacing.spaceSmall
+        Column(
+            modifier = modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
+        ) {
+
+            StartingElevenCard(lineUps = lineUps)
+            Text(
+                text = stringResource(R.string.substitutes_label),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Black,
+                modifier = Modifier.padding(
+                    horizontal = spacing.spaceMedium + spacing.spaceSmall
+                )
             )
-        )
-        CoachesCard(fixtureDetails = fixtureDetails)
+            SubstitutesCard(lineUps = lineUps)
+
+            Text(
+                text = stringResource(R.string.coaches_label),
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Black,
+                modifier = Modifier.padding(
+                    horizontal = spacing.spaceMedium + spacing.spaceSmall
+                )
+            )
+            CoachesCard(lineUps = lineUps)
+        }
+    } else {
+        LottieDefinition(lottieRes = R.raw.empty_info, modifier.fillMaxSize())
     }
 }
 
