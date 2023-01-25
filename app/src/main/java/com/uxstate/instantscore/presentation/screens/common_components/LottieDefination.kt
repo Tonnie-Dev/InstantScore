@@ -8,35 +8,23 @@ import com.airbnb.lottie.compose.*
 
 @Composable
 fun LottieDefinition(@RawRes lottieRes: Int, modifier: Modifier = Modifier) {
-    //spec - points to the raw resource
-    //composition - render JSON file
-    //state - manipulate state
-    //LottieAnimation - display the anim composable
-
+    // spec - points to the raw resource
+    // composition - render JSON file
+    // state - manipulate state
+    // LottieAnimation - display the anim composable
 
     val spec = LottieCompositionSpec.RawRes(lottieRes)
 
     val composition by rememberLottieComposition(spec = spec)
 
     val state by animateLottieCompositionAsState(
-            composition = composition,
-            iterations = LottieConstants.IterateForever
+        composition = composition,
+        iterations = LottieConstants.IterateForever
     )
 
-    LottieAnimation(composition = composition, progress = { state }, modifier = modifier)
+    LottieAnimation(
+        composition = composition,
+        progress = { state },
+        modifier = modifier
+    )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
