@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.presentation.screens.common_components
 
 import androidx.annotation.RawRes
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -25,6 +26,6 @@ fun LottieDefinition(@RawRes lottieRes: Int, modifier: Modifier = Modifier) {
     LottieAnimation(
         composition = composition,
         progress = { state },
-        modifier = modifier
+        modifier = modifier.fillMaxWidth().fillMaxWidth()
     )
 }

@@ -6,40 +6,53 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
+import com.uxstate.instantscore.presentation.screens.common_components.LottieDefinition
+import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
 fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
+    val spacing = LocalSpacing.current
     val homeTeam = fixtureDetails.teams.first.name
 
     val events = fixtureDetails.events
 
-    Card(modifier = modifier.fillMaxWidth()) {
+    if (events.isNotEmpty()) {
 
-        LazyColumn {
+        Card(modifier = modifier.fillMaxWidth()) {
 
-            items(events) { event ->
+            LazyColumn {
 
-                val isHomeEvent = event.side == homeTeam
-                when (event.eventType) {
+                items(events) { event ->
 
-                    "Goal" -> {
+                    val isHomeEvent = event.side == homeTeam
+                    when (event.eventType) {
 
-                        GoalEvent(event = event, isHomeEvent)
-                    }
+                        "Goal" -> {
 
-                    "Card" -> {
+                            GoalEvent(event = event, isHomeEvent)
+                        }
 
-                        CardEvent(event = event, isHomeTeamEvent = isHomeEvent)
-                    }
+                        "Card" -> {
 
-                    "subst" -> {
+                            CardEvent(event = event, isHomeTeamEvent = isHomeEvent)
+                        }
 
-                        SubstitutionEvent(event = event, isHomeTeamEvent = isHomeEvent)
+                        "subst" -> {
+
+                            SubstitutionEvent(event = event, isHomeTeamEvent = isHomeEvent)
+                        }
                     }
                 }
             }
         }
+    } else {
+
+        LottieDefinition(
+            lottieRes = R.raw.empty_info,
+            // modifier = Modifier.fillMaxWidth()
+        )
     }
 }
