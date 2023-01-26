@@ -12,4 +12,6 @@ sealed class HomeEvent {
     data class OnTogglePrevDate(val date: LocalDate) : HomeEvent()
 
     data class OnToggleNextDate(val date: LocalDate) : HomeEvent()
+
+    object OnSwipeRefresh:HomeEvent()
 }
