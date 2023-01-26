@@ -3,6 +3,10 @@ package com.uxstate.instantscore.presentation.screens.home_screen
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,7 +24,7 @@ import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Destination
 @RootNavGraph(start = true)
 
@@ -37,6 +41,11 @@ fun HomeScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+
+    val swipeRefreshState = rememberPullRefreshState(
+        refreshing = state.isRefresh,
+        onRefresh = { viewModel.onEvent(HomeEvent.OnSwipeRefresh) }
+    )
 
     // listen to UIEvent sent from the ViewModel, true to run once
     LaunchedEffect(key1 = true, block = {
@@ -81,8 +90,7 @@ fun HomeScreen(
 
                     onHomeDateTabClick = {
                         viewModel.onEvent(
-                            event =
-                            HomeEvent.OnHomeIconClick(date = LocalDate.now())
+                            event = HomeEvent.OnHomeIconClick(date = LocalDate.now())
                         )
                     },
 
@@ -107,18 +115,27 @@ fun HomeScreen(
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 else
 
-                    LazyColumn {
+                    Box(modifier = Modifier.pullRefresh(state = swipeRefreshState)) {
 
-                        items(mappedFixtures) {
+                        LazyColumn() {
 
-                            LeagueFixturesCard(
-                                league = it.first,
-                                fixtures = it.second,
-                                onClickFixtureCard = { fixtureId ->
-                                    navigator.navigate(DetailsScreenDestination(fixtureId))
-                                }
-                            )
+                            items(mappedFixtures) {
+
+                                LeagueFixturesCard(
+                                    league = it.first,
+                                    fixtures = it.second,
+                                    onClickFixtureCard = { fixtureId ->
+                                        navigator.navigate(DetailsScreenDestination(fixtureId))
+                                    }
+                                )
+                            }
                         }
+
+                        PullRefreshIndicator(
+                            refreshing = state.isRefresh,
+                            state = swipeRefreshState,
+                            modifier = Modifier.align(Alignment.TopCenter)
+                        )
                     }
             }
         }

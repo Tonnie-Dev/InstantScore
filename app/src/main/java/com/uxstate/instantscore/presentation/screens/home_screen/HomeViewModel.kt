@@ -113,10 +113,15 @@ class HomeViewModel @Inject constructor(
                 _fixturesState.value = _fixturesState.value.copy(date = event.date)
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
+
+            is OnSwipeRefresh -> {
+
+                _fixturesState.value = _fixturesState.value.copy(isRefresh = true)
+            }
         }
     }
 
-    fun sendUIEvent(event: UIEvent) {
+    private fun sendUIEvent(event: UIEvent) {
         viewModelScope.launch {
 
             _uiEvent.send(event)
