@@ -2,6 +2,7 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components.
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -51,9 +52,12 @@ fun EventsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
         }
     } else {
 
-        LottieDefinition(
-            lottieRes = R.raw.empty_info,
-            modifier = Modifier.fillMaxSize()
-        )
+        Card(modifier = Modifier.padding(spacing.spaceSmall)) {
+
+            LottieDefinition(
+                lottieRes = R.raw.empty_info,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
 }

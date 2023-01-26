@@ -86,8 +86,8 @@ object AppModule {
             .build()
 
         return Retrofit.Builder()
-            // .baseUrl(BASE_URL)
-            .baseUrl(FAKE_BASE_URL_3)
+            .baseUrl(BASE_URL)
+            // .baseUrl(FAKE_BASE_URL_3)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(
                 MoshiConverterFactory.create(moshi)

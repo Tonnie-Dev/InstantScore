@@ -1,8 +1,8 @@
 package com.uxstate.instantscore.presentation.screens.details_screen.components.stats
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
@@ -38,7 +38,7 @@ fun StatsBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
 
             LottieDefinition(
                 lottieRes = R.raw.empty_info,
-                modifier = Modifier.size(spacing.spaceExtraLarge)
+                modifier = Modifier.fillMaxSize()
             )
         }
     }

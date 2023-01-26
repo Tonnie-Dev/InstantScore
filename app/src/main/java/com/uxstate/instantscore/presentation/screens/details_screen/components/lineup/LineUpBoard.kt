@@ -3,6 +3,7 @@ package com.uxstate.instantscore.presentation.screens.details_screen.components.
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,7 +53,13 @@ fun LineUpBoard(fixtureDetails: FixtureDetails, modifier: Modifier = Modifier) {
             CoachesCard(lineUps = lineUps)
         }
     } else {
-        LottieDefinition(lottieRes = R.raw.empty_info, modifier.fillMaxSize())
+        Card(modifier = Modifier.padding(spacing.spaceSmall)) {
+
+            LottieDefinition(
+                lottieRes = R.raw.empty_info,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
 }
 
