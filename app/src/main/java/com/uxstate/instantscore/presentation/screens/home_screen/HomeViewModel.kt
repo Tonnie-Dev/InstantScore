@@ -82,12 +82,7 @@ class HomeViewModel @Inject constructor(
     fun onEvent(event: HomeEvent) {
 
         when (event) {
-
-            is OnRefresh -> {
-                _fixturesState.value = _fixturesState.value.copy(isRefresh = event.isRefresh)
-                getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
-            }
-
+            
             is OnDateTabClick -> {
                 _fixturesState.value = _fixturesState.value.copy(date = event.date)
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
@@ -115,7 +110,7 @@ class HomeViewModel @Inject constructor(
             }
 
             is OnSwipeRefresh -> {
-
+                //_fixturesState.value = _fixturesState.value.copy(isRefresh = event.isRefresh)
                 // getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
         }

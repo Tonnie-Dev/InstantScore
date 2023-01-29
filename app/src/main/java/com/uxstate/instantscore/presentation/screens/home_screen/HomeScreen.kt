@@ -44,7 +44,7 @@ fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
 
     val swipeRefreshState = rememberPullRefreshState(
-        refreshing = state.isRefresh,
+        refreshing = state.isLoading,
         onRefresh = { viewModel.onEvent(HomeEvent.OnSwipeRefresh) }
     )
 
@@ -102,13 +102,12 @@ fun HomeScreen(
 
                 modifier = Modifier
                     .padding(paddingValues = paddingValues)
-                    .padding(spacing.spaceSmall)
+
             )
 
-            // Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
             Box(
                 modifier = Modifier.fillMaxSize()
-                    .zIndex(-2f)
+                    .zIndex(-1f)
                     .pullRefresh(state = swipeRefreshState),
 
             ) {
