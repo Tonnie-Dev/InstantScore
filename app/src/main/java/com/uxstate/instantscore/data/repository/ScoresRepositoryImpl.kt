@@ -91,7 +91,7 @@ class ScoresRepositoryImpl @Inject constructor(
         // vet and insert remote date into database
         remoteFixtures?.let { response ->
             // clear old data
-            // dao.clearFixtures()
+            dao.clearFixtures()
             val fixtures = response.response
 
             // insert new data

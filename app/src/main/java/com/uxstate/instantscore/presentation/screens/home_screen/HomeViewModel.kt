@@ -116,7 +116,7 @@ class HomeViewModel @Inject constructor(
 
             is OnSwipeRefresh -> {
 
-                _fixturesState.value = _fixturesState.value.copy(isRefresh = true)
+                // getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
             }
         }
     }

@@ -11,6 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -74,69 +75,69 @@ fun HomeScreen(
     Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { paddingValues ->
         Column() {
 
-            Column() {
+            DateTabsStrip(
+                date = state.date,
+                isCalendarClicked = state.isCalendarClicked,
+                onDateTabClick = {
+                    viewModel.onEvent(HomeEvent.OnDateTabClick(it))
+                },
+                onCalendarDateChange = {
+                    viewModel.onEvent(event = HomeEvent.OnCalendarDateSelection(date = it))
+                },
 
-                Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                onHomeDateTabClick = {
+                    viewModel.onEvent(
+                        event = HomeEvent.OnHomeIconClick(date = LocalDate.now())
+                    )
+                },
 
-                DateTabsStrip(
-                    date = state.date,
-                    isCalendarClicked = state.isCalendarClicked,
-                    onDateTabClick = {
-                        viewModel.onEvent(HomeEvent.OnDateTabClick(it))
-                    },
-                    onCalendarDateChange = {
-                        viewModel.onEvent(event = HomeEvent.OnCalendarDateSelection(date = it))
-                    },
+                onTogglePrevDate = {
 
-                    onHomeDateTabClick = {
-                        viewModel.onEvent(
-                            event = HomeEvent.OnHomeIconClick(date = LocalDate.now())
-                        )
-                    },
+                    viewModel.onEvent(HomeEvent.OnTogglePrevDate(it))
+                },
 
-                    onTogglePrevDate = {
+                onToggleNextDate = {
+                    viewModel.onEvent(HomeEvent.OnToggleNextDate(it))
+                },
 
-                        viewModel.onEvent(HomeEvent.OnTogglePrevDate(it))
-                    },
-                    onToggleNextDate = {
-                        viewModel.onEvent(HomeEvent.OnToggleNextDate(it))
-                    },
+                modifier = Modifier
+                    .padding(paddingValues = paddingValues)
+                    .padding(spacing.spaceSmall)
+            )
 
-                    modifier = Modifier
-                        .padding(paddingValues = paddingValues)
-                        .padding(spacing.spaceSmall)
-                )
-            }
+            // Spacer(modifier = Modifier.height(spacing.spaceExtraLarge))
+            Box(
+                modifier = Modifier.fillMaxSize()
+                    .zIndex(-2f)
+                    .pullRefresh(state = swipeRefreshState),
 
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
+            ) {
 
                 if (state.isLoading)
 
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 else
 
-                    Box(modifier = Modifier.pullRefresh(state = swipeRefreshState)) {
+                // content to be refreshed
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
 
-                        LazyColumn() {
+                        items(mappedFixtures) {
 
-                            items(mappedFixtures) {
-
-                                LeagueFixturesCard(
-                                    league = it.first,
-                                    fixtures = it.second,
-                                    onClickFixtureCard = { fixtureId ->
-                                        navigator.navigate(DetailsScreenDestination(fixtureId))
-                                    }
-                                )
-                            }
+                            LeagueFixturesCard(
+                                league = it.first,
+                                fixtures = it.second,
+                                onClickFixtureCard = { fixtureId ->
+                                    navigator.navigate(DetailsScreenDestination(fixtureId))
+                                }
+                            )
                         }
-
-                        PullRefreshIndicator(
-                            refreshing = state.isRefresh,
-                            state = swipeRefreshState,
-                            modifier = Modifier.align(Alignment.TopCenter)
-                        )
                     }
+
+                PullRefreshIndicator(
+                    refreshing = state.isRefresh,
+                    state = swipeRefreshState,
+                    modifier = Modifier.align(Alignment.TopCenter)
+                )
             }
         }
     }
