@@ -106,15 +106,15 @@ dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
     implementation("androidx.activity:activity-compose:1.6.1")
-    implementation("androidx.compose.ui:ui:1.3.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.3.1")
+    implementation("androidx.compose.ui:ui:1.3.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.3.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.1")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.1")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.3.3")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
 
     // Material 3 Lib
     implementation("androidx.compose.material3:material3:1.1.0-alpha04")
@@ -142,11 +142,8 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
 
     // Room KTX with Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:2.4.3")
-    kapt("androidx.room:room-compiler:2.4.3")
-
-    // room-paging artifact
-    implementation("androidx.room:room-paging:2.4.3")
+    implementation("androidx.room:room-ktx:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
 
     // Paging 3.0
     implementation("androidx.paging:paging-compose:1.0.0-alpha17")
