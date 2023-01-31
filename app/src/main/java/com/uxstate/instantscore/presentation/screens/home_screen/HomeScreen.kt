@@ -46,8 +46,8 @@ fun HomeScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-    val swipeRefreshState = rememberPullRefreshState(
-        refreshing = state.isRefresh,
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = state.isLoading,
         onRefresh = { viewModel.onEvent(HomeEvent.OnSwipeRefresh) }
     )
 
@@ -117,7 +117,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .zIndex(-1f)
-                    .pullRefresh(state = swipeRefreshState)
+                    .pullRefresh(state = pullRefreshState)
             ) {
 
                 if (state.isLoading)
@@ -141,7 +141,7 @@ fun HomeScreen(
                     PullRefreshIndicator(
                         // controls the infinite spinning
                         refreshing = state.isRefresh,
-                        state = swipeRefreshState,
+                        state = pullRefreshState,
                         modifier = Modifier.align(Alignment.TopCenter)
                     )
                 }
