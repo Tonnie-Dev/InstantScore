@@ -36,6 +36,9 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getFixtures(isRefresh: Boolean, date: LocalDate) {
+        // once getFixtures is called, then refresh is done
+        _fixturesState.value = _fixturesState.value.copy(isRefresh = false)
+        Timber.i("onRefreshChange, state is: ${_fixturesState.value.isRefresh}")
         // cancel the running job before with start a new one
 
         job?.cancel()
@@ -50,7 +53,7 @@ class HomeViewModel @Inject constructor(
                     is Resource.Success -> {
 
                         result.data?.let {
-                            Timber.i("CachedData is $it")
+
                             _fixturesState.value = _fixturesState.value.copy(fixtures = it)
                         }
                     }
@@ -73,6 +76,7 @@ class HomeViewModel @Inject constructor(
 
                         _fixturesState.value =
                             _fixturesState.value.copy(isLoading = result.isLoading)
+                        Timber.i("The Loading Status is ${result.isLoading}")
                     }
                 }
             }
@@ -82,7 +86,7 @@ class HomeViewModel @Inject constructor(
     fun onEvent(event: HomeEvent) {
 
         when (event) {
-            
+
             is OnDateTabClick -> {
                 _fixturesState.value = _fixturesState.value.copy(date = event.date)
                 getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
@@ -110,8 +114,9 @@ class HomeViewModel @Inject constructor(
             }
 
             is OnSwipeRefresh -> {
-                //_fixturesState.value = _fixturesState.value.copy(isRefresh = event.isRefresh)
-                // getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
+                _fixturesState.value = _fixturesState.value.copy(isRefresh = true)
+                Timber.i("SwipeRefresh called, state is: ${_fixturesState.value.isRefresh}")
+                getFixtures(true, _fixturesState.value.date)
             }
         }
     }

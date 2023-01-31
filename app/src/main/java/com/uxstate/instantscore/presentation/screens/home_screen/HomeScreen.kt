@@ -1,24 +1,18 @@
 package com.uxstate.instantscore.presentation.screens.home_screen
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.pullrefresh.PullRefreshIndicator
-import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateTabsStrip
-import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
+import com.uxstate.instantscore.presentation.screens.home_screen.components.fixtures_column.FixturesColumn
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.UIEvent
@@ -59,7 +53,6 @@ fun HomeScreen(
                 is UIEvent.ShowSnackBarUiEvent -> {
 
                     //  show snackbar as a suspend function
-
                     coroutineScope.launch {
                         snackbarHostState.showSnackbar(
                             message = event.message,
@@ -68,11 +61,17 @@ fun HomeScreen(
                         )
                     }
                 }
+                else -> Unit
             }
         }
     })
 
-    Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { paddingValues ->
+    Scaffold(snackbarHost = {
+        SnackbarHost(
+            hostState = snackbarHostState
+
+        )
+    }) { paddingValues ->
         Column() {
 
             DateTabsStrip(
@@ -104,20 +103,25 @@ fun HomeScreen(
                     .padding(paddingValues = paddingValues)
 
             )
-
-            Box(
-                modifier = Modifier.fillMaxSize()
+            FixturesColumn(
+                mappedFixtures = mappedFixtures,
+                navigator = navigator,
+                swipeRefreshState = swipeRefreshState,
+                isLoading = state.isLoading,
+                isRefreshing = state.isRefresh
+            )
+            // the box is not bein recomposed
+      /*      Box(
+                modifier = Modifier
+                    .fillMaxSize()
                     .zIndex(-1f)
-                    .pullRefresh(state = swipeRefreshState),
-
+                    .pullRefresh(state = swipeRefreshState)
             ) {
 
                 if (state.isLoading)
-
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                else
-
-                // content to be refreshed
+                else {
+                    // content to be refreshed
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
 
                         items(mappedFixtures) {
@@ -132,12 +136,14 @@ fun HomeScreen(
                         }
                     }
 
-                PullRefreshIndicator(
-                    refreshing = state.isRefresh,
-                    state = swipeRefreshState,
-                    modifier = Modifier.align(Alignment.TopCenter)
-                )
-            }
+                    PullRefreshIndicator(
+                        // controls the infinite spinning
+                        refreshing = state.isRefresh,
+                        state = swipeRefreshState,
+                        modifier = Modifier.align(Alignment.TopCenter)
+                    )
+                }
+            }*/
         }
     }
 }
