@@ -8,6 +8,7 @@ import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
+import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.toReverseStringDate
@@ -151,5 +152,9 @@ class ScoresRepositoryImpl @Inject constructor(
         }
 
         emit(Resource.Success(data = fixtureDetails))
+    }
+
+    override fun getStandings(leagueId: Int, season: Int): Flow<Resource<Standing>> {
+        TODO("Not yet implemented")
     }
 }

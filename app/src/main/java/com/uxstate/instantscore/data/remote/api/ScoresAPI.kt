@@ -17,4 +17,8 @@ interface ScoresAPI {
 
     @GET(GET_FIXTURES)
     suspend fun getFixtureDetails(@Query("id") fixtureId: Int): String
+
+
+    @GET(GET_STANDINGS)
+    suspend fun getStandings(@Query("season") season:Int,@Query("league") leagueId:Int):String
 }
