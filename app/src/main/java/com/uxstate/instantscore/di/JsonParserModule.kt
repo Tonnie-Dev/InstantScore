@@ -2,7 +2,9 @@ package com.uxstate.instantscore.di
 
 import com.uxstate.instantscore.data.remote.json.FixtureDetailsJsonParser
 import com.uxstate.instantscore.data.remote.json.JsonStringParser
+import com.uxstate.instantscore.data.remote.json.StandingsJsonParser
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
+import com.uxstate.instantscore.domain.models.standings.Standing
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -24,4 +26,10 @@ abstract class JsonParserModule {
     abstract fun bindJsonStringParser(
         fixtureDetailsJsonParser: FixtureDetailsJsonParser
     ): JsonStringParser<FixtureDetails>
+
+    @Binds
+    @Singleton
+    abstract fun bindJsonStandingParser(
+        standingsJsonParser: StandingsJsonParser
+    ): JsonStringParser<Standing>
 }

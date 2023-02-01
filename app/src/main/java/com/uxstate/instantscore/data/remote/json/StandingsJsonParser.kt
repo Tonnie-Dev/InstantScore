@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.data.remote.dtos.standings.Team
+import com.uxstate.instantscore.domain.models.standings.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import org.json.JSONObject
 
@@ -14,6 +15,7 @@ class StandingsJsonParser : JsonStringParser<List<Standing>> {
         val leagueObj = innerResponseObj.getJSONObject("league")
 
         //league name
+        val leagueId = leagueObj.optInt("id", -1)
         val leagueName = leagueObj.optString("name", "")
         val country = leagueObj.optString("country", "")
         val leagueLogo = leagueObj.optString("logo", "")
@@ -67,7 +69,14 @@ class StandingsJsonParser : JsonStringParser<List<Standing>> {
                             id = teamId,
                             logo = teamLogo,
                             name = teamLogo
-                    )
+                    ), league = League(
+                    id = leagueId,
+                    name = leagueName,
+                    country = country,
+                    leagueLogo = leagueLogo,
+                    countryFlag = countryFlag,
+                    season = season
+            )
             )
 
             standings.add(standing)

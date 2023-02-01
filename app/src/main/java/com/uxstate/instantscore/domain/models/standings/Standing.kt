@@ -16,5 +16,6 @@ data class Standing(
     val points: Int,
     val rank: Int,
     val team: Team,
+    val league: League
 
 )
