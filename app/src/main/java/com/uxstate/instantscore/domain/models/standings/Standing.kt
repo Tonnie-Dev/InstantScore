@@ -15,7 +15,6 @@ data class Standing(
     val group: String,
     val points: Int,
     val rank: Int,
-    val status: String,
     val team: Team,
 
 )

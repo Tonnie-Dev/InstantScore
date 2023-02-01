@@ -147,7 +147,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
         val fixtureDetails = remoteFixtureJsonString?.let {
 
-            jsonStringParser.parseJsonToFixtureDetails(it)
+            jsonStringParser.parsJsonString(it)
         }
 
         emit(Resource.Success(data = fixtureDetails))

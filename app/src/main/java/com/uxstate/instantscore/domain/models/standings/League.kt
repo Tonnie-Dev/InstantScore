@@ -9,5 +9,6 @@ data class League(
     val name: String,
     val country: String,
     val leagueLogo: String,
-    val countryFlag: String
+    val countryFlag: String,
+    val season:Int
 ) : Parcelable
