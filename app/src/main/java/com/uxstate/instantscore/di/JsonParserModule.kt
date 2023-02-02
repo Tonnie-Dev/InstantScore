@@ -31,5 +31,5 @@ abstract class JsonParserModule {
     @Singleton
     abstract fun bindJsonStandingParser(
         standingsJsonParser: StandingsJsonParser
-    ): JsonStringParser<Standing>
+    ): JsonStringParser<List<Standing>>
 }

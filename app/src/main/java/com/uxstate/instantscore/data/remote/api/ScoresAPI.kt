@@ -20,5 +20,8 @@ interface ScoresAPI {
 
 
     @GET(GET_STANDINGS)
-    suspend fun getStandings(@Query("season") season:Int,@Query("league") leagueId:Int):String
+    suspend fun getStandings(
+        @Query("season") season: Int,
+        @Query("league") leagueId: Int
+    ):String
 }

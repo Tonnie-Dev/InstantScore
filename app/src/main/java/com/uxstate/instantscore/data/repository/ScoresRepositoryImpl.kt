@@ -23,7 +23,7 @@ class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
     db: ScoresDatabase,
     private val fixtureDetailsJsonParser: JsonStringParser<FixtureDetails>,
-    private val standingsJsonParser: JsonStringParser<Standing>,
+    private val standingsJsonParser: JsonStringParser<List<Standing>>,
 ) : ScoresRepository {
     private val dao = db.dao
 
