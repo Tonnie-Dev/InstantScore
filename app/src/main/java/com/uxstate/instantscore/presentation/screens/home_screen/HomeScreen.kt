@@ -135,7 +135,7 @@ fun HomeScreen(
                                     navigator.navigate(DetailsScreenDestination(fixtureId))
                                 }, onClickLeagueHeader = {
 
-                                    navigator.navigate()
+                                // navigator.navigate()
                             }
                             )
                         }

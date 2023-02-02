@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class GetStandingsUseCase(private val repository: ScoresRepository) {
 
-    operator fun invoke(leagueId: Int, season: Int): Flow<Resource<List<Standing>>> {
+    operator fun invoke(leagueId: Int, season: Int): Flow<Resource<MutableList<Standing>>> {
 
         return repository.getStandings(leagueId = leagueId, season = season)
     }

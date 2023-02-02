@@ -22,13 +22,13 @@ abstract class JsonParserModule {
     interface implemented by the given parameter object.*/
     @Binds
     @Singleton
-    abstract fun bindJsonStringParser(
+    abstract fun bindJsonFixtureDetailsParser(
         fixtureDetailsJsonParser: FixtureDetailsJsonParser
     ): JsonStringParser<FixtureDetails>
 
     @Binds
     @Singleton
-    abstract fun bindJsonStandingParser(
+    abstract fun bindJsonStandingsParser(
         standingsJsonParser: StandingsJsonParser
-    ): JsonStringParser<List<Standing>>
+    ): JsonStringParser<MutableList< Standing>>
 }

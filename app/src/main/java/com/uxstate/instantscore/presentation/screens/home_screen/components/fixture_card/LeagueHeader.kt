@@ -26,38 +26,38 @@ import com.uxstate.instantscore.utils.LocalSpacing
 fun LeagueHeader(
     league: League,
     modifier: Modifier = Modifier,
-    onClickLeagueHeader: (leagueId:Int) -> Unit
+    onClickLeagueHeader: (leagueId: Int) -> Unit
 ) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
     // val url = league.countryFlag.toUri().buildUpon().scheme("https").build()
     Box(
-            modifier = modifier
-                    .fillMaxWidth()
-                    .clickable { onClickLeagueHeader(league.id) }
-                    .padding(spacing.spaceSmall)
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable { onClickLeagueHeader(league.id) }
+            .padding(spacing.spaceSmall)
     ) {
         Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             val painter = rememberAsyncImagePainter(
-                    model = ImageRequest.Builder(context = context)
-                            .data(league.countryFlag)
-                            .decoderFactory(SvgDecoder.Factory())
-                            .error(R.drawable.empty_flag)
-                            .placeholder(R.drawable.empty_logo)
-                            .build()
+                model = ImageRequest.Builder(context = context)
+                    .data(league.countryFlag)
+                    .decoderFactory(SvgDecoder.Factory())
+                    .error(R.drawable.empty_flag)
+                    .placeholder(R.drawable.empty_logo)
+                    .build()
             )
 
             Image(
-                    painter = painter,
-                    contentDescription = league.name,
-                    modifier = Modifier
-                            .size(spacing.spaceSmall * 4)
-                            .padding(spacing.spaceExtraSmall),
-                    contentScale = ContentScale.Crop
+                painter = painter,
+                contentDescription = league.name,
+                modifier = Modifier
+                    .size(spacing.spaceSmall * 4)
+                    .padding(spacing.spaceExtraSmall),
+                contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.width(spacing.spaceSmall * 2))
             Column() {
@@ -68,10 +68,10 @@ fun LeagueHeader(
         }
 
         Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "",
-                modifier = Modifier
-                        .align(Alignment.CenterEnd)
+            imageVector = Icons.Default.KeyboardArrowRight,
+            contentDescription = "",
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
 
         )
     }
@@ -83,13 +83,14 @@ fun LeagueHeaderPreview() {
     InstantScoreTheme {
 
         LeagueHeader(
-                league = League(
-                        id = 13,
-                        name = "Premier League",
-                        country = "Kenya",
-                        leagueLogo = "",
-                        countryFlag = ""
-                ), onClickLeagueHeader = {}
+            league = League(
+                id = 13,
+                name = "Premier League",
+                country = "Kenya",
+                leagueLogo = "",
+                countryFlag = ""
+            ),
+            onClickLeagueHeader = {}
         )
     }
 }
@@ -100,13 +101,14 @@ fun LeagueHeaderPreviewDark() {
     InstantScoreTheme {
 
         LeagueHeader(
-                league = League(
-                        id = 7,
-                        name = "E-League",
-                        country = "Ethiopia",
-                        leagueLogo = "",
-                        countryFlag = ""
-                ), onClickLeagueHeader = {}
+            league = League(
+                id = 7,
+                name = "E-League",
+                country = "Ethiopia",
+                leagueLogo = "",
+                countryFlag = ""
+            ),
+            onClickLeagueHeader = {}
         )
     }
 }
