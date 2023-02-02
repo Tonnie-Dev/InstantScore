@@ -133,7 +133,10 @@ fun HomeScreen(
                                 fixtures = it.second,
                                 onClickFixtureCard = { fixtureId ->
                                     navigator.navigate(DetailsScreenDestination(fixtureId))
-                                }
+                                }, onClickLeagueHeader = {
+
+                                    navigator.navigate()
+                            }
                             )
                         }
                     }

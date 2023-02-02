@@ -20,7 +20,6 @@ abstract class JsonParserModule {
     /*The abstract function takes only a single parameter which
     is the interface implementation and the return type is the
     interface implemented by the given parameter object.*/
-
     @Binds
     @Singleton
     abstract fun bindJsonStringParser(

@@ -10,11 +10,12 @@ fun LeagueFixturesCard(
 
     league: League,
     fixtures: List<Fixture>,
-    onClickFixtureCard: (Int) -> Unit
+    onClickFixtureCard: (Int) -> Unit,
+    onClickLeagueHeader: (Int) -> Unit
 ) {
 
     Column() {
-        LeagueHeader(league = league)
+        LeagueHeader(league = league, onClickLeagueHeader = onClickLeagueHeader)
 
         fixtures.forEach { fixture ->
 
