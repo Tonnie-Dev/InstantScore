@@ -10,4 +10,6 @@
     <string name="today_label_upper">TODAY</string>
     <string name="home_label">Home</string>
     <string name="before_text">Before</string>
+    <string name="country_flag_text">Country Flag</string>
+    <string name="league_logo_string">League Logo</string>
 </resources>

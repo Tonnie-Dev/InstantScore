@@ -17,56 +17,54 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StandingRow(standing: Standing, modifier:Modifier = Modifier) {
+fun StandingRow(standing: Standing, modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     Card(modifier = modifier, shape = RectangleShape) {
 
         Row(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(spacing.spaceSmall),
-                horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.spaceSmall),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Text(
-                    text = standing.rank.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = standing.rank.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = standing.team.name,
-                    modifier = Modifier.weight(.4f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = standing.team.name,
+                modifier = Modifier.weight(.4f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = standing.matchPlayed.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = standing.matchPlayed.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = "${standing.goalsFor}:${standing.goalsAgainst}",
-                    modifier = Modifier.weight(.2f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = "${standing.goalsFor}:${standing.goalsAgainst}",
+                modifier = Modifier.weight(.2f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = standing.goalsDiff.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = standing.goalsDiff.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = standing.points.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = standing.points.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
         }
     }
-
-
 }
 
 @Composable
@@ -83,79 +81,78 @@ fun StandingHeader(
     Card(modifier = modifier, shape = RectangleShape) {
 
         Row(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(spacing.spaceSmall),
-                horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.spaceSmall),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Text(
-                    text = rank,
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = rank,
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = team,
-                    modifier = Modifier.weight(.4f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = team,
+                modifier = Modifier.weight(.4f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = matchPlayed,
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = matchPlayed,
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = goals,
-                    modifier = Modifier.weight(.2f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = goals,
+                modifier = Modifier.weight(.2f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = goalsDiff,
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = goalsDiff,
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = points,
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Black
+                text = points,
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Black
             )
         }
     }
 }
-
 
 @Preview
 @Composable
 fun StandingRowPreview() {
 
     val standing = Standing(
-            description = "Promotion",
-            goalsAgainst = 23,
-            goalsFor = 47,
-            goalsDiff = 24,
-            matchPlayed = 21,
-            group = "Group E",
-            points = 64,
-            rank = 3,
-            team = Team(
-                    id = 96,
-                    name = "Tonnie FC",
-                    logo = ""
-            ),
+        description = "Promotion",
+        goalsAgainst = 23,
+        goalsFor = 47,
+        goalsDiff = 24,
+        matchPlayed = 21,
+        group = "Group E",
+        points = 64,
+        rank = 3,
+        team = Team(
+            id = 96,
+            name = "Tonnie FC",
+            logo = ""
+        ),
 
-            league = League(
-                    id = 0,
-                    name = "",
-                    country = "",
-                    leagueLogo = "",
-                    countryFlag = "",
-                    season = 0
-            )
+        league = League(
+            id = 0,
+            name = "",
+            country = "",
+            leagueLogo = "",
+            countryFlag = "",
+            season = 0
+        )
     )
 
     InstantScoreTheme {
@@ -163,34 +160,33 @@ fun StandingRowPreview() {
     }
 }
 
-
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun StandingRowPreviewDark() {
 
     val standing = Standing(
-            description = "Promotion",
-            goalsAgainst = 23,
-            goalsFor = 47,
-            goalsDiff = 24,
-            matchPlayed = 21,
-            group = "Group E",
-            points = 64,
-            rank = 3,
-            team = Team(
-                    id = 96,
-                    name = "Tonnie FC",
-                    logo = ""
-            ),
+        description = "Promotion",
+        goalsAgainst = 23,
+        goalsFor = 47,
+        goalsDiff = 24,
+        matchPlayed = 21,
+        group = "Group E",
+        points = 64,
+        rank = 3,
+        team = Team(
+            id = 96,
+            name = "Tonnie FC",
+            logo = ""
+        ),
 
-            league = League(
-                    id = 0,
-                    name = "",
-                    country = "",
-                    leagueLogo = "",
-                    countryFlag = "",
-                    season = 0
-            )
+        league = League(
+            id = 0,
+            name = "",
+            country = "",
+            leagueLogo = "",
+            countryFlag = "",
+            season = 0
+        )
     )
 
     InstantScoreTheme {
@@ -203,12 +199,12 @@ fun StandingHeaderPreview() {
 
     InstantScoreTheme() {
         StandingHeader(
-                rank = "3",
-                team = "Manchester City",
-                matchPlayed = "19",
-                goals = "45:13",
-                goalsDiff = "32",
-                points = "50"
+            rank = "3",
+            team = "Manchester City",
+            matchPlayed = "19",
+            goals = "45:13",
+            goalsDiff = "32",
+            points = "50"
         )
     }
 }
@@ -219,12 +215,12 @@ fun StandingHeaderPreviewDark() {
 
     InstantScoreTheme() {
         StandingHeader(
-                rank = "3",
-                team = "Manchester City",
-                matchPlayed = "19",
-                goals = "45:13",
-                goalsDiff = "32",
-                points = "50"
+            rank = "3",
+            team = "Manchester City",
+            matchPlayed = "19",
+            goals = "45:13",
+            goalsDiff = "32",
+            points = "50"
         )
     }
 }

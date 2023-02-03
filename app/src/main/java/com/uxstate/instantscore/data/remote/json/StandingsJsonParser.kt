@@ -49,6 +49,8 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
             val description = innerJsonObj.optString("description", "")
 
             val allJsonObj = innerJsonObj.getJSONObject("all")
+
+            val matchPlayed = allJsonObj.optInt("played", -1)
             val goalsJsonObj = allJsonObj.getJSONObject("goals")
 
             // variables - goals for and goals against
@@ -61,13 +63,14 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
                 goalsAgainst = goalsAgainst,
                 goalsFor = goalsFor,
                 goalsDiff = goalsDifference,
+                matchPlayed = matchPlayed,
                 group = group,
                 points = points,
                 rank = rank,
                 team = Team(
                     id = teamId,
                     logo = teamLogo,
-                    name = teamLogo
+                    name = teamName
                 ),
                 league = League(
                     id = leagueId,
