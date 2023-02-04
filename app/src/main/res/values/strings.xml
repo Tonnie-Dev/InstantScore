@@ -12,4 +12,9 @@
     <string name="before_text">Before</string>
     <string name="country_flag_text">Country Flag</string>
     <string name="league_logo_string">League Logo</string>
+    <string name="harsh_text">#</string>
+    <string name="teams_text">Teams</string>
+    <string name="match_played">MP</string>
+    <string name="goal_diff_text">GD</string>
+    <string name="points_text">PTS</string>
 </resources>

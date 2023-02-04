@@ -1,15 +1,21 @@
 package com.uxstate.instantscore.presentation.screens.home_screen.components.standings_table
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.standings.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
@@ -69,12 +75,6 @@ fun StandingRow(standing: Standing, modifier: Modifier = Modifier) {
 
 @Composable
 fun StandingHeader(
-    rank: String,
-    team: String,
-    matchPlayed: String,
-    goals: String,
-    goalsDiff: String,
-    points: String,
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
@@ -87,40 +87,42 @@ fun StandingHeader(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Text(
-                text = rank,
+                text = stringResource(R.string.harsh_text),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Black
             )
             Text(
-                text = team,
+                text = stringResource(R.string.teams_text),
                 modifier = Modifier.weight(.4f),
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Black
             )
             Text(
-                text = matchPlayed,
+                text = stringResource(R.string.match_played),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Light
             )
             Text(
-                text = goals,
+                text = "GF:GA",
                 modifier = Modifier.weight(.2f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Light
             )
             Text(
-                text = goalsDiff,
+                text = stringResource(R.string.goal_diff_text),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Center
             )
             Text(
-                text = points,
+                text = stringResource(R.string.points_text),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Center
             )
         }
     }
@@ -193,19 +195,13 @@ fun StandingRowPreviewDark() {
         StandingRow(standing = standing)
     }
 }
+
 @Preview
 @Composable
 fun StandingHeaderPreview() {
 
     InstantScoreTheme() {
-        StandingHeader(
-            rank = "3",
-            team = "Manchester City",
-            matchPlayed = "19",
-            goals = "45:13",
-            goalsDiff = "32",
-            points = "50"
-        )
+        StandingHeader()
     }
 }
 
@@ -214,13 +210,6 @@ fun StandingHeaderPreview() {
 fun StandingHeaderPreviewDark() {
 
     InstantScoreTheme() {
-        StandingHeader(
-            rank = "3",
-            team = "Manchester City",
-            matchPlayed = "19",
-            goals = "45:13",
-            goalsDiff = "32",
-            points = "50"
-        )
+        StandingHeader()
     }
 }
