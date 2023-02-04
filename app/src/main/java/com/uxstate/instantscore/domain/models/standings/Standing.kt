@@ -14,7 +14,6 @@ data class Standing(
     val group: String,
     val points: Int,
     val rank: Int,
-    val team: Team,
-    val league: League
+    val team: Team
 
 ) : Parcelable

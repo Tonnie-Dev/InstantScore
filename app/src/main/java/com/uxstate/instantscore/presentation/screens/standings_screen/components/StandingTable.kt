@@ -121,14 +121,7 @@ fun StandingTablePreview() {
             logo = ""
         ),
 
-        league = League(
-            id = 0,
-            name = "English Premier League",
-            country = "England",
-            leagueLogo = "",
-            countryFlag = "",
-            season = 2023
-        )
+
     )
     val standings = List(20) { standing }
 
@@ -156,14 +149,7 @@ fun StandingTablePreviewDark() {
             logo = ""
         ),
 
-        league = League(
-            id = 0,
-            name = "English Premier League",
-            country = "England",
-            leagueLogo = "",
-            countryFlag = "",
-            season = 2023
-        )
+
     )
     val standings = List(20) { standing }
 

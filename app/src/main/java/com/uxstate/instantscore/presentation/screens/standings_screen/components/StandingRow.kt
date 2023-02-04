@@ -147,14 +147,7 @@ fun StandingRowPreview() {
             logo = ""
         ),
 
-        league = League(
-            id = 0,
-            name = "",
-            country = "",
-            leagueLogo = "",
-            countryFlag = "",
-            season = 0
-        )
+
     )
 
     InstantScoreTheme {
@@ -181,14 +174,7 @@ fun StandingRowPreviewDark() {
             logo = ""
         ),
 
-        league = League(
-            id = 0,
-            name = "",
-            country = "",
-            leagueLogo = "",
-            countryFlag = "",
-            season = 0
-        )
+
     )
 
     InstantScoreTheme {

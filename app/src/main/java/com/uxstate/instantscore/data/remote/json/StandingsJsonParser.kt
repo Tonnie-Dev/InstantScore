@@ -70,14 +70,6 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
                     id = teamId,
                     logo = teamLogo,
                     name = teamName
-                ),
-                league = League(
-                    id = leagueId,
-                    name = leagueName,
-                    country = country,
-                    leagueLogo = leagueLogo,
-                    countryFlag = countryFlag,
-                    season = season
                 )
             )
 
