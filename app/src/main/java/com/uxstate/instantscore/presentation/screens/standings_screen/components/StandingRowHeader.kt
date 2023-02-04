@@ -24,7 +24,7 @@ fun StandingRowHeader(
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
-    Card(modifier = modifier, shape = RectangleShape) {
+    Card(modifier = modifier.padding(spacing.spaceSmall), shape = RectangleShape) {
 
         Row(
             modifier = Modifier

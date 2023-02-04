@@ -25,7 +25,7 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StandingsHeader(league: League, modifier: Modifier = Modifier) {
+fun StandingsHeader(league: League, onNavigateBack: () -> Unit, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
@@ -58,7 +58,10 @@ fun StandingsHeader(league: League, modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Column(horizontalAlignment = Alignment.Start, modifier = Modifier.clickable { }) {
+            Column(
+                horizontalAlignment = Alignment.Start,
+                modifier = Modifier.clickable { onNavigateBack() }
+            ) {
 
                 Image(
                     painter = leagueLogoPainter,
@@ -110,7 +113,7 @@ fun StandingsHeaderPreview() {
     )
 
     InstantScoreTheme() {
-        StandingsHeader(league = league)
+        StandingsHeader(league = league, onNavigateBack = {})
     }
 }
 
@@ -127,6 +130,6 @@ fun StandingsHeaderPreviewDark() {
     )
 
     InstantScoreTheme() {
-        StandingsHeader(league = league)
+        StandingsHeader(league = league, onNavigateBack = {})
     }
 }

@@ -21,5 +21,5 @@ class StandingsViewModel @Inject constructor(
     val standingsState = _standingsState.asStateFlow()
 
     // use generated extension function on the handle
-    val league = handle.navArgs<LeagueNavArgumentsHolder>()
+    val leagueId = handle.navArgs<LeagueNavArgumentsHolder>().id
 }
