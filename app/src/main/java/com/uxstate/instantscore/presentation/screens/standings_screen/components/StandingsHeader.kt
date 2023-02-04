@@ -4,16 +4,12 @@ import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -53,7 +49,6 @@ fun StandingsHeader(league: League, modifier: Modifier = Modifier) {
 
     )
     Card(modifier = modifier.padding(spacing.spaceSmall), shape = RectangleShape) {
-    
 
         Row(
             modifier = Modifier
@@ -63,8 +58,7 @@ fun StandingsHeader(league: League, modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
-            Column(horizontalAlignment = Alignment.Start, modifier = Modifier.clickable {  }) {
-
+            Column(horizontalAlignment = Alignment.Start, modifier = Modifier.clickable { }) {
 
                 Image(
                     painter = leagueLogoPainter,

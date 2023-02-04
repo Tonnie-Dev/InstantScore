@@ -5,7 +5,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingsHeader
-import timber.log.Timber
 
 @Destination(navArgsDelegate = LeagueNavArgumentsHolder::class)
 @Composable
@@ -14,8 +13,6 @@ fun StandingsScreen(
     viewModel: StandingsViewModel = hiltViewModel()
 ) {
 
-    Timber.i("The league logo is ${navArgs.leagueLogo}")
-    Timber.i("The country flag is ${navArgs.countryFlag}")
     StandingsHeader(
         league = League(
             id = navArgs.id,
