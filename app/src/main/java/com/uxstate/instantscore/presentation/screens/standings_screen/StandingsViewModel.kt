@@ -10,10 +10,7 @@ import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,9 +28,12 @@ class StandingsViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     // use generated extension function on the handle
-    val leagueId = handle.navArgs<LeagueNavArgumentsHolder>().id
+    private val leagueId = handle.navArgs<LeagueNavArgumentsHolder>().id
 
-    private fun getStandings(leagueId: Int) {
+    init {
+        getStandings()
+    }
+    private fun getStandings() {
 
         useCaseContainer.getStandingsUseCase(leagueId)
                 .onEach { result ->
@@ -48,15 +48,33 @@ class StandingsViewModel @Inject constructor(
                         }
                         is Resource.Error -> {
 
+                            //stop loading
+                            // set whatever data is available, if null return an empty list
 
+                            _standingsState.value = _standingsState.value.copy(
+                                    standingsList = result.data ?: emptyList(),
+                                    isLoading = false
+                            )
+
+                            sendUIEvent(
+                                    uiEvent = UIEvent.ShowSnackBarUiEvent(
+                                            message = result.errorMessage ?: "",
+                                            action = "Unknown Error"
+                                    )
+                            )
                         }
-                        is Resource.Loading -> {}
+                        is Resource.Loading -> {
+
+                            _standingsState.value =
+                                _standingsState.value.copy(isLoading = result.isLoading)
+                        }
                     }
                 }
+                .launchIn(viewModelScope)
     }
 
 
-    private fun sendUIEvent(uiEvent:UIEvent){
+    private fun sendUIEvent(uiEvent: UIEvent) {
 
         viewModelScope.launch {
 
