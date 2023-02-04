@@ -3,8 +3,8 @@ package com.uxstate.instantscore.domain.usecases
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
-import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
+import kotlinx.coroutines.flow.Flow
 
 class GetStandingsUseCase(private val repository: ScoresRepository) {
 

@@ -9,10 +9,10 @@ import com.uxstate.instantscore.presentation.screens.standings_screen.state.Stan
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class StandingsViewModel @Inject constructor(
@@ -36,43 +36,42 @@ class StandingsViewModel @Inject constructor(
     private fun getStandings() {
 
         useCaseContainer.getStandingsUseCase(leagueId)
-                .onEach { result ->
-                    when (result) {
+            .onEach { result ->
+                when (result) {
 
-                        is Resource.Success -> {
+                    is Resource.Success -> {
 
-                            result.data?.let {
-                                _standingsState.value =
-                                    _standingsState.value.copy(standingsList = it)
-                            }
-                        }
-                        is Resource.Error -> {
-
-                            //stop loading
-                            // set whatever data is available, if null return an empty list
-
-                            _standingsState.value = _standingsState.value.copy(
-                                    standingsList = result.data ?: emptyList(),
-                                    isLoading = false
-                            )
-
-                            sendUIEvent(
-                                    uiEvent = UIEvent.ShowSnackBarUiEvent(
-                                            message = result.errorMessage ?: "",
-                                            action = "Unknown Error"
-                                    )
-                            )
-                        }
-                        is Resource.Loading -> {
-
+                        result.data?.let {
                             _standingsState.value =
-                                _standingsState.value.copy(isLoading = result.isLoading)
+                                _standingsState.value.copy(standingsList = it)
                         }
                     }
-                }
-                .launchIn(viewModelScope)
-    }
+                    is Resource.Error -> {
 
+                        // stop loading
+                        // set whatever data is available, if null return an empty list
+
+                        _standingsState.value = _standingsState.value.copy(
+                            standingsList = result.data ?: emptyList(),
+                            isLoading = false
+                        )
+
+                        sendUIEvent(
+                            uiEvent = UIEvent.ShowSnackBarUiEvent(
+                                message = result.errorMessage ?: "",
+                                action = "Unknown Error"
+                            )
+                        )
+                    }
+                    is Resource.Loading -> {
+
+                        _standingsState.value =
+                            _standingsState.value.copy(isLoading = result.isLoading)
+                    }
+                }
+            }
+            .launchIn(viewModelScope)
+    }
 
     private fun sendUIEvent(uiEvent: UIEvent) {
 

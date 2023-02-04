@@ -15,7 +15,7 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StandingTable(standings: List<Standing>, modifier: Modifier = Modifier) {
+fun StandingsTable(standings: List<Standing>, modifier: Modifier = Modifier) {
 
     val spacing = LocalSpacing.current
     Card(modifier = modifier.padding(spacing.spaceSmall), shape = RectangleShape) {
@@ -56,7 +56,7 @@ fun StandingTablePreview() {
 
     InstantScoreTheme {
 
-        StandingTable(standings = standings)
+        StandingsTable(standings = standings)
     }
 }
 
@@ -83,6 +83,6 @@ fun StandingTablePreviewDark() {
 
     InstantScoreTheme {
 
-        StandingTable(standings = standings)
+        StandingsTable(standings = standings)
     }
 }

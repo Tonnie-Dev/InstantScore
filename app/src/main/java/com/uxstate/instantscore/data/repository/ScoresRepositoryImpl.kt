@@ -18,6 +18,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import timber.log.Timber
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -196,7 +197,7 @@ class ScoresRepositoryImpl @Inject constructor(
                 )
                 null
             }
-
+            Timber.i("The response is: $response")
             val standings = response?.let {
                 standingsJsonParser.parsJsonString(jsonString = it)
             }
