@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.standings.League
+import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme

@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.data.remote.json
 
-import com.uxstate.instantscore.domain.models.standings.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
 import javax.inject.Inject

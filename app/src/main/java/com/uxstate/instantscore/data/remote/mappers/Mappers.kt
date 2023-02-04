@@ -24,7 +24,8 @@ fun ResponseDTO.toEntity():
             name = this.league.name,
             country = this.league.country,
             leagueLogo = this.league.logo,
-            countryFlag = this.league.flag ?: ""
+            countryFlag = this.league.flag ?: "",
+                season = this.league.season
         ),
         teams = Pair(
             Team(name = this.teams.home.name, logo = this.teams.home.logo),
@@ -62,7 +63,8 @@ internal fun FixtureEntity.toModel(): Fixture {
             name = this.league.name,
             country = this.league.country,
             leagueLogo = this.league.leagueLogo,
-            countryFlag = this.league.countryFlag
+            countryFlag = this.league.countryFlag,
+                season = this.league.season
         ),
         teams = Pair(this.teams.first, this.teams.second),
         goals = this.goals,

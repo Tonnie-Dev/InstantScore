@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.standings.League
+import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
@@ -28,7 +28,7 @@ import com.uxstate.instantscore.utils.LocalSpacing
 @Composable
 fun StandingTable(standings: List<Standing>, modifier: Modifier = Modifier) {
 
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
 
         item {
             StandingHeader()
