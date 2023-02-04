@@ -1,4 +1,4 @@
-package com.uxstate.instantscore.presentation.screens.home_screen.components.standings_table
+package com.uxstate.instantscore.presentation.screens.standings_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Arrangement
