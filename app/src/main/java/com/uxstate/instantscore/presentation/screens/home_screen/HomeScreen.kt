@@ -20,9 +20,11 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
+import com.uxstate.instantscore.presentation.screens.destinations.StandingsScreenDestination
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateTabsStrip
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
+import com.uxstate.instantscore.presentation.screens.standings_screen.LeagueNavArgumentsHolder
 import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
@@ -128,15 +130,29 @@ fun HomeScreen(
 
                         items(mappedFixtures) {
 
+                            val league = it.first
                             LeagueFixturesCard(
                                 league = it.first,
                                 fixtures = it.second,
                                 onClickFixtureCard = { fixtureId ->
                                     navigator.navigate(DetailsScreenDestination(fixtureId))
-                                }, onClickLeagueHeader = {
+                                },
 
-                                // navigator.navigate()
-                            }
+                                onClickLeagueHeader = {
+
+                                    navigator.navigate(
+                                        StandingsScreenDestination(
+                                            navArgs = LeagueNavArgumentsHolder(
+                                                id = league.id,
+                                                name = league.name,
+                                                country = league.country,
+                                                leagueLogo = league.leagueLogo,
+                                                countryFlag = league.countryFlag,
+                                                season = league.season
+                                            )
+                                        )
+                                    )
+                                }
                             )
                         }
                     }

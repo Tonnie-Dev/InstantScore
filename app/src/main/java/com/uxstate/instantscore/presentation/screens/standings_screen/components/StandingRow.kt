@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.R
-import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
@@ -74,7 +73,7 @@ fun StandingRow(standing: Standing, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun StandingHeader(
+fun StandingRowHeader(
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
@@ -147,7 +146,6 @@ fun StandingRowPreview() {
             logo = ""
         ),
 
-
     )
 
     InstantScoreTheme {
@@ -174,7 +172,6 @@ fun StandingRowPreviewDark() {
             logo = ""
         ),
 
-
     )
 
     InstantScoreTheme {
@@ -187,7 +184,7 @@ fun StandingRowPreviewDark() {
 fun StandingHeaderPreview() {
 
     InstantScoreTheme() {
-        StandingHeader()
+        StandingRowHeader()
     }
 }
 
@@ -196,6 +193,6 @@ fun StandingHeaderPreview() {
 fun StandingHeaderPreviewDark() {
 
     InstantScoreTheme() {
-        StandingHeader()
+        StandingRowHeader()
     }
 }

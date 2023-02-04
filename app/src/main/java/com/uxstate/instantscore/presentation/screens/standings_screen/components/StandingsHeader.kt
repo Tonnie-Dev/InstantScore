@@ -28,55 +28,54 @@ fun StandingsHeader(league: League, modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     val countryFlagPainter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(context = context)
-                    .data(league.countryFlag)
-
-                    .crossfade(true)
-                    .placeholder(R.drawable.empty_flag)
-                    .error(R.drawable.empty_flag)
-                    .build()
+        model = ImageRequest.Builder(context = context)
+            .data(league.countryFlag)
+            .crossfade(true)
+            .placeholder(R.drawable.empty_flag)
+            .error(R.drawable.empty_flag)
+            .build()
     )
     val leagueLogoPainter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(context = context)
-                    .data(league.leagueLogo)
-                    .crossfade(true)
-                    .placeholder(R.drawable.empty_logo)
-                    .error(R.drawable.empty_logo)
-                    .build()
+        model = ImageRequest.Builder(context = context)
+            .data(league.leagueLogo)
+            .crossfade(true)
+            .placeholder(R.drawable.empty_logo)
+            .error(R.drawable.empty_logo)
+            .build()
 
     )
     Card(modifier = modifier.padding(spacing.spaceSmall), shape = RectangleShape) {
         Row() {
             Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                        painter = countryFlagPainter,
-                        contentDescription = stringResource(R.string.country_flag_text),
-                        modifier = Modifier.size(spacing.spaceLarge)
+                    painter = countryFlagPainter,
+                    contentDescription = stringResource(R.string.country_flag_text),
+                    modifier = Modifier.size(spacing.spaceLarge)
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceSmall))
                 Text(
-                        text = league.country,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
+                    text = league.country,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
                 )
             }
         }
 
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Image(
-                    painter = leagueLogoPainter,
-                    contentDescription = stringResource(R.string.league_logo_string),
-                    modifier = Modifier.size(spacing.spaceExtraLarge)
+                painter = leagueLogoPainter,
+                contentDescription = stringResource(R.string.league_logo_string),
+                modifier = Modifier.size(spacing.spaceExtraLarge)
             )
 
             Column {
                 Text(
-                        text = league.name,
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold
+                    text = league.name,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
                 )
                 Text(text = league.season.toString(), style = MaterialTheme.typography.titleMedium)
             }
@@ -84,17 +83,16 @@ fun StandingsHeader(league: League, modifier: Modifier = Modifier) {
     }
 }
 
-
 @Preview
 @Composable
 fun StandingsHeaderPreview() {
     val league = League(
-            id = 26,
-            name = "English Premier League",
-            country = "England",
-            leagueLogo = "",
-            countryFlag = "",
-            season = 2022
+        id = 26,
+        name = "English Premier League",
+        country = "England",
+        leagueLogo = "",
+        countryFlag = "",
+        season = 2022
     )
 
     InstantScoreTheme() {
@@ -106,12 +104,12 @@ fun StandingsHeaderPreview() {
 @Composable
 fun StandingsHeaderPreviewDark() {
     val league = League(
-            id = 26,
-            name = "English Premier League",
-            country = "England",
-            leagueLogo = "",
-            countryFlag = "",
-            season = 2022
+        id = 26,
+        name = "English Premier League",
+        country = "England",
+        leagueLogo = "",
+        countryFlag = "",
+        season = 2022
     )
 
     InstantScoreTheme() {

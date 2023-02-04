@@ -6,7 +6,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
@@ -17,7 +16,7 @@ fun StandingTable(standings: List<Standing>, modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier) {
 
         item {
-            StandingHeader()
+            StandingRowHeader()
         }
 
         items(standings) { standing ->
@@ -26,8 +25,6 @@ fun StandingTable(standings: List<Standing>, modifier: Modifier = Modifier) {
         }
     }
 }
-
-
 
 @Preview
 @Composable
@@ -46,7 +43,6 @@ fun StandingTablePreview() {
             name = "Tonnie FC",
             logo = ""
         ),
-
 
     )
     val standings = List(20) { standing }
@@ -74,7 +70,6 @@ fun StandingTablePreviewDark() {
             name = "Tonnie FC",
             logo = ""
         ),
-
 
     )
     val standings = List(20) { standing }

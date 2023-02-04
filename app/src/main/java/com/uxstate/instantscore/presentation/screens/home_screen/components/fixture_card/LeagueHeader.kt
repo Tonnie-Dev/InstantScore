@@ -35,8 +35,9 @@ fun LeagueHeader(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onClickLeagueHeader(league.id) }
             .padding(spacing.spaceSmall)
+            .clickable { onClickLeagueHeader(league.id) }
+
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -88,7 +89,8 @@ fun LeagueHeaderPreview() {
                 name = "Premier League",
                 country = "Kenya",
                 leagueLogo = "",
-                countryFlag = ""
+                countryFlag = "",
+                season = 2023
             ),
             onClickLeagueHeader = {}
         )
@@ -106,7 +108,8 @@ fun LeagueHeaderPreviewDark() {
                 name = "E-League",
                 country = "Ethiopia",
                 leagueLogo = "",
-                countryFlag = ""
+                countryFlag = "",
+                season = 2023
             ),
             onClickLeagueHeader = {}
         )

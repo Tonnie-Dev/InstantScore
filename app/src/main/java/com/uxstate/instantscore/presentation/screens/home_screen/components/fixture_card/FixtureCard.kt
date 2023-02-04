@@ -154,7 +154,7 @@ fun MatchCardPreview() {
                     name = "China League",
                     country = "",
                     leagueLogo = "",
-                    countryFlag = ""
+                    countryFlag = "", season = 2023
                 ),
                 teams = Pair(
                     Team(name = "Auxere", logo = ""),
@@ -190,7 +190,8 @@ fun MatchCardPreviewDark() {
                         name = "China League",
                         country = "",
                         leagueLogo = "",
-                        countryFlag = ""
+                        countryFlag = "",
+                        season = 2024
                     ),
                     teams = Pair(
                         Team(name = "Brest", logo = ""),

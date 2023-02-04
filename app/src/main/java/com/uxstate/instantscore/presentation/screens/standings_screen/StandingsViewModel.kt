@@ -6,9 +6,9 @@ import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.presentation.screens.navArgs
 import com.uxstate.instantscore.presentation.screens.standings_screen.state.StandingsState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import javax.inject.Inject
 
 @HiltViewModel
 class StandingsViewModel @Inject constructor(
@@ -17,8 +17,9 @@ class StandingsViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    val league = handle.navArgs<LeagueNavArgumentsHolder>()
     private val _standingsState = MutableStateFlow(StandingsState())
     val standingsState = _standingsState.asStateFlow()
 
+    // use generated extension function on the handle
+    val league = handle.navArgs<LeagueNavArgumentsHolder>()
 }
