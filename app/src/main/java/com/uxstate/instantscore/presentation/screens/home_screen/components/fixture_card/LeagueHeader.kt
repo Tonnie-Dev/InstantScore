@@ -49,6 +49,7 @@ fun LeagueHeader(
                     .decoderFactory(SvgDecoder.Factory())
                     .error(R.drawable.empty_flag)
                     .placeholder(R.drawable.empty_logo)
+                    .crossfade(true)
                     .build()
             )
 
