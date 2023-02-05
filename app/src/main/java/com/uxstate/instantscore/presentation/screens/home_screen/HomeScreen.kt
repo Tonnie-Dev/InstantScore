@@ -41,7 +41,7 @@ fun HomeScreen(
 ) {
     val state by viewModel.fixturesState.collectAsState()
 
-    val spacing = LocalSpacing.current
+    
 
     val mappedFixtures = state.fixtures.toList()
 

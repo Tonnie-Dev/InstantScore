@@ -108,12 +108,15 @@ class ScoresRepositoryImpl @Inject constructor(
             year = date.year
         )
 
+        // group and sort maps
         val mappedUpdatedLocalFixtures = updatedLocalFixtures.map { it.toModel() }
             .groupBy { it.league }.toSortedMap(
-                compareBy<League> {
+                compareBy {
                     it.id
                 }
             )
+
+        Timber.i("The fixtures are: $mappedUpdatedLocalFixtures")
         // emit updatedLocalFixtures
 
         emit(Resource.Success(data = mappedUpdatedLocalFixtures))
@@ -201,7 +204,7 @@ class ScoresRepositoryImpl @Inject constructor(
                 )
                 null
             }
-            Timber.i("The response is: $response")
+
             val standings = response?.let {
                 standingsJsonParser.parsJsonString(jsonString = it)
             }

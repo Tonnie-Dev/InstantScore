@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -35,6 +36,8 @@ fun FixtureCard(
 
         "NS" -> fixture.startTime.toHourMinuteFormat()
         "FT" -> "FT"
+        "1H" -> "${fixture.status.timeElapsed}'"
+        "2H" -> "${fixture.status.timeElapsed}'"
         else -> ""
     }
 
@@ -73,16 +76,18 @@ fun FixtureCard(
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(spacing.spaceExtraSmall)
+            modifier = Modifier.fillMaxWidth()
+                .padding(spacing.spaceExtraSmall)
         ) {
 
             Text(
                 text = fixtureSideText,
-                modifier = Modifier.align(Alignment.CenterVertically),
+                modifier = Modifier.align(Alignment.CenterVertically).weight(.15f).fillMaxWidth(),
+                textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleSmall
             )
 
-            Column(modifier = Modifier.padding(spacing.spaceSmall)) {
+            Column(modifier = Modifier.padding(spacing.spaceSmall).weight(.85f)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
