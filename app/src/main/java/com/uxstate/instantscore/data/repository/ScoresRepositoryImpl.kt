@@ -171,7 +171,8 @@ class ScoresRepositoryImpl @Inject constructor(
 
     override fun getStandings(season: Int, leagueId: Int): Flow<Resource<MutableList<Standing>>> =
         flow {
-
+            // discontinue loading
+            emit(Resource.Loading(isLoading = true))
             val response = try {
 
                 api.getStandings(season = season, leagueId = leagueId)
@@ -216,10 +217,13 @@ class ScoresRepositoryImpl @Inject constructor(
             }
 
             emit(Resource.Success(data = standings))
+            // discontinue loading
+            emit(Resource.Loading(isLoading = false))
         }
 
     override fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>  = flow {
-
+        // discontinue loading
+        emit(Resource.Loading(isLoading = true))
         val response = try {
 
             api.getLiveFixtures()
@@ -250,6 +254,33 @@ class ScoresRepositoryImpl @Inject constructor(
             emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
             null
         }
-        TODO("Not yet implemented")
+
+
+        if (response != null) {
+            if (response.response.isNotEmpty()){
+
+                val fixtures = response.let {
+                    it.response.map { fixture -> fixture.toModel() }
+                }
+                        .groupBy {
+
+                            it.league
+                        }
+                        .toSortedMap( compareBy { it.id })
+
+                emit(Resource.Success(data = fixtures))
+            }else{emit(Resource.Success(data = emptyMap()))}
+
+
+        } else {
+            emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
+
+        }
+
+
+
+
+        // discontinue loading
+        emit(Resource.Loading(isLoading = false))
     }
 }
