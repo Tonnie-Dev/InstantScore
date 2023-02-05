@@ -44,7 +44,11 @@ class ScoresRepositoryImpl @Inject constructor(
         val mappedLocalFixtures = localFixtures.map { it.toModel() }
             .groupBy {
                 it.league
-            }
+            }.toSortedMap(
+                compareBy<League> { it.id }.thenBy {
+                    it.name
+                }
+            )
 
         // emit local fixtures
         emit(Resource.Success(data = mappedLocalFixtures))
@@ -111,8 +115,8 @@ class ScoresRepositoryImpl @Inject constructor(
         // group and sort maps
         val mappedUpdatedLocalFixtures = updatedLocalFixtures.map { it.toModel() }
             .groupBy { it.league }.toSortedMap(
-                compareBy {
-                    it.id
+                compareBy<League> { it.id }.thenBy {
+                    it.name
                 }
             )
 

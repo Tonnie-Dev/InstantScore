@@ -25,7 +25,6 @@ import com.uxstate.instantscore.presentation.screens.home_screen.components.date
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.presentation.screens.standings_screen.LeagueNavArgumentsHolder
-import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
 import kotlinx.coroutines.launch
@@ -40,8 +39,6 @@ fun HomeScreen(
     navigator: DestinationsNavigator
 ) {
     val state by viewModel.fixturesState.collectAsState()
-
-    
 
     val mappedFixtures = state.fixtures.toList()
 

@@ -82,12 +82,12 @@ fun FixtureCard(
 
             Text(
                 text = fixtureSideText,
-                modifier = Modifier.align(Alignment.CenterVertically).weight(.15f).fillMaxWidth(),
+                modifier = Modifier.align(Alignment.CenterVertically).weight(.13f).fillMaxWidth(),
                 textAlign = TextAlign.Start,
                 style = MaterialTheme.typography.titleSmall
             )
 
-            Column(modifier = Modifier.padding(spacing.spaceSmall).weight(.85f)) {
+            Column(modifier = Modifier.padding(spacing.spaceSmall).weight(.87f)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
