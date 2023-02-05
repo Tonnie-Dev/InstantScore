@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.data.remote.api
 
 import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesResponseDTO
+import com.uxstate.instantscore.data.remote.dtos.live_games.LiveFixturesResponseDTO
 import com.uxstate.instantscore.utils.*
 import java.time.LocalDate
 import retrofit2.http.GET
@@ -23,4 +24,7 @@ interface ScoresAPI {
         @Query("season") season: Int,
         @Query("league") leagueId: Int
     ): String
+
+    @GET(GET_LIVE_FIXTURES)
+    suspend fun getLiveFixtures():LiveFixturesResponseDTO
 }

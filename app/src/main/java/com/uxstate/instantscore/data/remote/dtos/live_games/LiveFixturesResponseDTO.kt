@@ -3,7 +3,7 @@ package com.uxstate.instantscore.data.remote.dtos.live_games
 
 import com.squareup.moshi.Json
 
-data class LiveFixturesResponse(
+data class LiveFixturesResponseDTO(
     @Json(name = "errors")
     val errors: List<Any>,
     @Json(name = "get")

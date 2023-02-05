@@ -17,6 +17,7 @@ const val CONNECT_TIMEOUT = 15L
 
 const val GET_FIXTURES = "v3/fixtures"
 const val GET_STANDINGS = "v3/standings"
+const val GET_LIVE_FIXTURES = "v3/fixtures?live=all"
 const val DEFAULT_LEAGUE_ID = 39
 const val DEFAULT_SEASON = 2022
 const val DEFAULT_FIXTURE_ID = 867954
