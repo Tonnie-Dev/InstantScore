@@ -18,4 +18,7 @@ interface ScoresRepository {
     fun getFixtureDetails(fixtureId: Int): Flow<Resource<FixtureDetails>>
 
     fun getStandings(season: Int, leagueId: Int): Flow<Resource<MutableList<Standing>>>
+
+
+    fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>
 }
