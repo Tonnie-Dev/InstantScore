@@ -12,13 +12,13 @@ import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.toReverseStringDate
-import java.io.IOException
-import java.time.LocalDate
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import timber.log.Timber
+import java.io.IOException
+import java.time.LocalDate
+import javax.inject.Inject
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -38,17 +38,18 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // fetch locally
         val localFixtures = dao.getFixturesByDate(
-            dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
+                dayOfMonth = date.dayOfMonth, month = date.monthValue, year = date.year
         )
 
         val mappedLocalFixtures = localFixtures.map { it.toModel() }
-            .groupBy {
-                it.league
-            }.toSortedMap(
-                compareBy<League> { it.id }.thenBy {
-                    it.name
+                .groupBy {
+                    it.league
                 }
-            )
+                .toSortedMap(
+                        compareBy<League> { it.id }.thenBy {
+                            it.name
+                        }
+                )
 
         // emit local fixtures
         emit(Resource.Success(data = mappedLocalFixtures))
@@ -81,17 +82,17 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                Resource.Error(
-                    errorMessage = """
+                    Resource.Error(
+                            errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                )
+                    )
             ) // return null
             null
         } catch (e: Exception) {
 
             e.printStackTrace() // emit error
-            emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))
+            emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
             null
         }
 
@@ -107,18 +108,19 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // read from single source of truth and emit
         val updatedLocalFixtures = dao.getFixturesByDate(
-            dayOfMonth = date.dayOfMonth,
-            month = date.monthValue,
-            year = date.year
+                dayOfMonth = date.dayOfMonth,
+                month = date.monthValue,
+                year = date.year
         )
 
         // group and sort maps
         val mappedUpdatedLocalFixtures = updatedLocalFixtures.map { it.toModel() }
-            .groupBy { it.league }.toSortedMap(
-                compareBy<League> { it.id }.thenBy {
-                    it.name
-                }
-            )
+                .groupBy { it.league }
+                .toSortedMap(
+                        compareBy<League> { it.id }.thenBy {
+                            it.name
+                        }
+                )
 
         Timber.i("The fixtures are: $mappedUpdatedLocalFixtures")
         // emit updatedLocalFixtures
@@ -143,11 +145,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
             ioException.printStackTrace()
             emit(
-                Resource.Error(
-                    errorMessage = """
+                    Resource.Error(
+                            errorMessage = """
                 Could not reach the Server, please check your connection
                     """.trimIndent()
-                )
+                    )
             ) // return null
             null
         }
@@ -155,7 +157,7 @@ class ScoresRepositoryImpl @Inject constructor(
         catch (e: Exception) {
 
             e.printStackTrace() // emit error
-            emit(Resource.Error(errorMessage = """Unexpected Error Occurred, please try again"""))
+            emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
             null
         }
 
@@ -167,7 +169,7 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Success(data = fixtureDetails))
     }
 
-    override fun getStandings(season: Int, leagueId: Int,): Flow<Resource<MutableList<Standing>>> =
+    override fun getStandings(season: Int, leagueId: Int): Flow<Resource<MutableList<Standing>>> =
         flow {
 
             val response = try {
@@ -177,11 +179,11 @@ class ScoresRepositoryImpl @Inject constructor(
 
                 e.printStackTrace() // emit error
                 emit(
-                    Resource.Error(
-                        errorMessage = """
+                        Resource.Error(
+                                errorMessage = """
                     Unexpected Error Occurred, please try again
                         """.trimIndent()
-                    )
+                        )
                 )
 
                 // return null
@@ -189,22 +191,22 @@ class ScoresRepositoryImpl @Inject constructor(
             } catch (e: IOException) {
                 e.printStackTrace()
                 emit(
-                    Resource.Error(
-                        errorMessage = """
+                        Resource.Error(
+                                errorMessage = """
                 Could not reach the Server, please check your connection
                         """.trimIndent()
-                    )
+                        )
                 ) // return null
 
                 null
             } catch (e: Exception) {
                 e.printStackTrace() // emit error
                 emit(
-                    Resource.Error(
-                        errorMessage = """
+                        Resource.Error(
+                                errorMessage = """
                     Unexpected Error Occurred, please try again
                         """.trimIndent()
-                    )
+                        )
                 )
                 null
             }
@@ -216,7 +218,38 @@ class ScoresRepositoryImpl @Inject constructor(
             emit(Resource.Success(data = standings))
         }
 
-    override fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>> {
+    override fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>  = flow {
+
+        val response = try {
+
+            api.getLiveFixtures()
+        } catch (httpException: HttpException) {
+            httpException.printStackTrace() // emit error
+            emit(Resource.Error(errorMessage = """
+                Unexpected Error Occurred, please try again
+                """.trimIndent()))
+
+            // return null
+            null
+        } catch (ioException: IOException) {
+
+            ioException.printStackTrace()
+            emit(
+                    Resource.Error(
+                            errorMessage = """
+                Could not reach the Server, please check your connection
+                    """.trimIndent()
+                    )
+            ) // return null
+            null
+        }
+        // catch generalized errors
+        catch (e: Exception) {
+
+            e.printStackTrace() // emit error
+            emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
+            null
+        }
         TODO("Not yet implemented")
     }
 }
