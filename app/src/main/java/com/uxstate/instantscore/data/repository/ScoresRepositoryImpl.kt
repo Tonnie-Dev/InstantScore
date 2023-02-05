@@ -156,12 +156,12 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Success(data = fixtureDetails))
     }
 
-    override fun getStandings(leagueId: Int, season: Int): Flow<Resource<MutableList<Standing>>> =
+    override fun getStandings(season: Int, leagueId: Int,): Flow<Resource<MutableList<Standing>>> =
         flow {
 
             val response = try {
 
-                api.getStandings(leagueId, season)
+                api.getStandings(season = season, leagueId = leagueId)
             } catch (e: HttpException) {
 
                 e.printStackTrace() // emit error

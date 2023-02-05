@@ -21,10 +21,6 @@ fun StandingsTable(standings: List<Standing>, modifier: Modifier = Modifier) {
     Card(modifier = modifier.padding(spacing.spaceSmall), shape = RectangleShape) {
         LazyColumn {
 
-            item {
-                StandingRowHeader()
-            }
-
             items(standings) { standing ->
 
                 StandingRow(standing = standing)

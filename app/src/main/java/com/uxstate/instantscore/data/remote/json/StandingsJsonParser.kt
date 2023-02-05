@@ -22,7 +22,7 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
         val countryFlag = leagueObj.optString("flag", "")
         val season = leagueObj.optInt("season", -1)
 
-        val standingsJsonArray = innerResponseObj.getJSONArray("standings")
+        val standingsJsonArray = leagueObj.getJSONArray("standings")
         val innerJsonStandingArray = standingsJsonArray.getJSONArray(0)
 
         val standings = mutableListOf<Standing>()

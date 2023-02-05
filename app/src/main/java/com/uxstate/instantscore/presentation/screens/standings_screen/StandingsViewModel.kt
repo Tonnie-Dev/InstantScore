@@ -13,6 +13,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @HiltViewModel
 class StandingsViewModel @Inject constructor(
@@ -28,14 +29,17 @@ class StandingsViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     // use generated extension function on the handle
+    private val season = handle.navArgs<LeagueNavArgumentsHolder>().season
     private val leagueId = handle.navArgs<LeagueNavArgumentsHolder>().id
 
     init {
+        Timber.i("The season is: $season, leagueId is: $leagueId")
         getStandings()
     }
+
     private fun getStandings() {
 
-        useCaseContainer.getStandingsUseCase(leagueId)
+        useCaseContainer.getStandingsUseCase(season = season, leagueId = leagueId)
             .onEach { result ->
                 when (result) {
 

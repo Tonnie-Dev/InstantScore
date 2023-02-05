@@ -48,26 +48,26 @@ fun StandingRowHeader(
                 text = stringResource(R.string.match_played),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Black
             )
             Text(
                 text = "GF:GA",
                 modifier = Modifier.weight(.2f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Black
             )
             Text(
                 text = stringResource(R.string.goal_diff_text),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Light,
+                fontWeight = FontWeight.Black,
                 textAlign = TextAlign.Center
             )
             Text(
                 text = stringResource(R.string.points_text),
                 modifier = Modifier.weight(.1f),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Light,
+                fontWeight = FontWeight.Black,
                 textAlign = TextAlign.Center
             )
         }
