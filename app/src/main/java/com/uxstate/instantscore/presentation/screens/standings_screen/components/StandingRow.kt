@@ -26,50 +26,50 @@ fun StandingRow(standing: Standing, modifier: Modifier = Modifier) {
     Card(modifier = modifier.padding(spacing.spaceExtraSmall), shape = RectangleShape) {
 
         Row(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(spacing.spaceSmall),
-                horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.spaceSmall),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Text(
-                    text = standing.rank.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Light
+                text = standing.rank.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Light
             )
             Text(
-                    text = standing.team.name,
-                    modifier = Modifier.weight(.4f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    overflow = TextOverflow.Ellipsis,
-                    fontWeight = FontWeight.Black
+                text = standing.team.name,
+                modifier = Modifier.weight(.4f),
+                style = MaterialTheme.typography.bodyMedium,
+                overflow = TextOverflow.Ellipsis,
+                fontWeight = FontWeight.Black
             )
             Text(
-                    text = standing.matchPlayed.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Light
+                text = standing.matchPlayed.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Light
             )
             Text(
-                    text = "${standing.goalsFor}:${standing.goalsAgainst}",
-                    modifier = Modifier.weight(.2f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Light
+                text = "${standing.goalsFor}:${standing.goalsAgainst}",
+                modifier = Modifier.weight(.2f),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Light
             )
             Text(
-                    text = standing.goalsDiff.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.End,
-                    fontWeight = FontWeight.Light,
+                text = standing.goalsDiff.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.End,
+                fontWeight = FontWeight.Light,
 
-                    )
+            )
             Text(
-                    text = standing.points.toString(),
-                    modifier = Modifier.weight(.1f),
-                    style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.End,
-                    fontWeight = FontWeight.Light
+                text = standing.points.toString(),
+                modifier = Modifier.weight(.1f),
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.End,
+                fontWeight = FontWeight.Light
             )
         }
     }
@@ -80,21 +80,21 @@ fun StandingRow(standing: Standing, modifier: Modifier = Modifier) {
 fun StandingRowPreview() {
 
     val standing = Standing(
-            description = "Promotion",
-            goalsAgainst = 23,
-            goalsFor = 47,
-            goalsDiff = 24,
-            matchPlayed = 21,
-            group = "Group E",
-            points = 64,
-            rank = 3,
-            team = Team(
-                    id = 96,
-                    name = "Tonnie FC",
-                    logo = ""
-            ),
+        description = "Promotion",
+        goalsAgainst = 23,
+        goalsFor = 47,
+        goalsDiff = 24,
+        matchPlayed = 21,
+        group = "Group E",
+        points = 64,
+        rank = 3,
+        team = Team(
+            id = 96,
+            name = "Tonnie FC",
+            logo = ""
+        ),
 
-            )
+    )
 
     InstantScoreTheme {
         StandingRow(standing = standing)
@@ -106,21 +106,21 @@ fun StandingRowPreview() {
 fun StandingRowPreviewDark() {
 
     val standing = Standing(
-            description = "Promotion",
-            goalsAgainst = 23,
-            goalsFor = 47,
-            goalsDiff = 24,
-            matchPlayed = 21,
-            group = "Group E",
-            points = 64,
-            rank = 3,
-            team = Team(
-                    id = 96,
-                    name = "Tonnie FC",
-                    logo = ""
-            ),
+        description = "Promotion",
+        goalsAgainst = 23,
+        goalsFor = 47,
+        goalsDiff = 24,
+        matchPlayed = 21,
+        group = "Group E",
+        points = 64,
+        rank = 3,
+        team = Team(
+            id = 96,
+            name = "Tonnie FC",
+            logo = ""
+        ),
 
-            )
+    )
 
     InstantScoreTheme {
         StandingRow(standing = standing)
