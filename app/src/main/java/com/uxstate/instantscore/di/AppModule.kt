@@ -8,10 +8,7 @@ import com.uxstate.instantscore.BuildConfig
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.domain.repository.ScoresRepository
-import com.uxstate.instantscore.domain.usecases.GetFixtureDetailsUseCase
-import com.uxstate.instantscore.domain.usecases.GetFixturesByDateUseCase
-import com.uxstate.instantscore.domain.usecases.GetStandingsUseCase
-import com.uxstate.instantscore.domain.usecases.UseCaseContainer
+import com.uxstate.instantscore.domain.usecases.*
 import com.uxstate.instantscore.utils.*
 import dagger.Module
 import dagger.Provides
@@ -114,7 +111,8 @@ object AppModule {
         return UseCaseContainer(
             getFixturesByDateUseCase = GetFixturesByDateUseCase(repository = repository),
             getFixtureDetailsUseCase = GetFixtureDetailsUseCase(repository = repository),
-            getStandingsUseCase = GetStandingsUseCase(repository = repository)
+            getStandingsUseCase = GetStandingsUseCase(repository = repository),
+                getLiveFixturesUseCase = GetLiveFixturesUseCase(repository = repository)
         )
     }
 }
