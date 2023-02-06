@@ -20,6 +20,7 @@ fun DateTabsStrip(
     onCalendarDateChange: (date: LocalDate) -> Unit,
     onTogglePrevDate: (date: LocalDate) -> Unit,
     onToggleNextDate: (date: LocalDate) -> Unit,
+    onClickLiveButton: () -> Unit,
     isCalendarClicked: Boolean,
     modifier: Modifier = Modifier
 ) {
@@ -46,7 +47,7 @@ fun DateTabsStrip(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                LiveButton(onClickLiveButton = {})
+                LiveButton(onClickLiveButton = { onClickLiveButton() })
                 DateTabsRow(onDateChange = onDateTabClick)
                 DatePickerItem(onCalendarDateChange = onCalendarDateChange)
             }
@@ -65,6 +66,7 @@ fun DateStripPreview() {
         isCalendarClicked = false,
         onHomeDateTabClick = {},
         onTogglePrevDate = {},
-        onToggleNextDate = {}
+        onToggleNextDate = {},
+        onClickLiveButton = {}
     )
 }
