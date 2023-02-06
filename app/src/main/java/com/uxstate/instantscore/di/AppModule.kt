@@ -112,7 +112,7 @@ object AppModule {
             getFixturesByDateUseCase = GetFixturesByDateUseCase(repository = repository),
             getFixtureDetailsUseCase = GetFixtureDetailsUseCase(repository = repository),
             getStandingsUseCase = GetStandingsUseCase(repository = repository),
-                getLiveFixturesUseCase = GetLiveFixturesUseCase(repository = repository)
+            getLiveFixturesUseCase = GetLiveFixturesUseCase(repository = repository)
         )
     }
 }

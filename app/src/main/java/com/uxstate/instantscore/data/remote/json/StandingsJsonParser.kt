@@ -14,7 +14,6 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
         val innerResponseObj = responseJsonArray.getJSONObject(0)
         val leagueObj = innerResponseObj.getJSONObject("league")
 
-
         val standingsJsonArray = leagueObj.getJSONArray("standings")
         val innerJsonStandingArray = standingsJsonArray.getJSONArray(0)
 

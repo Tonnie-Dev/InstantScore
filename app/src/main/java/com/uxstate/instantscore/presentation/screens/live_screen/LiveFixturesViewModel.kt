@@ -6,16 +6,15 @@ import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class LiveFixturesViewModel @Inject constructor(
     private val useCaseContainer: UseCaseContainer
 ) : ViewModel() {
-
 
     private val _liveFixturesState = MutableStateFlow(LiveFixturesState())
     val liveFixturesState = _liveFixturesState.asStateFlow()
@@ -30,47 +29,44 @@ class LiveFixturesViewModel @Inject constructor(
     private fun getLiveFixtures() {
 
         useCaseContainer.getLiveFixturesUseCase()
-                .onEach {
+            .onEach {
 
-                    result ->
+                result ->
 
-                    when (result) {
+                when (result) {
 
-                        is Resource.Success -> {
+                    is Resource.Success -> {
 
-                            result.data?.let {
-
-                                _liveFixturesState.value =
-                                    _liveFixturesState.value.copy(fixturesMap = it)
-                            }
-                        }
-                        is Resource.Error -> {
-
-                            //stop loading and send and event to UI
-                            _liveFixturesState.value =
-                                _liveFixturesState.value.copy(
-                                        isLoading = false,
-                                        fixturesMap = result.data ?: emptyMap()
-                                )
-
-
-                            sendUIEvent(
-                                    UIEvent.ShowSnackBarUiEvent(
-                                            message = result.errorMessage ?: "Unknown Error",
-                                            action = "OK"
-                                    )
-                            )
-
-
-                        }
-                        is Resource.Loading -> {
+                        result.data?.let {
 
                             _liveFixturesState.value =
-                                _liveFixturesState.value.copy(isLoading = result.isLoading)
+                                _liveFixturesState.value.copy(fixturesMap = it)
                         }
                     }
+                    is Resource.Error -> {
+
+                        // stop loading and send and event to UI
+                        _liveFixturesState.value =
+                            _liveFixturesState.value.copy(
+                                isLoading = false,
+                                fixturesMap = result.data ?: emptyMap()
+                            )
+
+                        sendUIEvent(
+                            UIEvent.ShowSnackBarUiEvent(
+                                message = result.errorMessage ?: "Unknown Error",
+                                action = "OK"
+                            )
+                        )
+                    }
+                    is Resource.Loading -> {
+
+                        _liveFixturesState.value =
+                            _liveFixturesState.value.copy(isLoading = result.isLoading)
+                    }
                 }
-                .launchIn(viewModelScope)
+            }
+            .launchIn(viewModelScope)
     }
 
     private fun sendUIEvent(uiEvent: UIEvent) {
@@ -78,7 +74,5 @@ class LiveFixturesViewModel @Inject constructor(
         viewModelScope.launch {
             _uiEvent.send(uiEvent)
         }
-
     }
-
 }
