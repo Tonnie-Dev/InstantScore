@@ -14,13 +14,6 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
         val innerResponseObj = responseJsonArray.getJSONObject(0)
         val leagueObj = innerResponseObj.getJSONObject("league")
 
-        // league name
-        val leagueId = leagueObj.optInt("id", -1)
-        val leagueName = leagueObj.optString("name", "")
-        val country = leagueObj.optString("country", "")
-        val leagueLogo = leagueObj.optString("logo", "")
-        val countryFlag = leagueObj.optString("flag", "")
-        val season = leagueObj.optInt("season", -1)
 
         val standingsJsonArray = leagueObj.getJSONArray("standings")
         val innerJsonStandingArray = standingsJsonArray.getJSONArray(0)
@@ -53,7 +46,6 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
             val goalsJsonObj = allJsonObj.getJSONObject("goals")
 
             // variables - goals for and goals against
-
             val goalsFor = goalsJsonObj.optInt("for", -1)
             val goalsAgainst = goalsJsonObj.optInt("against", -1)
 
