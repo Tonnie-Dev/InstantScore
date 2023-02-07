@@ -117,7 +117,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
 
     // Material 3 Lib
-    implementation("androidx.compose.material3:material3:1.1.0-alpha04")
+    implementation("androidx.compose.material3:material3:1.1.0-alpha05")
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
