@@ -131,8 +131,9 @@ dependencies {
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.7")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.7.2")
+    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+
     // Retrofit Converters
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
@@ -173,4 +174,24 @@ dependencies {
 
     // DesugaringLib
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
+
+    // testing
+    androidTestImplementation("com.google.truth:truth:1.1.3")
+    androidTestImplementation("androidx.test:core-ktx:1.4.0")
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
+    testImplementation("org.mockito:mockito-android:3.10.0")
+    testImplementation("org.mockito:mockito-inline:3.11.2")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation("io.mockk:mockk:1.12.7")
+    testImplementation("org.mockito:mockito-core:3.11.2")
+    androidTestImplementation("org.mockito:mockito-android:3.10.0")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.42")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("androidx.test:runner:1.4.0")
+    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("androidx.test:core-ktx:1.4.0")
+    testImplementation("org.robolectric:robolectric:4.5.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
 }
