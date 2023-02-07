@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.presentation.screens.live_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -20,31 +21,31 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun LiveFixturesHeader(modifier: Modifier = Modifier) {
+fun LiveFixturesHeader(modifier: Modifier = Modifier, onNavigateBack: () -> Unit) {
     val spacing = LocalSpacing.current
     Card(shape = RectangleShape) {
         Row(
-                modifier = modifier
-                        .fillMaxWidth()
-                        .padding(spacing.spaceSmall),
-                verticalAlignment = Alignment.CenterVertically
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(spacing.spaceSmall),
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
             Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back_label),
-                    modifier = Modifier
-                            .size(spacing.spaceLarge)
-                            .weight(.1f),
-                    tint = MaterialTheme.colorScheme.onSurface
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = stringResource(id = R.string.back_label),
+                modifier = Modifier
+                    .size(spacing.spaceLarge)
+                    .weight(.1f).clickable { onNavigateBack() },
+                tint = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.width(spacing.spaceLarge))
             Text(
-                    text = stringResource(R.string.live_fixtures_text),
-                    style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier.weight(.9f),
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onSurface
+                text = stringResource(R.string.live_fixtures_text),
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier.weight(.9f),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
@@ -54,7 +55,7 @@ fun LiveFixturesHeader(modifier: Modifier = Modifier) {
 @Composable
 fun LiveFixturesHeaderPreview() {
     InstantScoreTheme() {
-        LiveFixturesHeader()
+        LiveFixturesHeader() {}
     }
 }
 
@@ -62,6 +63,6 @@ fun LiveFixturesHeaderPreview() {
 @Composable
 fun LiveFixturesHeaderPreviewDark() {
     InstantScoreTheme() {
-        LiveFixturesHeader()
+        LiveFixturesHeader() {}
     }
 }
