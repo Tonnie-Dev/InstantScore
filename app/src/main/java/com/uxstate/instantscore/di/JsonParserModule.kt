@@ -34,7 +34,6 @@ abstract class JsonParserModule {
         standingsJsonParser: StandingsJsonParser
     ): JsonStringParser<MutableList<Standing>>
 
-
     @Binds
     @Singleton
     abstract fun bindLiveFixturesJsonParser(
