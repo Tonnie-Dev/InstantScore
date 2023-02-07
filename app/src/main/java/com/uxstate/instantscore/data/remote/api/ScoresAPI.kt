@@ -26,5 +26,5 @@ interface ScoresAPI {
     ): String
 
     @GET(GET_LIVE_FIXTURES)
-    suspend fun getLiveFixtures(): LiveFixturesResponseDTO
+    suspend fun getLiveFixtures(@Query("live") live: String = "all"): LiveFixturesResponseDTO
 }

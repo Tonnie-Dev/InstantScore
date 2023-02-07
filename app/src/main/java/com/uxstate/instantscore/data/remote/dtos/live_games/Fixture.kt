@@ -10,7 +10,7 @@ data class Fixture(
     @Json(name = "periods")
     val periods: Periods,
     @Json(name = "referee")
-    val referee: String,
+    val referee: String?,
     @Json(name = "status")
     val status: Status,
     @Json(name = "timestamp")

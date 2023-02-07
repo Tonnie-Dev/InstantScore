@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class Halftime(
     @Json(name = "away")
-    val away: Int,
+    val away: Int?,
     @Json(name = "home")
-    val home: Int
+    val home: Int?
 )

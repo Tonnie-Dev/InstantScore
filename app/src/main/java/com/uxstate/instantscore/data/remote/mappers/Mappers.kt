@@ -93,8 +93,8 @@ fun Response.toModel(): Fixture {
             season = this.league.season
         ),
         teams = Pair(
-            first = Team(name = this.teams.home.name, logo = this.teams.home.logo),
-            second = Team(name = this.teams.away.name, logo = this.teams.away.logo)
+            first = Team(name = this.teams.home?.name ?: "", logo = this.teams.home?.logo ?: ""),
+            second = Team(name = this.teams.away?.name ?: "", logo = this.teams.away?.logo ?: "")
         ),
         goals = Goal(
             homeTeamScore = this.goals.home,

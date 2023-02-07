@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class Teams(
     @Json(name = "away")
-    val away: Away,
+    val away: Away?,
     @Json(name = "home")
-    val home: Home
+    val home: Home?
 )

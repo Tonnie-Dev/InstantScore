@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class Response(
     @Json(name = "events")
-    val events: List<Event>,
+    val events: List<Event?>?,
     @Json(name = "fixture")
     val fixture: Fixture,
     @Json(name = "goals")

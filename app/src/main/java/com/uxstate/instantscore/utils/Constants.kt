@@ -21,14 +21,3 @@ const val GET_LIVE_FIXTURES = "v3/fixtures?live=all"
 const val DEFAULT_LEAGUE_ID = 39
 const val DEFAULT_SEASON = 2022
 const val DEFAULT_FIXTURE_ID = 867954
-
-const val GET_LEAGUES_BY_ID = "v3/leagues"
-
-const val GET_MATCH_DETAILS = "soccer/matches/{id}"
-
-const val GET_ODDS = "/soccer/odds/{match_id}"
-const val GET_TOP_SCORERS = "soccer/topscorers"
-
-const val ODDS_TYPE = "prematch"
-const val DATE_FROM = "2022-08-06"
-const val DATE_TO = "2023-05-28"

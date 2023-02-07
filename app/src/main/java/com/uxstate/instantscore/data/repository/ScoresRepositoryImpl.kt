@@ -255,6 +255,8 @@ class ScoresRepositoryImpl @Inject constructor(
         catch (e: Exception) {
 
             e.printStackTrace() // emit error
+
+            Timber.i("Error Detected: ${e.message}")
             emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
             null
         }

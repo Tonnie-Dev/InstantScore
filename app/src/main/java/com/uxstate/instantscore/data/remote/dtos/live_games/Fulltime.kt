@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class Fulltime(
     @Json(name = "away")
-    val away: Any,
+    val away: Int?,
     @Json(name = "home")
-    val home: Any
+    val home: Int?
 )
