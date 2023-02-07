@@ -1,7 +1,6 @@
 package com.uxstate.instantscore.data.remote.api
 
 import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesResponseDTO
-import com.uxstate.instantscore.data.remote.dtos.live_games.LiveFixturesResponseDTO
 import com.uxstate.instantscore.utils.*
 import java.time.LocalDate
 import retrofit2.http.GET
@@ -26,5 +25,5 @@ interface ScoresAPI {
     ): String
 
     @GET(GET_LIVE_FIXTURES)
-    suspend fun getLiveFixtures(@Query("live") live: String = "all"): LiveFixturesResponseDTO
+    suspend fun getLiveFixtures(@Query("live") live: String = "all"): String
 }

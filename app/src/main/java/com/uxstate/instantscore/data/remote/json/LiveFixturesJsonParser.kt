@@ -2,9 +2,10 @@ package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
 import java.time.LocalDate
+import javax.inject.Inject
 import org.json.JSONObject
 
-class LiveFixturesJsonParser : JsonStringParser<MutableList<Fixture>> {
+class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableList<Fixture>> {
     override fun parsJsonString(jsonString: String): MutableList<Fixture> {
 
         val mainJsonObj = JSONObject(jsonString)

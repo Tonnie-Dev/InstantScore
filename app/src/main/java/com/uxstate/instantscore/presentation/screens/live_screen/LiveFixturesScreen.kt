@@ -57,7 +57,7 @@ fun LiveFixturesScreen(
     })
     Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
-            LiveFixturesHeader()
+            LiveFixturesHeader() { navigator.navigateUp() }
             LiveFixturesList(
                 mappedFixtures = state.fixturesMap.toList(),
                 navigator = navigator,

@@ -25,6 +25,7 @@ class ScoresRepositoryImpl @Inject constructor(
     db: ScoresDatabase,
     private val fixtureDetailsJsonParser: JsonStringParser<FixtureDetails>,
     private val standingsJsonParser: JsonStringParser<MutableList<Standing>>,
+    private val liveFixturesJsonParser: JsonStringParser<MutableList<Fixture>>
 ) : ScoresRepository {
     private val dao = db.dao
 
@@ -261,19 +262,22 @@ class ScoresRepositoryImpl @Inject constructor(
             null
         }
 
-        if (response != null) {
-            if (response.response.isNotEmpty()) {
+        // pass the string response to LiveFixturesParser to get a list of Live Fixtures
+        val fixturesList = response?.let {
+            liveFixturesJsonParser.parsJsonString(it)
+        }
 
-                val fixtures = response.let {
-                    it.response.map { fixture -> fixture.toModel() }
-                }
+        if (fixturesList != null) {
+            if (fixturesList.isNotEmpty()) {
+
+                val mappedFixtures = fixturesList
                     .groupBy {
 
                         it.league
                     }
                     .toSortedMap(compareBy { it.id })
 
-                emit(Resource.Success(data = fixtures))
+                emit(Resource.Success(data = mappedFixtures))
             } else { emit(Resource.Success(data = emptyMap())) }
         } else {
             emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
