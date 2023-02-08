@@ -23,8 +23,17 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StatsPlayerCard() {
-
+fun StatsPlayerCard(
+    player: String,
+    teamName: String,
+    teamLogo: String,
+    rank:Int,
+    statValue:Int,
+    modifier: Modifier = Modifier
+) {
+Row(modifier = modifier) {
+    PlayerTeamRow(player = player, teamName = teamName, teamLogo = teamLogo)
+}
 }
 
 
