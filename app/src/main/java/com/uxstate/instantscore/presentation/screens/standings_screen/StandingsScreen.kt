@@ -20,7 +20,6 @@ import com.uxstate.instantscore.presentation.screens.standings_screen.components
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.UIEvent
 import kotlinx.coroutines.launch
-import java.util.zip.DeflaterInputStream
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Destination(navArgsDelegate = LeagueNavArgumentsHolder::class)
@@ -45,9 +44,9 @@ fun StandingsScreen(
                     coroutineScope.launch {
 
                         snackbarHostState.showSnackbar(
-                                message = uiEvent.message,
-                                actionLabel = uiEvent.action,
-                                duration = SnackbarDuration.Short
+                            message = uiEvent.message,
+                            actionLabel = uiEvent.action,
+                            duration = SnackbarDuration.Short
                         )
                     }
                 }
@@ -58,25 +57,25 @@ fun StandingsScreen(
     Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { paddingValues ->
 
         Column(
-                modifier = Modifier.padding(paddingValues = paddingValues),
-                horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.padding(paddingValues = paddingValues),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             StandingsHeader(
-                    league = League(
-                            id = navArgs.id,
-                            name = navArgs.name,
-                            country = navArgs.country,
-                            leagueLogo = navArgs.leagueLogo,
-                            countryFlag = navArgs.countryFlag,
-                            season = navArgs.season
-                    ),
-                    onNavigateBack = {
-                        navigator.navigateUp()
-                    }
+                league = League(
+                    id = navArgs.id,
+                    name = navArgs.name,
+                    country = navArgs.country,
+                    leagueLogo = navArgs.leagueLogo,
+                    countryFlag = navArgs.countryFlag,
+                    season = navArgs.season
+                ),
+                onNavigateBack = {
+                    navigator.navigateUp()
+                }
             )
-           Button(onClick = { /*TODO*/ }) {
-               Text(text = stringResource(R.string.stats_button_label))
-           }
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = stringResource(R.string.stats_button_label))
+            }
             StandingRowHeader()
 
             Box(contentAlignment = Alignment.Center) {
@@ -105,17 +104,19 @@ data class LeagueNavArgumentsHolder(
 @Composable
 fun StandingsScreenPreview() {
 
-
     InstantScoreTheme() {
-      StandingsScreen(navArgs = LeagueNavArgumentsHolder(
-              id = 13,
-              name = "Ligue 1",
-              country = "Dubai",
-              leagueLogo = "",
-              countryFlag = "",
-              season = 1920
-      ), navigator = fakeNavigator)
+        StandingsScreen(
+            navArgs = LeagueNavArgumentsHolder(
+                id = 13,
+                name = "Ligue 1",
+                country = "Dubai",
+                leagueLogo = "",
+                countryFlag = "",
+                season = 1920
+            ),
+            navigator = fakeNavigator
+        )
     }
 }
 
-lateinit var fakeNavigator:DestinationsNavigator
+lateinit var fakeNavigator: DestinationsNavigator
