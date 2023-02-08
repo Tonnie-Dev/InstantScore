@@ -27,15 +27,14 @@ fun StatsPlayerCard(
     player: String,
     teamName: String,
     teamLogo: String,
-    rank:Int,
-    statValue:Int,
+    rank: Int,
+    statValue: Int,
     modifier: Modifier = Modifier
 ) {
-Row(modifier = modifier) {
-    PlayerTeamRow(player = player, teamName = teamName, teamLogo = teamLogo)
+    Row(modifier = modifier) {
+        PlayerTeamRow(player = player, teamName = teamName, teamLogo = teamLogo)
+    }
 }
-}
-
 
 @Composable
 fun PlayerTeamRow(
@@ -47,41 +46,40 @@ fun PlayerTeamRow(
     val spacing = LocalSpacing.current
     val context = LocalContext.current
     val painter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(context)
-                    .data(teamLogo)
-                    .crossfade(true)
-                    .placeholder(R.drawable.empty_logo)
-                    .error(R.drawable.empty_logo)
-                    .build()
+        model = ImageRequest.Builder(context)
+            .data(teamLogo)
+            .crossfade(true)
+            .placeholder(R.drawable.empty_logo)
+            .error(R.drawable.empty_logo)
+            .build()
     )
     Row(
-            modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Image(
-                painter = painter,
-                contentDescription = stringResource(R.string.team_logo_image),
-                modifier = Modifier.size(spacing.spaceMedium)
+            painter = painter,
+            contentDescription = stringResource(R.string.team_logo_image),
+            modifier = Modifier.size(spacing.spaceMedium)
         )
         Column() {
 
             Text(
-                    text = player,
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                text = player,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             Text(
-                    text = player,
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.medium)
+                text = player,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.medium)
             )
         }
     }
-
 }
 
 @Preview
@@ -89,10 +87,10 @@ fun PlayerTeamRow(
 fun PlayerTeamRowPreview() {
     InstantScoreTheme() {
         PlayerTeamRow(
-                player = "Gideon",
-                teamName = "Arsenal FC",
-                teamLogo = "",
-                modifier = Modifier
+            player = "Gideon",
+            teamName = "Arsenal FC",
+            teamLogo = "",
+            modifier = Modifier
         )
     }
 }
@@ -102,10 +100,10 @@ fun PlayerTeamRowPreview() {
 fun PlayerTeamRowPreviewDark() {
     InstantScoreTheme() {
         PlayerTeamRow(
-                player = "Gideon",
-                teamName = "Arsenal FC",
-                teamLogo = "",
-                modifier = Modifier
+            player = "Gideon",
+            teamName = "Arsenal FC",
+            teamLogo = "",
+            modifier = Modifier
         )
     }
 }
