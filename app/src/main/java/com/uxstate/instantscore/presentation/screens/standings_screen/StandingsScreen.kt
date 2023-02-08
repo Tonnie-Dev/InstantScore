@@ -7,9 +7,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingRowHeader
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingsHeader
@@ -40,9 +42,9 @@ fun StandingsScreen(
                     coroutineScope.launch {
 
                         snackbarHostState.showSnackbar(
-                            message = uiEvent.message,
-                            actionLabel = uiEvent.action,
-                            duration = SnackbarDuration.Short
+                                message = uiEvent.message,
+                                actionLabel = uiEvent.action,
+                                duration = SnackbarDuration.Short
                         )
                     }
                 }
@@ -52,21 +54,26 @@ fun StandingsScreen(
 
     Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { paddingValues ->
 
-        Column(modifier = Modifier.padding(paddingValues = paddingValues)) {
+        Column(
+                modifier = Modifier.padding(paddingValues = paddingValues),
+                horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             StandingsHeader(
-                league = League(
-                    id = navArgs.id,
-                    name = navArgs.name,
-                    country = navArgs.country,
-                    leagueLogo = navArgs.leagueLogo,
-                    countryFlag = navArgs.countryFlag,
-                    season = navArgs.season
-                ),
-                onNavigateBack = {
-                    navigator.navigateUp()
-                }
+                    league = League(
+                            id = navArgs.id,
+                            name = navArgs.name,
+                            country = navArgs.country,
+                            leagueLogo = navArgs.leagueLogo,
+                            countryFlag = navArgs.countryFlag,
+                            season = navArgs.season
+                    ),
+                    onNavigateBack = {
+                        navigator.navigateUp()
+                    }
             )
-
+           Button(onClick = { /*TODO*/ }) {
+               Text(text = stringResource(R.string.stats_button_label))
+           }
             StandingRowHeader()
 
             Box(contentAlignment = Alignment.Center) {

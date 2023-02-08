@@ -18,4 +18,5 @@
     <string name="goal_diff_text">GD</string>
     <string name="points_text">PTS</string>
     <string name="live_fixtures_text">Live Fixtures</string>
+    <string name="stats_button_label">Statistics</string>
 </resources>
