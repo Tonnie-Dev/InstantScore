@@ -7,8 +7,6 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp") version "1.7.21-1.0.8"
-    // id("com.google.devtools.ksp") version "1.8.10-1.0.9"
-
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     id("com.diffplug.spotless")
 }
