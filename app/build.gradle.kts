@@ -78,7 +78,7 @@ tasks.getByPath("preBuild")
 
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
-    android.set(true)
+    android.set(false)
     ignoreFailures.set(false)
     disabledRules.set(setOf("final-newline", "no-wildcard-imports"))
     reporters {

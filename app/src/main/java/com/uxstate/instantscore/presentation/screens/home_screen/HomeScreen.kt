@@ -27,8 +27,8 @@ import com.uxstate.instantscore.presentation.screens.home_screen.components.fixt
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.presentation.screens.standings_screen.LeagueNavArgumentsHolder
 import com.uxstate.instantscore.utils.UIEvent
-import java.time.LocalDate
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Destination

@@ -9,11 +9,11 @@ import com.uxstate.instantscore.presentation.screens.navArgs
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
@@ -68,6 +68,8 @@ class DetailsViewModel @Inject constructor(
                             )
                         )
                     }
+
+                    else -> {}
                 }
             }
             .launchIn(viewModelScope)

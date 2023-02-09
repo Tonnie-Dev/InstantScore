@@ -4,8 +4,8 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
-import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 class GetFixturesByDateUseCase(private val repository: ScoresRepository) {
 

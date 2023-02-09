@@ -9,11 +9,11 @@ import com.uxstate.instantscore.presentation.screens.standings_screen.state.Stan
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
 class StandingsViewModel @Inject constructor(
@@ -72,6 +72,8 @@ class StandingsViewModel @Inject constructor(
                         _standingsState.value =
                             _standingsState.value.copy(isLoading = result.isLoading)
                     }
+
+                    else -> {}
                 }
             }
             .launchIn(viewModelScope)

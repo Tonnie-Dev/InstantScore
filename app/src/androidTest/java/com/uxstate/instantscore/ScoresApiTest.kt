@@ -6,8 +6,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
-import java.io.InputStream
-import java.net.HttpURLConnection
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,6 +18,8 @@ import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.io.InputStream
+import java.net.HttpURLConnection
 
 class ScoresApiTest {
     private var context: Context? = null

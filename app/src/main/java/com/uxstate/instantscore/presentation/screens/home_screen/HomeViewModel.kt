@@ -9,13 +9,13 @@ import com.uxstate.instantscore.presentation.screens.home_screen.state.FixturesS
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.time.LocalDate
-import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.time.LocalDate
+import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -78,6 +78,8 @@ class HomeViewModel @Inject constructor(
                             _fixturesState.value.copy(isLoading = result.isLoading)
                         Timber.i("The Loading Status is ${result.isLoading}")
                     }
+
+                    else -> {}
                 }
             }
             .launchIn(viewModelScope)
@@ -118,6 +120,8 @@ class HomeViewModel @Inject constructor(
                 Timber.i("SwipeRefresh called, state is: ${_fixturesState.value.isRefresh}")
                 getFixtures(true, _fixturesState.value.date)
             }
+
+            else -> {}
         }
     }
 

@@ -4,9 +4,10 @@ import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
+import com.uxstate.instantscore.domain.models.top_scorer.Response
 import com.uxstate.instantscore.utils.Resource
-import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 interface ScoresRepository {
 
@@ -20,4 +21,6 @@ interface ScoresRepository {
     fun getStandings(season: Int, leagueId: Int): Flow<Resource<MutableList<Standing>>>
 
     fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>
+
+    suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>>
 }
