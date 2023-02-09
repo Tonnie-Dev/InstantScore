@@ -2,10 +2,7 @@ package com.uxstate.instantscore.presentation.screens.stats_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Text
 import androidx.compose.material3.Card
@@ -25,7 +22,7 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StatsPlayerCard(
+fun PlayerStatCard(
     player: String,
     teamName: String,
     teamLogo: String,
@@ -33,43 +30,19 @@ fun StatsPlayerCard(
     statValue: Int,
     modifier: Modifier = Modifier
 ) {
+
+    val spacing = LocalSpacing.current
     Card(modifier = modifier, shape = RectangleShape) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth().padding(spacing.spaceExtraSmall),
+        ) {
 
             Text(text = rank.toString(), style = MaterialTheme.typography.bodySmall)
             PlayerTeamRow(player = player, teamName = teamName, teamLogo = teamLogo)
             Text(text = statValue.toString(), style = MaterialTheme.typography.bodySmall)
         }
-    }
-}
-
-@Preview
-@Composable
-fun StatsPlayerCardPreview() {
-    InstantScoreTheme() {
-        StatsPlayerCard(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
-            rank = 13,
-            statValue = 17,
-            modifier = Modifier
-        )
-    }
-}
-
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun StatsPlayerCardPreviewDark() {
-    InstantScoreTheme() {
-        StatsPlayerCard(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
-            rank = 13,
-            statValue = 17,
-            modifier = Modifier
-        )
     }
 }
 
@@ -98,24 +71,55 @@ fun PlayerTeamRow(
         Image(
             painter = painter,
             contentDescription = stringResource(R.string.team_logo_image),
-            modifier = Modifier.size(spacing.spaceMedium)
+            modifier = Modifier.size(spacing.spaceMedium + spacing.spaceSmall)
         )
+
+        Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Column() {
 
             Text(
                 text = player,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
             Text(
                 text = player,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.medium)
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun StatsPlayerCardPreview() {
+    InstantScoreTheme() {
+        PlayerStatCard(
+            player = "Gideon",
+            teamName = "Arsenal FC",
+            teamLogo = "",
+            rank = 13,
+            statValue = 17,
+            modifier = Modifier
+        )
+    }
+}
+
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Composable
+fun StatsPlayerCardPreviewDark() {
+    InstantScoreTheme() {
+        PlayerStatCard(
+            player = "Gideon",
+            teamName = "Arsenal FC",
+            teamLogo = "",
+            rank = 13,
+            statValue = 17,
+            modifier = Modifier
+        )
     }
 }
 
