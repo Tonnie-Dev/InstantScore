@@ -19,4 +19,5 @@
     <string name="points_text">PTS</string>
     <string name="live_fixtures_text">Live Fixtures</string>
     <string name="stats_button_label">Statistics</string>
+    <string name="team_logo_image">Team Logo</string>
 </resources>

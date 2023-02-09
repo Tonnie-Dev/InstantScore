@@ -119,7 +119,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
 
-    // Material 3 Lib
+
+
+    // Material 3 Lib - this version is causing the problem
+
     implementation("androidx.compose.material3:material3:1.1.0-alpha04")
 
     // Coil
