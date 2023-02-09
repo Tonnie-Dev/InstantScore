@@ -5,20 +5,25 @@ import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.json.JsonStringParser
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
+import com.uxstate.instantscore.data.remote.mappers.toTopScorer
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
+import com.uxstate.instantscore.domain.models.top_scorer.Response
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.toReverseStringDate
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
+import retrofit2.HttpException
+import timber.log.Timber
 import java.io.IOException
 import java.time.LocalDate
 import javax.inject.Inject
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import timber.log.Timber
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -285,5 +290,40 @@ class ScoresRepositoryImpl @Inject constructor(
 
         // discontinue loading
         emit(Resource.Loading(isLoading = false))
+    }
+
+    override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
+        return safeApiCall(Dispatchers.IO) {
+            val response = api.getTopScorers(season = season, leagueId = leagueId)
+            response.response.map { it.toTopScorer() }
+        }
+    }
+}
+
+suspend fun <T> safeApiCall(
+    dispatcher: CoroutineDispatcher,
+    apiCall: suspend () -> T
+): Resource<T> {
+    return withContext(dispatcher) {
+        try {
+            Timber.e("Success ")
+            Resource.Success(apiCall.invoke())
+        } catch (throwable: Throwable) {
+            Timber.e(throwable)
+            when (throwable) {
+                is IOException -> {
+                    Timber.e("IO exception occured! $throwable")
+                    Resource.Error(
+                        errorMessage = "Please check your internet connection and try again later",
+                    )
+                }
+                else -> {
+                    Timber.e("In else statement $throwable")
+                    Resource.Error(
+                        errorMessage = "Unknown failure occurred, please try again later",
+                    )
+                }
+            }
+        }
     }
 }

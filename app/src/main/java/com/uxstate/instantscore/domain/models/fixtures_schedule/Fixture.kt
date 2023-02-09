@@ -1,8 +1,8 @@
 package com.uxstate.instantscore.domain.models.fixtures_schedule
 
 import android.os.Parcelable
-import java.time.LocalDate
 import kotlinx.parcelize.Parcelize
+import java.time.LocalDate
 
 @Parcelize
 data class Fixture(

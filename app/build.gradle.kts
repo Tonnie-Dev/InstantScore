@@ -45,6 +45,7 @@ android {
 
         getByName("release") {
             isMinifyEnabled = false
+            multiDexEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -77,7 +78,7 @@ tasks.getByPath("preBuild")
 
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
-    android.set(true)
+    android.set(false)
     ignoreFailures.set(false)
     disabledRules.set(setOf("final-newline", "no-wildcard-imports"))
     reporters {
@@ -109,6 +110,8 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.3.3")
     implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
 
+    implementation("androidx.multidex:multidex:2.0.1")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -116,7 +119,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
 
+
+
     // Material 3 Lib - this version is causing the problem
+
     implementation("androidx.compose.material3:material3:1.1.0-alpha04")
 
     // Coil

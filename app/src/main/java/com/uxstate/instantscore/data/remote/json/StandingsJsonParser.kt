@@ -2,8 +2,8 @@ package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.domain.models.standings.Team
-import javax.inject.Inject
 import org.json.JSONObject
+import javax.inject.Inject
 
 class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<Standing>> {
     override fun parsJsonString(jsonString: String): MutableList<Standing> {

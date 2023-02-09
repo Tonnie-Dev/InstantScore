@@ -1,9 +1,9 @@
 package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.domain.models.fixture_details.*
+import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
-import org.json.JSONObject
 
 // force single instance of FixtureDetailsJsonParser for the entire app process
 @Singleton

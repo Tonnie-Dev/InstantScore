@@ -6,10 +6,10 @@ import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class LiveFixturesViewModel @Inject constructor(
@@ -64,6 +64,8 @@ class LiveFixturesViewModel @Inject constructor(
                         _liveFixturesState.value =
                             _liveFixturesState.value.copy(isLoading = result.isLoading)
                     }
+
+                    else -> {}
                 }
             }
             .launchIn(viewModelScope)
