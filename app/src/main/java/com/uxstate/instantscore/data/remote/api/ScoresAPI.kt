@@ -26,4 +26,10 @@ interface ScoresAPI {
 
     @GET(GET_LIVE_FIXTURES)
     suspend fun getLiveFixtures(@Query("live") live: String = "all"): String
+
+    @GET(GET_TOP_SCORERS)
+    suspend fun getTopScorers(
+        @Query("season") season: Int,
+        @Query("league") leagueId: Int
+    ): String
 }
