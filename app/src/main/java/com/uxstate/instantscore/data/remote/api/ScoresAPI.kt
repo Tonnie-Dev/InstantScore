@@ -30,7 +30,7 @@ interface ScoresAPI {
 
     @GET(GET_TOP_SCORERS)
     suspend fun getTopScorers(
+        @Query("league") leagueId: Int,
         @Query("season") season: Int,
-        @Query("league") leagueId: Int
     ): TopScorerResponseDto
 }

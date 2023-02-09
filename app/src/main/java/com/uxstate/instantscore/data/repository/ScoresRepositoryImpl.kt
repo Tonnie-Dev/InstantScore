@@ -306,19 +306,19 @@ suspend fun <T> safeApiCall(
 ): Resource<T> {
     return withContext(dispatcher) {
         try {
-            Timber.e("Success ")
+            Timber.e("Inside try block: Success ")
             Resource.Success(apiCall.invoke())
-        } catch (throwable: Throwable) {
-            Timber.e(throwable)
-            when (throwable) {
+        } catch (exception: Exception) {
+            Timber.e(exception)
+            when (exception) {
                 is IOException -> {
-                    Timber.e("IO exception occured! $throwable")
+                    Timber.e("IO exception occurred!: $exception")
                     Resource.Error(
                         errorMessage = "Please check your internet connection and try again later",
                     )
                 }
                 else -> {
-                    Timber.e("In else statement $throwable")
+                    Timber.e("In else statement: $exception")
                     Resource.Error(
                         errorMessage = "Unknown failure occurred, please try again later",
                     )
