@@ -5,7 +5,7 @@ import org.json.JSONObject
 import javax.inject.Inject
 
 class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<PlayerStats>> {
-    override fun parsJsonString(jsonString: String): MutableList<PlayerStats> {
+    override suspend fun parsJsonString(jsonString: String): MutableList<PlayerStats> {
         //to get the mainJsonObject pass the raw JSON String from the API
 
         val mainJsonObject = JSONObject(jsonString)

@@ -294,7 +294,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
     override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
         return safeApiCall(Dispatchers.IO) {
-            val response = api.getTopScorers(season = season, leagueId = leagueId)
+            val response = api.getTopScorers(leagueId = leagueId, season = season)
             response.response.map { it.toTopScorer() }
         }
     }
@@ -311,14 +311,16 @@ suspend fun <T> safeApiCall(
         } catch (exception: Exception) {
             Timber.e(exception)
             when (exception) {
+                
                 is IOException -> {
-                    Timber.e("IO exception occurred!: $exception")
+                    Timber.e("IO Exception occurred!: $exception")
                     Resource.Error(
                         errorMessage = "Please check your internet connection and try again later",
                     )
                 }
+
                 else -> {
-                    Timber.e("In else statement: $exception")
+                    Timber.e("Inside else statement: $exception")
                     Resource.Error(
                         errorMessage = "Unknown failure occurred, please try again later",
                     )

@@ -15,7 +15,7 @@ noting we will be injecting the interface and not the impl
 
 // always favor/depend on abstractions instead of concrete classes
 class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureDetails> {
-    override fun parsJsonString(jsonString: String): FixtureDetails {
+    override suspend fun parsJsonString(jsonString: String): FixtureDetails {
 
         val jsonMainFixturesObject = JSONObject(jsonString)
         val responseJsonArray = jsonMainFixturesObject.getJSONArray("response")

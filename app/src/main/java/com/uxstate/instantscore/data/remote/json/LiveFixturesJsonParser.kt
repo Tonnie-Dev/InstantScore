@@ -6,7 +6,7 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableList<Fixture>> {
-    override fun parsJsonString(jsonString: String): MutableList<Fixture> {
+    override suspend fun parsJsonString(jsonString: String): MutableList<Fixture> {
 
         val mainJsonObj = JSONObject(jsonString)
         val responseJsonArray = mainJsonObj.getJSONArray("response")
