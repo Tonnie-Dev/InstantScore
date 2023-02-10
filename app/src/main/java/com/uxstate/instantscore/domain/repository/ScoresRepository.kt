@@ -1,13 +1,13 @@
 package com.uxstate.instantscore.domain.repository
 
+import com.uxstate.instantscore.data.remote.dtos.live_games.Response
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
-import com.uxstate.instantscore.domain.models.top_scorer.Response
 import com.uxstate.instantscore.utils.Resource
-import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
+import kotlinx.coroutines.flow.Flow
 
 interface ScoresRepository {
 

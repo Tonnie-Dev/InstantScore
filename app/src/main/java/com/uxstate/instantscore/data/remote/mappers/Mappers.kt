@@ -4,10 +4,8 @@ import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.live_games.Response
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
-import com.uxstate.instantscore.domain.models.top_scorer.Birth
-import com.uxstate.instantscore.domain.models.top_scorer.Cards
-import com.uxstate.instantscore.domain.models.top_scorer.Player
-import com.uxstate.instantscore.domain.models.top_scorer.Statistic
+// import com.uxstate.instantscore.domain.models.top_scorer.Birth
+// import com.uxstate.instantscore.domain.models.top_scorer.Player
 import com.uxstate.instantscore.utils.toCustomLocalDate
 import com.uxstate.instantscore.utils.toZonedDateTime
 import java.time.LocalDate
@@ -97,8 +95,14 @@ fun Response.toModel(): Fixture {
             season = this.league.season
         ),
         teams = Pair(
-            first = Team(name = this.teams.home?.name ?: "", logo = this.teams.home?.logo ?: ""),
-            second = Team(name = this.teams.away?.name ?: "", logo = this.teams.away?.logo ?: "")
+            first = Team(
+                name = this.teams.home?.name ?: "",
+                logo = this.teams.home?.logo ?: ""
+            ),
+            second = Team(
+                name = this.teams.away?.name ?: "",
+                logo = this.teams.away?.logo ?: ""
+            )
         ),
         goals = Goal(
             homeTeamScore = this.goals.home,
@@ -107,25 +111,26 @@ fun Response.toModel(): Fixture {
     )
 }
 
-internal fun com.uxstate.instantscore.data.remote.dtos.top_scorer.Response.toTopScorer(): com.uxstate.instantscore.domain.models.top_scorer.Response {
+/*internal fun com.uxstate.instantscore.data.remote.dtos.top_scorer.Response.toTopScorer():
+        com.uxstate.instantscore.domain.models.top_scorer.Response {
     return com.uxstate.instantscore.domain.models.top_scorer.Response(
-        player = Player(
-            age = this.player.age,
-            birth = Birth(
-                country = this.player.birth.country,
-                date = this.player.birth.date,
-                place = this.player.birth.place
+            player = Player(
+                    age = this.player.age,
+                    birth = Birth(
+                            country = this.player.birth.country,
+                            date = this.player.birth.date,
+                            place = this.player.birth.place
+                    ),
+                    firstname = this.player.firstname,
+                    height = this.player.height,
+                    id = this.player.id,
+                    injured = this.player.injured,
+                    lastname = this.player.lastname,
+                    name = this.player.name,
+                    nationality = this.player.nationality,
+                    photo = this.player.photo,
+                    weight = this.player.weight
             ),
-            firstname = this.player.firstname,
-            height = this.player.height,
-            id = this.player.id,
-            injured = this.player.injured,
-            lastname = this.player.lastname,
-            name = this.player.name,
-            nationality = this.player.nationality,
-            photo = this.player.photo,
-            weight = this.player.weight
-        ),
-        statistics = //need a solution for this
+            statistics = //need a solution for this
     )
-}
+}*/

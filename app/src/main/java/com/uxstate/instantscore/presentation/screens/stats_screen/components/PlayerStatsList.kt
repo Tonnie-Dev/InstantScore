@@ -19,15 +19,14 @@ fun PlayerStatsList(
     LazyColumn(content = {
         items(20) {
             PlayerStatCard(
-                    player = player,
-                    teamName = teamName,
-                    teamLogo = teamLogo,
-                    rank = rank,
-                    statValue = statValue
+                player = player,
+                teamName = teamName,
+                teamLogo = teamLogo,
+                rank = rank,
+                statValue = statValue
             )
         }
     })
-
 }
 
 @Preview
@@ -36,11 +35,11 @@ fun PlayerStatsListPreview() {
 
     InstantScoreTheme {
         PlayerStatsList(
-                player = "Gideon",
-                teamName = "Arsenal FC",
-                teamLogo = "",
-                rank = 1,
-                statValue = 20
+            player = "Gideon",
+            teamName = "Arsenal FC",
+            teamLogo = "",
+            rank = 1,
+            statValue = 20
         )
     }
 }
@@ -51,11 +50,11 @@ fun PlayerStatsListPreviewDark() {
 
     InstantScoreTheme {
         PlayerStatsList(
-                player = "Gideon",
-                teamName = "Arsenal FC",
-                teamLogo = "",
-                rank = 1,
-                statValue = 20
+            player = "Gideon",
+            teamName = "Arsenal FC",
+            teamLogo = "",
+            rank = 1,
+            statValue = 20
         )
     }
 }

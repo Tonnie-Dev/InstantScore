@@ -1,9 +1,9 @@
 package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
-import org.json.JSONObject
 import java.time.LocalDate
 import javax.inject.Inject
+import org.json.JSONObject
 
 class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableList<Fixture>> {
     override suspend fun parsJsonString(jsonString: String): MutableList<Fixture> {

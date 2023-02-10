@@ -2,18 +2,21 @@ package com.uxstate.instantscore.data.repository
 
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.data.remote.dtos.live_games.Response
 import com.uxstate.instantscore.data.remote.json.JsonStringParser
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
-import com.uxstate.instantscore.data.remote.mappers.toTopScorer
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.domain.models.standings.Standing
-import com.uxstate.instantscore.domain.models.top_scorer.Response
 import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
+import com.uxstate.instantscore.utils.safeFlowCall
 import com.uxstate.instantscore.utils.toReverseStringDate
+import java.io.IOException
+import java.time.LocalDate
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -21,9 +24,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import timber.log.Timber
-import java.io.IOException
-import java.time.LocalDate
-import javax.inject.Inject
 
 class ScoresRepositoryImpl @Inject constructor(
     private val api: ScoresAPI,
@@ -228,9 +228,40 @@ class ScoresRepositoryImpl @Inject constructor(
         }
 
     override fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>> = flow {
-        // discontinue loading
+        // show loading
         emit(Resource.Loading(isLoading = true))
-        val response = try {
+
+        when (val safeResponse = safeFlowCall(Dispatchers.IO) { api.getLiveFixtures() }) {
+
+            is Resource.Success -> {
+
+                // pass the string response to LiveFixturesParser to get a list of Live Fixtures
+                val fixturesList = safeResponse.data?.let {
+                    liveFixturesJsonParser.parsJsonString(it)
+                }!!
+
+                if (fixturesList.isNotEmpty()) {
+
+                    val mappedFixtures = fixturesList
+                        .groupBy {
+
+                            it.league
+                        }
+                        .toSortedMap(compareBy { it.id })
+
+                    emit(Resource.Success(data = mappedFixtures))
+                } else {
+                    emit(Resource.Success(data = emptyMap()))
+                }
+            }
+
+            is Resource.Error -> {
+
+                emit(Resource.Error(errorMessage = safeResponse.errorMessage ?: ""))
+            }
+            else -> Unit
+        }
+        /*val response = try {
 
             api.getLiveFixtures()
         } catch (httpException: HttpException) {
@@ -287,17 +318,21 @@ class ScoresRepositoryImpl @Inject constructor(
         } else {
             emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
         }
-
+*/
         // discontinue loading
         emit(Resource.Loading(isLoading = false))
     }
 
     override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
-        return safeApiCall(Dispatchers.IO) {
-            val response = api.getTopScorers(leagueId = leagueId, season = season)
-            response.response.map { it.toTopScorer() }
-        }
+        TODO("Not yet implemented")
     }
+
+    /* override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
+         return safeApiCall(Dispatchers.IO) {
+             val response = api.getTopScorers(leagueId = leagueId, season = season)
+             response.response.map { it.toTopScorer() }
+         }
+     }*/
 }
 
 suspend fun <T> safeApiCall(
@@ -311,7 +346,7 @@ suspend fun <T> safeApiCall(
         } catch (exception: Exception) {
             Timber.e(exception)
             when (exception) {
-                
+
                 is IOException -> {
                     Timber.e("IO Exception occurred!: $exception")
                     Resource.Error(

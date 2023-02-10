@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.uxstate.instantscore.presentation.screens.top_scorer.TopScorerScreen
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.uxstate.instantscore.presentation.screens.NavGraphs
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,8 +23,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    DestinationsNavHost(navGraph = NavGraphs.root)
-                    TopScorerScreen()
+                    DestinationsNavHost(navGraph = NavGraphs.root)
+                    //TopScorerScreen()
                 }
             }
         }
