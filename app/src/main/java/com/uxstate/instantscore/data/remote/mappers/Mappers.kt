@@ -4,8 +4,6 @@ import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.live_games.Response
 import com.uxstate.instantscore.domain.models.fixtures_schedule.*
-// import com.uxstate.instantscore.domain.models.top_scorer.Birth
-// import com.uxstate.instantscore.domain.models.top_scorer.Player
 import com.uxstate.instantscore.utils.toCustomLocalDate
 import com.uxstate.instantscore.utils.toZonedDateTime
 import java.time.LocalDate

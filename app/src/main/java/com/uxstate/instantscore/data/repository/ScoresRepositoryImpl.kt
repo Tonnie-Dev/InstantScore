@@ -261,71 +261,12 @@ class ScoresRepositoryImpl @Inject constructor(
             }
             else -> Unit
         }
-        /*val response = try {
-
-            api.getLiveFixtures()
-        } catch (httpException: HttpException) {
-            httpException.printStackTrace() // emit error
-            emit(
-                Resource.Error(
-                    errorMessage = """
-                Unexpected Error Occurred, please try again
-                    """.trimIndent()
-                )
-            )
-
-            // return null
-            null
-        } catch (ioException: IOException) {
-
-            ioException.printStackTrace()
-            emit(
-                Resource.Error(
-                    errorMessage = """
-                Could not reach the Server, please check your connection
-                    """.trimIndent()
-                )
-            ) // return null
-            null
-        }
-        // catch generalized errors
-        catch (e: Exception) {
-
-            e.printStackTrace() // emit error
-
-            Timber.i("Error Detected: ${e.message}")
-            emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
-            null
-        }
-
-        // pass the string response to LiveFixturesParser to get a list of Live Fixtures
-        val fixturesList = response?.let {
-            liveFixturesJsonParser.parsJsonString(it)
-        }
-
-        if (fixturesList != null) {
-            if (fixturesList.isNotEmpty()) {
-
-                val mappedFixtures = fixturesList
-                    .groupBy {
-
-                        it.league
-                    }
-                    .toSortedMap(compareBy { it.id })
-
-                emit(Resource.Success(data = mappedFixtures))
-            } else { emit(Resource.Success(data = emptyMap())) }
-        } else {
-            emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
-        }
-*/
+      
         // discontinue loading
         emit(Resource.Loading(isLoading = false))
     }
 
-    override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
-        TODO("Not yet implemented")
-    }
+
 
     /* override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
          return safeApiCall(Dispatchers.IO) {
@@ -333,6 +274,10 @@ class ScoresRepositoryImpl @Inject constructor(
              response.response.map { it.toTopScorer() }
          }
      }*/
+    override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
+        TODO("Not yet implemented")
+    }
+
 }
 
 suspend fun <T> safeApiCall(
