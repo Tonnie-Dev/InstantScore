@@ -1,7 +1,10 @@
 package com.uxstate.instantscore.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.uxstate.instantscore.BuildConfig
@@ -13,6 +16,7 @@ import com.uxstate.instantscore.utils.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -27,6 +31,16 @@ import retrofit2.create
 @InstallIn(SingletonComponent::class)
 
 object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideChuckerInterceptor(@ApplicationContext context: Context): ChuckerInterceptor {
+        return ChuckerInterceptor.Builder(context)
+            .collector(ChuckerCollector(context))
+            .redactHeaders(emptySet())
+            .alwaysReadResponseBody(false)
+            .build()
+    }
 
     @Provides
     @Singleton
