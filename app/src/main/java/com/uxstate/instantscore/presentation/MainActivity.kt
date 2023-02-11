@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     DestinationsNavHost(navGraph = NavGraphs.root)
-                    //TopScorerScreen()
+                    // TopScorerScreen()
                 }
             }
         }
