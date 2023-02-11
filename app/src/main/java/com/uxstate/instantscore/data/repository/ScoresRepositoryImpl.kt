@@ -261,12 +261,10 @@ class ScoresRepositoryImpl @Inject constructor(
             }
             else -> Unit
         }
-      
-        // discontinue loading
+
+// discontinue loading
         emit(Resource.Loading(isLoading = false))
     }
-
-
 
     /* override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
          return safeApiCall(Dispatchers.IO) {
@@ -277,7 +275,6 @@ class ScoresRepositoryImpl @Inject constructor(
     override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
         TODO("Not yet implemented")
     }
-
 }
 
 suspend fun <T> safeApiCall(
