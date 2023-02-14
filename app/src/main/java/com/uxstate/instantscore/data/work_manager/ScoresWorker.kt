@@ -1,9 +1,14 @@
 package com.uxstate.instantscore.data.work_manager
 
 import android.content.Context
+import androidx.room.withTransaction
 import androidx.work.*
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
+import com.uxstate.instantscore.data.remote.mappers.toEntity
+import com.uxstate.instantscore.utils.SCORES_WORKER_ERROR_KEY
+import retrofit2.HttpException
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class ScoresWorker(
@@ -12,8 +17,27 @@ class ScoresWorker(
     private val db: ScoresDatabase,
     private val api: ScoresAPI
 ) : CoroutineWorker(context, params) {
+
+    private val dao = db.dao
     override suspend fun doWork(): Result {
-        TODO("Not yet implemented")
+
+        return try {
+            val response = api.getFixturesByDate()
+
+            db.withTransaction {
+                dao.clearFixtures()
+                dao.insertFixtures(response.response.map { it.toEntity() })
+            }
+
+            Result.success()
+        } catch (e: IOException) {
+            Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
+        } catch (e: HttpException) {
+            Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
+        } catch (e: Exception) {
+            Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
+        }
+
     }
 
     companion object {
@@ -26,11 +50,15 @@ class ScoresWorker(
                     .setRequiresStorageNotLow(true)
                     .build()
 
-            val request =
-                PeriodicWorkRequestBuilder<ScoresWorker>(
-                        6, TimeUnit.HOURS,
-                        1, TimeUnit.HOURS
-                )
+            val request = PeriodicWorkRequestBuilder<ScoresWorker>(
+                    6, TimeUnit.HOURS, 1, TimeUnit.HOURS
+            ).setConstraints(constraints)
+                    .build()
+
+            WorkManager.getInstance(context)
+                    .enqueueUniquePeriodicWork(
+                            SCORES_WORKER_ID, ExistingPeriodicWorkPolicy.UPDATE, request
+                    )
         }
     }
 }
