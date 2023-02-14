@@ -1,14 +1,6 @@
 package com.uxstate.instantscore.data.remote.mappers
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.material3.Button
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
 import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.ResponseDTO
 import com.uxstate.instantscore.data.remote.dtos.live_games.Response
@@ -141,7 +133,3 @@ fun Response.toModel(): Fixture {
             statistics = //need a solution for this
     )
 }*/
-
-
-
-
