@@ -1,2 +1,0 @@
-# InstantScore
-Api-Football App
