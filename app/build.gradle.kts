@@ -183,6 +183,9 @@ dependencies {
     // DesugaringLib
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
 
+    // WorkManager with Coroutines
+    implementation ("androidx.work:work-runtime-ktx:2.8.0")
+
     // testing
     androidTestImplementation("com.google.truth:truth:1.1.3")
     androidTestImplementation("androidx.test:core-ktx:1.4.0")
