@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 @HiltAndroidApp
 class InstantScoreApp : Application(), Configuration.Provider {
@@ -19,7 +19,7 @@ class InstantScoreApp : Application(), Configuration.Provider {
 
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
-                .setWorkerFactory(workerFactory)
-                .build()
+            .setWorkerFactory(workerFactory)
+            .build()
     }
 }

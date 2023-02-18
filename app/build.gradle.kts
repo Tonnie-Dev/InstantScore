@@ -134,18 +134,17 @@ dependencies {
     // Dagger - Hilt
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
-    //when using Kotlin
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    // when using Kotlin
     kapt("androidx.hilt:hilt-compiler:1.0.0")
-    //hilt work
-    implementation ("androidx.hilt:hilt-work:1.0.0")
-
+    // hilt work
+    implementation("androidx.hilt:hilt-work:1.0.0")
 
     // WorkManager with Coroutines
     implementation("androidx.work:work-runtime-ktx:2.8.0")
 
-     //App Startup
-    implementation ("androidx.startup:startup-runtime:1.1.1")
-
+    // App Startup
+    implementation("androidx.startup:startup-runtime:1.1.1")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -189,8 +188,6 @@ dependencies {
 
     // DesugaringLib
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
-
-
 
     // testing
     androidTestImplementation("com.google.truth:truth:1.1.3")

@@ -7,9 +7,10 @@ import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.utils.SCORES_WORKER_ERROR_KEY
-import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import retrofit2.HttpException
+import timber.log.Timber
 
 class ScoresWorker(
     private val context: Context,
@@ -20,7 +21,7 @@ class ScoresWorker(
 
     private val dao = db.dao
     override suspend fun doWork(): Result {
-
+        Timber.i("DoWork Called")
         return try {
             val response = api.getFixturesByDate()
 
@@ -37,7 +38,6 @@ class ScoresWorker(
         } catch (e: Exception) {
             Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
         }
-
     }
 
     companion object {
@@ -46,19 +46,19 @@ class ScoresWorker(
         fun schedule(context: Context) {
 
             val constraints = Constraints.Builder()
-                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                    .setRequiresStorageNotLow(true)
-                    .build()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .setRequiresStorageNotLow(true)
+                .build()
 
             val request = PeriodicWorkRequestBuilder<ScoresWorker>(
-                    6, TimeUnit.HOURS, 1, TimeUnit.HOURS
+                1, TimeUnit.MINUTES, 1, TimeUnit.MINUTES
             ).setConstraints(constraints)
-                    .build()
+                .build()
 
             WorkManager.getInstance(context)
-                    .enqueueUniquePeriodicWork(
-                            SCORES_WORKER_ID, ExistingPeriodicWorkPolicy.UPDATE, request
-                    )
+                .enqueueUniquePeriodicWork(
+                    SCORES_WORKER_ID, ExistingPeriodicWorkPolicy.UPDATE, request
+                )
         }
     }
 }

@@ -1,7 +1,9 @@
 package com.uxstate.instantscore.presentation.screens.home_screen
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.uxstate.instantscore.data.work_manager.ScoresWorker
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent.*
@@ -19,6 +21,7 @@ import timber.log.Timber
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val application: Application,
     private val container: UseCaseContainer
 ) : ViewModel() {
 
@@ -33,6 +36,8 @@ class HomeViewModel @Inject constructor(
     init {
 
         getFixtures(_fixturesState.value.isRefresh, _fixturesState.value.date)
+
+        ScoresWorker.schedule(application)
     }
 
     private fun getFixtures(isRefresh: Boolean, date: LocalDate) {
