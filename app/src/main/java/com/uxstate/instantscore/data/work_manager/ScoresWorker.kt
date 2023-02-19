@@ -7,14 +7,16 @@ import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.utils.SCORES_WORKER_ERROR_KEY
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import retrofit2.HttpException
 import timber.log.Timber
 
-class ScoresWorker(
-    private val context: Context,
-    private val params: WorkerParameters,
+class ScoresWorker @AssistedInject constructor(
+    @Assisted private val context: Context,
+    @Assisted private val params: WorkerParameters,
     private val db: ScoresDatabase,
     private val api: ScoresAPI
 ) : CoroutineWorker(context, params) {

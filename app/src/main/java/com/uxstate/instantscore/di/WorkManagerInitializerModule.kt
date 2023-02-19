@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.startup.Initializer
 import androidx.work.Configuration
 import androidx.work.WorkManager
+import com.uxstate.instantscore.data.work_manager.ScoresWorker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,7 @@ object WorkManagerInitializerModule : Initializer<WorkManager> {
     @Provides
     @Singleton
     override fun create(context: Context): WorkManager {
-
+        ScoresWorker.schedule(context)
         val configuration = Configuration.Builder().build()
         WorkManager.initialize(context, configuration)
 
