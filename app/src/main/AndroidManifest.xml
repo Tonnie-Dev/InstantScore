@@ -37,10 +37,10 @@
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
             tools:node="merge">
-            <meta-data
+            <!--<meta-data
                 android:name="com.uxstate.instantscore.di.WorkManagerInitializerModule"
                 android:value="androidx.startup"
-               />
+               />-->
         </provider>
     </application>
 
