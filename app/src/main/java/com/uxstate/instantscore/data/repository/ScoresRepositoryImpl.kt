@@ -267,22 +267,19 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Loading(isLoading = false))
     }
 
-    /* override suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>> {
-         return safeApiCall(Dispatchers.IO) {
-             val response = api.getTopScorers(leagueId = leagueId, season = season)
-             response.response.map { it.toTopScorer() }
-         }
-     }*/
+
     override suspend fun getTopScorers(
         season: Int,
         leagueId: Int
     ): Flow<Resource<List<PlayerStats>>> {
 
 
+
         TODO("Not yet implemented")
     }
 }
 
+/*
 suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher,
     apiCall: suspend () -> T
@@ -312,3 +309,4 @@ suspend fun <T> safeApiCall(
         }
     }
 }
+*/
