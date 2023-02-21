@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.uxstate.instantscore.R
+import com.uxstate.instantscore.domain.models.player_stats.PlayerStats
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
@@ -39,7 +40,7 @@ fun PlayerStatCard(
             modifier = Modifier.fillMaxWidth().padding(spacing.spaceExtraSmall),
         ) {
 
-            Text(text = rank.toString(), style = MaterialTheme.typography.bodySmall)
+
             PlayerTeamRow(player = player, teamName = teamName, teamLogo = teamLogo)
             Text(text = statValue.toString(), style = MaterialTheme.typography.bodySmall)
         }
@@ -48,16 +49,14 @@ fun PlayerStatCard(
 
 @Composable
 fun PlayerTeamRow(
-    player: String,
-    teamName: String,
-    teamLogo: String,
+    playerStats: PlayerStats,
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context)
-            .data(teamLogo)
+            .data(playerStats.teamLogo)
             .crossfade(true)
             .placeholder(R.drawable.empty_logo)
             .error(R.drawable.empty_logo)
@@ -68,6 +67,8 @@ fun PlayerTeamRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
+        Text(text = playerStats.rank, style = MaterialTheme.typography.bodySmall)
+        Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Image(
             painter = painter,
             contentDescription = stringResource(R.string.team_logo_image),

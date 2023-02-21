@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.domain.models.player_stats
 
 data class PlayerStats(
+    val rank:Int,
     val playerName: String,
     val playerPhoto: String,
     val teamName: String,
