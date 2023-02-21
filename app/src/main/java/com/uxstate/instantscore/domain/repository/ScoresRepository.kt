@@ -4,6 +4,7 @@ import com.uxstate.instantscore.data.remote.dtos.live_games.Response
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
+import com.uxstate.instantscore.domain.models.player_stats.PlayerStats
 import com.uxstate.instantscore.domain.models.standings.Standing
 import com.uxstate.instantscore.utils.Resource
 import java.time.LocalDate
@@ -22,5 +23,5 @@ interface ScoresRepository {
 
     fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>
 
-    suspend fun getTopScorers(season: Int, leagueId: Int): Resource<List<Response>>
+    suspend fun getTopScorers(season: Int, leagueId: Int): Flow<Resource<List<PlayerStats>>>
 }
