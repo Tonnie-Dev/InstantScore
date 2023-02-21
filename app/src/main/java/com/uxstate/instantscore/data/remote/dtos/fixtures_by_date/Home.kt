@@ -7,7 +7,7 @@ data class Home(
     val id: Int,
     @Json(name = "logo")
     val logo: String,
-    @Json(name = "playerName")
+    @Json(name = "name")
     val name: String,
     @Json(name = "winner")
     val winner: Boolean?

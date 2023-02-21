@@ -96,8 +96,9 @@ class ScoresRepositoryImpl @Inject constructor(
             ) // return null
             null
         } catch (e: Exception) {
-
-            e.printStackTrace() // emit error
+            Timber.i("The Exception is: $e")
+            e.printStackTrace()
+            // emit error
             emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
             null
         }
@@ -262,7 +263,7 @@ class ScoresRepositoryImpl @Inject constructor(
             else -> Unit
         }
 
-// discontinue loading
+        // discontinue loading
         emit(Resource.Loading(isLoading = false))
     }
 

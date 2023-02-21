@@ -11,7 +11,7 @@ data class League(
     val id: Int,
     @Json(name = "logo")
     val logo: String,
-    @Json(name = "playerName")
+    @Json(name = "name")
     val name: String,
     @Json(name = "round")
     val round: String,

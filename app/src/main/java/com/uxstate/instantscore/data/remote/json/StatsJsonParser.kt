@@ -46,30 +46,28 @@ class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<Playe
 
             val goalsJsonObj = innerStatisticsJsonObj.getJSONObject("goals")
 
-            //variables - goals, assists
+            // variables - goals, assists
             val goals = goalsJsonObj.optInt("total", -1)
             val assists = goalsJsonObj.optInt("assists", -1)
 
-
             val cardsJsonObj = innerStatisticsJsonObj.getJSONObject("cards")
-            //variables - yellowCards, redCards
+            // variables - yellowCards, redCards
 
-            val yellowCards = cardsJsonObj.optInt("yellow",-1)
-            val redCards = cardsJsonObj.optInt("red",   -1)
+            val yellowCards = cardsJsonObj.optInt("yellow", -1)
+            val redCards = cardsJsonObj.optInt("red", -1)
 
             val playerStats = PlayerStats(
-                    playerName = playerName,
-                    playerPhoto = playerPhoto,
-                    teamName = teamName,
-                    teamLogo = teamLogo,
-                    goals = goals,
-                    assists = assists,
-                    yellowCards = yellowCards,
-                    redCards = redCards
+                playerName = playerName,
+                playerPhoto = playerPhoto,
+                teamName = teamName,
+                teamLogo = teamLogo,
+                goals = goals,
+                assists = assists,
+                yellowCards = yellowCards,
+                redCards = redCards
             )
 
             playerStatsList.add(playerStats)
-
         }
 
         return playerStatsList

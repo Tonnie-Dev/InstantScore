@@ -7,6 +7,6 @@ data class Venue(
     val city: String?,
     @Json(name = "id")
     val id: Int?,
-    @Json(name = "playerName")
+    @Json(name = "name")
     val name: String?
 )
