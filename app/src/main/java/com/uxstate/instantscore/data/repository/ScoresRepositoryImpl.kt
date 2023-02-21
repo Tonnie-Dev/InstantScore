@@ -3,6 +3,7 @@ package com.uxstate.instantscore.data.repository
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
 import com.uxstate.instantscore.data.remote.json.JsonStringParser
+import com.uxstate.instantscore.data.remote.json.StatsJsonParser
 import com.uxstate.instantscore.data.remote.mappers.toEntity
 import com.uxstate.instantscore.data.remote.mappers.toModel
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
@@ -14,11 +15,9 @@ import com.uxstate.instantscore.domain.repository.ScoresRepository
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.safeFlowCall
 import com.uxstate.instantscore.utils.toReverseStringDate
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -30,7 +29,8 @@ class ScoresRepositoryImpl @Inject constructor(
     db: ScoresDatabase,
     private val fixtureDetailsJsonParser: JsonStringParser<FixtureDetails>,
     private val standingsJsonParser: JsonStringParser<MutableList<Standing>>,
-    private val liveFixturesJsonParser: JsonStringParser<MutableList<Fixture>>
+    private val liveFixturesJsonParser: JsonStringParser<MutableList<Fixture>>,
+    private val statsJsonParser: StatsJsonParser
 ) : ScoresRepository {
     private val dao = db.dao
 
@@ -271,11 +271,39 @@ class ScoresRepositoryImpl @Inject constructor(
     override suspend fun getTopScorers(
         season: Int,
         leagueId: Int
-    ): Flow<Resource<List<PlayerStats>>> {
+    ): Flow<Resource<List<PlayerStats>>> = flow {
 
+        when (val safeResponse = safeFlowCall(Dispatchers.IO) {
+            api.getTopScorers(
+                    leagueId = leagueId,
+                    season = season
+            )
+        }) {
 
+            is Resource.Error -> {
+                emit(
+                        Resource.Error(
+                                errorMessage =
+                                safeResponse.errorMessage ?: "Unknown Error Occurred"
+                        )
+                )
+            }
+            is Resource.Loading -> {
+                emit(Resource.Loading(isLoading = true))
+            }
+            is Resource.Success -> {
 
-        TODO("Not yet implemented")
+                val playersList = safeResponse.data?.let {
+
+                    statsJsonParser.parseJsonString(it)
+                }!!
+
+                if (playersList.isNotEmpty())
+                    emit(Resource.Success(data = playersList))
+                else
+                    emit(Resource.Success(data = emptyList()))
+            }
+        }
     }
 }
 
