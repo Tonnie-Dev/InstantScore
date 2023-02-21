@@ -4,5 +4,6 @@ data class UseCaseContainer(
     val getFixturesByDateUseCase: GetFixturesByDateUseCase,
     val getFixtureDetailsUseCase: GetFixtureDetailsUseCase,
     val getStandingsUseCase: GetStandingsUseCase,
-    val getLiveFixturesUseCase: GetLiveFixturesUseCase
+    val getLiveFixturesUseCase: GetLiveFixturesUseCase,
+    val getStatsUseCase: GetStatsUseCase
 )

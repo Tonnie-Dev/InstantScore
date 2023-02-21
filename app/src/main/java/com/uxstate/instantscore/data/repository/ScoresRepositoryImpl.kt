@@ -268,9 +268,10 @@ class ScoresRepositoryImpl @Inject constructor(
     }
 
 
-    override suspend fun getTopScorers(
+    override  fun getTopScorers(
+        leagueId: Int,
         season: Int,
-        leagueId: Int
+
     ): Flow<Resource<List<PlayerStats>>> = flow {
 
         when (val safeResponse = safeFlowCall(Dispatchers.IO) {

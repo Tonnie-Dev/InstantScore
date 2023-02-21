@@ -23,5 +23,5 @@ interface ScoresRepository {
 
     fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>
 
-    suspend fun getTopScorers(season: Int, leagueId: Int): Flow<Resource<List<PlayerStats>>>
+    fun getTopScorers(leagueId: Int,season: Int, ): Flow<Resource<List<PlayerStats>>>
 }
