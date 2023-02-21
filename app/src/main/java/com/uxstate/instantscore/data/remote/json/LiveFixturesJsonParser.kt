@@ -6,7 +6,7 @@ import javax.inject.Inject
 import org.json.JSONObject
 
 class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableList<Fixture>> {
-    override suspend fun parsJsonString(jsonString: String): MutableList<Fixture> {
+    override suspend fun parseJsonString(jsonString: String): MutableList<Fixture> {
 
         val mainJsonObj = JSONObject(jsonString)
         val responseJsonArray = mainJsonObj.getJSONArray("response")
@@ -38,9 +38,9 @@ class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableLis
 
             val leagueJsonObj = innerJsonObj.getJSONObject("league")
 
-            // variables - leagueId, name, country, leagueLogo,countryFlag,season
+            // variables - leagueId, playerName, country, leagueLogo,countryFlag,season
             val leagueId = leagueJsonObj.optInt("id", -1)
-            val leagueName = leagueJsonObj.optString("name", "")
+            val leagueName = leagueJsonObj.optString("playerName", "")
             val country = leagueJsonObj.optString("country", "")
             val leagueLogo = leagueJsonObj.optString("logo", "")
             val countryFlag = leagueJsonObj.optString("flag", "")
@@ -62,11 +62,11 @@ class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableLis
             // variable - teams
             val teams = Pair(
                 first = Team(
-                    name = homeTeamJsonObj.optString("name"),
+                    name = homeTeamJsonObj.optString("playerName"),
                     logo = homeTeamJsonObj.optString("logo")
                 ),
                 second = Team(
-                    name = awayTeamJsonObj.optString("name"),
+                    name = awayTeamJsonObj.optString("playerName"),
                     logo = awayTeamJsonObj.optString("logo")
                 )
             )

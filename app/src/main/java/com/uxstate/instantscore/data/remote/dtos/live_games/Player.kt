@@ -5,6 +5,6 @@ import com.squareup.moshi.Json
 data class Player(
     @Json(name = "id")
     val id: Int,
-    @Json(name = "name")
+    @Json(name = "playerName")
     val name: String
 )

@@ -5,7 +5,7 @@ import javax.inject.Inject
 import org.json.JSONObject
 
 class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<PlayerStats>> {
-    override suspend fun parsJsonString(jsonString: String): MutableList<PlayerStats> {
+    override suspend fun parseJsonString(jsonString: String): MutableList<PlayerStats> {
         // to get the mainJsonObject pass the raw JSON String from the API
 
         val mainJsonObject = JSONObject(jsonString)
@@ -25,26 +25,53 @@ class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<Playe
             // use the position of the object inside the JsonArray to get the current object
             // during iteration
 
-            val innerPlayerObj = responseJsonArray.getJSONObject(i)
+            val innerResponseJsonObj = responseJsonArray.getJSONObject(i)
 
             // use "player" as the key to get the player Json Object
-            val playerJsonObj = innerPlayerObj.getJSONObject("player")
+            val playerJsonObj = innerResponseJsonObj.getJSONObject("player")
 
-            // variables - name, playerPhoto
-            val playerName = playerJsonObj.optString("name", "")
-            val playerPhoto = playerJsonObj.optString("photo")
+            // variables - playerName, playerPhoto
+            val playerName = playerJsonObj.optString("playerName", "")
+            val playerPhoto = playerJsonObj.optString("photo", "")
 
-            val statisticsJsonArray = innerPlayerObj.getJSONArray("statistics")
+            val statisticsJsonArray = innerResponseJsonObj.getJSONArray("statistics")
 
             val innerStatisticsJsonObj = statisticsJsonArray.getJSONObject(0)
 
             val teamObj = innerStatisticsJsonObj.getJSONObject("team")
 
-            // variables teamName, teamLogo
-            val teamName = teamObj.optString("name", "")
+            // variables - teamName, teamLogo
+            val teamName = teamObj.optString("playerName", "")
             val teamLogo = teamObj.optString("logo", "")
+
+            val goalsJsonObj = innerStatisticsJsonObj.getJSONObject("goals")
+
+            //variables - goals, assists
+            val goals = goalsJsonObj.optInt("total", -1)
+            val assists = goalsJsonObj.optInt("assists", -1)
+
+
+            val cardsJsonObj = innerStatisticsJsonObj.getJSONObject("cards")
+            //variables - yellowCards, redCards
+
+            val yellowCards = cardsJsonObj.optInt("yellow",-1)
+            val redCards = cardsJsonObj.optInt("red",   -1)
+
+            val playerStats = PlayerStats(
+                    playerName = playerName,
+                    playerPhoto = playerPhoto,
+                    teamName = teamName,
+                    teamLogo = teamLogo,
+                    goals = goals,
+                    assists = assists,
+                    yellowCards = yellowCards,
+                    redCards = redCards
+            )
+
+            playerStatsList.add(playerStats)
+
         }
 
-        TODO("Not yet implemented")
+        return playerStatsList
     }
 }

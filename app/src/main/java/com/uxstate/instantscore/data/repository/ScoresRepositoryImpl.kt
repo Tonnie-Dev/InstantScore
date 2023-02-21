@@ -169,7 +169,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
         val fixtureDetails = remoteFixtureJsonString?.let {
 
-            fixtureDetailsJsonParser.parsJsonString(it)
+            fixtureDetailsJsonParser.parseJsonString(it)
         }
 
         emit(Resource.Success(data = fixtureDetails))
@@ -219,7 +219,7 @@ class ScoresRepositoryImpl @Inject constructor(
             }
 
             val standings = response?.let {
-                standingsJsonParser.parsJsonString(jsonString = it)
+                standingsJsonParser.parseJsonString(jsonString = it)
             }
 
             emit(Resource.Success(data = standings))
@@ -237,7 +237,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
                 // pass the string response to LiveFixturesParser to get a list of Live Fixtures
                 val fixturesList = safeResponse.data?.let {
-                    liveFixturesJsonParser.parsJsonString(it)
+                    liveFixturesJsonParser.parseJsonString(it)
                 }!!
 
                 if (fixturesList.isNotEmpty()) {

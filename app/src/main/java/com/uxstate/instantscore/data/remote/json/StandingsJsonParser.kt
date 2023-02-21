@@ -6,7 +6,7 @@ import javax.inject.Inject
 import org.json.JSONObject
 
 class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<Standing>> {
-    override suspend fun parsJsonString(jsonString: String): MutableList<Standing> {
+    override suspend fun parseJsonString(jsonString: String): MutableList<Standing> {
 
         val mainJsonStandingsResponseObj = JSONObject(jsonString)
 
@@ -27,9 +27,9 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
             val rank = innerJsonObj.optInt("rank", -1)
             val teamObj = innerJsonObj.getJSONObject("team")
 
-            // variables - id, name and logo
+            // variables - id, playerName and logo
             val teamId = teamObj.optInt("id", -1)
-            val teamName = teamObj.optString("name", "")
+            val teamName = teamObj.optString("playerName", "")
             val teamLogo = teamObj.optString("logo", "")
 
             // variables - points, goal difference, group, description

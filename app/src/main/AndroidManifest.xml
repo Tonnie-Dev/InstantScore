@@ -37,7 +37,7 @@
             tools:node="remove"
             tools:replace="android:authorities">
             <!--<meta-data
-                android:name="com.uxstate.instantscore.di.WorkManagerInitializerModule"
+                android:playerName="com.uxstate.instantscore.di.WorkManagerInitializerModule"
                 android:value="androidx.startup"
                />-->
         </provider>

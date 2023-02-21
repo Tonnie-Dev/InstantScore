@@ -125,7 +125,7 @@ fun Response.toModel(): Fixture {
                     id = this.player.id,
                     injured = this.player.injured,
                     lastname = this.player.lastname,
-                    name = this.player.name,
+                    playerName = this.player.playerName,
                     nationality = this.player.nationality,
                     photo = this.player.photo,
                     weight = this.player.weight
