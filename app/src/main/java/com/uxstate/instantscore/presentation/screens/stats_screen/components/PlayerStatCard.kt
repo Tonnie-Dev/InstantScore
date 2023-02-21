@@ -24,11 +24,7 @@ import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
 fun PlayerStatCard(
-    player: String,
-    teamName: String,
-    teamLogo: String,
-    rank: Int,
-    statValue: Int,
+    playerStats: PlayerStats,
     modifier: Modifier = Modifier
 ) {
 
@@ -37,12 +33,13 @@ fun PlayerStatCard(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(spacing.spaceExtraSmall),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(spacing.spaceExtraSmall),
         ) {
 
-
-            PlayerTeamRow(player = player, teamName = teamName, teamLogo = teamLogo)
-            Text(text = statValue.toString(), style = MaterialTheme.typography.bodySmall)
+            PlayerTeamRow(playerStats = playerStats)
+            Text(text = playerStats.goals.toString(), style = MaterialTheme.typography.bodySmall)
         }
     }
 }
@@ -56,7 +53,7 @@ fun PlayerTeamRow(
     val context = LocalContext.current
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context)
-            .data(playerStats.teamLogo)
+            .data(playerStats.playerPhoto)
             .crossfade(true)
             .placeholder(R.drawable.empty_logo)
             .error(R.drawable.empty_logo)
@@ -67,7 +64,7 @@ fun PlayerTeamRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        Text(text = playerStats.rank, style = MaterialTheme.typography.bodySmall)
+        Text(text = playerStats.rank.toString(), style = MaterialTheme.typography.bodySmall)
         Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Image(
             painter = painter,
@@ -79,14 +76,14 @@ fun PlayerTeamRow(
         Column() {
 
             Text(
-                text = player,
+                text = playerStats.playerName,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
             Text(
-                text = player,
+                text = playerStats.teamName,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.medium)
             )
@@ -97,13 +94,21 @@ fun PlayerTeamRow(
 @Preview
 @Composable
 fun StatsPlayerCardPreview() {
+
+    val playerStats = PlayerStats(
+        rank = 23,
+        playerName = "Gideon",
+        playerPhoto = "",
+        teamName = "Arsenal",
+        teamLogo = "",
+        goals = 5,
+        assists = 10,
+        yellowCards = 3,
+        redCards = 0
+    )
     InstantScoreTheme() {
         PlayerStatCard(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
-            rank = 13,
-            statValue = 17,
+            playerStats = playerStats,
             modifier = Modifier
         )
     }
@@ -112,13 +117,20 @@ fun StatsPlayerCardPreview() {
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun StatsPlayerCardPreviewDark() {
+    val playerStats = PlayerStats(
+        rank = 23,
+        playerName = "Gideon",
+        playerPhoto = "",
+        teamName = "Arsenal",
+        teamLogo = "",
+        goals = 5,
+        assists = 10,
+        yellowCards = 3,
+        redCards = 0
+    )
     InstantScoreTheme() {
         PlayerStatCard(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
-            rank = 13,
-            statValue = 17,
+            playerStats = playerStats,
             modifier = Modifier
         )
     }
@@ -127,11 +139,21 @@ fun StatsPlayerCardPreviewDark() {
 @Preview
 @Composable
 fun PlayerTeamRowPreview() {
+
+    val playerStats = PlayerStats(
+        rank = 23,
+        playerName = "Gideon",
+        playerPhoto = "",
+        teamName = "Arsenal",
+        teamLogo = "",
+        goals = 5,
+        assists = 10,
+        yellowCards = 3,
+        redCards = 0
+    )
     InstantScoreTheme() {
         PlayerTeamRow(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
+            playerStats,
             modifier = Modifier
         )
     }
@@ -140,11 +162,20 @@ fun PlayerTeamRowPreview() {
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun PlayerTeamRowPreviewDark() {
+    val playerStats = PlayerStats(
+        rank = 23,
+        playerName = "Gideon",
+        playerPhoto = "",
+        teamName = "Arsenal",
+        teamLogo = "",
+        goals = 5,
+        assists = 10,
+        yellowCards = 3,
+        redCards = 0
+    )
     InstantScoreTheme() {
         PlayerTeamRow(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
+            playerStats = playerStats,
             modifier = Modifier
         )
     }

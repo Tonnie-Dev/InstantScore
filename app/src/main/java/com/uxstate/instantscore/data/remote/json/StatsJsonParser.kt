@@ -1,8 +1,8 @@
 package com.uxstate.instantscore.data.remote.json
 
 import com.uxstate.instantscore.domain.models.player_stats.PlayerStats
-import org.json.JSONObject
 import javax.inject.Inject
+import org.json.JSONObject
 
 class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<PlayerStats>> {
     override suspend fun parseJsonString(jsonString: String): MutableList<PlayerStats> {
@@ -57,15 +57,15 @@ class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<Playe
             val redCards = cardsJsonObj.optInt("red", -1)
 
             val playerStats = PlayerStats(
-                    rank = i + 1,
-                    playerName = playerName,
-                    playerPhoto = playerPhoto,
-                    teamName = teamName,
-                    teamLogo = teamLogo,
-                    goals = goals,
-                    assists = assists,
-                    yellowCards = yellowCards,
-                    redCards = redCards
+                rank = i + 1,
+                playerName = playerName,
+                playerPhoto = playerPhoto,
+                teamName = teamName,
+                teamLogo = teamLogo,
+                goals = goals,
+                assists = assists,
+                yellowCards = yellowCards,
+                redCards = redCards
             )
 
             playerStatsList.add(playerStats)

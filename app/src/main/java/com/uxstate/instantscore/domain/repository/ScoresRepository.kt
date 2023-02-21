@@ -1,6 +1,5 @@
 package com.uxstate.instantscore.domain.repository
 
-import com.uxstate.instantscore.data.remote.dtos.live_games.Response
 import com.uxstate.instantscore.domain.models.fixture_details.FixtureDetails
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
@@ -23,5 +22,5 @@ interface ScoresRepository {
 
     fun getLiveFixtures(): Flow<Resource<Map<League, List<Fixture>>>>
 
-    fun getTopScorers(leagueId: Int,season: Int, ): Flow<Resource<List<PlayerStats>>>
+    fun getTopScorers(leagueId: Int, season: Int,): Flow<Resource<List<PlayerStats>>>
 }

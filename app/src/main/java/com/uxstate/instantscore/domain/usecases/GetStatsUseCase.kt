@@ -9,6 +9,5 @@ class GetStatsUseCase(private val repository: ScoresRepository) {
     operator fun invoke(leagueId: Int, season: Int): Flow<Resource<List<PlayerStats>>> {
 
         return repository.getTopScorers(leagueId = leagueId, season = season)
-
     }
 }

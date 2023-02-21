@@ -2,28 +2,22 @@ package com.uxstate.instantscore.presentation.screens.stats_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.uxstate.instantscore.domain.models.player_stats.PlayerStats
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 
 @Composable
 fun PlayerStatsList(
-    player: String,
-    teamName: String,
-    teamLogo: String,
-    rank: Int,
-    statValue: Int,
+    stats: List<PlayerStats>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(content = {
-        items(20) {
+        items(stats) {
             PlayerStatCard(
-                player = player,
-                teamName = teamName,
-                teamLogo = teamLogo,
-                rank = rank,
-                statValue = statValue
+                playerStats = it
             )
         }
     })
@@ -32,14 +26,22 @@ fun PlayerStatsList(
 @Preview
 @Composable
 fun PlayerStatsListPreview() {
-
+    val stats = List(20) {
+        PlayerStats(
+            rank = 23,
+            playerName = "Gideon",
+            playerPhoto = "",
+            teamName = "Arsenal",
+            teamLogo = "",
+            goals = 5,
+            assists = 10,
+            yellowCards = 3,
+            redCards = 0
+        )
+    }
     InstantScoreTheme {
         PlayerStatsList(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
-            rank = 1,
-            statValue = 20
+            stats = stats
         )
     }
 }
@@ -48,13 +50,23 @@ fun PlayerStatsListPreview() {
 @Composable
 fun PlayerStatsListPreviewDark() {
 
+    val stats = List(20) {
+        PlayerStats(
+            rank = 23,
+            playerName = "Gideon",
+            playerPhoto = "",
+            teamName = "Arsenal",
+            teamLogo = "",
+            goals = 5,
+            assists = 10,
+            yellowCards = 3,
+            redCards = 0
+        )
+    }
+
     InstantScoreTheme {
         PlayerStatsList(
-            player = "Gideon",
-            teamName = "Arsenal FC",
-            teamLogo = "",
-            rank = 1,
-            statValue = 20
+            stats = stats
         )
     }
 }

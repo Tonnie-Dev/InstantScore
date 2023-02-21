@@ -127,7 +127,7 @@ object AppModule {
             getFixtureDetailsUseCase = GetFixtureDetailsUseCase(repository = repository),
             getStandingsUseCase = GetStandingsUseCase(repository = repository),
             getLiveFixturesUseCase = GetLiveFixturesUseCase(repository = repository),
-                getStatsUseCase = GetStatsUseCase(repository = repository)
+            getStatsUseCase = GetStatsUseCase(repository = repository)
         )
     }
 }
