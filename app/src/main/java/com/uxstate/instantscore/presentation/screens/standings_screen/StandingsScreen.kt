@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
+import com.uxstate.instantscore.presentation.screens.destinations.StatisticsScreenDestination
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingRowHeader
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingsHeader
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingsTable
@@ -69,6 +70,11 @@ fun StandingsScreen(
                 ),
                 onNavigateBack = {
                     navigator.navigateUp()
+                },
+
+                onClickStats = {
+
+                    navigator.navigate(StatisticsScreenDestination)
                 }
             )
 
