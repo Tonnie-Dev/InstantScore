@@ -10,10 +10,15 @@ import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.uxstate.instantscore.presentation.screens.NavGraphs
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
+import com.uxstate.instantscore.utils.InitializationHelper
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var initializationHelper: InitializationHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,5 +33,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initializationHelper.initializeDependencies()
     }
 }

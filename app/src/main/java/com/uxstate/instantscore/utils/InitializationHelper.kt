@@ -5,6 +5,7 @@ import com.uxstate.instantscore.data.work_manager.ScoresWorker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import timber.log.Timber
 
 // Heavy weight dependency should be configured here as it increases app startup time
 // Typically initializing MobileAds & scheduling work-manager take immense amount of time
@@ -17,13 +18,12 @@ class InitializationHelper @Inject constructor(
     private var isInitialized: Boolean = false
 
     fun initializeDependencies() {
+
+        Timber.i("initialization called - value: $isInitialized")
         if (isInitialized) return
 
         isInitialized = true
 
-
-
         ScoresWorker.schedule(context)
-
     }
 }

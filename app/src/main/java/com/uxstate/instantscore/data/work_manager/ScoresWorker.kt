@@ -28,16 +28,18 @@ class ScoresWorker @AssistedInject constructor(
             val response = api.getFixturesByDate()
 
             db.withTransaction {
-                dao.clearFixtures()
-                dao.insertFixtures(response.response.map { it.toEntity() })
             }
-
+            dao.clearFixtures()
+            dao.insertFixtures(response.response.map { it.toEntity() })
             Result.success()
         } catch (e: IOException) {
+            Timber.i("WorKError - IO")
             Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
         } catch (e: HttpException) {
+            Timber.i("WorKError - Http")
             Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
         } catch (e: Exception) {
+            Timber.i("WorKError - Exception")
             Result.failure(workDataOf(SCORES_WORKER_ERROR_KEY to e.localizedMessage))
         }
     }
@@ -46,14 +48,14 @@ class ScoresWorker @AssistedInject constructor(
 
         private const val SCORES_WORKER_ID = "scores_worker"
         fun schedule(context: Context) {
-
+            Timber.i("companion Obj schedule() called")
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
-                .setRequiresStorageNotLow(true)
+                //  .setRequiresStorageNotLow(true)
                 .build()
 
             val request = PeriodicWorkRequestBuilder<ScoresWorker>(
-                1, TimeUnit.MINUTES, 1, TimeUnit.MINUTES
+                15, TimeUnit.MINUTES, 5, TimeUnit.MINUTES
             ).setConstraints(constraints)
                 .build()
 
