@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -25,75 +26,81 @@ import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StandingsHeader(league: League, onNavigateBack: () -> Unit, modifier: Modifier = Modifier) {
+fun StandingsHeader(
+    league: League, onNavigateBack: () -> Unit,
+    onClickStats: () -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     val spacing = LocalSpacing.current
     val context = LocalContext.current
 
     val countryFlagPainter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(context = context)
-            .data(league.countryFlag)
-            .decoderFactory(SvgDecoder.Factory())
-            .crossfade(true)
-            .placeholder(R.drawable.empty_flag)
-            .error(R.drawable.empty_flag)
-            .build()
+            model = ImageRequest.Builder(context = context)
+                    .data(league.countryFlag)
+                    .decoderFactory(SvgDecoder.Factory())
+                    .crossfade(true)
+                    .placeholder(R.drawable.empty_flag)
+                    .error(R.drawable.empty_flag)
+                    .build()
     )
     val leagueLogoPainter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(context = context)
-            .data(league.leagueLogo)
-            .crossfade(true)
-            .placeholder(R.drawable.empty_logo)
-            .error(R.drawable.empty_logo)
-            .build()
+            model = ImageRequest.Builder(context = context)
+                    .data(league.leagueLogo)
+                    .crossfade(true)
+                    .placeholder(R.drawable.empty_logo)
+                    .error(R.drawable.empty_logo)
+                    .build()
 
     )
     Card(modifier = modifier.padding(spacing.spaceSmall), shape = RectangleShape) {
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(spacing.spaceSmall),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(spacing.spaceSmall),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
         ) {
 
             Column(
-                horizontalAlignment = Alignment.Start,
-                modifier = Modifier.clickable { onNavigateBack() }
+                    horizontalAlignment = Alignment.Start,
+                    modifier = Modifier.clickable { onNavigateBack() }
             ) {
 
                 Image(
-                    painter = leagueLogoPainter,
-                    contentDescription = stringResource(R.string.league_logo_string),
-                    modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceSmall),
-                    contentScale = ContentScale.Fit
+                        painter = leagueLogoPainter,
+                        contentDescription = stringResource(R.string.league_logo_string),
+                        modifier = Modifier.size(spacing.spaceExtraLarge + spacing.spaceSmall),
+                        contentScale = ContentScale.Fit
                 )
 
                 Text(
-                    text = league.name,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.SemiBold
+                        text = league.name,
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.SemiBold
                 )
             }
-
+            Button(onClick = onClickStats) {
+                Text(text = stringResource(R.string.stats_button_label))
+            }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Image(
-                    painter = countryFlagPainter,
-                    contentDescription = stringResource(R.string.country_flag_text),
-                    modifier = Modifier.size(spacing.spaceLarge),
-                    contentScale = ContentScale.Fit
+                        painter = countryFlagPainter,
+                        contentDescription = stringResource(R.string.country_flag_text),
+                        modifier = Modifier.size(spacing.spaceLarge),
+                        contentScale = ContentScale.Fit
                 )
 
                 Text(
-                    text = league.country,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
+                        text = league.country,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = league.season.toString(),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                        text = league.season.toString(),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
                 )
             }
         }
@@ -104,16 +111,16 @@ fun StandingsHeader(league: League, onNavigateBack: () -> Unit, modifier: Modifi
 @Composable
 fun StandingsHeaderPreview() {
     val league = League(
-        id = 26,
-        name = "English Premier League",
-        country = "England",
-        leagueLogo = "",
-        countryFlag = "",
-        season = 2022
+            id = 26,
+            name = "English Premier League",
+            country = "England",
+            leagueLogo = "",
+            countryFlag = "",
+            season = 2022
     )
 
     InstantScoreTheme() {
-        StandingsHeader(league = league, onNavigateBack = {})
+        StandingsHeader(league = league, onNavigateBack = {}, onClickStats = {})
     }
 }
 
@@ -121,15 +128,15 @@ fun StandingsHeaderPreview() {
 @Composable
 fun StandingsHeaderPreviewDark() {
     val league = League(
-        id = 26,
-        name = "English Premier League",
-        country = "England",
-        leagueLogo = "",
-        countryFlag = "",
-        season = 2022
+            id = 26,
+            name = "English Premier League",
+            country = "England",
+            leagueLogo = "",
+            countryFlag = "",
+            season = 2022
     )
 
     InstantScoreTheme() {
-        StandingsHeader(league = league, onNavigateBack = {})
+        StandingsHeader(league = league, onNavigateBack = {}, onClickStats = {})
     }
 }
