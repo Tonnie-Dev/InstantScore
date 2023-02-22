@@ -17,7 +17,7 @@ class InitializationHelper @Inject constructor(
 
     private var isInitialized: Boolean = false
 
-    fun initializeDependencies() {
+    fun initializeWorkManager() {
 
         Timber.i("initialization called - value: $isInitialized")
         if (isInitialized) return

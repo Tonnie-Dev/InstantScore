@@ -1,7 +1,6 @@
 package com.uxstate.instantscore.data.work_manager
 
 import android.content.Context
-import androidx.room.withTransaction
 import androidx.work.*
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
@@ -16,7 +15,7 @@ import timber.log.Timber
 
 class ScoresWorker @AssistedInject constructor(
     @Assisted private val context: Context,
-    @Assisted private val params: WorkerParameters,
+    @Assisted params: WorkerParameters,
     private val db: ScoresDatabase,
     private val api: ScoresAPI
 ) : CoroutineWorker(context, params) {
@@ -27,8 +26,8 @@ class ScoresWorker @AssistedInject constructor(
         return try {
             val response = api.getFixturesByDate()
 
-            db.withTransaction {
-            }
+           /* db.withTransaction {
+            }*/
             dao.clearFixtures()
             dao.insertFixtures(response.response.map { it.toEntity() })
             Result.success()
@@ -61,7 +60,7 @@ class ScoresWorker @AssistedInject constructor(
 
             WorkManager.getInstance(context)
                 .enqueueUniquePeriodicWork(
-                    SCORES_WORKER_ID, ExistingPeriodicWorkPolicy.UPDATE, request
+                    SCORES_WORKER_ID, ExistingPeriodicWorkPolicy.KEEP, request
                 )
         }
     }

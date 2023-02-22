@@ -37,6 +37,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
-        initializationHelper.initializeDependencies()
+        initializationHelper.initializeWorkManager()
     }
 }
