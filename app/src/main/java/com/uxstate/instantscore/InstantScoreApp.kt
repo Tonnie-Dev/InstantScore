@@ -12,6 +12,7 @@ class InstantScoreApp : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
+        // WorkManager.initialize(this, workManagerConfiguration)
     }
 
     @Inject

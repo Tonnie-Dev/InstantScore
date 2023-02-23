@@ -8,9 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.uxstate.instantscore.data.work_manager.WorkManagerInitializer
 import com.uxstate.instantscore.presentation.screens.NavGraphs
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
-import com.uxstate.instantscore.utils.InitializationHelper
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var initializationHelper: InitializationHelper
+    lateinit var initializationHelper: WorkManagerInitializer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
