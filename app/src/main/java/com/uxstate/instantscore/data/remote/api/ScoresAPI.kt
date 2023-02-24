@@ -4,6 +4,7 @@ import com.uxstate.instantscore.data.remote.dtos.fixtures_by_date.FixturesRespon
 import com.uxstate.instantscore.utils.*
 import java.time.LocalDate
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ScoresAPI {
@@ -28,7 +29,8 @@ interface ScoresAPI {
     suspend fun getLiveFixtures(@Query("live") live: String = "all"): String
 
     @GET(GET_TOP_SCORERS)
-    suspend fun getTopScorers(
+    suspend fun getPlayersStats(
+        @Path("stat_type") statType:String,
         @Query("league") leagueId: Int,
         @Query("season") season: Int,
     ): String

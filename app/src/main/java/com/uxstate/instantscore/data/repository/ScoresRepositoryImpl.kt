@@ -275,7 +275,7 @@ class ScoresRepositoryImpl @Inject constructor(
 
         when (
             val safeResponse = safeFlowCall(Dispatchers.IO) {
-                api.getTopScorers(
+                api.getPlayersStats(
                     leagueId = leagueId,
                     season = season
                 )

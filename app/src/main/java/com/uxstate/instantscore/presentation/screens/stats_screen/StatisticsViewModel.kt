@@ -3,6 +3,7 @@ package com.uxstate.instantscore.presentation.screens.stats_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
+import com.uxstate.instantscore.presentation.screens.stats_screen.events.StatsEvent
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -67,5 +68,12 @@ class StatisticsViewModel @Inject constructor(
 
             _uiEvent.send(uiEvent)
         }
+    }
+
+
+    fun onEvent(event:StatsEvent) {
+
+
+
     }
 }
