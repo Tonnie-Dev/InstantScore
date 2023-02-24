@@ -1,6 +1,7 @@
 package com.uxstate.instantscore.data.work_manager
 
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.uxstate.instantscore.data.local.ScoresDatabase
 import com.uxstate.instantscore.data.remote.api.ScoresAPI
@@ -12,7 +13,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import retrofit2.HttpException
 import timber.log.Timber
-
+@HiltWorker
 class ScoresWorker @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted params: WorkerParameters,
@@ -54,7 +55,7 @@ class ScoresWorker @AssistedInject constructor(
                 .build()
 
             val request = PeriodicWorkRequestBuilder<ScoresWorker>(
-                15, TimeUnit.MINUTES, 5, TimeUnit.MINUTES
+                25, TimeUnit.HOURS, 25, TimeUnit.HOURS
             ).setConstraints(constraints)
                 .build()
 

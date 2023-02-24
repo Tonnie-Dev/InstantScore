@@ -6,10 +6,10 @@ import com.uxstate.instantscore.domain.usecases.UseCaseContainer
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
@@ -25,40 +25,40 @@ class StatisticsViewModel @Inject constructor(
     private fun getStats(leagueId: Int, season: Int, statType: String) {
 
         useCaseContainer.getStatsUseCase(leagueId = leagueId, season = season)
-                .onEach {
+            .onEach {
 
-                    result ->
+                result ->
 
-                    when (result) {
+                when (result) {
 
-                        is Resource.Success -> {
+                    is Resource.Success -> {
 
-                            result.data?.let {
+                        result.data?.let {
 
-                                _state.value = _state.value.copy(stats = it)
-                            }
-                        }
-                        is Resource.Error -> {
-
-                            _state.value = _state.value.copy(
-                                    isLoading = false,
-                                    stats = result.data ?: emptyList()
-                            )
-
-                            sendUIEvent(
-                                    UIEvent.ShowSnackBarUiEvent(
-                                            message =result.errorMessage ?: "Unknown Error",
-                                            action = "OK"
-                                    )
-                            )
-                        }
-                        is Resource.Loading -> {
-
-                            _state.value = _state.value.copy(isLoading = result.isLoading)
+                            _state.value = _state.value.copy(stats = it)
                         }
                     }
+                    is Resource.Error -> {
+
+                        _state.value = _state.value.copy(
+                            isLoading = false,
+                            stats = result.data ?: emptyList()
+                        )
+
+                        sendUIEvent(
+                            UIEvent.ShowSnackBarUiEvent(
+                                message = result.errorMessage ?: "Unknown Error",
+                                action = "OK"
+                            )
+                        )
+                    }
+                    is Resource.Loading -> {
+
+                        _state.value = _state.value.copy(isLoading = result.isLoading)
+                    }
                 }
-                .launchIn(viewModelScope)
+            }
+            .launchIn(viewModelScope)
     }
 
     private fun sendUIEvent(uiEvent: UIEvent) {
