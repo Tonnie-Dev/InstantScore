@@ -1,16 +1,15 @@
 package com.uxstate.instantscore.presentation.screens.stats_screen.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.utils.LocalSpacing
 
@@ -21,34 +20,41 @@ fun StatsChipRow(
 ) {
     var selectedChipIndex by remember { mutableStateOf(0) }
     val spacing = LocalSpacing.current
+    Card(
+        shape = RectangleShape,
+        modifier = modifier.padding(bottom = spacing.spaceSmall)
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(spacing.spaceSmall),
     ) {
-        for (i in 0..3) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+            modifier = Modifier.fillMaxWidth()
+                .padding(
+                    spacing.spaceSmall
+                )
 
-            val isSelected = (selectedChipIndex == i)
-            val endpoint = when (i) {
-                0 -> "topscorers"
-                1 -> "topassists"
-                2 -> "topyellowcards"
-                3 -> "topredcards"
+        ) {
+            for (i in 0..3) {
 
-                else -> "topscorers"
-            }
+                val isSelected = (selectedChipIndex == i)
+                val endpoint = when (i) {
+                    0 -> "topscorers"
+                    1 -> "topassists"
+                    2 -> "topyellowcards"
+                    3 -> "topredcards"
 
-            StatsChip(
-                chipIndex = i,
-                isSelected = isSelected,
-                onClickChip = {
-                    selectedChipIndex = i
-                    onClickChip(endpoint)
+                    else -> "topscorers"
                 }
-            )
+
+                StatsChip(
+                    chipIndex = i,
+                    isSelected = isSelected,
+                    onClickChip = {
+                        selectedChipIndex = i
+                        onClickChip(endpoint)
+                    }
+                )
+            }
         }
     }
 }

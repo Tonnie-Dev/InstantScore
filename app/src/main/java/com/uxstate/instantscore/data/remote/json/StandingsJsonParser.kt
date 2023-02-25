@@ -11,6 +11,10 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
         val mainJsonStandingsResponseObj = JSONObject(jsonString)
 
         val responseJsonArray = mainJsonStandingsResponseObj.getJSONArray("response")
+
+        if (responseJsonArray.length() == 0) {
+            return mutableListOf()
+        }
         val innerResponseObj = responseJsonArray.getJSONObject(0)
         val leagueObj = innerResponseObj.getJSONObject("league")
 

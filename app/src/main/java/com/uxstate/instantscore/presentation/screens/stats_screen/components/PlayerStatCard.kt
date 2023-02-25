@@ -2,7 +2,9 @@ package com.uxstate.instantscore.presentation.screens.stats_screen.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Text
 import androidx.compose.material3.Card
@@ -10,10 +12,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -35,11 +40,15 @@ fun PlayerStatCard(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(spacing.spaceExtraSmall),
+                .padding(end = spacing.spaceMedium, bottom = spacing.spaceSmall),
         ) {
 
             PlayerTeamRow(playerStats = playerStats)
-            Text(text = playerStats.goals.toString(), style = MaterialTheme.typography.bodySmall)
+            Text(
+                text = playerStats.goals.toString(),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
@@ -60,16 +69,30 @@ fun PlayerTeamRow(
             .build()
     )
     Row(
-        modifier = modifier,
+        modifier = modifier.padding(spacing.spaceSmall),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = playerStats.rank.toString(), style = MaterialTheme.typography.bodySmall)
-        Spacer(modifier = Modifier.width(spacing.spaceSmall))
+        Text(
+            text = playerStats.rank.toString(),
+            style = MaterialTheme.typography.bodySmall,
+            textAlign = TextAlign.End,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.width(spacing.spaceMedium)
+
+        )
+        Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Image(
             painter = painter,
             contentDescription = stringResource(R.string.team_logo_image),
-            modifier = Modifier.size(spacing.spaceMedium + spacing.spaceSmall)
+            modifier = Modifier
+                .size(spacing.spaceExtraLarge)
+                .clip(CircleShape)
+                .border(
+                    width = spacing.spaceSingleDp,
+                    color = Color.Unspecified,
+                    shape = CircleShape
+                )
         )
 
         Spacer(modifier = Modifier.width(spacing.spaceSmall))
