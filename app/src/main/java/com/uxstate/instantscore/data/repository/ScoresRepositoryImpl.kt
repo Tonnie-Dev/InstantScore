@@ -96,7 +96,7 @@ class ScoresRepositoryImpl @Inject constructor(
             ) // return null
             null
         } catch (e: Exception) {
-            Timber.i("The Exception is: $e")
+
             e.printStackTrace()
             // emit error
             emit(Resource.Error(errorMessage = """Unknown Error Occurred"""))
@@ -129,7 +129,7 @@ class ScoresRepositoryImpl @Inject constructor(
                 }
             )
 
-        Timber.i("The fixtures are: $mappedUpdatedLocalFixtures")
+        //  Timber.i("The fixtures are: $mappedUpdatedLocalFixtures")
         // emit updatedLocalFixtures
 
         emit(Resource.Success(data = mappedUpdatedLocalFixtures))
@@ -173,6 +173,7 @@ class ScoresRepositoryImpl @Inject constructor(
             fixtureDetailsJsonParser.parseJsonString(it)
         }
 
+        Timber.i("The Details are: $fixtureDetails")
         emit(Resource.Success(data = fixtureDetails))
     }
 
