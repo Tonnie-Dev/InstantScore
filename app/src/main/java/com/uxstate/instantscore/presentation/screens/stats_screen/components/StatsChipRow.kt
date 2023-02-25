@@ -2,16 +2,14 @@ package com.uxstate.instantscore.presentation.screens.stats_screen.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.utils.LocalSpacing
+import timber.log.Timber
 
 @Composable
 fun StatsChipRow(
@@ -21,14 +19,14 @@ fun StatsChipRow(
     var selectedChipIndex by remember { mutableStateOf(0) }
     val spacing = LocalSpacing.current
     Card(
-        shape = RectangleShape,
-        modifier = modifier.padding(bottom = spacing.spaceSmall)
+        shape = RectangleShape, modifier = modifier.padding(bottom = spacing.spaceSmall)
 
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(
                     spacing.spaceSmall
                 )
@@ -46,14 +44,11 @@ fun StatsChipRow(
                     else -> "topscorers"
                 }
 
-                StatsChip(
-                    chipIndex = i,
-                    isSelected = isSelected,
-                    onClickChip = {
-                        selectedChipIndex = i
-                        onClickChip(endpoint)
-                    }
-                )
+                StatsChip(chipIndex = i, isSelected = isSelected, onClickChip = {
+                    selectedChipIndex = i
+                    onClickChip(endpoint)
+                    Timber.i("Chip Click Detected")
+                })
             }
         }
     }
@@ -69,6 +64,10 @@ fun StatsChip(
 ) {
 
     val spacing = LocalSpacing.current
+    val chipBorderColor =
+        if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+
+    val chipBorderWidth = if (isSelected) spacing.spaceDoubleDp else spacing.spaceSingleDp
     val chipText = remember {
         when (chipIndex) {
             0 -> "Goals"
@@ -81,9 +80,13 @@ fun StatsChip(
     AssistChip(
         onClick = onClickChip,
         label = { Text(text = chipText) },
-        enabled = isSelected,
         shape = RoundedCornerShape(spacing.spaceSmall),
-        modifier = modifier
+        modifier = modifier,
+        border = AssistChipDefaults.assistChipBorder(
+            borderColor = chipBorderColor,
+            borderWidth = chipBorderWidth
+        )
+
     )
 }
 
