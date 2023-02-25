@@ -35,7 +35,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val venueJsonObject = fixtureJsonObject.getJSONObject("venue")
 
         // variable - venue
-        val venue = venueJsonObject.optString("playerName", "")
+        val venue = venueJsonObject.optString("name", "")
 
         val statusJsonObject = fixtureJsonObject.getJSONObject("status")
 
@@ -55,8 +55,8 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         val leagueJsonObject = responseJsonObject.getJSONObject("league")
 
-        // variable - league playerName
-        val leagueName = leagueJsonObject.optString("playerName", "")
+        // variable - league name
+        val leagueName = leagueJsonObject.optString("name", "")
 
         val teamJsonObject = responseJsonObject.getJSONObject("teams")
 
@@ -65,12 +65,12 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
         // variables
         val homeTeam = Team(
-            name = homeTeamJSONObject.optString("playerName", ""),
+            name = homeTeamJSONObject.optString("name", ""),
             logo = homeTeamJSONObject.optString("logo", ""),
             isWinner = homeTeamJSONObject.optBoolean("winner", false)
         )
         val awayTeam = Team(
-            name = awayTeamJSONObject.optString("playerName", ""),
+            name = awayTeamJSONObject.optString("name", ""),
             logo = awayTeamJSONObject.optString("logo", ""),
             isWinner = awayTeamJSONObject.optBoolean("winner", false)
         )
@@ -98,9 +98,9 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                     event = Event(
                         timeElapsed = timeJsonObj.optInt("elapsed", -1),
                         inExtra = timeJsonObj.optInt("extra", -1),
-                        player = playerJsonObj.optString("playerName", ""),
-                        side = teamJsonObj.optString("playerName", ""),
-                        assist = assistJsonObj.optString("playerName", "GXX"),
+                        player = playerJsonObj.optString("name", ""),
+                        side = teamJsonObj.optString("name", ""),
+                        assist = assistJsonObj.optString("name", "GXX"),
                         eventType = innerEventObj.optString("type"),
                         eventDetail = innerEventObj.optString("detail")
                     )
@@ -163,14 +163,14 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
             val playerColorJsonObj = colorsJsonObj.getJSONObject("player")
 
             // variables
-            val teamName = teamJsonObj.optString("playerName", "")
+            val teamName = teamJsonObj.optString("name", "")
             val teamLogo = teamJsonObj.optString("logo", "")
             val primaryPlayerColor = playerColorJsonObj.optString("primary", "D3D3D3")
 
             val coachJsonObj = innerLineUpsObj.getJSONObject("coach")
 
             // variable
-            val coachName = coachJsonObj.optString("playerName", "")
+            val coachName = coachJsonObj.optString("name", "")
             val coachPhoto = coachJsonObj.optString("photo", "")
 
             val startingElevenArray = innerLineUpsObj.getJSONArray("startXI")
@@ -182,7 +182,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
 
                 // variables
                 val playerId = startingPlayerJsonObj.optInt("id", -1)
-                val playerName = startingPlayerJsonObj.optString("playerName", "")
+                val playerName = startingPlayerJsonObj.optString("name", "")
                 val playerNumber = startingPlayerJsonObj.optInt("number", -1)
                 val playerPosition = startingPlayerJsonObj.optString("pos", "")
 
@@ -203,7 +203,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
                 val subPlayerJsonObj = subsInnerJsonObj.getJSONObject("player")
                 // variables
                 val playerId = subPlayerJsonObj.optInt("id", -1)
-                val playerName = subPlayerJsonObj.optString("playerName", "")
+                val playerName = subPlayerJsonObj.optString("name", "")
                 val playerNumber = subPlayerJsonObj.optInt("number", -1)
                 val playerPosition = subPlayerJsonObj.optString("pos", "")
 
