@@ -20,4 +20,6 @@
     <string name="live_fixtures_text">Live Fixtures</string>
     <string name="stats_button_label">Statistics</string>
     <string name="team_logo_image">Team Logo</string>
+    <string name="ft_abbreviation">FT</string>
+    <string name="pst_abbreviation">PST</string>
 </resources>

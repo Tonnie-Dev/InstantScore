@@ -14,7 +14,7 @@ fun PlayerStatsList(
     stats: List<PlayerStats>,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(content = {
+    LazyColumn(modifier = modifier, content = {
         items(stats) {
             PlayerStatCard(
                 playerStats = it

@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberAsyncImagePainter
@@ -35,9 +36,10 @@ fun FixtureCard(
     val fixtureSideText = when (fixture.status.fixtureShort) {
 
         "NS" -> fixture.startTime.toHourMinuteFormat()
-        "FT" -> "FT"
+        "FT" -> stringResource(R.string.ft_abbreviation)
         "1H" -> "${fixture.status.timeElapsed}'"
         "2H" -> "${fixture.status.timeElapsed}'"
+        "PST" -> stringResource(R.string.pst_abbreviation)
         else -> ""
     }
 

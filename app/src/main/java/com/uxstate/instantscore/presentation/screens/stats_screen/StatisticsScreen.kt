@@ -13,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.uxstate.instantscore.presentation.screens.stats_screen.components.PlayerStatsList
 import com.uxstate.instantscore.presentation.screens.stats_screen.components.StatsChipRow
+import com.uxstate.instantscore.presentation.screens.stats_screen.events.StatsEvent
 import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.UIEvent
 import kotlinx.coroutines.launch
@@ -58,7 +59,9 @@ fun StatisticsScreen(viewModel: StatisticsViewModel = hiltViewModel()) {
                 .padding(paddingValues)
         ) {
 
-            StatsChipRow(onClickChip = { /*TODO*/ })
+            StatsChipRow(onClickChip = { statType ->
+                viewModel.onEvent(StatsEvent.OnChipClick(statType))
+            })
 
             PlayerStatsList(stats = stats)
         }

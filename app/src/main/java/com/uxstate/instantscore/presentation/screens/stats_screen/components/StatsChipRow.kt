@@ -23,13 +23,12 @@ fun StatsChipRow(
     val spacing = LocalSpacing.current
 
     Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
-            modifier = modifier
-                    .fillMaxWidth()
-                    .padding(spacing.spaceSmall),
-    )
-    {
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(spacing.spaceSmall),
+    ) {
         for (i in 0..3) {
 
             val isSelected = (selectedChipIndex == i)
@@ -42,12 +41,14 @@ fun StatsChipRow(
                 else -> "topscorers"
             }
 
-            StatsChip(chipIndex = i,
-                    isSelected = isSelected,
-                    onClickChip = {
-                        selectedChipIndex = i
-                        onClickChip(endpoint)
-                    })
+            StatsChip(
+                chipIndex = i,
+                isSelected = isSelected,
+                onClickChip = {
+                    selectedChipIndex = i
+                    onClickChip(endpoint)
+                }
+            )
         }
     }
 }
@@ -72,11 +73,11 @@ fun StatsChip(
         }
     }
     AssistChip(
-            onClick = onClickChip,
-            label = { Text(text = chipText) },
-            enabled = isSelected,
-            shape = RoundedCornerShape(spacing.spaceSmall),
-            modifier = modifier
+        onClick = onClickChip,
+        label = { Text(text = chipText) },
+        enabled = isSelected,
+        shape = RoundedCornerShape(spacing.spaceSmall),
+        modifier = modifier
     )
 }
 
