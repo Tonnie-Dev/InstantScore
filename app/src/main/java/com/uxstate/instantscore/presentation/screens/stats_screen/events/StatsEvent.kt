@@ -1,6 +1,6 @@
 package com.uxstate.instantscore.presentation.screens.stats_screen.events
 
-sealed class StatsEvent(){
+sealed class StatsEvent() {
 
-    data class OnChipClick(val statType:String): StatsEvent()
+    data class OnChipClick(val statType: String) : StatsEvent()
 }

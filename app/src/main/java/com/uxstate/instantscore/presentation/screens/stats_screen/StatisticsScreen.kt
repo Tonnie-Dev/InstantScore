@@ -17,7 +17,7 @@ import com.uxstate.instantscore.utils.LocalSpacing
 import com.uxstate.instantscore.utils.UIEvent
 import kotlinx.coroutines.launch
 
-@Destination
+@Destination(navArgsDelegate = statsNavArgs::class)
 @Composable
 fun StatisticsScreen(viewModel: StatisticsViewModel = hiltViewModel()) {
 
@@ -29,7 +29,6 @@ fun StatisticsScreen(viewModel: StatisticsViewModel = hiltViewModel()) {
     val coroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
-
     LaunchedEffect(key1 = true, block = {
 
         viewModel.uiEvent.collect { event ->
@@ -40,32 +39,30 @@ fun StatisticsScreen(viewModel: StatisticsViewModel = hiltViewModel()) {
                     coroutineScope.launch {
 
                         snackbarHostState.showSnackbar(
-                                event.message,
-                                event.action,
-                                SnackbarDuration.Short
+                            event.message,
+                            event.action,
+                            SnackbarDuration.Short
                         )
                     }
                 }
             }
-
         }
     })
 
     Scaffold(snackbarHost = {
         SnackbarHost(hostState = snackbarHostState)
-
     }) { paddingValues ->
         Column(
-                Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues)
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
         ) {
-
 
             StatsChipRow(onClickChip = { /*TODO*/ })
 
             PlayerStatsList(stats = stats)
         }
     }
-
 }
+
+data class statsNavArgs(val statType: String = "topscorers", val leagueId: Int, val season: Int)

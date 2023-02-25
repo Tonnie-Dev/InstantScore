@@ -30,7 +30,7 @@ interface ScoresAPI {
 
     @GET(GET_TOP_SCORERS)
     suspend fun getPlayersStats(
-        @Path("stat_type") statType:String,
+        @Path("stat_type") statType: String,
         @Query("league") leagueId: Int,
         @Query("season") season: Int,
     ): String

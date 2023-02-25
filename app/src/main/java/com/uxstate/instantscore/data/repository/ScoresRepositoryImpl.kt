@@ -267,7 +267,8 @@ class ScoresRepositoryImpl @Inject constructor(
         emit(Resource.Loading(isLoading = false))
     }
 
-    override fun getTopScorers(
+    override fun getPlayersStats(
+        statType: String,
         leagueId: Int,
         season: Int,
 
@@ -276,6 +277,7 @@ class ScoresRepositoryImpl @Inject constructor(
         when (
             val safeResponse = safeFlowCall(Dispatchers.IO) {
                 api.getPlayersStats(
+                    statType = statType,
                     leagueId = leagueId,
                     season = season
                 )

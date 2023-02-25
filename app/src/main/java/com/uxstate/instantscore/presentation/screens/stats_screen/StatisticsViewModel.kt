@@ -1,65 +1,80 @@
 package com.uxstate.instantscore.presentation.screens.stats_screen
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uxstate.instantscore.domain.usecases.UseCaseContainer
+import com.uxstate.instantscore.presentation.screens.navArgs
 import com.uxstate.instantscore.presentation.screens.stats_screen.events.StatsEvent
 import com.uxstate.instantscore.utils.Resource
 import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
-    private val useCaseContainer: UseCaseContainer
+    private val useCaseContainer: UseCaseContainer,
+    private val handle: SavedStateHandle
 ) : ViewModel() {
 
+    val navArgs = handle.navArgs<statsNavArgs>()
     private val _state = MutableStateFlow(StatState())
     val state = _state.asStateFlow()
 
     private val _uiEvent = Channel<UIEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    private fun getStats(leagueId: Int, season: Int, statType: String) {
+    init {
 
-        useCaseContainer.getStatsUseCase(leagueId = leagueId, season = season)
-            .onEach {
+        getStats(
+                statType = navArgs.statType
+        )
+    }
 
-                result ->
+    private fun getStats(statType: String) {
 
-                when (result) {
+        useCaseContainer.getStatsUseCase(
+                statType = statType,
+                leagueId = navArgs.leagueId,
+                season = navArgs.season
+        )
+                .onEach {
 
-                    is Resource.Success -> {
+                    result ->
 
-                        result.data?.let {
+                    when (result) {
 
-                            _state.value = _state.value.copy(stats = it)
+                        is Resource.Success -> {
+
+                            result.data?.let {
+
+                                _state.value = _state.value.copy(stats = it)
+                            }
+                        }
+                        is Resource.Error -> {
+
+                            _state.value = _state.value.copy(
+                                    isLoading = false,
+                                    stats = result.data ?: emptyList()
+                            )
+
+                            sendUIEvent(
+                                    UIEvent.ShowSnackBarUiEvent(
+                                            message = result.errorMessage ?: "Unknown Error",
+                                            action = "OK"
+                                    )
+                            )
+                        }
+                        is Resource.Loading -> {
+
+                            _state.value = _state.value.copy(isLoading = result.isLoading)
                         }
                     }
-                    is Resource.Error -> {
-
-                        _state.value = _state.value.copy(
-                            isLoading = false,
-                            stats = result.data ?: emptyList()
-                        )
-
-                        sendUIEvent(
-                            UIEvent.ShowSnackBarUiEvent(
-                                message = result.errorMessage ?: "Unknown Error",
-                                action = "OK"
-                            )
-                        )
-                    }
-                    is Resource.Loading -> {
-
-                        _state.value = _state.value.copy(isLoading = result.isLoading)
-                    }
                 }
-            }
-            .launchIn(viewModelScope)
+                .launchIn(viewModelScope)
     }
 
     private fun sendUIEvent(uiEvent: UIEvent) {
@@ -70,10 +85,13 @@ class StatisticsViewModel @Inject constructor(
         }
     }
 
+    fun onEvent(event: StatsEvent) {
 
-    fun onEvent(event:StatsEvent) {
+    when(event) {
 
-
-
+        is StatsEvent.OnChipClick -> {
+            getStats()
+        }
+    }
     }
 }

@@ -16,6 +16,7 @@ import com.uxstate.instantscore.presentation.screens.destinations.StatisticsScre
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingRowHeader
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingsHeader
 import com.uxstate.instantscore.presentation.screens.standings_screen.components.StandingsTable
+import com.uxstate.instantscore.presentation.screens.stats_screen.statsNavArgs
 import com.uxstate.instantscore.presentation.ui.theme.InstantScoreTheme
 import com.uxstate.instantscore.utils.UIEvent
 import kotlinx.coroutines.launch
@@ -74,7 +75,14 @@ fun StandingsScreen(
 
                 onClickStats = {
 
-                    navigator.navigate(StatisticsScreenDestination)
+                    navigator.navigate(
+                        StatisticsScreenDestination(
+                            navArgs = statsNavArgs(
+                                leagueId = navArgs.id,
+                                season = navArgs.season
+                            )
+                        )
+                    )
                 }
             )
 

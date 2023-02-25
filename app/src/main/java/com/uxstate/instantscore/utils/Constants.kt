@@ -7,7 +7,7 @@ const val FAKE_BASE_URL_3 = "https://f6751646-8213-41ea-89a9-84a1811b408f.mock.p
 const val FAKE_BASE_URL_4 = "https://dec47f41-c146-4c6a-b6d3-94d7dd8e8f30.mock.pstmn.io/"
 const val FAKE_BASE_URL_5 = "https://d3fe86f6-e599-4f62-bc9f-bc4b96296bad.mock.pstmn.io/"
 
-//Headers
+// Headers
 const val API_KEY = "ac94f94bb2msh209b8322dafe16ep19e183jsnabc6710bd5a9"
 const val X_RAPID_KEY = "X-RapidAPI-Key"
 const val X_RAPID_HOST = "X-RapidAPI-Host"
@@ -19,16 +19,14 @@ const val GET_STANDINGS = "v3/standings"
 const val GET_LIVE_FIXTURES = "v3/fixtures?live=all"
 const val GET_TOP_SCORERS = "v3/players/{stat_type}"
 
-
 // Timeouts
 const val READ_TIMEOUT = 15L
 const val CONNECT_TIMEOUT = 15L
 
-
-//Work
+// Work
 const val SCORES_WORKER_ERROR_KEY = "scores_worker_error"
 
-//Database
+// Database
 const val DATABASE_NAME = "scores_database"
 const val DEFAULT_LEAGUE_ID = 39
 const val DEFAULT_SEASON = 2022

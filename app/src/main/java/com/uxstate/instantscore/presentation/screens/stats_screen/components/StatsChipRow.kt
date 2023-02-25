@@ -15,21 +15,39 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.uxstate.instantscore.utils.LocalSpacing
 
 @Composable
-fun StatsChipRow(onClickChip: () -> Unit, modifier: Modifier = Modifier) {
+fun StatsChipRow(
+    onClickChip: (statType: String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     var selectedChipIndex by remember { mutableStateOf(0) }
     val spacing = LocalSpacing.current
+
     Row(
-        modifier = Modifier.fillMaxWidth().padding(spacing.spaceSmall),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall)
-    ) {
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+            modifier = modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceSmall),
+    )
+    {
         for (i in 0..3) {
 
             val isSelected = (selectedChipIndex == i)
-            StatsChip(chipIndex = i, isSelected = isSelected, onClickChip = {
-                selectedChipIndex = i
-                onClickChip()
-            })
+            val endpoint = when (i) {
+                0 -> "topscorers"
+                1 -> "topassists"
+                2 -> "topyellowcards"
+                3 -> "topredcards"
+
+                else -> "topscorers"
+            }
+
+            StatsChip(chipIndex = i,
+                    isSelected = isSelected,
+                    onClickChip = {
+                        selectedChipIndex = i
+                        onClickChip(endpoint)
+                    })
         }
     }
 }
@@ -54,10 +72,11 @@ fun StatsChip(
         }
     }
     AssistChip(
-        onClick = onClickChip,
-        label = { Text(text = chipText) },
-        enabled = isSelected,
-        shape = RoundedCornerShape(spacing.spaceSmall)
+            onClick = onClickChip,
+            label = { Text(text = chipText) },
+            enabled = isSelected,
+            shape = RoundedCornerShape(spacing.spaceSmall),
+            modifier = modifier
     )
 }
 

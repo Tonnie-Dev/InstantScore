@@ -6,8 +6,12 @@ import com.uxstate.instantscore.utils.Resource
 import kotlinx.coroutines.flow.Flow
 
 class GetStatsUseCase(private val repository: ScoresRepository) {
-    operator fun invoke(leagueId: Int, season: Int): Flow<Resource<List<PlayerStats>>> {
+    operator fun invoke(
+        statType: String,
+        leagueId: Int,
+        season: Int
+    ): Flow<Resource<List<PlayerStats>>> {
 
-        return repository.getTopScorers(leagueId = leagueId, season = season)
+        return repository.getPlayersStats(statType = statType, leagueId = leagueId, season = season)
     }
 }
