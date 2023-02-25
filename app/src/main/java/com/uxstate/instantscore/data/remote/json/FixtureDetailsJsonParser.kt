@@ -249,7 +249,7 @@ class FixtureDetailsJsonParser @Inject constructor() : JsonStringParser<FixtureD
         val extraTimeAwayScore = extraTimeJsonObj.optInt("away", -1)
 
         val penaltiesHomeScore = penaltiesJsonObj.optInt("home", -1)
-        val penaltiesAwayScore = penaltiesJsonObj.optInt("awa", -1)
+        val penaltiesAwayScore = penaltiesJsonObj.optInt("away", -1)
 
         return FixtureDetails(
             fixtureId = fixtureId,

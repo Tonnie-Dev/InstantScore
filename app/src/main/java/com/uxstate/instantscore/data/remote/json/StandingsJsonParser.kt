@@ -29,7 +29,7 @@ class StandingsJsonParser @Inject constructor() : JsonStringParser<MutableList<S
 
             // variables - id, playerName and logo
             val teamId = teamObj.optInt("id", -1)
-            val teamName = teamObj.optString("playerName", "")
+            val teamName = teamObj.optString("name", "")
             val teamLogo = teamObj.optString("logo", "")
 
             // variables - points, goal difference, group, description

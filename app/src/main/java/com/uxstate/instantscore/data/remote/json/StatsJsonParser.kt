@@ -31,7 +31,7 @@ class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<Playe
             val playerJsonObj = innerResponseJsonObj.getJSONObject("player")
 
             // variables - playerName, playerPhoto
-            val playerName = playerJsonObj.optString("playerName", "")
+            val playerName = playerJsonObj.optString("name", "")
             val playerPhoto = playerJsonObj.optString("photo", "")
 
             val statisticsJsonArray = innerResponseJsonObj.getJSONArray("statistics")
@@ -41,7 +41,7 @@ class StatsJsonParser @Inject constructor() : JsonStringParser<MutableList<Playe
             val teamObj = innerStatisticsJsonObj.getJSONObject("team")
 
             // variables - teamName, teamLogo
-            val teamName = teamObj.optString("playerName", "")
+            val teamName = teamObj.optString("name", "")
             val teamLogo = teamObj.optString("logo", "")
 
             val goalsJsonObj = innerStatisticsJsonObj.getJSONObject("goals")

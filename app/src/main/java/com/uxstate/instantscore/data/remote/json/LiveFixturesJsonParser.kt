@@ -40,7 +40,7 @@ class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableLis
 
             // variables - leagueId, playerName, country, leagueLogo,countryFlag,season
             val leagueId = leagueJsonObj.optInt("id", -1)
-            val leagueName = leagueJsonObj.optString("playerName", "")
+            val leagueName = leagueJsonObj.optString("name", "")
             val country = leagueJsonObj.optString("country", "")
             val leagueLogo = leagueJsonObj.optString("logo", "")
             val countryFlag = leagueJsonObj.optString("flag", "")
@@ -62,11 +62,11 @@ class LiveFixturesJsonParser @Inject constructor() : JsonStringParser<MutableLis
             // variable - teams
             val teams = Pair(
                 first = Team(
-                    name = homeTeamJsonObj.optString("playerName"),
+                    name = homeTeamJsonObj.optString("name"),
                     logo = homeTeamJsonObj.optString("logo")
                 ),
                 second = Team(
-                    name = awayTeamJsonObj.optString("playerName"),
+                    name = awayTeamJsonObj.optString("name"),
                     logo = awayTeamJsonObj.optString("logo")
                 )
             )
