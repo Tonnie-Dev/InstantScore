@@ -1,11 +1,11 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="./screenshots/rocket_app_icon.png" alt="Logo" width="80" height="80">
+    <img src="./screenshots/red_logo_icon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h1 align = "center">
-<b><i>LaunchPad</i></b>
+<b><i>Instant Scores</i></b>
 </h1>
 
   <p align="center">
@@ -24,14 +24,15 @@
  
 </div>
     
-LaunchPad shows upcoming rocket launches and previous rocket launches. It is backed up by data from the Launch Library API a product by The Space Devs with an up-to-date database of Spaceflight events.
+Welcome to the ultimate soccer app! With Instant Scores you can access live scoress and updates from all the major soccer leagues and power tournaments around the World. From the English Premier League to La Liga, Seria A, Bundesliga and Beyond!
+
 
 <a href='https://play.google.com/store/apps/details?id=com.uxstate.launchpad'><img alt='Get it on Google Play' src="./screenshots/google_badge.png" width="280"/></a>
 
 # :camera_flash: **Screenshots** :camera_flash:
 
+For intuitive and consistent design patterns, this project makes use of [**MD 3**](https://m3.material.io/), a component of Google's open source design system.
 
-This Project uses [**Material 2**](https://m2.material.io/design), which is a part of Google's open source design system for inituitive and consistent design patterns. 
 
 <p align="center">
 <img img width="200" height="400" src="./screenshots/screen_1.png"> &nbsp;&nbsp;&nbsp;&nbsp;
