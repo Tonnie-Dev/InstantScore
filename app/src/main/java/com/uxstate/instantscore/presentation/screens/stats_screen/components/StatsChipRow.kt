@@ -64,10 +64,15 @@ fun StatsChip(
 ) {
 
     val spacing = LocalSpacing.current
-    val chipBorderColor =
-        if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+    val chipBorderColor = if (isSelected)
+        MaterialTheme.colorScheme.primary
+    else
+        MaterialTheme.colorScheme.onSurface
 
-    val chipBorderWidth = if (isSelected) spacing.spaceDoubleDp else spacing.spaceSingleDp
+    val chipBorderWidth = if (isSelected)
+        spacing.spaceDoubleDp
+    else
+        spacing.spaceSingleDp
     val chipText = remember {
         when (chipIndex) {
             0 -> "Goals"

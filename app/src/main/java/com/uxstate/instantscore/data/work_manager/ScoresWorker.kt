@@ -55,7 +55,7 @@ class ScoresWorker @AssistedInject constructor(
                 .build()
 
             val request = PeriodicWorkRequestBuilder<ScoresWorker>(
-                25, TimeUnit.HOURS, 25, TimeUnit.HOURS
+                99, TimeUnit.HOURS, 90, TimeUnit.MINUTES
             ).setConstraints(constraints)
                 .build()
 

@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
 import com.uxstate.instantscore.presentation.screens.destinations.LiveFixturesScreenDestination
@@ -32,7 +31,6 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Destination
-@RootNavGraph(start = true)
 
 @Composable
 fun HomeScreen(
