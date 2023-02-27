@@ -35,9 +35,9 @@ For intuitive and consistent design patterns, this project makes use of [**MD 3*
 
 
 <p align="center">
-<img img width="200" height="400" src="./screenshots/screen_1.png"> &nbsp;&nbsp;&nbsp;&nbsp;
-<img img width="200" height="400" src="./screenshots/screen_3.png"> &nbsp;&nbsp;&nbsp;&nbsp;   
-<img img width="200" height="400" src="./screenshots/screen_6.png"> &nbsp;&nbsp;&nbsp;&nbsp; 
+<img img width="200" height="400" src="./readme-assets/screenshots/screen_1.png"> &nbsp;&nbsp;&nbsp;&nbsp;
+<img img width="200" height="400" src="./readme-assets/screenshots/screen_2.png"> &nbsp;&nbsp;&nbsp;&nbsp;   
+<img img width="200" height="400" src="./readme-assets/screenshots/screen_3.png"> &nbsp;&nbsp;&nbsp;&nbsp; 
 
 </p>
 
