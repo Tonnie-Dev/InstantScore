@@ -78,7 +78,7 @@ The app has :four: Screen destinations which use Compose Destination to manage n
 
 | Splash Screen         | Overview Screen       | Detailed Screen       | Full Screen           |
 |-----------------------|-----------------------|-----------------------|-----------------------|
-| ![](.readme-assets/gifs/gif_1.gif) | ![](./gifs/gif_2.gif) | ![](./gifs/gif_3.gif) | ![](./gifs/gif_4.gif) |
+| ![](./readme-assets/gifs/gif_1.gif) | ![](./readme-assets/gifs/gif_1.gif) | ![](./readme-assets/gifs/gif_1.gif) | ![](./readme-assets/gifs/gif_1.gif) |
 
 ### Overview Screen
 This screen is based on both TabLayout thanks to [**Accompanist Library**](https://github.com/google/accompanist). You can go into more details by following LaunchPad's tab layout implementation or [this blog](https://johncodeos.com/how-to-create-tabs-with-jetpack-compose/).
