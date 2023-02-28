@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="./screenshots/red_logo_icon.png" alt="Logo" width="80" height="80">
+    <img src="./readme-assets/screenshots/red_logo_icon.png" alt="Logo" width="80" height="80">
   </a>
 
 <h1 align = "center">
@@ -49,8 +49,8 @@ These are the key parameters for LaunchPad app:
 |----------------	|--------	|
 | compileSdk     	| 33     	|
 | targetSdk      	| 33     	|
-| minSdk         	| 26     	|
-| composeVersion 	| 1.3.1  	|
+| minSdk         	| 21     	|
+| composeVersion 	| 1.3.3  	|
 | kotlinVersion  	| 1.7.20 	|
 
 
@@ -59,22 +59,20 @@ You can clone the repository or download the project as a  zip file.
 
 # :hammer_and_wrench: Architecture 	:hammer_and_wrench:
 
-LaunchPad is implemented using Android Clean Architecture and follows the Model-View-ViewModel 
+Instant Scores is implemented using Android Clean Architecture and follows the *Model-View-ViewModel* 
 (MVVM) pattern.
 
 It features :three: main layers:
 
-**1. Data Layer** - This is the layer that dispenses data to the LaunchPad app. Deep in the data layer sits 2 
-RemoteMediators (yes, :two: ) to combine local and remote queries for consistent data flow to the user, regardless if the network is available or not. The mediators are flanked by a ROOM Database 
-for data persistence. The API service provides the remote data which is cached by the mediators 
-into the ROOM database for offline operations.
+**1. Data Layer** - This layer is responsible for managing data storage and dispensing data to the app. Retrofit API service provides the remote data which is then cached into the ROOM database for offline operations. Because of the deep Json nesting InstantScores incorporates JSON parsers which take a JSON string as input and converts it into a format that can be easily be manipulated. The parsers read the JSON syntax from the API, validates its correctness, and then creates a data structure in form of models. The WorkManager library helps to reliably schedule database updates periodically
+ 
 
-**2. Domain Layer** - This layer holds the Business Logic for the LaunchApp. It holds the models and 
-the use cases that encapsulates the very complex business logic for the  LauchPad app.
+**2. Domain Layer** - This layer holds the Business Logic for the InstantScores. It holds the models and 
+the use cases that encapsulates the very complex logic for the InstatntSores app.
 
 **3. UI Layer** - This is the presentation layer which directly interacts with the user. It displays
 the  refined data to the user and facilitates interactions with the user.
-It contains the ViewModel holding the different states for the app.
+It contains the ViewModels holding the different states for the InstantScoores app.
 
 The app has :four: Screen destinations which use Compose Destination to manage navigation.
 
