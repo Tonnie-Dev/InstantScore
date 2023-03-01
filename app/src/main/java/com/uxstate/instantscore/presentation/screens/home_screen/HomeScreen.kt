@@ -41,7 +41,7 @@ fun HomeScreen(
     val mappedFixtures = state.fixtures.toList()
 
     val snackbarHostState = remember { SnackbarHostState() }
-   
+
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = state.isLoading,

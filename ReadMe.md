@@ -80,18 +80,25 @@ The app has :four: Screen destinations which use Compose Destination to manage n
 |-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|
 |![](./readme-assets/gifs/gif_1.gif) |![](./readme-assets/gifs/gif_2.gif) |![](./readme-assets/gifs/gif_3.gif) |![](./readme-assets/gifs/gif_4.gif) |
 
-### Overview Screen
-This screen is based on both TabLayout thanks to [**Accompanist Library**](https://github.com/google/accompanist). You can go into more details by following LaunchPad's tab layout implementation or [this blog](https://johncodeos.com/how-to-create-tabs-with-jetpack-compose/).
-
-### Details Screen
-The user navigates to the Details Screen by clicking on a launch item. The main UI feature is
-the BottomSheet. The user can scroll up and down to reveal additional Launch details such as **Status**,
- **Mission** and **Launch Site**,
+### Fixtures Screen
+The HomeScreen displays that day fixture which is achieved through a LazyColumn. There is also a Date Picker courtesy of [**Pranav Maganti**](https://github.com/vanpra/compose-material-dialogs)
+Compose Material Dialogs Library.
 
 
-### Full Screen
-When the user clicks on the full screen icon from the details screen, the app navigates to
-the full screen to display the rocket image in its full glory.
+### Fixture Details
+The user navigates to the Fixtures Screen by clicking on a match fixture item. This screen is based on TabLayout thanks to Google's [**Accompanist Library**](https://github.com/google/accompanist). You can dig deeper into TabLayout by following its implementation on Fixtures Screen or working with the example on this provided on [*John Codeos Blog Post*](https://johncodeos.com/how-to-create-tabs-with-jetpack-compose/).
+
+With the TabLayout you will be able to swipe between fixture events, line-ups and fixture statistics.
+
+
+
+### Standins Screen
+
+The user accesses the Standings Screen  by selecting the fixture's league from the main screen. There is nothing fancy here just the usual VerticalLazyColumn to display the standings.
+
+
+### Topscorers Screen
+This screeen displays a list of top players in goals, assists and card's category. There is an AssistChip Material component and a LazyColumn as usual.
 
 # :electric_plug: **API Reference** :electric_plug:
 Yummies fetches its data from [**Launch Library 2 API**](https://thespacedevs.com/llapi/).
