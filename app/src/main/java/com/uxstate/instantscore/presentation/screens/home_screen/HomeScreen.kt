@@ -27,7 +27,6 @@ import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEven
 import com.uxstate.instantscore.presentation.screens.standings_screen.LeagueNavArgumentsHolder
 import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Destination
@@ -42,7 +41,7 @@ fun HomeScreen(
     val mappedFixtures = state.fixtures.toList()
 
     val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
+   
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = state.isLoading,
@@ -50,7 +49,7 @@ fun HomeScreen(
     )
 
     // listen to UIEvent sent from the ViewModel, true to run once
-    LaunchedEffect(key1 = true, block = {
+    LaunchedEffect(key1 = snackbarHostState, block = {
 
         viewModel.uiEvent.collect {
 
@@ -59,16 +58,17 @@ fun HomeScreen(
 
                 is UIEvent.ShowSnackBarUiEvent -> {
 
+                    snackbarHostState.showSnackbar(
+                        message = event.message,
+                        actionLabel = event.action,
+                        duration = SnackbarDuration.Short
+                    )
+
                     //  show snackbar as a suspend function
-                    coroutineScope.launch {
-                        snackbarHostState.showSnackbar(
-                            message = event.message,
-                            actionLabel = event.action,
-                            duration = SnackbarDuration.Short
-                        )
-                    }
+                   /* coroutineScope.launch {
+
+                    }*/
                 }
-                else -> Unit
             }
         }
     })
