@@ -78,7 +78,7 @@ The app has :four: Screen destinations which use Compose Destination to manage n
 
 | Fixtures                            | FixtureDetails                      | Standings                           | Top Scorers                         |
 |-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|
-|![](./readme-assets/gifs/gif_1.gif) |![](./readme-assets/gifs/gif_2.gif) |![](./readme-assets/gifs/gif_3.gif) |![](./readme-assets/gifs/gif_4.gif) |
+|![](./readme-assets/gifs/gif_1.gif)  |![](./readme-assets/gifs/gif_2.gif)  |![](./readme-assets/gifs/gif_3.gif)  |![](./readme-assets/gifs/gif_4.gif)  |
 
 ### Fixtures Screen
 The HomeScreen displays that day fixture which is achieved through a LazyColumn. There is also a Date Picker courtesy of [**Pranav Maganti**](https://github.com/vanpra/compose-material-dialogs)
@@ -92,24 +92,28 @@ With the TabLayout you will be able to swipe between fixture events, line-ups an
 
 
 
-### Standins Screen
+### Standings Screen
 
 The user accesses the Standings Screen  by selecting the fixture's league from the main screen. There is nothing fancy here just the usual VerticalLazyColumn to display the standings.
 
 
 ### Topscorers Screen
-This screeen displays a list of top players in goals, assists and card's category. There is an AssistChip Material component and a LazyColumn as usual.
+This screeen displays a list of top players in goals, assists and card's category. There is an [**AssistChip**](https://m3.material.io/components/chips/guidelines#5dd1928c-1476-4029-bdc5-fde66fc0dcb1) component and the usual LazyColumn.
 
 # :electric_plug: **API Reference** :electric_plug:
-Yummies fetches its data from [**Launch Library 2 API**](https://thespacedevs.com/llapi/).
-You can find the API Documentation by following this [link](https://ll.thespacedevs.com/2.2.0/swagger/).
+InstantScree fetches its data from [**API Sports**](https://rapidapi.com/user/api-sports).
+You can find the API Documentation by following this [link](https://rapidapi.com/api-sports/api/api-football/).
 
 ### Base URL :globe_with_meridians:
-https://lldev.thespacedevs.com/2.2.0/
+https://api-football-v1.p.rapidapi.com/
 
 
 ### API Key :key:
-You don't need an API Key
+You need to signup for an account with [Rapid API](https://rapidapi.com/auth/sign-up)
+
+Additionaly you will need these 2 Header Parameters
+- X-RapidAPI-Key
+- X-RapidAPI-Host
 ### Get Upcoming Launches :inbox_tray:
 
 
