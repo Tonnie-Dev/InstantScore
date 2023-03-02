@@ -114,35 +114,28 @@ You need to signup for an account with [Rapid API](https://rapidapi.com/auth/sig
 Additionaly you will need these 2 Header Parameters
 - X-RapidAPI-Key
 - X-RapidAPI-Host
-### Get Upcoming Launches :inbox_tray:
+### Get Fixtures By Date :inbox_tray:
 
 
-```http
-    @GET("launch/upcoming")
-```
-This interface function takes *limit* and *offset* and returns *ApiResponseDTO*
+`@GET(v3/fixtures)`
 
-| Parameter | Type    | Description                                        |
-|-----------|---------|----------------------------------------------------|
-| limit     | Integer | Number of results to return per page               |
-| offset    | Integer | The initial index from which to return the results |
+This interface function takes *date* as the query and returns *FixturesResponseDTO*
+
+| Parameter | Type   | Description                      |   |
+|-----------|--------|----------------------------------|---|
+| date      | String | String date in yyyy-MM-dd format |   |
 
 
+### Get Fixture Datails :rocket:
 
-### Get Previus Launches :rocket:
+`@GET(v3/fixtures)`
 
 
-```http
-     @GET("categories.php")
-```
+This interface function takes *id* of the fixture and returns *String* for processing by the Json Parser.
 
-This interface function takes *limit* and *offset* and returns *ApiResponseDTO*
-
-| Parameter | Type    | Description                                        |
-|-----------|---------|----------------------------------------------------|
-| limit     | Integer | Number of results to return per page               |
-| offset    | Integer | The initial index from which to return the results |
-
+| Parameter | Type | Description           |   |
+|-----------|------|-----------------------|---|
+| id        | Int  | The id of the fixture |   |
 
 
 
