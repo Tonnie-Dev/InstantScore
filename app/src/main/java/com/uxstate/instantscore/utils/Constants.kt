@@ -16,7 +16,7 @@ const val HOST_VALUE = "api-football-v1.p.rapidapi.com"
 // Endpoints
 const val GET_FIXTURES = "v3/fixtures"
 const val GET_STANDINGS = "v3/standings"
-const val GET_LIVE_FIXTURES = "v3/fixtures?live=all"
+const val GET_LIVE_FIXTURES = "v3/fixtures"
 const val GET_TOP_SCORERS = "v3/players/{stat_type}"
 
 // Timeouts

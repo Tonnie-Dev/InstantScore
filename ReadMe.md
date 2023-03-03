@@ -127,9 +127,20 @@ This interface function takes *date* as the query and returns *FixturesResponseD
 
 
 ### Get Fixture Datails :rocket:
+`@GET(v3/fixtures?id=979139)`
+
+
+
+This interface function takes the fixture *id* and returns *String* for processing by the Json Parser.
+
+| Parameter | Type | Description           |
+|-----------|------|-----------------------|
+| id        | Int  | The id of the fixture |
+
+
+### Get Standings Tables
 
 `@GET(v3/standings?season=2022&league=39)`
-
 
 This interface function takes *season* and the *id* of the league. It returns *String* for processing by the Json Parser.
 
@@ -138,13 +149,24 @@ This interface function takes *season* and the *id* of the league. It returns *S
 | season    | Int  | The year of the season in subject |
 | league    | Int  | The id of the league              |
 
+### Get Live Fixtures
 
-### Get Standings Tables
+`@GET(v3/fixtures?live=all)`
 
-`@GET(v3/fixturesid=979139)`
+This interface function takes *live* and returns *String* for processing by the Json Parser.
 
-This interface function takes
+| Parameter | Type   | Description                          |
+|-----------|--------|--------------------------------------|
+| live      | String | all or id-id for filter by league id |
 
+### `@GET(v3/players/{stat_type})`
+This interface function takes *stat_type* as path, *league* and *season*. It returns *String* for processing by the Json Parser.
+
+| Parameter | Type   | Description                        |
+|-----------|--------|------------------------------------|
+| stat_type | String | The path to be appended to the URL |
+| league    | Int    | The id of the league               |
+| season    | Int    | The year of the season in subject  |
 ### Data Points for Launch Model
 
 | Property        | Type     | Description                                                                   |
