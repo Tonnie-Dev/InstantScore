@@ -117,7 +117,7 @@ Additionaly you will need these 2 Header Parameters
 ### Get Fixtures By Date :inbox_tray:
 
 
-`@GET(v3/fixtures)`
+`@GET(v3/fixtures?date=2023-03-03)`
 
 This interface function takes *date* as the query and returns *FixturesResponseDTO*
 
@@ -128,16 +128,22 @@ This interface function takes *date* as the query and returns *FixturesResponseD
 
 ### Get Fixture Datails :rocket:
 
-`@GET(v3/fixtures)`
+`@GET(v3/standings?season=2022&league=39)`
 
 
-This interface function takes *id* of the fixture and returns *String* for processing by the Json Parser.
+This interface function takes *season* and the *id* of the league. It returns *String* for processing by the Json Parser.
 
-| Parameter | Type | Description           |   |
-|-----------|------|-----------------------|---|
-| id        | Int  | The id of the fixture |   |
+| Parameter | Type | Description                       |
+|-----------|------|-----------------------------------|
+| season    | Int  | The year of the season in subject |
+| league    | Int  | The id of the league              |
 
 
+### Get Standings Tables
+
+`@GET(v3/fixturesid=979139)`
+
+This interface function takes
 
 ### Data Points for Launch Model
 
