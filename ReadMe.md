@@ -159,7 +159,9 @@ This interface function takes *live* and returns *String* for processing by the 
 |-----------|--------|--------------------------------------|
 | live      | String | all or id-id for filter by league id |
 
-### `@GET(v3/players/{stat_type})`
+### Get Player Stats
+
+`@GET(v3/players/{stat_type})`
 This interface function takes *stat_type* as path, *league* and *season*. It returns *String* for processing by the Json Parser.
 
 | Parameter | Type   | Description                        |
@@ -167,30 +169,15 @@ This interface function takes *stat_type* as path, *league* and *season*. It ret
 | stat_type | String | The path to be appended to the URL |
 | league    | Int    | The id of the league               |
 | season    | Int    | The year of the season in subject  |
-### Data Points for Launch Model
-
-| Property        | Type     | Description                                                                   |
-|-----------------|----------|-------------------------------------------------------------------------------|
-| id              | Integer  | auto-generated unique identifier for the launch                               |
-| name            | String   | name of the launch                                                            |
-| mission         | Mission  | holds the name, type and Mission's description                                |
-| imageUrl        | String   | link for the launch image                                                     |
-| provider        | Provider | holds the name and Service Provider type                                      |
-| status          | Status   | holds the abbreviation, name and Status description                           |
-| pad             | Pad      | holds the location name, latitude, longitude, complex name and total landings |
-| startWindowDate | String   | time for the start of the launch period                                       |
-| rocket          | Rocket   | holds the name and rocket family                                              |
-
-
 
 
 # :gear: Tech Stack :gear:
 
-LaunchPad project uses many popular libraries and tools in the Android Ecosystem
+LaunchPad project uses many popular libraries and tools in the Android Ecosystem:
 
 * [Android KTX](https://developer.android.com/kotlin/ktx) - helps to write more concise, idiomatic Kotlin code.
 * [Jetpack Compose](https://developer.android.com/jetpack/compose) - modern toolkit for building native Android UI
-* [Material Design 2](https://m2.material.io/design) - an adaptable system of guidelines, components, and tools that support the best practices of user interface design.
+* [Material Design 3](https://m3.material.io/) - this is Google’s open-source design system that support the best practices for user interface design.
 * [Ramcosta Compose Destinations](https://github.com/raamcosta/compose-destinations) - used to handle all navigations and arguments passing while hiding the complex, non-type-safe and boilerplate code
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - designed to store and manage UI-related data in a lifecycle conscious way.
 * [Dagger Hilt](https://dagger.dev/hilt/) - a full static, compile-time dependency injectin framework for both Java and Android
@@ -199,11 +186,12 @@ LaunchPad project uses many popular libraries and tools in the Android Ecosystem
 * [Moshi](https://github.com/square/moshi) - converts data used by an application to a format that can be transfered over a network or stored in a database or a file.
 * [Coroutines and Kotlin Flow](https://kotlinlang.org/docs/reference/coroutines-overview.html) - used to manage the local storage i.e. `writing to and reading from the database`. Coroutines help in managing background threads and reduces the need for callbacks.
 * [Room](https://developer.android.com/topic/libraries/architecture/room) - persistence library which provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
-* [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) - helps to load and display pages of data from a larger dataset and display small chunks of data in a paginated way
+
 * [Timber](https://github.com/JakeWharton/timber) - a logger with a small, extensible API which provides utility on top of Android's normal Log class.
 * [Lottie Animations](https://lottiefiles.com/) - provides Lightweight and scalable animations files
+* [Compose Material Dialogs](https://github.com/vanpra/compose-material-dialogs) - easy to use library to help you build complex dialogs using Jetpack Compose
 * [Google Accompanist](https://github.com/google/accompanist) - a collection of extension libraries for Jetpack Compose
-* [CI/CD](https://codemagic.io/android-continuous-integration/) - Continuous integration systems let you automatically build and test your app every time you check in updates to your source control system.
+* [CI/CD](https://codemagic.io/android-continuous-integration/) - Continuous integration systems let you automatically build and test your app every time you check in updates to your source control system
 
 # :black_nib: **Author(s)** :black_nib:
 

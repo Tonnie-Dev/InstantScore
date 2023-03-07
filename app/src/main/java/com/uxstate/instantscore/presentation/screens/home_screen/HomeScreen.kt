@@ -42,7 +42,6 @@ fun HomeScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
 
-
     val pullRefreshState = rememberPullRefreshState(
         refreshing = state.isLoading,
         onRefresh = { viewModel.onEvent(HomeEvent.OnSwipeRefresh) }

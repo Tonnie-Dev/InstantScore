@@ -175,7 +175,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0") // Pager Indicators
 
     // Swipe to Refresh - Accompanist
-    implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
+    // implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
 
     // System UI Controller - Accompanist
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
