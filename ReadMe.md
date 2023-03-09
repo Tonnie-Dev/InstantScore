@@ -126,7 +126,7 @@ This interface function takes *date* as the query and returns *FixturesResponseD
 | date      | String | String date in yyyy-MM-dd format |   |
 
 
-### Get Fixture Datails :rocket:
+### Get Fixture Details :rocket:
 `@GET(v3/fixtures?id=979139)`
 
 
@@ -191,6 +191,7 @@ LaunchPad project uses many popular libraries and tools in the Android Ecosystem
 * [Lottie Animations](https://lottiefiles.com/) - provides Lightweight and scalable animations files
 * [Compose Material Dialogs](https://github.com/vanpra/compose-material-dialogs) - easy to use library to help you build complex dialogs using Jetpack Compose
 * [Google Accompanist](https://github.com/google/accompanist) - a collection of extension libraries for Jetpack Compose
+* [App Start-Up](https://developer.android.com/topic/libraries/app-startup) - this component is a part of Android Jetpack to provide performant way to initialize components at application startup
 * [CI/CD](https://codemagic.io/android-continuous-integration/) - Continuous integration systems let you automatically build and test your app every time you check in updates to your source control system
 
 # :black_nib: **Author(s)** :black_nib:
@@ -208,7 +209,7 @@ Do Reach Out :
 
 # :passport_control: **Contributing** :passport_control:
 
-Contributions to make LaunchPad better are always welcome!
+Contributions to make InstantScores better are always welcome!
 
 If you are interested in seeing a particular feature implemented in this app, please open a new issue after which you can make a PR!
 
