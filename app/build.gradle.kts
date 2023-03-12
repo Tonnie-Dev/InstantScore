@@ -7,7 +7,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp") version "1.7.21-1.0.8"
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    id("org.jlleitschuh.gradle.ktlint")
     id("com.diffplug.spotless")
 }
 
@@ -104,108 +104,108 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-    implementation("androidx.activity:activity-compose:1.6.1")
-    implementation("androidx.compose.ui:ui:1.3.3")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.3.3")
+    implementation(libs.androidx.core.core.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+    implementation(libs.ui)
+    implementation(libs.ui.tooling.preview)
 
-    implementation("androidx.multidex:multidex:2.0.1")
+    implementation(libs.multidex)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.3.3")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.3.3")
+    testImplementation(libs.junit.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 
     // Chucker
-    debugImplementation("com.github.chuckerteam.chucker:library:3.5.2")
-    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
+    debugImplementation(libs.library)
+    releaseImplementation(libs.library.no.op)
 
     // Material 3 Lib - this version is causing the problem
 
-    implementation("androidx.compose.material3:material3:1.1.0-alpha04")
+    implementation(libs.material3)
 
     // Coil
-    implementation("io.coil-kt:coil-compose:2.2.2")
-    implementation("io.coil-kt:coil-svg:2.2.2")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
 
     // Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.navigation.compose)
     // when using Kotlin
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    kapt(libs.hilt.compiler)
     // hilt work
-    implementation("androidx.hilt:hilt-work:1.0.0")
+    implementation(libs.hilt.work)
 
     // WorkManager with Coroutines
-    implementation("androidx.work:work-runtime-ktx:2.8.0")
+    implementation(libs.work.runtime.ktx)
 
     // App Startup
-    implementation("androidx.startup:startup-runtime:1.1.1")
+    implementation(libs.startup.runtime)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.7.2")
-    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp)
 
     // Retrofit Converters
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation(libs.converter.moshi)
+    implementation(libs.converter.scalars)
 
     // Moshi Library Dependencies - Core Moshi JSON Library and Moshi"s Kotlin support and converter factory
-    implementation("com.squareup.moshi:moshi:1.12.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
 
     // Room KTX with Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0")
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 
     // Lottie Animation
-    implementation("com.airbnb.android:lottie-compose:5.2.0")
+    implementation(libs.lottie.compose)
 
     // Compose Nav Destinations
-    implementation("io.github.raamcosta.compose-destinations:core:1.6.23-beta")
-    ksp("io.github.raamcosta.compose-destinations:ksp:1.6.23-beta")
+    implementation(libs.io.github.raamcosta.compose.destinations.core)
+    ksp(libs.ksp)
 
     // Pager - Accompanist
-    implementation("com.google.accompanist:accompanist-pager:0.28.0") // Pager
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0") // Pager Indicators
+    implementation(libs.accompanist.pager) // Pager
+    implementation(libs.accompanist.pager.indicators) // Pager Indicators
 
     // Swipe to Refresh - Accompanist
-    // implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
+    // implementation("com.google.accompanist:accompanist-swiperefresh:_")
 
     // System UI Controller - Accompanist
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.28.0")
+    implementation(libs.accompanist.systemuicontroller)
 
     // Timber Logging
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.timber)
 
     // Date Picker Library
-    implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
+    implementation(libs.datetime)
 
     // DesugaringLib
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.6")
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     // testing
-    androidTestImplementation("com.google.truth:truth:1.1.3")
-    androidTestImplementation("androidx.test:core-ktx:1.4.0")
-    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
-    testImplementation("org.mockito:mockito-android:3.10.0")
-    testImplementation("org.mockito:mockito-inline:3.11.2")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
-    testImplementation("io.mockk:mockk:1.12.7")
-    testImplementation("org.mockito:mockito-core:3.11.2")
-    androidTestImplementation("org.mockito:mockito-android:3.10.0")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.42")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.test:runner:1.4.0")
-    testImplementation("com.google.truth:truth:1.1.3")
-    testImplementation("androidx.test:core-ktx:1.4.0")
-    testImplementation("org.robolectric:robolectric:4.5.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.test.core.ktx)
+    androidTestImplementation(libs.mockwebserver)
+    testImplementation(libs.mockito.android)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockito.core)
+    androidTestImplementation(libs.mockito.android)
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.androidx.test.runner)
+    testImplementation(libs.truth)
+    testImplementation(libs.androidx.test.core.ktx)
+    testImplementation(libs.robolectric)
+    implementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.core.testing)
 }
