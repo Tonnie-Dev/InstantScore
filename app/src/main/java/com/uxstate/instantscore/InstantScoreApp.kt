@@ -11,8 +11,13 @@ import timber.log.Timber
 class InstantScoreApp : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree())
-        // WorkManager.initialize(this, workManagerConfiguration)
+
+        if(BuildConfig.DEBUG){
+            Timber.plant(Timber.DebugTree())
+
+        }
+
+
     }
 
     @Inject
