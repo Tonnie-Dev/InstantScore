@@ -7,7 +7,7 @@ import com.uxstate.instantscore.data.local.converters.Converters
 import com.uxstate.instantscore.data.local.dao.ScoresDAO
 import com.uxstate.instantscore.data.local.entities.FixtureEntity
 
-@Database(entities = [FixtureEntity::class], version = 1)
+@Database(entities = [FixtureEntity::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class ScoresDatabase : RoomDatabase() {
 
