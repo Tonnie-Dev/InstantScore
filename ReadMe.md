@@ -27,7 +27,7 @@
 Welcome to the ultimate soccer app! With Instant Scores you can access live scoress and updates from all the major soccer leagues and power tournaments around the World. From the English Premier League to La Liga, Seria A, Bundesliga and Beyond!
 
 
-<a href='https://play.google.com/store/apps/details?id=com.uxstate.launchpad'><img alt='Get it on Google Play' src="./screenshots/google_badge.png" width="280"/></a>
+<a href='https://play.google.com/store/apps/details?id=com.uxstate.instantscore'><img alt='Get it on Google Play' src="./readme-assets/screenshots/google_badge.png" width="280"/></a>
 
 # :camera_flash: **Screenshots** :camera_flash:
 
