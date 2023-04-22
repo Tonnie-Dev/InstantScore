@@ -18,10 +18,6 @@ import com.uxstate.instantscore.R
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 import com.uxstate.instantscore.presentation.screens.common_components.LottieDefinition
-import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
-import com.uxstate.instantscore.presentation.screens.destinations.StandingsScreenDestination
-import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
-import com.uxstate.instantscore.presentation.screens.standings_screen.LeagueNavArgumentsHolder
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -54,7 +50,7 @@ fun LiveFixturesList(
                 items(mappedFixtures) {
 
                     val league = it.first
-                    LeagueFixturesCard(
+                /*    LeagueFixturesCard(
                         league = it.first,
                         fixtures = it.second,
                         onClickFixtureCard = { fixtureId ->
@@ -73,7 +69,7 @@ fun LiveFixturesList(
                             )
                         )
                     }
-                    )
+                    )*/
                 }
             }
 

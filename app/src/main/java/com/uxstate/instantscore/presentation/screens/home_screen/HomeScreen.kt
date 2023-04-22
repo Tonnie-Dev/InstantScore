@@ -1,5 +1,6 @@
 package com.uxstate.instantscore.presentation.screens.home_screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,12 +24,16 @@ import com.uxstate.instantscore.presentation.screens.destinations.LiveFixturesSc
 import com.uxstate.instantscore.presentation.screens.destinations.StandingsScreenDestination
 import com.uxstate.instantscore.presentation.screens.home_screen.components.date_strip.DateTabsStrip
 import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
+import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueHeader
 import com.uxstate.instantscore.presentation.screens.home_screen.events.HomeEvent
 import com.uxstate.instantscore.presentation.screens.standings_screen.LeagueNavArgumentsHolder
 import com.uxstate.instantscore.utils.UIEvent
 import java.time.LocalDate
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class,
+    ExperimentalFoundationApi::class
+)
 @Destination
 
 @Composable
@@ -62,11 +67,6 @@ fun HomeScreen(
                         actionLabel = event.action,
                         duration = SnackbarDuration.Short
                     )
-
-                    //  show snackbar as a suspend function
-                   /* coroutineScope.launch {
-
-                    }*/
                 }
             }
         }
@@ -127,32 +127,39 @@ fun HomeScreen(
                     // content to be refreshed
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
 
-                        items(mappedFixtures) {
+                        mappedFixtures.forEach { pair ->
 
-                            val league = it.first
-                            LeagueFixturesCard(
-                                league = it.first,
-                                fixtures = it.second,
-                                onClickFixtureCard = { fixtureId ->
-                                    navigator.navigate(DetailsScreenDestination(fixtureId))
-                                },
+                            stickyHeader(key = pair.first) {
+                                LeagueHeader(league = pair.first, onClickLeagueHeader = {})
+                            }
 
-                                onClickLeagueHeader = {
+                            items(items = pair.second) {
 
-                                    navigator.navigate(
-                                        StandingsScreenDestination(
-                                            navArgs = LeagueNavArgumentsHolder(
-                                                id = league.id,
-                                                name = league.name,
-                                                country = league.country,
-                                                leagueLogo = league.leagueLogo,
-                                                countryFlag = league.countryFlag,
-                                                season = league.season
+                                val league = pair.first
+                                LeagueFixturesCard(
+                                    league = league,
+                                    fixture = it,
+                                    onClickFixtureCard = { fixtureId ->
+                                        navigator.navigate(DetailsScreenDestination(fixtureId))
+                                    },
+
+                                    onClickLeagueHeader = {
+
+                                        navigator.navigate(
+                                            StandingsScreenDestination(
+                                                navArgs = LeagueNavArgumentsHolder(
+                                                    id = league.id,
+                                                    name = league.name,
+                                                    country = league.country,
+                                                    leagueLogo = league.leagueLogo,
+                                                    countryFlag = league.countryFlag,
+                                                    season = league.season
+                                                )
                                             )
                                         )
-                                    )
-                                }
-                            )
+                                    }
+                                )
+                            }
                         }
                     }
 

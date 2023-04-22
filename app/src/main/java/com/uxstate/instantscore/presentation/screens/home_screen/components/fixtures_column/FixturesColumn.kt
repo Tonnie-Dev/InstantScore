@@ -16,8 +16,6 @@ import androidx.compose.ui.zIndex
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.uxstate.instantscore.domain.models.fixtures_schedule.Fixture
 import com.uxstate.instantscore.domain.models.fixtures_schedule.League
-import com.uxstate.instantscore.presentation.screens.destinations.DetailsScreenDestination
-import com.uxstate.instantscore.presentation.screens.home_screen.components.fixture_card.LeagueFixturesCard
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -44,13 +42,13 @@ fun FixturesColumn(
 
                 items(mappedFixtures) {
 
-                    LeagueFixturesCard(
+                    /*LeagueFixturesCard(
                         league = it.first,
                         fixtures = it.second,
                         onClickFixtureCard = { fixtureId ->
                             navigator.navigate(DetailsScreenDestination(fixtureId))
                         }, onClickLeagueHeader = {}
-                    )
+                    )*/
                 }
             }
 

@@ -9,17 +9,17 @@ import com.uxstate.instantscore.domain.models.fixtures_schedule.League
 fun LeagueFixturesCard(
 
     league: League,
-    fixtures: List<Fixture>,
+    fixture: Fixture,
     onClickFixtureCard: (Int) -> Unit,
     onClickLeagueHeader: (Int) -> Unit
 ) {
 
     Column() {
-        LeagueHeader(league = league, onClickLeagueHeader = onClickLeagueHeader)
+        // LeagueHeader(league = league, onClickLeagueHeader = onClickLeagueHeader)
+        FixtureCard(fixture = fixture, onClickFixtureCard = onClickFixtureCard)
+        /*fixtures.forEach { fixture ->
 
-        fixtures.forEach { fixture ->
 
-            FixtureCard(fixture = fixture, onClickFixtureCard = onClickFixtureCard)
-        }
+        }*/
     }
 }
