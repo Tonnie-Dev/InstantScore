@@ -11,7 +11,11 @@ import com.uxstate.instantscore.utils.UIEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -50,6 +54,7 @@ class StandingsViewModel @Inject constructor(
                                 _standingsState.value.copy(standingsList = it)
                         }
                     }
+
                     is Resource.Error -> {
 
                         // stop loading
@@ -67,6 +72,7 @@ class StandingsViewModel @Inject constructor(
                             )
                         )
                     }
+
                     is Resource.Loading -> {
 
                         _standingsState.value =
@@ -86,4 +92,21 @@ class StandingsViewModel @Inject constructor(
             _uiEvent.send(uiEvent)
         }
     }
+}
+
+fun transformKeysAndValues() {
+
+    val planetsMap = mapOf(
+        "p" to "pluto",
+        "e" to "earth",
+        "n" to "neptune"
+    )
+
+    // append toMap() call convert list pairs to a map
+    val transformedMap = planetsMap.map {
+        it.key.uppercase() to it.value.replaceFirstChar(Char::titlecase)
+    }
+        .toMap()
+
+    println(transformedMap) // {P=Pluto, E=Earth, N=Neptune}
 }
