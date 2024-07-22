@@ -1,4 +1,4 @@
-import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 
 plugins {
     id("com.android.application")
@@ -7,8 +7,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp") version "1.7.21-1.0.8"
-    id("org.jlleitschuh.gradle.ktlint")
-    id("com.diffplug.spotless")
+
 }
 
 android {
@@ -35,18 +34,7 @@ android {
         }
     }
 
-    /* Kotlin Block - makes sure that the KSP Plugin looks at
-     the right paths when it comes to generated classes*/
-    kotlin {
-        sourceSets {
-            debug {
-                kotlin.srcDir("build/generated/ksp/debug/kotlin")
-            }
-            release {
-                kotlin.srcDir("build/generated/ksp/release/kotlin")
-            }
-        }
-    }
+
 
     buildTypes {
 
@@ -79,35 +67,8 @@ android {
         }
     }
 }
-// ktlintFormat task will need to run before preBuild
-tasks.getByPath("preBuild")
-    .dependsOn("ktlintFormat")
 
-configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
 
-    android.set(true)
-    ignoreFailures.set(false)
-    disabledRules.set(setOf("final-newline", "no-wildcard-imports"))
-    reporters {
-        reporter(ReporterType.PLAIN)
-        reporter(ReporterType.CHECKSTYLE)
-        reporter(ReporterType.SARIF)
-    }
-}
-
-configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-    kotlin {
-        // version, setUseExperimental, userData and editorConfigOverride are all optional
-        ktlint("0.45.2")
-            .setUseExperimental(true)
-            .userData(mapOf("android" to "true"))
-            .editorConfigOverride(mapOf("indent_size" to 2))
-    }
-    kotlinGradle {
-        target("*.gradle.kts") // default target for kotlinGradle
-        ktlint() // or ktfmt() or prettier()
-    }
-}
 
 dependencies {
 

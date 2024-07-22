@@ -9,7 +9,7 @@ buildscript {
         classpath(libs.com.android.tools.build.gradle)
         classpath (libs.kotlin.gradle.plugin)
         classpath(libs.hilt.android.gradle.plugin)
-        classpath(libs.spotless.plugin.gradle)
+
     }
 
 }
