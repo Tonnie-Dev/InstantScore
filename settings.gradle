@@ -1,13 +1,15 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
+        gradlePluginPortal()
     }
-}
-plugins {
-    // See https://jmfayard.github.io/refreshVersions
-    id("de.fayard.refreshVersions") version "0.51.0"
 }
 
 dependencyResolutionManagement {
@@ -18,7 +20,11 @@ dependencyResolutionManagement {
     }
 }
 
+plugins {
+    // See https://jmfayard.github.io/refreshVersions
+    id("de.fayard.refreshVersions") version "0.60.5"
 
+}
 
 rootProject.name = "InstantScore"
 include ':app'
