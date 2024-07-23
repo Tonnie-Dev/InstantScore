@@ -1,13 +1,10 @@
-
-
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
-    id("kotlin-parcelize")
-    id("com.google.devtools.ksp") version "1.7.21-1.0.8"
-
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt.plugin)
+    alias(libs.plugins.ksp.plugin)
+    alias(libs.plugins.parcelize.plugin)
 }
 
 android {
@@ -72,41 +69,36 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(libs.ui)
-    implementation(libs.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.multidex)
 
-    testImplementation(libs.junit.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
-
-    // Chucker
-    debugImplementation(libs.library)
-    releaseImplementation(libs.library.no.op)
-
-    // Material 3 Lib - this version is causing the problem
-
-    implementation(libs.material3)
 
     // Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.svg)
 
-    // Dagger - Hilt
+    // Dagger Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
-    // when using Kotlin
-    kapt(libs.hilt.compiler)
+
     // hilt work
-    implementation(libs.hilt.work)
+    implementation(libs.work.runtime.ktx)
 
     // WorkManager with Coroutines
     implementation(libs.work.runtime.ktx)
@@ -115,21 +107,22 @@ dependencies {
     implementation(libs.startup.runtime)
 
     // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.logging.interceptor)
-    implementation(libs.okhttp)
+    implementation(Square.retrofit2)
+
+    implementation(Square.okHttp3)
+    implementation(Square.okHttp3.loggingInterceptor)
 
     // Retrofit Converters
-    implementation(libs.converter.moshi)
+    implementation(Square.retrofit2.converter.moshi)
     implementation(libs.converter.scalars)
 
     // Moshi Library Dependencies - Core Moshi JSON Library and Moshi"s Kotlin support and converter factory
-    implementation(libs.moshi)
-    implementation(libs.moshi.kotlin)
+    implementation(Square.moshi)
+    implementation(Square.moshi.kotlinReflect)
 
-    // Room KTX with Kotlin Extensions and Coroutines support for Room
+    // Room components
     implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
 
     // Lottie Animation
     implementation(libs.lottie.compose)
@@ -157,23 +150,5 @@ dependencies {
     // DesugaringLib
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-    // testing
-    androidTestImplementation(libs.truth)
-    androidTestImplementation(libs.androidx.test.core.ktx)
-    androidTestImplementation(libs.mockwebserver)
-    testImplementation(libs.mockito.android)
-    testImplementation(libs.mockito.inline)
-    testImplementation(libs.mockito.kotlin)
-    testImplementation(libs.mockk)
-    testImplementation(libs.mockito.core)
-    androidTestImplementation(libs.mockito.android)
-    androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.android.compiler)
-    testImplementation(libs.junit.junit)
-    testImplementation(libs.androidx.test.runner)
-    testImplementation(libs.truth)
-    testImplementation(libs.androidx.test.core.ktx)
-    testImplementation(libs.robolectric)
-    implementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.core.testing)
+
 }
