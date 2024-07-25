@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.uxstate.instantscore"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.uxstate.instantscore"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -108,7 +108,6 @@ dependencies {
 
     // Retrofit
     implementation(Square.retrofit2)
-
     implementation(Square.okHttp3)
     implementation(Square.okHttp3.loggingInterceptor)
 

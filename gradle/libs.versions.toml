@@ -20,10 +20,10 @@ activityCompose = "1.9.0"
 composeBom = "2024.04.01"
 
 
-okhttp3 = "4.9.1"
+
 coil-kt = "2.2.2"
 retrofit2 = "2.9.0"
-moshi = "1.12.0"
+
 
 
 
