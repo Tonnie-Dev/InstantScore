@@ -37,7 +37,7 @@ android {
 
         getByName("release") {
             isMinifyEnabled = false
-            multiDexEnabled = true
+            //multiDexEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -45,12 +45,12 @@ android {
         }
     }
     compileOptions {
-        isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        //isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "18"
     }
     buildFeatures {
         compose = true
@@ -85,7 +85,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(libs.multidex)
+    //implementation(libs.multidex)
 
 
     // Coil
@@ -127,7 +127,10 @@ dependencies {
     implementation(libs.lottie.compose)
 
     // Compose Nav Destinations
-    implementation(libs.io.github.raamcosta.compose.destinations.core)
+    //implementation(libs.compose.destinations.core)
+    //ksp(libs.compose.destinations.ksp)
+
+    implementation(libs.ksp)
     ksp(libs.ksp)
 
     // Pager - Accompanist
@@ -147,7 +150,7 @@ dependencies {
     implementation(libs.datetime)
 
     // DesugaringLib
-    coreLibraryDesugaring(libs.desugar.jdk.libs)
+    //coreLibraryDesugaring(libs.desugar.jdk.libs)
 
 
 }

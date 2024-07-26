@@ -39,6 +39,7 @@ kotlinx-coroutines = "1.6.4"
 
 androidx-multidex = "2.0.1"
 android-tools-desugar_jdk_libs = "1.1.6"
+compose-destinations = "2.1.0-beta11"
 
 
 
@@ -74,7 +75,7 @@ converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalar
 
 lottie-compose = "com.airbnb.android:lottie-compose:5.2.0"
 
-io-github-raamcosta-compose-destinations-core = "io.github.raamcosta.compose-destinations:core:1.6.23-beta"
+
 
 accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "google-accompanist" }
 
@@ -107,7 +108,8 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
-
+## compose-destinations-core = {group = "io.github.raamcosta.compose-destinations", name ="core", version.ref = "compose-destinations"}
+## compose-destinations-ksp = {group = "io.github.raamcosta.compose-destinations", name ="ksp", version.ref = "compose-destinations"}
 ksp = "io.github.raamcosta.compose-destinations:ksp:1.10.2"
 
 [plugins]
