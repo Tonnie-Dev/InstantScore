@@ -97,11 +97,11 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
-    // hilt work
-    implementation(libs.work.runtime.ktx)
 
+    //Hilt work
+    implementation(libs.hilt.work)
     // WorkManager with Coroutines
-    implementation(libs.work.runtime.ktx)
+  implementation(libs.work.runtime.ktx)
 
     // App Startup
     implementation(libs.startup.runtime)

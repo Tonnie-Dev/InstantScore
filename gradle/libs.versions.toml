@@ -28,7 +28,8 @@ retrofit2 = "2.9.0"
 
 
 
-androidx-work = "2.8.0"
+androidx-work = "2.9.0"
+hilt-work = "1.2.0"
 androidx-startup = "1.1.1"
 
 google-accompanist = "0.28.0"
@@ -68,7 +69,7 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil-kt" }
 
 work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidx-work" }
-
+hilt-work = {group = "androidx.hilt",name ="hilt-work", version.ref = "hilt-work"}
 startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidx-startup" }
 
 converter-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "retrofit2" }

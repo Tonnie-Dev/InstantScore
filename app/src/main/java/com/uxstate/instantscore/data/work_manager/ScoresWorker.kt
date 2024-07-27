@@ -13,6 +13,8 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 import retrofit2.HttpException
 import timber.log.Timber
+
+
 @HiltWorker
 class ScoresWorker @AssistedInject constructor(
     @Assisted private val context: Context,
