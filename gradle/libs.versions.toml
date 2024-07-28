@@ -40,7 +40,9 @@ kotlinx-coroutines = "1.6.4"
 
 androidx-multidex = "2.0.1"
 android-tools-desugar_jdk_libs = "1.1.6"
-compose-destinations = "2.1.0-beta11"
+
+compose-destinations-1 = "1.10.2"
+compose-destinations-2 = "2.1.0-beta11"
 
 
 
@@ -111,7 +113,9 @@ room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 ## compose-destinations-core = {group = "io.github.raamcosta.compose-destinations", name ="core", version.ref = "compose-destinations"}
 ## compose-destinations-ksp = {group = "io.github.raamcosta.compose-destinations", name ="ksp", version.ref = "compose-destinations"}
-ksp = "io.github.raamcosta.compose-destinations:ksp:1.10.2"
+
+compose-destinations-core-one = {group = "io.github.raamcosta.compose-destinations", name ="core", version.ref = "compose-destinations-1"}
+compose-destinations-ksp-one = {group = "io.github.raamcosta.compose-destinations", name ="ksp", version.ref = "compose-destinations-1"}
 
 [plugins]
 

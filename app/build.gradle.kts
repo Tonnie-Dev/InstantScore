@@ -130,8 +130,8 @@ dependencies {
     //implementation(libs.compose.destinations.core)
     //ksp(libs.compose.destinations.ksp)
 
-    implementation(libs.ksp)
-    ksp(libs.ksp)
+    implementation(libs.compose.destinations.core.one)
+    ksp(libs.compose.destinations.ksp.one)
 
     // Pager - Accompanist
     implementation(libs.accompanist.pager) // Pager
