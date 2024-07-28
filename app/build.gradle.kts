@@ -152,5 +152,5 @@ dependencies {
     // DesugaringLib
     //coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-
+    androidTestImplementation(libs.mockwebserver)
 }

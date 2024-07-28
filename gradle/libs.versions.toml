@@ -45,7 +45,7 @@ compose-destinations-1 = "1.10.2"
 compose-destinations-2 = "2.1.0-beta11"
 
 
-
+okhttp3 = "4.9.1"
 
 
 
@@ -117,6 +117,9 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 compose-destinations-core-one = {group = "io.github.raamcosta.compose-destinations", name ="core", version.ref = "compose-destinations-1"}
 compose-destinations-ksp-one = {group = "io.github.raamcosta.compose-destinations", name ="ksp", version.ref = "compose-destinations-1"}
 
+
+
+mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp3" }
 [plugins]
 
 android-application = { id = "com.android.application", version.ref = "agp" }
