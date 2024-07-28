@@ -1,5 +1,6 @@
 package com.uxstate.instantscore.presentation.screens.stats_screen.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -19,17 +20,17 @@ fun StatsChipRow(
     var selectedChipIndex by remember { mutableStateOf(0) }
     val spacing = LocalSpacing.current
     Card(
-        shape = RectangleShape, modifier = modifier.padding(bottom = spacing.spaceSmall)
+            shape = RectangleShape, modifier = modifier.padding(bottom = spacing.spaceSmall)
 
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    spacing.spaceSmall
-                )
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spacing.spaceSmall),
+                modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                                spacing.spaceSmall
+                        )
 
         ) {
             for (i in 0..3) {
@@ -83,15 +84,14 @@ fun StatsChip(
         }
     }
     AssistChip(
-        onClick = onClickChip,
-        label = { Text(text = chipText) },
-        shape = RoundedCornerShape(spacing.spaceSmall),
-        modifier = modifier,
-        border = AssistChipDefaults.assistChipBorder(
-            borderColor = chipBorderColor,
-            borderWidth = chipBorderWidth
-        )
-
+            onClick = onClickChip,
+            label = { Text(text = chipText) },
+            shape = RoundedCornerShape(spacing.spaceSmall),
+            modifier = modifier,
+            border = BorderStroke(
+                    width = chipBorderWidth,
+                    color = chipBorderColor
+            )
     )
 }
 
