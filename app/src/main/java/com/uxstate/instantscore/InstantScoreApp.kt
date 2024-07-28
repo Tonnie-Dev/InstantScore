@@ -20,9 +20,12 @@ class InstantScoreApp : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
+  override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+                .setWorkerFactory(workerFactory)
+                .build()
+
     }
-}
+
+
+//https://medium.com/@santimattius/workmanager-with-hilt-and-app-startup-80b34062e144
