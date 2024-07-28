@@ -34,10 +34,14 @@
     <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
-            tools:node="remove"
+        android:exported="false"
+        tools:node="merge"
           >
 
-        </provider>
+        <meta-data
+            android:name="com.uxstate.instantscore.data.work_manager.WorkManagerInitializer"
+            android:value="androidx.startup" />
+    </provider>
     </application>
 
 </manifest>
