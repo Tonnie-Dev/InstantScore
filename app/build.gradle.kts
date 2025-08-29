@@ -9,14 +9,14 @@ plugins {
 
 android {
     namespace = "com.uxstate.instantscore"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.uxstate.instantscore"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 36
+        versionCode = 3
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -31,34 +31,34 @@ android {
         }
     }
 
-
-
     buildTypes {
 
         getByName("release") {
             isMinifyEnabled = false
-            //multiDexEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
         }
     }
     compileOptions {
-        //isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
-        jvmTarget = "18"
+        jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.3.2"
     }
-    packagingOptions {
+
+    packaging {
         resources {
             resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
@@ -85,9 +85,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //implementation(libs.multidex)
-
-
     // Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.svg)
@@ -97,11 +94,11 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
-
-    //Hilt work
+    // Hilt work
     implementation(libs.hilt.work)
+
     // WorkManager with Coroutines
-  implementation(libs.work.runtime.ktx)
+    implementation(libs.work.runtime.ktx)
 
     // App Startup
     implementation(libs.startup.runtime)
@@ -126,19 +123,12 @@ dependencies {
     // Lottie Animation
     implementation(libs.lottie.compose)
 
-    // Compose Nav Destinations
-    //implementation(libs.compose.destinations.core)
-    //ksp(libs.compose.destinations.ksp)
-
     implementation(libs.compose.destinations.core.one)
     ksp(libs.compose.destinations.ksp.one)
 
     // Pager - Accompanist
     implementation(libs.accompanist.pager) // Pager
     implementation(libs.accompanist.pager.indicators) // Pager Indicators
-
-    // Swipe to Refresh - Accompanist
-    // implementation("com.google.accompanist:accompanist-swiperefresh:_")
 
     // System UI Controller - Accompanist
     implementation(libs.accompanist.systemuicontroller)
@@ -148,9 +138,6 @@ dependencies {
 
     // Date Picker Library
     implementation(libs.datetime)
-
-    // DesugaringLib
-    //coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     androidTestImplementation(libs.mockwebserver)
 }
