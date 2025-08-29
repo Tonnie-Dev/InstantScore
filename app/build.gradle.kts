@@ -65,7 +65,12 @@ android {
     }
 }
 
-
+tasks.register("printVersionCodeAndName") {
+    doLast {
+        println("VERSION_CODE=${android.defaultConfig.versionCode}")
+        println("VERSION_NAME=${android.defaultConfig.versionName}")
+    }
+}
 
 dependencies {
 
