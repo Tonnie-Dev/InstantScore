@@ -128,6 +128,7 @@ dependencies {
     // Lottie Animation
     implementation(libs.lottie.compose)
 
+    //Navigation
     implementation(libs.compose.destinations.core.one)
     ksp(libs.compose.destinations.ksp.one)
 
