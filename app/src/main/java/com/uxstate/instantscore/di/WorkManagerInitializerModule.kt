@@ -9,6 +9,7 @@ import com.uxstate.instantscore.data.work_manager.ScoresWorker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import timber.log.Timber
@@ -16,6 +17,7 @@ import timber.log.Timber
 @Module
 @InstallIn(SingletonComponent::class)
 
+/*
 object WorkManagerInitializerModule : Initializer<WorkManager> {
 
     @Provides
@@ -32,4 +34,11 @@ object WorkManagerInitializerModule : Initializer<WorkManager> {
     override fun dependencies(): List<Class<out Initializer<*>>> {
         return emptyList()
     }
+}*/
+
+
+object WorkManagerModule {
+    @Provides @Singleton
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager =
+        WorkManager.getInstance(context)
 }

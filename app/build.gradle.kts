@@ -54,9 +54,7 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
-    }
+
 
     packaging {
         resources {

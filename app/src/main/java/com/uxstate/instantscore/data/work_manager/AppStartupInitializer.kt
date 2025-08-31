@@ -3,6 +3,7 @@ package com.uxstate.instantscore.data.work_manager
 import android.content.Context
 import androidx.startup.Initializer
 
+/*
 class AppStartupInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         ScoresWorker.schedule(context.applicationContext)
@@ -12,4 +13,4 @@ class AppStartupInitializer : Initializer<Unit> {
         listOf(androidx.work.WorkManagerInitializer::class.java)
 
 
-}
+}*/
